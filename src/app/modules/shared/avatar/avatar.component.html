@@ -1,0 +1,82 @@
+<div *ngIf="user &&  user.profilePicture; else acronymAvatar" class="circle profile-image" [ngStyle]="{ backgroundImage:'url(' + user.profilePicture + ')'}">
+</div>
+<ng-template #acronymAvatar>
+    <div class="circle profile-image">
+        <span *ngIf="user.name;then templateName;else templateEmail;">
+           {{user.name.substring(0,1)}}
+        </span>
+
+        <ng-template #templateName>
+            <span class="acronym big">
+                {{user.name?.substring(0,1)}} 
+            </span>
+        </ng-template>
+        <ng-template #templateEmail>
+            <span class="acronym big">
+                {{user.email?.substring(0,1)}} 
+            </span>
+        </ng-template>
+
+    </div>
+</ng-template>
+<!--Normal-->
+<ng-container *ngIf="!dropdownStatuses">
+    <!--Connection Status-->
+    <div class="avatar-status {{user?.status}}" *ngIf="showStatus && !(showAccountStatus && accountStatus.key !== 'active') && user && user.status">
+        <a class="avatar-status-content">
+            <i class="avatar-status-icon" [inlineSVG]="'assets/img/commons/status/user/'+user?.status+'.svg'"></i>
+        </a>
+    </div>
+    <!--Account Status-->
+    <div class="avatar-status {{user?.status}}" *ngIf="showAccountStatus && accountStatus.key !== 'active' && user">
+        <div class="avatar-status-content">
+            <i class="avatar-status-icon" [inlineSVG]="'assets/img/commons/status/user/suspended.svg'"></i>
+
+        </div>
+    </div>
+    <!--Invitation-->
+    <div class="avatar-status" *ngIf="invitation">
+        <div class="avatar-status-content">
+            <i class="avatar-status-icon" [inlineSVG]="'assets/img/commons/status/user/await.svg'"></i>
+
+        </div>
+    </div>
+</ng-container>
+<!--Dropdown statuses-->
+<ng-container *ngIf="dropdownStatuses">
+    <!--Connection Status-->
+    <div class="avatar-status avatar-btn-drodpown {{user?.status}}" *ngIf="user && user.status">
+        <a href="javascript:void(0)" mz-button [id]="'btn-dropdown-statuses-avatar-'+buttonId" class="avatar-status-content ">
+            <i class="avatar-status-icon" [inlineSVG]="'assets/img/commons/status/user/'+user?.status+'.svg'"></i>
+            <span class="caret-avatar" [inlineSVG]="'assets/img/commons/ico_caret.svg'"></span>
+        </a>
+        <app-mz-dropdown-brainy #dropdownStatusesEl [id]="'avatar-dropdown-avatar-statuses-'+buttonId" [container]="'body'"
+            [dropdownClass]="'dropdown-avatar-statuses'" [dropdownButtonId]="'btn-dropdown-statuses-avatar-'+buttonId"
+            [constrainWidth]="false" [belowOrigin]="false"
+            [fixScroll]="true"
+            >
+            <li *ngFor="let status of userConnectionStatuses">
+                <span (click)="setStatus($event,status)">
+                    <i class="icon-svg" [inlineSVG]="'assets/img/commons/status/user/'+status+'.svg'"></i>
+                    {{ 'user.statuses.'+status | translate}}
+                </span>
+            </li>
+
+
+        </app-mz-dropdown-brainy>
+    </div>
+</ng-container>
+<div class="avatar-overlay" *ngIf="overlay">
+    <img class="camera" src="assets/img/commons/ico_camera.svg">
+    <span role="button" class="avatar-overlay-btn" 
+    appFilePicker 
+    accept="image/*" (filePick)="chooseFile($event)"></span>
+</div>
+<ng-container *ngIf="specialRol">
+    <ng-container *ngIf="specialRol === 'editor'">
+        <i class="halo-special-rol" [inlineSVG]="'assets/img/avatar/editor.svg'"></i>
+    </ng-container>
+    <ng-container *ngIf="specialRol === 'approver'">
+        <i class="halo-special-rol" [inlineSVG]="'assets/img/avatar/approver.svg'"></i>
+    </ng-container>
+</ng-container>

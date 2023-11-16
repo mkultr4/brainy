@@ -1,0 +1,66 @@
+<audio #audioSource controls 
+[style.display]="'none'"
+(loadeddata)="onloadeddata()"
+(loadedmetadata)="onloadedmetadata()"
+(durationchange)="ondurationchange()"
+(canplay)="oncanplay()"
+(timeupdate)="ontimeupdate()"
+(ended)="onended()"
+>
+</audio>
+
+<div class="audio-player"
+ [ngClass]="{'audio-player-ready':canPlay}"
+  [hidden]='!audioSrc' 
+    (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)" 
+    (mouseup)="onMouseUp($event)"
+    >
+    <!--Player-->
+    <div class="player">
+        <!--<div class="loading">
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        
+        <button class="play-pause-btn" 
+                [disabled]="!canPlay"
+                (click)="trigger($event)">
+            <i class="icon ion-md-play ico-play" *ngIf="audioAction === 'play'"></i>
+            <i class="icon  ion-md-pause" *ngIf="audioAction === 'pause'"></i>
+        </button>
+    </div>
+    <!--Controls-->
+    <div class="controls">
+        <!--Slider-->
+        <div #slider class="slider" data-direction="horizontal">
+            <div class="progress" [ngStyle]="{width:(currentTime * 100) / duration + '%'}">
+                <div #pin class="pin" id="progress-pin" data-method="rewind"></div>
+            </div>
+        </div>
+    </div>
+    <!--Times-->
+    <div class="times">
+        
+        <span class="current-time">{{currentTime * 1000| date:'mm:ss'}}</span>
+        <span class="total-time" *ngIf="duration">{{duration * 1000| date:'mm:ss'}}</span>
+    </div>
+
+
+</div>
+<div class='audio-player-empty' 
+  [class.not-visible]="notVisibleEmpty"
+  [hidden]='audioSrc'>
+    <div class="slider"></div>
+</div>

@@ -1,0 +1,52 @@
+<div class="topic-title-wrapper">
+    <div class="topic-title-content">
+        <div class="topic-title-input">
+            <div class="topic-title-input-wrapper closest-comment-thread-container">
+                <div class="topic-title-main-content">
+                    <div class="topic-title topic-line" #topicTitle id="topic-editor-title" tabindex="1" [sanitizeHTML]="false"
+                        [contentEditable]="editable" [(contentEditableModel)]="topic.title"
+                        (contentEditableModelChange)="onChange()" (input)="onInput()" (blur)="onBlur()" [maxLength]="100"
+                        placeholder="Escribe un tema">
+                        <span><br /></span>
+                    </div>
+                    <!--Clone topic title-->
+                    <div #topicTitleClone class="topic-title topic-line topic-title-clone" [innerHTML]="topic.title | sanitize:'html'"></div>
+                    <!--Topic title Ghost-->
+                    <div id="topic-title-ghost" [style.width.px]="topicTitleWidth + 50" [style.height.px]="topicTitleHeight">
+                        <span id="pulse-target-0" class="pulse-tour"></span>
+                    </div>
+                    <!--Topic title Ghost comment-->
+                    <div id="topic-title-ghost-comments" 
+                        [style.width.px]="topicTitleWidth"
+                         [style.height.px]="topicTitleHeight">
+                        <!--Selection-->
+                        <ng-container *ngFor="let commentThread of commentThreads 
+                        | filterCommentThreadStatus: filterStatuses
+                        | filterCommentThreadParticipantType: filterParticipantTypes">
+                            <div class="comment-thread-selection-wrapper ">
+                                <span 
+                                    [ngClass]="[
+                                        'comment-thread-selection-' + commentThread.id + ' comment-thread-selection status-' + commentThread.status.key ,
+                                        !commentThread.saved ? 'not-saved unprocess active':''
+                                    ]"
+                                    [innerHTML]="topic.title.length > 0 ? topic.title : 'Escribe un tema'">
+
+                                </span>
+                            </div>
+                        </ng-container>
+                        <!--Comments-->
+                        <ng-container *ngFor="let commentThread of commentThreads 
+                        | filterCommentThreadStatus: filterStatuses
+                        | filterCommentThreadParticipantType: filterParticipantTypes;let index = index">
+                            <app-comment-thread-meeting-note-title 
+                                [commentThread]="commentThread"
+                                [commentThreadStatus]="commentThread.status"
+                                [left]="20 * index"
+                                ></app-comment-thread-meeting-note-title>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

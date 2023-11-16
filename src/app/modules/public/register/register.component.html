@@ -1,0 +1,109 @@
+<div class="panel-wrapper-register">
+    <div class="feature-panel"></div>
+    <div class="main-panel">
+      <div class="main-panel-content">
+        <!--Logo-->
+        <div class="main-panel-logo">
+          <a href="javascript:void(0)" [routerLink]="['/']">
+            <img [src]="'assets/img/public/logo_brainy.svg'" class="image-logo"> Brainy
+          </a>
+        </div>
+        <div class="main-panel-header">
+          <span class="main-panel-header-label">Regístrate</span>
+          <!--Message-->
+          <span class="main-panel-header-message message-login">
+            <!--<span *ngIf="message" class="help-block {{messageType}}">{{message}}</span>-->
+          </span>
+        </div>
+        <!--Form-->
+        <form id="formLogin" name="formLogin" class="main-panel-form" #formLogin="ngForm">
+
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div class="input-field input-field-medium">
+                <input mz-input autocomplete="off" [label]="'Correo electrónico'" type="email" name="email" required
+                #emailInput="ngModel"
+                  [(ngModel)]="user.email" required ngvemail>
+                <span class="help-block error" *ngIf="emailInput.touched && emailInput.errors?.required">
+                  Debes ingresar el correo electrónico
+                </span>
+                <span class="help-block error" *ngIf="emailInput.touched  && emailInput.errors?.email">
+                  Oops! correo electrónico invalido.
+                </span>
+                <span class="help-block error" *ngIf="message && message != ''">
+                    {{message}}
+                  </span>
+
+              </div>
+            </div>
+            <div class="col s12">
+              <div class="input-field input-field-medium input-field-password">
+                <input mz-input [label]="'Contraseña'" type="password"
+                  name="password"
+                 [(ngModel)]="user.password"
+                  [minlength]="8"
+                  #password="ngModel"
+                  required
+                  >
+
+                <span class="character-count" *ngIf="(8 - user.password.length) > 0">
+                  {{8 - user.password.length}}+ caracteres
+                </span>
+                <span class="character-count valid" *ngIf="(8 - user.password.length) <= 0">
+                  <i [inlineSVG]="'assets/img/status/ico_to_be_approved.svg'" class="status-icon counter-svg"></i>
+                </span>
+
+                  <span class="help-block error" *ngIf="password.touched  &&
+                  password.errors?.minlength">
+                      Su contraseña debe tener al menos 8 caracteres.
+                  </span>
+              </div>
+            </div>
+
+
+
+            <!--Button-->
+            <div class="col s12">
+              <div class="main-panel-form-button">
+
+                <button class="btn btn-medium btn-light"
+                  [ngClass]="{'btn-loading':btnDisabled}"
+                  [disabled]="!formLogin.valid || btnDisabled" (click)="register()">
+                  {{ !btnDisabled ? 'Continuar':'Enviando'}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+        <!--Social-->
+        <div class="main-panel-social">
+          <div class="main-panel-social-label">
+            <span>o regístrate con</span>
+          </div>
+          <div class="main-panel-social-buttons">
+            <a class="social-button" (click)="signInSocial('google')">
+              <img class="icon-svg on-leave google" src="assets/img/public/logo_google.svg">
+              <img class="icon-svg on-hover google" src="assets/img/public/logo_google_active.svg">
+            </a>
+
+            <a class="social-button " (click)="signInSocial('facebook')">
+              <img class="icon-svg on-leave" [src]="'assets/img/public/logo_facebook.svg'" />
+              <img class="icon-svg on-hover" [src]="'assets/img/public/logo_facebook_active.svg'" />
+            </a>
+          </div>
+        </div>
+        <!--Footer-->
+        <div class="main-panel-footer">
+          <div class="main-panel-footer-link ">
+            <span>¿Ya tienes una cuenta?</span>
+            <a href="javascript:void(0)" [routerLink]="['../login']">Inicia sesión</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="main-panel-footer-privacy ">
+        <span>Al hacer clic en "Continuar", acepto los Términos de servicio y la Política de privacidad de Brainy.</span>
+      </div>
+    </div>
+  </div>

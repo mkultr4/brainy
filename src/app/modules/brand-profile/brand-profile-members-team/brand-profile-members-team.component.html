@@ -1,0 +1,39 @@
+<ng-container *ngIf="invitations && team">
+    <div class="team-list-content">
+      <!--My team-->
+      <ng-container *ngFor="let wa of team 
+      | filterWorkspaceAccessGuest:false
+      | filterSearchUser:query
+      |  orderBy: orderBy">
+        <app-team-box [workspaceAccess]="wa" 
+        [currentWorkspaceAccessId]="workspaceAccess.id"></app-team-box>
+      </ng-container>
+      <!--Invitations-->
+      <ng-container *ngFor="let invitation of invitations | filterInvitationMyTeam  | filterBy:['email']:query">
+        <app-team-box-invitation [invitation]="invitation"></app-team-box-invitation>
+      </ng-container>
+    </div>
+    <ng-container 
+    *ngIf="(team 
+        | filterWorkspaceAccessGuest: false
+        | filterSearchUser:query
+        ).length === 0 &&  (invitations | filterInvitationMyTeam | filterBy:['email']:query).length === 0"
+    >
+        <h1 class="without-results">
+          {{ 'commons.without-results' | translate }}
+  
+        </h1>
+    </ng-container>
+  
+    <!--Empty-->
+    <ng-container *ngIf="(team && team.length === 0 ) && (invitations && invitations.length === 0)">
+      <div class="brainy-empty-message">
+        <img src="assets/img/commons/empty-lists/img_dashobard_equipos.svg">
+        <h1 class="title">Invita colaboardores</h1>
+        <p class="message">
+          Necesitas más información para invitar
+          <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+        </p>
+      </div>
+    </ng-container>
+  </ng-container>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="14px" viewBox="0 0 12 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icono_tema_pendiente</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Interface_minuta_cerrada" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vista_cerrada_invitado_menu-" transform="translate(-781.000000, -1228.000000)">
+            <g id="icono_tema_pendiente" transform="translate(781.000000, 1228.000000)">
+                <g id="Group-21">
+                    <g id="ic_bookmark_border_24px" fill="#4F5C69">
+                        <g id="Group">
+                            <path d="M9.86363636,0.136363636 L2.13636364,0.136363636 C1.28636364,0.136363636 0.598636364,0.831818182 0.598636364,1.68181818 L0.590909091,14.0454545 L6,11.7272727 L11.4090909,14.0454545 L11.4090909,1.68181818 C11.4090909,0.831818182 10.7136364,0.136363636 9.86363636,0.136363636 L9.86363636,0.136363636 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                    <polygon id="+" fill="#FFFFFF" points="6.50828931 5.52919471 8.72727273 5.52919471 8.72727273 6.45832836 6.50828931 6.45832836 6.50828931 8.72727273 5.49171069 8.72727273 5.49171069 6.45832836 3.27272727 6.45832836 3.27272727 5.52919471 5.49171069 5.52919471 5.49171069 3.27272727 6.50828931 3.27272727"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

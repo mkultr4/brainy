@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>ico/menu_editar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="ico/menu_editar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-9"></g>
+        <g id="ic_create_24px" transform="translate(8.356315, 7.371508) rotate(-10.000000) translate(-8.356315, -7.371508) translate(2.856315, 1.871508)">
+            <g id="Group" transform="translate(-0.000000, -0.000000)">
+                <polygon id="Shape" points="1.8189894e-12 5.68434189e-13 11 5.68434189e-13 11 11 1.8189894e-12 11"></polygon>
+                <path d="M0.359807753,8.07989818 L0.359807753,9.79864818 L2.07855775,9.79864818 L7.14772442,4.72948151 L5.42897442,3.01073151 L0.359807753,8.07989818 L0.359807753,8.07989818 Z M8.47689109,3.40031484 C8.65564109,3.22156484 8.65564109,2.93281484 8.47689109,2.75406484 L7.40439109,1.68156484 C7.22564109,1.50281484 6.93689109,1.50281484 6.75814109,1.68156484 L5.91939109,2.52031484 L7.63814109,4.23906484 L8.47689109,3.40031484 L8.47689109,3.40031484 Z" id="Shape" fill="#4F5C69"></path>
+            </g>
+        </g>
+    </g>
+</svg>

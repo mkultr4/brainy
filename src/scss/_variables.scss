@@ -1,0 +1,167 @@
+// Media Query Ranges
+$small-screen-up: 601px !default;
+$medium-screen-up: 993px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 600px !default;
+$medium-screen: 992px !default;
+$wide: 1200px !default;
+$large-screen: 1400px !default;
+
+
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+// Media Query Ranges
+$small-devices-up: 480px !default;
+
+$mq-breakpoints: (
+    xs:  $small-devices-up,
+    mobile:$small-screen,
+    tablet-portrait:768px,
+    tablet:  $small-screen-up,
+    tablet-landscape:1024px,
+    desktop: $medium-screen-up,
+    wide:   $wide,
+    large-screen: 1400px
+);
+
+
+// ZIndex
+$z-index-footer:100;
+$z-index-sidenav:103;
+$z-index-sidenav-overlay:102;
+$z-index-header: 104;
+$z-index-sidenav-secondary : $z-index-header + 4;
+$z-index-sidenav-secondary-overlay : $z-index-header + 2;
+$z-index-sidenav-tertiary :$z-index-sidenav-secondary + 4;
+$z-index-sidenav-tertiary-overlay : $z-index-sidenav-secondary+ 2;
+$z-index-animate-modal :2000;
+//Heights
+$nav-height:60px;
+$header-height:149px;
+$header-compressed-height:60px;
+$footer-height:48px;
+$footer-height-tall:96px;
+// Colors
+// ==========================================================================
+$white-color:  #fff;
+$primary-color:  #4f5c69;
+$primary-color-light:  #CCCCCC;
+$primary-color-dark: #010101;
+$primary-background-color:#f0f2f4;
+$secondary-color:#ff6633;
+$tertiary-color: #A3A1A4;
+$hover-color: rgba(#efefef, 0.44);
+$hover-color-footer : rgba($primary-color,0.2);
+$link-color: #4a90e2;
+//Placeholder
+$placeholder-color:rgba($primary-color,0.3);
+$color-active-menu-header : #272C32;
+$sidenav-secondary-color: #6E7A88;
+$input-focus-border-color : rgba($primary-color,0.8);
+$divider-color:#DBD8D8;
+//Spectre Grays
+$gray-color:#454444;
+$gray-color-light:#5D5B5B;
+$gray-color-dark: #666666;
+$gray-color-2: #DDDDDD;
+
+//Color Spectre
+$blue-color: #207BE5 ;
+$yellow-color: #F5A625;
+$navy-color:#151634;
+$dark-color:#18191A;
+$purple-color:#393A6F;
+$purple-color-dark: #373800;
+$purple-color-dark2:#595A9C;
+//Change the color light :p
+$purple-color-light: #4648C7;
+$purple-color-lighten:#3C4FBC ;
+$purple-color-1:#4648C8;
+$purple-color-2:#4445C0;
+//Statuses Color
+$status-open-color:#00cc99;
+$status-process-color:#F5A524;
+$status-to-be-approved-color:#207BE5;
+$status-disapproved-color:#FF3466;
+//Statuses Comments Color
+$status-comment-in-process-color:#F6A623;
+$status-comment-resolved-color:#7ED321;
+$status-comment-disapproved-color:#ff3366;
+$status-comment-urgent-color:#CB4DC6;
+//Workflow Colors
+$workflow-right-sidenav-color : #EDEDF3;
+//user rol
+$user-rol-color:#ABB2B9;
+//Hover close modal
+$hover-close-modal-color:#F3F3F8;
+// Special groups colors
+$approver-color : #7ED321;
+$editor-color : $purple-color-light;
+// 3. Typography
+// ==========================================================================
+//$font-family : "Roboto","Open Sans",sans-serif;
+$font-family: 'Roboto', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$font-family-brand : "Open Sans",sans-serif;
+$font-size :12px;
+$font-size-large :14px;
+$font-size-small :10px;
+//Weight
+$font-thin :100;
+$font-light :300;
+$font-regular :400;
+$font-medium :500;
+$font-bold :700;
+$font-black :900;
+//Weight Brand
+$font-brand-light :300;
+$font-brand-regular :400;
+$font-brand-semi-bold :600;
+$font-brand-bold :700;
+$font-brand-extra-bold :800;
+
+
+//Default Font
+@mixin default-font () {
+   font-family:   $font-family;
+   font-size: $font-size;
+   line-height: normal;
+   font-weight: $font-regular;
+   color:$primary-color;
+}
+
+@mixin default-font-header () {
+   font-family:   $font-family;
+   font-size: $font-size;
+   font-weight: $font-regular;
+   color:$primary-color;
+}
+
+//Rol font
+@mixin font-rol ($font-size:18px) {
+   font-family:   $default-font-family;
+   font-size: 10px;
+   line-height: 10px;
+   text-transform: uppercase;
+   color:rgba($primary-color,0.5);
+}
+// Header Styles
+$h1-fontsize: 30px;
+$h2-fontsize: 24px;
+$h3-fontsize: 20px;
+$h4-fontsize: 18px;
+$h5-fontsize: 14px;
+$h6-fontsize: 12px;
+
+// 4. Forms
+// ==========================================================================
+$boder-bottom-color-focus-out:#dddddd;
+
+// 5. Stack Positions
+// ==========================================================================
+
+$z-index-feedback-popup:1002;

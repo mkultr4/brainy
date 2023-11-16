@@ -1,0 +1,38 @@
+<!--Option Date-->
+<ng-container *ngIf="option.type === 'date'">
+  <div class="brief-date-input-wrapper" >
+    <div class="input-field" [class.editable]="focusResponse">
+      <!--Remove-->
+      <a *ngIf="focusResponse" 
+        class="brief-date-input-remove" 
+        href="javascript:void(0)" (click)="deleteOption($event)">
+        <i class="icon ion-md-close"></i>
+      </a>
+      <!--Input-->
+      <span class="brief-date-input-icon" [inlineSVG]="'assets/img/brief/response-types/date/ico_calendar.svg'"></span>
+      <input mz-datepicker 
+      
+      [options]="datePickerOptions" [(ngModel)]="option.value" placeholder="DD / MM / AAAA" type="text"
+        [disabled]="!refillable" (ngModelChange)="onChangeDate($event,option)">
+
+    </div>
+  </div>
+</ng-container>
+<!--Option Time-->
+<ng-container *ngIf="option.type === 'time'">
+  <div class="brief-date-input-wrapper" >
+    <div class="input-field" [class.editable]="focusResponse">
+      <!--Remove-->
+      <a *ngIf="focusResponse" 
+         class="brief-date-input-remove" href="javascript:void(0)" (click)="deleteOption($event)">
+          <i class="icon ion-md-close"></i>
+        </a>
+        <!--Input-->
+      <span class="brief-date-input-icon" [inlineSVG]="'assets/img/brief/response-types/date/ico_small_time.svg'"></span>
+      <input mz-timepicker 
+      [class.editable]="focusResponse"
+      [(ngModel)]="option.value" [options]="timePickerOptions" placeholder="00 : 00 : 00"
+        [disabled]="!refillable" type="text" (ngModelChange)="onChangeHour($event,option)">
+    </div>
+  </div>
+</ng-container>

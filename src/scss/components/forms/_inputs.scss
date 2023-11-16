@@ -1,0 +1,694 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    filter: grayscale(100%) brightness(110%);
+}
+
+@include placeholder {
+    color: $placeholder-color;
+}
+
+
+textarea {
+    //transition: $input-transition;
+    min-height: auto;
+    height: auto;
+}
+
+.placeholder-blue {
+    @include placeholder {
+        color: $purple-color;
+    }
+} //Input Default
+input[type],
+input:not([type]) {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    height: 28px;
+    color: $primary-color;
+    font-size: 12px;
+    border-color: rgba($primary-color, 0.2);
+    border-bottom: 1px solid rgba($primary-color, 0.2);
+    font-weight: $font-regular;
+    margin: 0 0 3px 0;
+    letter-spacing: 0.33px;
+    box-sizing: border-box;
+
+    &:focus,
+    &.picker__input--active {
+        &:not([readonly]),
+        &input:not([type="checkbox"]) {
+            border-color: $purple-color-light;
+            box-shadow: none;
+
+            & + label {
+                color: $purple-color-light;
+            }
+        }
+    }
+}
+
+.input-field {
+    margin: 10px 0 27px 0; //Label Default
+    label {
+        left: 0px;
+        color: $primary-color;
+        font-size: 12px;
+        font-weight: $font-regular;
+        transition: all .2s ease;
+        height: auto;
+        transform: translateY(7px);
+
+        &:focus {
+            outline: none;
+        }
+
+        span {
+            &.no-active {
+                display: block;
+            }
+
+            &.active {
+                display: none;
+            }
+        }
+
+        &:not(.label-icon) {
+            &.active {
+                transform: translateY(-12px);
+                color: rgba($primary-color, 0.4);
+                font-size: 10px;
+
+                span {
+                    &.no-active {
+                        display: none;
+                    }
+
+                    &.active {
+                        display: block;
+                    }
+                }
+            }
+        }
+    } //Input Default
+    input[type],
+    input:not([type]) {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: 28px;
+        color: $primary-color;
+        font-size: 12px;
+        border-bottom: 1px solid rgba($primary-color, 0.2);
+        font-weight: $font-regular;
+        margin: 0 0 3px 0;
+        letter-spacing: 0.33px;
+        box-sizing: border-box;
+
+        &:focus,
+        &.picker__input--active {
+            &:not([readonly]) {
+                border-color: $purple-color-light;
+                box-shadow: none;
+
+                & + label {
+                    color: $purple-color-light;
+                }
+            }
+        }
+    }
+
+    textarea,.textarea{
+        min-height: 50px;
+        border: 1px solid rgba($primary-color, 0.2);
+        border-radius: 2px;
+        margin: 7px 0 3px 0;
+        padding: 9px 10px;
+
+        &:focus {
+            &:not([readonly]) {
+                border-color: $purple-color;
+                box-shadow: none;
+
+                & + label {
+                    color: $primary-color;
+                }
+            }
+        }
+
+        & + label {}
+    }
+
+    &.focus {
+        > label {
+            &.active {
+                color: $primary-color;
+            }
+        }
+    }
+
+    &.force-placeholder-show {
+        .select-wrapper {
+            input.select-dropdown {
+                @include placeholder {
+                    color: $placeholder-color !important;
+                }
+            }
+        }
+    } //Input Medium
+    &.input-field-medium {
+        margin-bottom: 17px;
+
+        label {
+            transform: translateY(5px);
+            font-size: 14px;
+
+            &.active {
+                font-size: 12px;
+            }
+        }
+
+        input {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: $font-light;
+        }
+    }
+
+    &.input-field-medium-big {
+        margin-bottom: 30px;
+
+        label {
+            font-size: 12px;
+            transform: translateY(6px);
+
+            &.active {
+                font-size: 12px;
+            }
+        }
+
+        input[type],
+        input:not([type]) {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            height: 27px;
+            font-size: 16px;
+            font-weight: $font-light;
+        }
+
+        &.placeholder-14 {
+            input[type],
+            input:not([type]) {
+                @include placeholder {
+                    font-size: 14px;
+                }
+            }
+        }
+    } //Input Big
+    &.input-field-big {
+        margin-bottom: 30px;
+        margin-top: 12px;
+
+        label {
+            font-size: 20px;
+
+            &.active {
+                &:not(.label-icon) {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        input[type],
+        input:not([type]) {
+            font-size: 16px;
+            padding-top: 5px;
+            padding-bottom: 15px;
+            height: 40px;
+        }
+    } //Input Center
+    &.input-field-center {
+        label {
+            &.active {
+                &:not(.label-icon) {
+                    width: 100%;
+                    text-align: center;
+                    transform-origin: unset;
+                }
+            }
+        }
+
+        input[type],
+        input:not([type]) {
+            text-align: center;
+        }
+    } //input field always blue
+    &.input-field-always-blue {
+        input[type],
+        input:not([type]) {
+            border-color: $purple-color !important;
+        }
+    }
+
+    &.input-field-always-blue-light {
+        input {
+            border-bottom-color: $purple-color-light;
+        }
+
+        label {
+            color: $purple-color-light;
+        }
+    }
+
+    &.input-field-disabled {
+        label {
+            opacity: 0.5;
+        }
+
+        .select-wrapper {
+            opacity: 0.5;
+        }
+    }
+
+    &.input-field-number {
+        display: inline-block;
+        width: 100%;
+
+        input[type],
+        input:not([type]) {
+            margin: 0;
+            width: 52px;
+            font-size: 24px;
+            color: #99BFEC;
+            height: 28px;
+            line-height: 28px;
+            display: inline-block;
+            text-align: right;
+            border: none;
+            padding: 0;
+
+            &:focus {
+                border: none;
+            }
+        }
+
+        label {
+            position: relative;
+            display: inline-block;
+            color: $primary-color;
+
+            &:not(.label-icon) {
+                &.active {
+                    line-height: 28px;
+                    font-weight: $font-regular;
+                    font-size: 14px;
+                    color: $primary-color;
+                    letter-spacing: 0.18px;
+                    display: inline-block;
+                    transform: none;
+                }
+            }
+        }
+    } //Errors
+    &.has-error,
+    &.has-help {
+        input[type],
+        input:not([type]) {
+            margin-bottom: 3px;
+        }
+    }
+
+    &.has-button-add {
+        margin-bottom: 16px;
+    }
+
+    &.without-label {
+        margin-top: 0;
+    }
+
+    &.margin-top {
+        input,
+        .select-wrapper {
+            margin-top: 20px;
+        }
+    }
+
+    &.input-field-remove {
+        &:hover {
+            .trash-icon {
+                display: block;
+            }
+        }
+
+        input {
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+
+        .trash-icon {
+            position: absolute;
+            top: 0;
+            right: 12px;
+            top: 5px;
+        }
+    }
+
+    &.input-field-btn-rounded {
+        z-index: 2;
+
+        input,
+        textarea {
+            padding-right: 30px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+
+        &:hover {
+            .btn-rounded {
+                display: block;
+            }
+        }
+
+        .btn-rounded {
+            z-index: 3;
+            display: none;
+            position: absolute;
+            right: 0;
+            z-index: 3;
+            top: 0;
+        }
+    }
+
+    &.input-field-without-label {
+        margin-top: 0;
+    }
+
+    &.input-field-with-btn-add {
+        margin-bottom: 23px;
+    }
+
+    &.input-field-active {
+        input[type],
+        input:not([type]) {
+            color: $purple-color-dark2;
+
+            &:not([readonly]) {
+                border-color: $purple-color-dark2;
+                box-shadow: none;
+
+                & + label {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    &.input-field-active-2 {
+        input[type],
+        input:not([type]) {
+            color: $purple-color-lighten;
+            font-weight: $font-regular;
+
+            &:not([readonly]) {
+                border-color: $purple-color-dark2;
+                box-shadow: none;
+
+                & + label {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    &.input-field-title {
+        input[type],
+        input:not([type]) {
+            font-weight: $font-regular;
+
+            & + label {
+                font-size: 12px;
+                letter-spacing: 0.12px;
+            }
+        }
+    } //Disabled
+    input[type=text]:not(.browser-default):disabled {
+        color: rgba($primary-color, 0.4);
+        border-bottom: 1px solid rgba($primary-color, 0.4);
+    }
+
+    &.input-field-focused {
+        input {
+            border-bottom-color: $purple-color-light;
+
+            & + label {
+                color: $primary-color;
+
+                &.active {
+                    color: $primary-color;
+                }
+            }
+        }
+    } // Purple dark2 for modal create
+    &.input-field-purple-dark {
+        input[type],
+        input:not([type]),
+        textare,
+        .textarea{
+            &:focus {
+                &:not([readonly]) {
+                    border-color: $purple-color-dark2;
+                    box-shadow: none;
+
+                    & + label {
+                        color: $purple-color-dark2;
+                    }
+                }
+            }
+        }
+    }
+
+    &.input-field-focused-dark {
+        input {
+            border-color: $purple-color-dark2;
+
+            & + label {
+                color: $primary-color;
+
+                &.active {
+                    color: $purple-color-dark2;
+                }
+            }
+        }
+
+        textarea,.textarea{
+            &:not([readonly]) {
+                border-color: $purple-color-dark2;
+
+                & + label {
+                    color: $primary-color;
+
+                    &.active {
+                        color: $purple-color-dark2;
+                    }
+                }
+            }
+        }
+    }
+
+    &.input-field-label-medium {
+        > label {
+            font-weight: $font-medium;
+        }
+    }
+}
+
+/* Form help
+------------------------------------------------------------------------*/
+
+.input-help {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    margin-top: -9px;
+    left: -21px;
+    font-size: 8px;
+    text-align: center;
+    color: $primary-color;
+    line-height: 15px;
+
+    > i {
+        color: $primary-color;
+        font-size: 8px;
+
+        > svg {
+            #circle,
+            #circle-outer {
+                fill: $purple-color-light;
+            }
+
+            #symbol-question,
+            #symbol-question-dot {
+                fill: #fff;
+            }
+        }
+    }
+
+    &:hover {
+        > i {
+            > svg {
+                #circle,
+                #circle-outer {
+                    fill: $purple-color-light;
+                }
+
+                #symbol-question,
+                #symbol-question-dot {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}
+
+.input-help-password {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: 5px;
+    font-size: 8px;
+    text-align: center;
+    color: $primary-color;
+    top: 6px;
+
+    > i {
+        color: $primary-color;
+        font-size: 8px;
+    }
+
+    &:hover {
+        > i {
+            svg {
+                path {
+                    fill: $purple-color-light;
+                }
+            }
+        }
+    }
+}
+
+.input-field-with-icon {
+    position: relative;
+
+    input {
+        padding-right: 16px;
+        box-sizing: border-box;
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 33px;
+    }
+}
+
+/*Input dates*/
+
+.input-field-date {
+    @extend .input-field-with-icon;
+
+    .caret-forward {
+        position: absolute;
+        right: 0;
+        width: 8px;
+        height: 6px;
+        top: 50%;
+        margin-top: -5px;
+        font-size: 6px;
+    }
+
+    &.caret {
+        @include input-caret(15px);
+    }
+
+    &.caret-primary-color {
+        @extend .caret;
+
+        &:after {
+            color: $primary-color;
+        }
+    }
+
+    input[readonly="readonly"] {
+        color: $primary-color;
+        border-bottom: 1px solid rgba($primary-color, 0.2);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.active {
+            border-color: $purple-color;
+            box-shadow: none;
+
+            & + label {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.input-field-place {
+    @extend .input-field-with-icon;
+
+    .icon-place {
+        position: absolute;
+        width: 9px;
+        height: 13px;
+        margin-top: -8px;
+        top: 50%;
+        right: 0;
+        font-size: 13px;
+    }
+
+    > input[type=text]:not(.browser-default) {
+        padding-right: 20px;
+    }
+}
+
+.help-block {
+    font-weight: $font-regular;
+    font-size: 12px;
+    display: block;
+    text-align: left;
+
+    &.danger,
+    &.error {
+        color: #FF3466;
+    }
+
+    &.info {
+        color: $purple-color-light;
+    }
+
+    & + .help-block {
+        margin-top: 5px;
+    }
+
+    &.help-block-password {
+        margin-top: 7px;
+        line-height: 14px;
+
+        > a {
+            font-family: $font-regular;
+            font-size: 12px;
+            color: rgba($primary-color, 0.4);
+            letter-spacing: 0.25px;
+
+            &:hover {
+                color: $purple-color-light;
+            }
+        }
+    }
+}

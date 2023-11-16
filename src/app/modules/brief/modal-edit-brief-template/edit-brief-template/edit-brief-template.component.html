@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <!--Title-->
+  <h5 class="modal-header-title">
+    Editar Template
+  </h5>
+</div>
+<div class="modal-content-display">
+  <form name="FormNewFeed" class="form-default" id="new-brief-template-form" #newTemplateForm="ngForm">
+    <div class="modal-content-display-inner">
+      <div class="row no-margin-bottom">
+        <!---Title-->
+        <div class="col s12">
+          <div class="input-field input-field-big input-field-center input-field-active input-field-purple-dark ">
+            <input type="text" class="placeholder-light" #inputTitle name="briefTemplateTitle" [(ngModel)]="briefTemplate.title"
+              tabindex="1" placeholder="Escribe el título" autocomplete="off" maxlength="100" required (ngModelChange)="onChangeTitle($event)">
+            <label class="active">Título template</label>
+          </div>
+        </div>
+      </div>
+      <!--Compressed-->
+      <div class="compressed">
+    
+        <!--Categories-->
+        <div id="categories-content">
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field input-field-medium-big  input-field-purple-dark input-field-label-medium "
+                [ngClass]="{'input-field-focused-dark': titleChange && !briefTemplate.category}">
+                <select mz-select data-container="body" placeholder="Selecciona" id="briefTemplateCategory" name="briefTemplateCategory"
+                  [label]="'Categoría'" [(ngModel)]="briefTemplate.category" 
+                  [disabled]="!titleChange" tabindex="2"
+                  required>
+                  <option value="" selected>Seleccione una categoría</option>
+                  <option *ngFor="let c of categories"  [ngValue]="c">{{ c.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Types-->
+        <div id="type-content">
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field input-field-medium-big  input-field-purple-dark input-field-label-medium "
+                [ngClass]="{'input-field-focused-dark': briefTemplate.category && !briefTemplate.typeTemplate} ">
+                <select mz-select data-container="body" placeholder="Selecciona" 
+                  id="briefTemplateType"
+                   name="briefTemplateType"
+                  [label]="'Tipo'" 
+                  [(ngModel)]="briefTemplate.typeTemplate" 
+                  [disabled]="!briefTemplate.category" 
+                  tabindex="3"
+                   required>
+                  <option value="" selected>Seleccione un tipos</option>
+                  <option *ngFor="let t of typesTemplate"  [ngValue]="t">{{ t.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-content-display-btn">
+  <div class="modal-content-display-inner">
+    <div class="compressed">
+      <!--Buttons-->
+      <div class="center upload-button" id="upload-feed-btn">
+        <button class="btn btn-large" [ngClass]="{'btn-loading':btnDisabled}" [disabled]="btnDisabled || !newTemplateForm.valid"
+          (click)="create()">
+          {{btnDisabled ? 'CREANDO' : 'CONTINUAR'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

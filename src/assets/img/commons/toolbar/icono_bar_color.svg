@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icono/color</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icono/color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g fill="#4F5C69" fill-rule="nonzero" id="noun_121895_cc">
+            <g transform="translate(1.000000, 1.000000)">
+                <path d="M6.94835428,16.3636364 L0,9.41528208 L8.15654082,1.25874126 L15.1048951,8.20709554 L6.94835428,16.3636364 Z M2.41680031,9.41528208 L6.94835428,13.9464088 L12.688522,8.20666832 L8.15654082,3.67554156 L2.41680031,9.41528208 Z" id="Shape"></path>
+                <polygon id="Shape" points="7.18494461 15.1048951 2.51748252 10.0391674 1.18283572 8.81118881 12.5874126 8.81118881"></polygon>
+                <rect id="Rectangle-path" transform="translate(7.552448, 2.517483) rotate(45.004051) translate(-7.552448, -2.517483) " x="6.29370629" y="1.25874126" width="2.51748252" height="2.51748252"></rect>
+                <rect id="Rectangle-path" transform="translate(15.104895, 10.069930) rotate(45.000000) translate(-15.104895, -10.069930) " x="13.8461538" y="8.81118881" width="2.51748252" height="2.51748252"></rect>
+                <path d="M17.6223776,14.4756401 C17.6223776,15.7502474 16.2062937,16.3636364 15.7342657,16.3636364 C15.4455944,16.3636364 13.8461538,15.7502474 13.8461538,14.4756401 C13.8461538,13.2010328 15.3847552,11.3638027 15.7342657,11.3289797 C16.014965,11.3008695 17.6223776,13.2010328 17.6223776,14.4756401 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<app-aside-nav #rightPermissionsNav id="right-permissions-nav" class="secondary" [disableScroll]="true">
+  <div app-sidenav id="slide-out-permissions" class="side-nav fixed interface-resize rightside-navigation animated box-shadow-1">
+    <a class="sidenav-close-big" href="javascript:void(0);" (click)="rightPermissionsNav.hideSidenav()">
+        <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'" class="icon-svg"></i>
+    </a>
+    <!--Header Sidenav-->
+    <div class="header-big">
+      <h5 class="header-title">
+        Rol (Privilegios)
+      </h5>
+    </div>
+    <div class="permissions-wrapper" [perfectScrollbar]="{suppressScrollX:false}">
+      <app-table-permissions></app-table-permissions>
+    </div>
+
+
+
+  </div>
+</app-aside-nav>

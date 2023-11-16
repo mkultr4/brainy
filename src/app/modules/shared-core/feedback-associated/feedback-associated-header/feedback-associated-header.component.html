@@ -1,0 +1,29 @@
+<!-- start header nav-->
+<div class="navbar-default navbar-fixed ">
+  <div class="brand-name-container">
+    <a class="brand-name" href="javascript:void(0)">
+      <i class="icon-svg" [inlineSVG]="'assets/img/logo_brainy.svg'"></i>
+      <span id="meeting-note">Feedback</span>
+    </a>
+  </div>
+  <nav class="interface-nav">
+    <div class="nav-wrapper ">
+      <app-workflow-header [core]="feedback" [coreStatuses]="[]" [editable]="false" [canApprove]="false"
+        [shareAndApprove]="false">
+      </app-workflow-header>
+      
+    </div>
+    <ul class="feedback-associated-menu">
+        <li>
+          <a href="javascript:void(0)" (click)="minimize()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/feedback/associated/ico_minimizar.svg'"></i>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" (click)="close()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/feedback/associated/ico_cerrar.svg'"></i>
+          </a>
+        </li>
+      </ul>
+  </nav>
+</div>

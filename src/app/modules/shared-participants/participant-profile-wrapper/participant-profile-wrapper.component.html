@@ -1,0 +1,27 @@
+
+<!--
+  appDropdownWrapper
+     (dropdownOnShow)="onShow()"
+     (dropdownOnHide)="onHide()"
+     [timeout]="100"
+    [gutter]="8"
+     [edge]="dropdownWrapperEdge"
+    [dropdownTarget]="'#dropdown-profile-' + owner.id"
+    [show]="showDropdown"
+-->
+<div class="user-block closest-alert"
+    
+
+    >
+    <!--Avatar-->
+    <div app-avatar 
+    class="avatar {{profileClass}}"
+    [user]="owner" 
+    [showStatus]="showStatus"
+    [ngClass]="{'with-halo': true }"
+    ></div>
+    <!--Profile Dropdown-->
+    <!--<app-participant-profile-dropdown [owner]="owner" ></app-participant-profile-dropdown>-->
+    
+</div>
+

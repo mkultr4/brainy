@@ -1,0 +1,43 @@
+<!-- start header nav-->
+<div class="navbar-default navbar-fixed ">
+  <nav class="interface-nav">
+    <div class="nav-wrapper ">
+      <app-workflow-header [core]="brief"
+        [coreStatuses]="coreStatuses" 
+        [editable]="editable" 
+        [canApprove]="canApprove"
+        [shareAndApprove]="canShare && isApprover" 
+        (workflowOnApprove)="workflowOnApprove()" 
+        (workflowOnDisapprove)="workflowOnDisapprove()"
+        (workflowOnChangeStatus)="workflowOnChangeStatus($event)">
+      </app-workflow-header>
+      <app-workflow-header-menu [isApprover]="isApprover" [canShare]="canShare" [shareAndApprove]="canShare && isApprover"
+        (workflowOnApprove)="workflowOnApprove()" (workflowOnShare)="share()">
+      </app-workflow-header-menu>
+      <app-brief-toolbar-main [isAdmin]="isAdmin" [editable]="editable" [workspaceAccess]="workspaceAccess"
+        [dropdownId]="'toolbar-main'" [btnId]="'btn-toolbar-main'" [dropdownClass]="'dropdown-toolbar'" [gutter]="0"
+        [belowOrigin]="true" (toolbarOnEdit)="editTitle()" (toolbarOnDownload)="download()" (toolbarOnDelete)="delete()"
+        (toolbarOnSearchComments)="searchComments()"  (toolbarOnCancel)="cancel()"></app-brief-toolbar-main>
+    </div>
+
+  </nav>
+</div>
+<ng-container *ngIf="brief && brief.id">
+  <!--Modal download-->
+  <app-modal-download-project></app-modal-download-project>
+  <!--Modal cancel project-->
+  <app-modal-cancel-core #modalCancel [core]="brief" (modalOnCancel)="modalOnCancel()"></app-modal-cancel-core>
+    <!--Modal delete-->
+    <app-modal-delete-core #modalDelete [core]="brief" (modalOnDelete)="modalOnDelete()"></app-modal-delete-core>
+    <!--Modal dissaprove-->
+    <app-modal-disapprove-core #modalDisapprove [core]="brief" (modalOnDisapprove)="modalOnDisapprove($event)"></app-modal-disapprove-core>
+    <!--Modal Share-->
+    <!--Share-->
+    <app-modal-share-participants #modalShare [workspaceAccess]="workspaceAccess" [showShareLink]="true"
+      [invitationLevelId]="'core'" [objectType]="'brief'" [invitationReferenceId]="brief.id"
+       (modalOnClose)="onCloseModalShare($event)">
+    </app-modal-share-participants>
+    <!--Search comments-->
+    <app-comment-thread-sidenav-search #sidenavSearchComments [workspaceAccess]="workspaceAccess" [coreId]="brief.id"
+      [commentThreadStatuses]="commentThreadStatuses" [commentThreadTypes]="commentThreadTypes"></app-comment-thread-sidenav-search>
+</ng-container>

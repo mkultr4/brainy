@@ -1,0 +1,52 @@
+<div class="dropdown-menu 
+dropdown-menu-navigation bottom 
+" id="dropdown-projects" [ngClass]="{'dropdown-menu-empty':cores.length === 0}">
+  <ng-container *ngIf="cores.length > 0">
+    <!--Search-->
+    <div class="input-field without-label no-margin-bottom query">
+      <div class="input-search-wrapper">
+        <i class="icon-search" [inlineSVG]="'assets/img/commons/ico_search.svg'"></i>
+        <input type="text" placeholder="Escribe el nombre del proyecto" [(ngModel)]="filterProjectName">
+      </div>
+    </div>
+
+    <!--Projects-->
+    <ul class="dropdown-content dropdown-max-height" [perfectScrollbar]="{suppressScrollX:true}">
+      <li class="project-title" [ngClass]="{'hide': (projects  | filterBy:['name']:filterProjectName | filterProject:filterProject ).length === 0}">
+        <!--<a>PROYECTOS {{brand.name}}</a>-->
+        <div class="project-list-filter">
+          <div class="project-list-filter-item" [ngClass]="{'active':filterProject.id === project.id}" *ngFor="let project of projects
+              | filterBy:['name']:filterProjectName
+              | filterProject:filterProject
+              ">
+            <a class="project-name" href="javascript:void(0)" (click)="setFilterProject(project)">
+              {{project.name}}
+            </a>
+            <span class="project-list-filter-item-remove" (click)="clearFilterProject($event)">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+            </span>
+          </div>
+
+
+        </div>
+      </li>
+      <ng-container *ngIf="(projects
+       | filterBy:['name']:filterProjectName
+       | filterProject:filterProject).length === 0">
+        <li class="without-results">
+          <span>{{'commons.without-results' | translate}}</span>
+        </li>
+      </ng-container>
+
+    </ul>
+  </ng-container>
+  <ng-container *ngIf="cores.length === 0">
+    <ul class="dropdown-content  dropdown-max-height">
+      <li class="empty">
+        <a href="javascript:void(0)">
+          No posee proyectos
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+</div>

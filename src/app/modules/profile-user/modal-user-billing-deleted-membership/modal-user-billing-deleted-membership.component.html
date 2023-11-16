@@ -1,0 +1,73 @@
+<app-animate-modal #modal [modalId]="'modal-share-guests'" (modalOnShow)="modalOnShow()" (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <!--Modal header-->
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Eliminar cuenta
+      </h5>
+    </div>
+    <!--Display-->
+    <div class="modal-content-display">
+      <div class="modal-content-deleted-membership">
+        <div class="row">
+          <div class="col s12">
+            <p class="modal-content-deleted-membership-title">
+              Regresa cuando quieras. Si reinicias tu membresía dentro de 3 meses,
+              tu perfil y los detalles de la cuenta te estarán esperando.</p>
+          </div>
+        </div>
+        <form name="deleteMembershipForm" id="deleteMembershipForm" #deleteMembershipForm="ngForm">
+          <div class="row">
+            <!--Password -->
+            <div class="col s12 col-primary">
+              <div class="input-field input-field-medium input-div">
+                <input mz-input tabindex="1" autocomplete="off" [label]="'Contraseña'" type="password" name="cancelMembershipPassword"
+                  id="cancelMembershipPassword" required placeholder="Escribe tu contraseña" [(ngModel)]="cancelMemberShip.password">
+              </div>
+            </div>
+            <!--  reason to eliminate -->
+            <div class="col s12 m12 l12  col-primary">
+              <div class="input-field input-field-medium input-div" app-mz-select-container-brainy>
+                <select name="cancelMemberShipReason" id="cancelMemberShipReason" mz-select tabindex="2" placeholder="Selecciona"
+                  [label]="'Motivo por el cual quieres eliminar tu cuenta'" data-extra-class="center-align"
+                  data-auto-focus="true" required [(ngModel)]="cancelMemberShip.reason">
+                  <option value="" disabled>Selecciona</option>
+                  <option *ngFor="let reason of reasons" [ngValue]="reason"> {{reason.name}}</option>
+                </select>
+              </div>
+            </div>
+            <!-- more information -->
+            <div class="col s12 m12 l12">
+              <div class="content-editable-title">
+                <label>Más información (opcional) </label>
+              </div>
+            </div>
+            <div class="col s12 m12 l12">
+              <div class="content-editable-message-container content-editable-aling-message">
+                <app-content-editable-menu [show]="showMenu"></app-content-editable-menu>
+                <div class="content-editable-message" contenteditable="true" placeholder="Escriba un mensaje" id="cancelMemberShipDescription"
+                  [(contentEditableModel)]="cancelMemberShip.description" name="cancelMemberShipDescription" (focus)="showMenu = true;"
+                  (blur)="showMenu = false;">
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l12">
+              <!--Buttons-->
+              <div class="deleted-membership-buttons">
+                <!--Delete membership-->
+                <button class="btn btn-semi-medium btn-outline-line cancel hover-color" (click)="authoMembership()"
+                  [disabled]="!deleteMembershipForm.valid">
+                  ELIMINAR
+                </button>
+                <!--Close modal-->
+                <button class="btn btn-semi-medium btn-light close-modal" (click)="closeModal()"><span>CANCELAR</span></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</app-animate-modal>

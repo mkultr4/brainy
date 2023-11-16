@@ -1,0 +1,42 @@
+<div class="brief-assessment-text" (click)="toggleSelection($event)" 
+  [ngClass]="{'editable':focusResponse, 
+            'checked': checked,
+            'contextual-ico-open':showContextualIcon}">
+
+  <!--Delete assesment-->
+  <a *ngIf="focusResponse" class="brief-assessment-remove" href="javascript:void(0)" (click)="deleteOption($event)">
+    <i class="icon ion-md-close"></i>
+  </a>
+  <div class="brief-assessment-text-wrapper">
+    <div class="brief-assessment-text-content">
+      <!--Select icon-->
+      <div class="brief-assessment-selector" [ngClass]="{ 
+        'without-icon': !option.icon,
+        'disabled':!focusResponse
+        }"
+        appTooltip [tooltipMessage]="'Elegir icono'">
+        <!--Posisionated-->
+        <i class="brief-assessment-selector-posisionated" [inlineSVG]="'assets/img/brief/response-types/assessment/ico_add_icons_small.svg'"></i>
+        <!--Button-->
+        <button [disabled]='!focusResponse' [id]="'option-btn-'+option.id" class="modal-floating-trigger brief-assessment-selector-btn">
+          <!--Ico Select-->
+          <span *ngIf="option.icon" class="icon-select">
+            <i *ngIf="option.icon.font === 'ionicons'" class="{{option.icon.value}}"></i>
+            <i *ngIf="option.icon.font === 'material-icons'" class="material-icons">{{option.icon.value}}</i>
+          </span>
+        </button>
+      </div>
+      <!--Label editor-->
+      <div [maxLength]="13" placeholder="Escriba aquí" class="brief-assessment-text-editor" [(contentEditableModel)]="option.label"
+        (contentEditableModelChange)="labelChange()" [contentEditable]="editable"></div>
+    </div>
+  </div>
+</div>
+
+  <!--Contextual-->
+  <app-contextual-brief-icon 
+  *ngIf="focusResponse"
+  [option]="option" 
+  (onShowModal)="onShowContextualIcon($event)"
+  (onChangeIco)="onChangeIco($event)"
+  ></app-contextual-brief-icon>

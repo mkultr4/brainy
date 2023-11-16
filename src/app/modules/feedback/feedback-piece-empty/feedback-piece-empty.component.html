@@ -1,0 +1,68 @@
+<!--Piece Header-->
+<div class="piece-header piece-empty" >
+    <div class="piece-header-container">
+
+      <ul class="workflow-primary-header-menu">
+
+        <li>
+          <a href="javascript:void(0)" class="modal-floating-trigger"
+          id="trigger-filter-comments" >
+            <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icono_filtros.svg'"></i>
+          </a>
+          <!--Filter-->
+          <!-- <modal-comment-thread-filter></modal-comment-thread-filter> -->
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_minuta_anidado.svg'"></i>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" >
+            <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_brief_anidado.svg'"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+<!--Uploader-->
+<div class="workflow-primary-content
+new-feedback-piece-container
+perfect-scrollbar perfect-scrollbar-always-visible
+" [perfectScrollbar]="{suppressScrollX:false}" [ngClass]="{'left-sidenav-compressed':leftSidenavCompressed}">
+  <div class="new-feedback-piece">
+    <!--Upload container-->
+    <div class="new-feedback-piece-upload-container">
+      <!--Search url-->
+      <div class="search-url-container">
+        <form name="formSearch">
+          <div class="input-field typehead-autocomplete-url ">
+
+            <input [(ngModel)]="urlQuery" autocomplete="off" name="urlQuery" placeholder="Inserta un link de tu página o banner html">
+            <span class="input-prefix">https://</span>
+          </div>
+        </form>
+      </div>
+
+
+      <!--Drop area-->
+      <div class="new-feedback-piece-drop-area">
+
+        <div class=" new-feedback-piece-drop-area-table ">
+          <div class="new-feedback-piece-drop-area-table-cell ">
+            <img class="upload-ico " [src]=" 'assets/img/feedback/icono_load.svg' ">
+            <p class="upload-message ">Suelta los archivos para adjuntar o
+              <span class="font-weight-medium ">explorar.</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-feedback-piece-toolbar [feedbackAction]="feedbackAction" [zoom]="zoom" [leftSidenavCompressed]="leftSidenavCompressed"
+  [rightSidenavCompressed]="rightSidenavCompressed">
+</app-feedback-piece-toolbar>

@@ -1,0 +1,64 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" 
+[modalId]="'modal-download-project'" [modalClass]="'modal-vertically-center modal-download'">
+    <!--Close-->
+    <a href="javascript:void(0)" class="modal-close-btn" (click)="closeModal()">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+    </a>
+    <div class="modal-content-table">
+        <div class="modal-content-cell">
+            <div class="modal-content-cell-container">
+                <h2 class="title">
+                    {{ export ? 'Archivo listo!':'Descargar Archivo'}}
+                </h2>
+                <!--Accept-->
+                <div class="modal-content-download-accept" *ngIf="!generateExport">
+                    <h4 class="message" [class.without-comments]="!withComments">
+                        <ng-container *ngIf="core">
+                            {{'dashboard.modal-download.message.'+ core?.type?.key | translate }}
+                        </ng-container>
+                        <ng-container *ngIf="!core">
+                                {{'dashboard.modal-download.message.default' | translate }}
+                        </ng-container>
+
+                    </h4>
+                    <!--Download comments-->
+                    <div class="checkbox-block" *ngIf="withComments">
+                        <input class="filled-in shined medium" type="checkbox" id="cbxModalFeedDownlaodComments" [(ngModel)]="downloadComments">
+                        <label class="font-weight-light" for="cbxModalFeedDownlaodComments"> Descargar comentarios del
+                            <ng-container *ngIf="brainyObject && core.type">
+                                {{'commons.'+ core.type.id | translate | lowercase}}
+                            </ng-container>
+                            <ng-container *ngIf="!brainyObject">
+                                proyecto
+                            </ng-container>
+                        </label>
+                    </div>
+                    <div class="modal-content-buttons">
+                            <button class="btn btn-medium-large btn-outline-line cancel modal-close">CANCELAR</button>
+                        <button class="btn btn-medium-large accept last-button" (click)="generate()">GENERAR</button>
+                        
+
+                    </div>
+                </div>
+                <!--Process-->
+                <div class="modal-content-download-generate" *ngIf="generateExport">
+
+                    <span class="generate-name" [ngClass]="{'generated':export}">
+                        <i class="icon-svg generate-icon ion-pdf" [inlineSVG]="'assets/img/commons/icono_pdf.svg'"></i>
+                        {{fileName}}
+                    </span>
+                    <!--Loader-->
+                    <div class="progress slim lighted" *ngIf="exporting">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <!--Message-->
+                    <span class="generate-message" *ngIf="exporting">
+                        Exportando PDF
+                    </span>
+                    <button class="btn btn-large generate-btn" *ngIf="!exporting" (click)="download()">DESCARGAR</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</app-mz-modal-brainy>

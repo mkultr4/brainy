@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>imagen_burger</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-image-brief">
+            
+            <g id="Page-1-Copy" transform="translate(1.000000, 3.000000)" fill="#4F5C69">
+                <path id="rectangle-2" d="M0,14.7361509 L18.3479141,14.7361509 L18.3479141,3.62293686e-05 L0,3.62293686e-05 L0,14.7361509 Z M0.771358519,14.1166515 L17.5765556,14.1166515 L17.5765556,0.619535606 L0.771358519,0.619535606 L0.771358519,14.1166515 Z" ></path>
+                <polygon class="pic" id="Fill-2" points="11.573986 6.97504113 10.1008816 8.4088184 8.03849823 5.73998194 3.91335807 10.4624802 14.9134829 10.4624802"></polygon>
+                <path class="pic" d="M5.58461847,4.50762184 C5.58461847,4.8744442 5.27812616,5.17188732 4.90014386,5.17188732 C4.5219749,5.17188732 4.21548259,4.8744442 4.21548259,4.50762184 C4.21548259,4.14061834 4.5219749,3.84317522 4.90014386,3.84317522 C5.27812616,3.84317522 5.58461847,4.14061834 5.58461847,4.50762184" id="Fill-3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

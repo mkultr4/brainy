@@ -1,0 +1,29 @@
+<div class="brief-category-item-text dynamic-editor-content-default"
+[class.focused]="focused"
+>
+    <!--Resizable-->
+    <div class="resizable-handle r-bottom resizable-bottom" ></div>
+    <div class="resizable-handle r-top  resizable-top" ></div>
+    <div class="resizable-handle r-left resizable-left" ></div>
+    <div class="resizable-handle r-right resizable-right" ></div>
+    <div class="resizable-handle r-bottom r-right resizable-bottom-right" ></div>
+    <div class="resizable-handle r-top r-left resizable-top-left" ></div>
+    <div class="resizable-handle r-bottom r-left resizable-bottom-left" ></div>
+    <div class="resizable-handle r-top r-right resizable-top-right" ></div>
+    <!--Drag Handle-->
+    <div class="drag-handle drag-top"></div>
+    <div class="drag-handle drag-bottom"></div>
+    <div class="drag-handle drag-left"></div>
+    <div class="drag-handle drag-right"></div> 
+  <!--Editable Menu-->
+  <app-content-editable-menu [show]="focusText" [unorderedList]="false" [align]="true"></app-content-editable-menu>
+  <!--Text content-->
+  <div class="brief-category-item-text-content">
+
+    <div #mainText class="brief-text-editable" placeholder="Escribe un texto" 
+    [(contentEditableModel)]="text"
+      (contentEditableModelChange)="onChangeTextFn()" [sanitizeHTML]="false" 
+      [singleLine]="false" [maxLength]="500"
+      [contentEditable]="editable" (focus)="onFocusText(true)" (blur)="onFocusText(false)"><br></div>
+  </div>
+</div>

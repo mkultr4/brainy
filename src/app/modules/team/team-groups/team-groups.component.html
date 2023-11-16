@@ -1,0 +1,37 @@
+<div class="team-list-content">
+    <!--My team-->
+    <div class="team-box-add-new modal-floating-trigger" id="team-add-new-category">
+      <div class="team-box-add-new-content">
+        <i class="team-box-add-new-ico icon-svg" [inlineSVG]="'assets/img/team/icono_more_team.svg'">
+        </i>
+        <span class="team-box-add-new-text">
+          Crear grupo
+        </span>
+      </div>
+      <app-modal-new-category (modalOnCreateCategory)="onCreateCategory($event)"></app-modal-new-category>
+    </div>
+  
+    <ng-container *ngFor="let category of categories">
+        <!--| filterBy:['category?.name']:query
+        | orderBy:orderBy" -->
+      <app-team-box-category [category]="category"
+      (boxOnEdit)="onEdit($event)"
+      (boxOnDelete)="onDelete($event)"
+      ></app-team-box-category>
+    </ng-container>
+    <!--Empty-->
+    <ng-container *ngIf="categories?.length === 0">
+      <div class="brainy-empty-message">
+        <img src="assets/img/commons/empty-lists/img_equipos_vacio.svg">
+        <h1 class="title">No tienes grupos creados</h1>
+        <p class="message">
+            Necesitas más información para crear grupos
+          <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+        </p>
+      </div>
+    </ng-container>
+    
+  </div>
+  
+  <app-modal-category-eliminate #modalDelete></app-modal-category-eliminate>
+  <app-modal-category-edit #modalEdit></app-modal-category-edit>

@@ -1,0 +1,47 @@
+<!--Upload box-->
+<div class="proposal-uploader-box" appFileDropzone (fileDrop)="fileRead($event)">
+  <div class="proposal-uploader-box-cell" appFilePicker (filePick)="fileRead($event)" accept="image/*">
+    <!--Upload image-->
+    <img class="upload-image" [src]="'assets/img/brief/ico_upload_picht.svg'">
+    <!--Upload message-->
+    <p class="upload-message">
+      Para adjutar tus propuestas suelta los archivos o <b>explorar</b>.
+    </p>
+  </div>
+</div>
+<!--Previews-->
+<div class="proposal-files-previews" *ngIf="proposal.files.length > 0">
+  <div class="row no-margin-bottom">
+    <div class="col s6 m4 l4" *ngFor="let file of proposal.files | orderByImpure:'-created'">
+      <div class="proposal-image-item">
+        <a appTooltip [tooltipMessage]="'Eliminar propuesta'"
+           href="javascript:void(0)" 
+          class="gallery-image-remove closest-alert" 
+           app-alert-dialog [message]="'¿Quieres elminar la propuesta?'" 
+          [edge]="'right'"
+          [acceptText]="'Si'" [cancelText]="'No'" 
+          (alertOnAccept)="deleteFile(file)">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+        </a>
+        <div class="proposal-image-item-preview" [ngStyle]="{ backgroundImage:'url(' + file.url + ')'}"></div>
+        <span class="proposal-image-item-name">
+          {{ file.name}}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<form name="proposalUpload" #proposalUploadForm="ngForm">
+  <div class="proposal-editor-container">
+    <!--Label-->
+    <span class="proposal-editor-label">Escribe un comentario:</span>
+    <!--Editor-->
+    <textarea class="proposal-editor" [(ngModel)]="proposal.message" name="proposalMessage" id="proposalMessage"
+      placeholder="Escribe aquí" required></textarea>
+  </div>
+  <div class="proposal-upload-button">
+    <button class="btn" [disabled]="proposalUploadForm.invalid" (click)="uploadMessage()">Enviar</button>
+  </div>
+</form>

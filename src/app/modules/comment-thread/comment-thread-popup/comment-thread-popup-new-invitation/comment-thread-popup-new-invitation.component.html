@@ -1,0 +1,104 @@
+<!--Share guests form-->
+<div class="form-guest-wrapper">
+  <form #formGuest="ngForm" name="FormGuests" class="form-wrapper form-guests" novalidate>
+    <div class="row no-margin-bottom">
+      <div class="new-invitation-wrapper">
+        <!--Rol-->
+        <div class="col s12">
+
+
+          <div app-mz-select-container-brainy id="selct-input-field-rol" 
+          class="input-field input-field-help-label"
+           [ngClass]="{ 'input-field-focused':  rolInput.invalid }">
+            
+            <select mz-select tabindex="2" 
+              placeholder="Selecciona"
+               #rolInput="ngModel" id="invitedRol" name="invitedRol"
+              [label]="'Privilegios'" [(ngModel)]="invitation.rol" 
+              required 
+              data-extra-class="center-align"
+              data-auto-focus="true"   
+              >
+              <option value="" selected class="disabled">Seleccione un rol</option>
+              <option *ngFor="let rol of roles" [ngValue]="rol">{{ rol.name }}</option>
+            </select>
+            
+              <a class="label-help active"
+              href="javascript:void(0)"
+              appSidenavButton [sidenavId]="'right-permissions-nav'"
+              appTooltip [tooltipMessage]="'Ver privilegios'"
+              [alignamentTooltip]="'left'"
+              >
+              <i [inlineSVG]="'assets/img/commons/ico_info.svg'" class="icon-svg"></i>
+                  Privilegios
+                  
+              </a>  
+              <a href="javascript:void(0)" class=" active" tabindex="3" 
+            
+              >
+            </a>
+          </div>
+        </div>
+
+        <!-- MARCA / EMPRESA -->
+        <ng-container *ngIf="invitation.rol">
+          <ng-container *ngIf="invitation.rol.key === 'guest'">
+            <div class="col s12">
+              <div class="input-field" [ngClass]="{'input-field-focused': rolInput.valid && categoryInput.invalid}"
+                mz-select-container-brainy>
+                <select mz-select tabindex="3" placeholder="Selecciona" id="invitationBrand" name="invitationBrand"
+                  [label]="'Marcas / Empresas'" [(ngModel)]="invitation.brand" (ngModelChange)="brandChange($event)" required
+                  data-extra-class="center-align" #categoryInput="ngModel">
+                  <option value="" class="disabled" selected>Seleccione una categoria</option>
+                  <option [ngValue]="{id:'newBrand',name:'newBrand'}">Nueva Marca / Empresa</option>
+                  <option *ngFor="let brand of brands" [ngValue]="brand">{{ brand }}</option>
+                </select>
+              </div>
+            </div>
+            <!--New Brand-->
+            <div class="col s12" *ngIf="invitation.brand && invitation.brand.id === 'newBrand'">
+              <div class="input-field" [ngClass]="{'input-field-focused': categoryInput.valid && newBrandInput.invalid}">
+                <input mz-input tabindex="1" autocomplete="off" [label]="'Nombre Marca / Empresa'" type="text" name="newInvitationBrandName"
+                  [(ngModel)]="newBrand.name" required #newBrandInput="ngModel">
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <!--Category-->
+        <ng-container *ngIf="invitation.rol">
+          <ng-container *ngIf="invitation.rol.key === 'guest'">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field" [ngClass]="{'input-field-focused': rolInput.valid && categoryInput.invalid}">
+                <select mz-select tabindex="3" placeholder="Selecciona" id="invitationCategory" name="invitationCategory"
+                  [label]="'Categoría'" [(ngModel)]="invitation.category" (ngModelChange)="categoryChange($event)"
+                  required data-extra-class="center-align" #categoryInput="ngModel">
+                  <option value="" class="disabled" selected>Seleccione una categoria</option>
+                  <option [ngValue]="{id:'newCategory',name:'newCategory'}">Nueva categoría</option>
+                  <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+                </select>
+
+              </div>
+            </div>
+            <!--New category-->
+            <div class="col s12" *ngIf="invitation.category && invitation.category.id === 'newCategory'">
+              <div class="input-field " [ngClass]="{'input-field-focused': categoryInput.valid && newCategoryInput.invalid}">
+                <input mz-input tabindex="1" autocomplete="off" [label]="'Nombre categoría'" type="text" name="newInvitationCategoryName"
+                  [(ngModel)]="newCategory.name" required #newCategoryInput="ngModel">
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+
+      <!--Invite-->
+      <div class="button-section col s12">
+        <button class="btn btn-semi-medium btn-light" type="button" (click)="invite($event)" [disabled]="formGuest.invalid">
+          AGREGAR
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>

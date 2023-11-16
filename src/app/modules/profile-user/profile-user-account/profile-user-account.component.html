@@ -1,0 +1,179 @@
+<div class="profile-account-content">
+  <!--User-->
+  <div class="profile-user-information">
+    <div class="profile-user-information-name ">
+      <span> {{currentUser.name + ' '+currentUser.lastName }}</span>
+    </div>
+    <div class="avatar profile-user-information-avatar profile-image-immense" app-avatar [user]="currentUser"
+      [showStatus]="true" [overlay]="true" [dropdownStatuses]="true" [userConnectionStatuses]="userConnectionStatuses"
+      (avatarOnChangeImage)="onChangeImage($event)" (avatarOnChangeStatus)="onChangeStatus($event)"></div>
+    <div class="profile-user-information-rol ">
+      <span>
+        {{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}}
+      </span>
+    </div>
+    <div class="profile-user-information-email ">
+      <span>{{currentUser.email}} </span>
+    </div>
+    <div class="profile-user-information-status ">
+      <span>
+        {{ 'workspaceAccess.status-singular.'+ workspaceAccess.accountStatus.key  | translate}}
+        
+        
+      </span>
+    </div>
+
+  </div>
+  <!--Information-->
+  <form name="userForm" #formUser="ngForm">
+    <ng-container *ngIf="dummyUser">
+      <div class="profile-user-account-information">
+        <div class="row no-margin-bottom">
+          <!--Name-->
+          <div class="col s12 m6 l6">
+            <div class="input-field input-field-medium">
+              <input mz-input tabindex="1" autocomplete="off" [label]="'commons.name' | translate" type="text" name="userName"
+                [(ngModel)]="dummyUser.name" required>
+            </div>
+          </div>
+          <!--Lastname-->
+          <div class="col s12 m6 l6">
+            <div class="input-field input-field-medium">
+              <input mz-input tabindex="1" autocomplete="off" [label]="'commons.last-name' | translate" type="text"
+                name="userLastname" [(ngModel)]="dummyUser.lastName" required>
+            </div>
+          </div>
+          <!--Email-->
+          <div class="col s12">
+            <div class="input-field input-field-medium">
+              <input mz-input tabindex="1" autocomplete="off" [label]="'commons.email' | translate" type="email" name="userEmail"
+                [(ngModel)]="dummyUser.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            </div>
+          </div>
+          <div class="row no-margin-bottom">
+            <div class="col s12" id="user-information-section" *ngIf="!changePasswordAction">
+
+              <!--Password-->
+              <div class="col s12">
+                <div class="input-field input-field-medium input-change-password">
+                  <a href="javascript:void(0)" class="input-help-password" appTooltip [tooltipMessage]="'Cambiar comtraseña'"
+                    [edgeTooltip]="'bottom'" [alignamentTooltip]="'right'" (click)="showChangePassword()">
+                    <i [inlineSVG]="'assets/img/profile/ico_reset_password.svg'" class="icon-svg"></i>
+                  </a>
+                  <input mz-input tabindex="1" autocomplete="off" [label]="'commons.password' | translate" type="password"
+                    name="userPassword" [(ngModel)]="dummyUser.password" [readonly]="true" tabindex="-1">
+                </div>
+              </div>
+              <!--Language-->
+              <div class="col s12">
+                <div class="input-field input-field-medium " app-mz-select-container-brainy>
+                  <select mz-select tabindex="2" placeholder="Selecciona" id="userLanguage" name="userLanguage" [label]="'commons.language' | translate"
+                    [(ngModel)]="dummyUser.language" required data-extra-class="center-align" (ngModelChange)="onChangeLanguage($event)">
+                    <option value="" disabled>Seleccione un lenguaje</option>
+                    <option *ngFor="let lang of languages" [ngValue]="lang">{{ lang.languageText ? lang.languageText :
+                      lang.language }}</option>
+                  </select>
+                </div>
+
+              </div>
+              <!--Save-->
+              <div class="col s12">
+                <div class="input-field ">
+                  <div class="profile-account-button">
+
+                    <button class="btn btn-semi-medium  btn-outline-light" [disabled]="!formUser.valid || !formHasChanged"
+                      (click)="save()">
+                      {{'commons.save' | translate}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!--Permissions-->
+              <div class="col s12">
+                <div class="input-field ">
+                  <div class="permission-field">
+                    <div class="permission-collapsible" [ngClass]="{'collapse-in':permissionsCollapse}">
+                      <a class="permission-collapsible-btn" href="javascript:void(0)" (click)="togglePermissions()">
+                        {{'profile.your-permissions' | translate}}
+                      </a>
+                      <!--Permissions-->
+                      <div class="permissions-profile-list-container ">
+                        <ul class="permissions-profile-list">
+                          <li *ngFor="let permission of rolePermissions">
+                            <span>
+                              {{permission.text}}
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+  <!---->
+  <form name="formChangePassword" #formChangePassword="ngForm" *ngIf="changePasswordAction">
+    <div class="profile-user-password-change">
+      <div class="row no-margin-bottom">
+        <!--Last Password-->
+        <div class="col s12">
+          <div class="input-field input-field-medium">
+            <input mz-input tabindex="1" placeholder="Escriba aquí" 
+            #oldPassword="ngModel" autocomplete="off" [label]="'Contraseña anterior'"
+              type="password" name="old-password" [(ngModel)]="newPassowrd.oldPassword" required>
+            <span class="help-block danger" *ngIf="oldPassword.touched && 
+              oldPassword.errors?.required">
+              Debe ingresar su antigua contraseña
+            </span>
+          </div>
+        </div>
+        <!--New Password-->
+        <div class="col s12">
+          <div class="input-field input-field-medium">
+            <input mz-input tabindex="1" autocomplete="off" #newPassword="ngModel" placeholder="Escriba aquí" [label]="'Nueva contraseña'"
+              type="password" name="new-password" [(ngModel)]="newPassowrd.newPassword" required minlength="8" [min]="8">
+            <span class="help-block danger" *ngIf="newPassword.touched && 
+              newPassword.errors?.required">
+              Debe ingresar su nueva contraseña
+            </span>
+            <span class="help-block danger" *ngIf="newPassword.touched && newPassword.errors?.min">
+              Su nueva contraseña debe tener al menos 8 caracteres.
+            </span>
+
+          </div>
+        </div>
+        <!--New Password Confirm-->
+        <div class="col s12">
+          <div class="input-field input-field-medium">
+            <input mz-input tabindex="1" autocomplete="off" placeholder="Escriba aquí" #newPasswordConfirm="ngModel"
+              [label]="'Confirmar contraseña'" type="password" name="new-password-confirm" [(ngModel)]="newPassowrd.newPasswordConfirm"
+              required maxlength="256" minlength="8" [min]="8" [equalTo]="newPassword" required>
+            <span class="help-block danger" *ngIf="newPasswordConfirm.touched && newPasswordConfirm.errors?.required">
+              Debe ingresar la confirmación de su nueva contraseña
+            </span>
+            <span class="help-block danger" *ngIf="newPasswordConfirm.touched && newPasswordConfirm.errors?.equal">
+              Las contraseñas no coinciden
+            </span>
+          </div>
+        </div>
+        <!--Save-->
+        <div class="col s12">
+          <div class="input-field ">
+            <div class="change-password-buttons">
+              <button class="btn btn-semi-medium btn-outline-line border-radius-2" (click)="cancelChangePassword()">Cancelar</button>
+              <button class="btn btn-semi-medium  btn-outline-light" (click)="changePassword()" [disabled]="!formChangePassword.valid">Cambiar
+                contraseña</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>

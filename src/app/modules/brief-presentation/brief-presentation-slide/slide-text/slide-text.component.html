@@ -1,0 +1,56 @@
+<div 
+  #textElement 
+  [id]="'brief-presentation-element-' + element.id" 
+  class="brief-presentation-element brief-presentation-text" 
+  [style.left.px]="element.left"
+  [style.top.px]="element.top" 
+  [style.width.px]="element.width"
+  [style.height.px]="element.height" 
+  [style.backgroundColor]="element.styleBackground"
+  [attr.data-x]="element.left"
+  [attr.data-y]="element.top"
+  appResizable
+  [resizableEnabled]="focused" 
+  [resizableContainment]="'body'"
+  appDraggable 
+  [draggableContainment]="'body'"
+  [draggableEnabled]="focused" 
+  [draggableHandle]="'.drag-handle'"
+  [ngClass]="{'focused':focused}"
+  (resizeOnStart)="onResizeStart($event)"
+  (resizeOnResizing)="onResizing($event)" 
+  (resizeOnStop)="onResizeStop($event)" 
+  (draggableOnStart)="onDragStart($event)"
+  (draggableOnDragging)="onDragging($event)" 
+  (draggableOnStop)="onDragStop($event)" 
+  >
+
+  <div 
+    class="content-editable" 
+    #mainText
+    contenteditable="true"
+    placeholder="Escribe un texto"
+    [(contentEditableModel)]="element.content.text" 
+    [singleLine]="false" 
+    [maxLength]="500"
+    [style.fontSize.px]="element.styleFontSize" 
+    [style.color]="element.styleColor" 
+    (focus)="editing = true" 
+    (blur)="editing = false"
+    ><br></div>
+     <!--Resizable-->
+  <div class="resizable-handle r-bottom resizable-bottom"></div>
+  <div class="resizable-handle r-top  resizable-top"></div>
+  <div class="resizable-handle r-left resizable-left"></div>
+  <div class="resizable-handle r-right resizable-right"></div>
+  <div class="resizable-handle r-bottom r-right resizable-bottom-right"></div>
+  <div class="resizable-handle r-top r-left resizable-top-left"></div>
+  <div class="resizable-handle r-bottom r-left resizable-bottom-left"></div>
+  <div class="resizable-handle r-top r-right resizable-top-right"></div>
+
+  <!--Drag Handle-->
+  <div class="drag-handle drag-top"></div>
+  <div class="drag-handle drag-bottom"></div>
+  <div class="drag-handle drag-left"></div>
+  <div class="drag-handle drag-right"></div> 
+</div>

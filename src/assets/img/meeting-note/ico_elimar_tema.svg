@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>elimar_tema</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="elimar_tema" transform="translate(1.000000, 1.000000)">
+            <g>
+                <circle id="Oval-3" stroke="#4f5c69" fill="#4f5c69" cx="6" cy="6" r="6"></circle>
+                <g id="ic_close_24px-copy-3" transform="translate(2.000000, 2.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" points="0 0 7.5 0 7.5 7.5 0 7.5"></polygon>
+                        <polygon id="shape-delete" fill="#fff" points="6 2.40285714 5.59714286 2 4 3.59714286 2.40285714 2 2 2.40285714 3.59714286 4 2 5.59714286 2.40285714 6 4 4.40285714 5.59714286 6 6 5.59714286 4.40285714 4"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,52 @@
+#dashboard-header {
+    .navbar-default {
+        .interface-nav {
+            .brand-logo-interface {
+                .logo-interface {
+                    line-height: 60px;
+                    display: inline-block;
+                    .logo-wrapper {
+                        display: flex;
+                        align-items: center;
+                        float: left;
+                        height: 60px;
+                        line-height: 60px;
+                        .logo-img {
+                            max-height: 100%;
+                        }
+                    }
+                    .brand-location {
+                 
+                    }
+                }
+                .workspace-logo {
+                    @extend .logo-interface;
+                }
+                .brainy-logo {
+                    @extend .logo-interface;
+                    .logo-wrapper {
+                        .logo-img {
+                            transform: translateY(-4px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.scrolled-down {
+        .navbar-default {
+            .interface-nav {
+                .brand-logo-interface {
+                    .brand-location {
+                        .workspace-text {
+                            display: none;
+                        }
+                        .dashboard-text {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

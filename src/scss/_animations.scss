@@ -1,0 +1,92 @@
+//Default transition
+.animated{
+    transition: all 0.3s ease;
+}
+//Animations states
+.animate-state-hidden{
+    visibility: hidden;
+}
+.animate-state-visible{
+    visibility: visible;
+
+}
+
+//Keyframes
+@include keyframes(loading) {
+    from {left: 50%; width: 0;z-index:100;}
+    33.3333% {left: 0; width: 100%;z-index: 10;}
+    to {left: 0; width: 100%;}
+}
+
+//Show Lnaguage menu
+@include keyframes(show-langauge-menu) {
+    10% {width: 380px;  height: 486px;}
+    50% {right:100%;}
+
+}
+@include keyframes(hide-langauge-menu) {
+    10% {right:0;}
+    50% {height:0;}
+    100% {width:0;}
+}
+
+@include keyframes(hide-main-breadcrunb) {
+    10% {font-size: 24px;line-height: 60px;}
+    50% { left: 40px;top: 0;}
+    70% {transform:scale(0.5);}
+    80% {transform:scale(0.2);}
+    90% {transform:scale(0);}
+    10% {opacity:0;}
+
+}
+@include keyframes( dotty)  {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+}
+
+
+.pulse-target-active {
+    border-radius: 100%;
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(#7678F0,1);
+        border-radius: inherit;
+        transition: opacity .7s, transform .5s;
+        animation: pulse-animation 1.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        z-index: -1;
+    }
+
+    overflow: initial;
+    position: relative;
+}
+
+@include keyframes(pulse-animation){
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0;
+        transform: scale(1.7);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3.2);
+    }
+}
+
+.pulse-tour{
+    position: absolute;
+    width:18px;
+    height:18px;
+    border-radius:18px;
+}

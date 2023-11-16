@@ -1,0 +1,34 @@
+<div app-modal-floating 
+  [id]="'#brief-table-input-select-'+cell.id"
+  [id]="'contextual-select-cell-'+cell.id" 
+  [modalFloatingEdge]="'bottom'"
+  [modalFloatingConstraintWidth]="true" 
+  [modalFloatingContainer]="'#brief-table-input-select-'+cell.id"
+  [modalFloatingBtnId]="'#contextual-btn-select-cell-'+cell.id" 
+  [modalFloatingGutter]="-1" class="modal-prevent-close contextual-brief-table-input-select category-item-floating-menu">
+  <!--Contextual-->
+  <div class="contextual-brief-select-options-container" [perfectScrollbar]="{supressScrollX:true}">
+    <!--Options-->
+    <ul class='contextual-brief-select-options'>
+      <li *ngFor="let option of cell.options ; let i = index">
+        <div class='brief-table-select-option'>
+          <input type="text"
+             placeholder="Escriba aquí" 
+            [(ngModel)]='option.label'
+            (ngModelChange)="optionChange($event)"
+            >
+          <a href="javascript:void(0)" class="brief-table-select-remove-option" 
+              (click)="removeOption($event, option)"><i
+              class="ion-android-close"></i>
+          </a>
+        </div>
+      </li>
+      <!--Add option-->
+      <li>
+        <div class="brief-table-select-option">
+          <a href='javascript:void(0)' class="brief-table-select-option-add" (click)="addOption()"> Agregar +</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

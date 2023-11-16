@@ -1,0 +1,60 @@
+<div class="comment-mention-wrapper {{ comment.type}}"
+[class.comment-link]="comment.commentLink &&
+ comment.commentLink.thumbnailUrl && (comment.type !== file || comment.type !== fileText)"
+>
+  <div class="comment-mention-content" [ngClass]="{'enabled-hover':enabledHover}" (click)="goToComment()">
+    <a *ngIf="showClose" href="javascript:void(0)" class="comment-mention-close" (click)="remove($event)">
+      <i [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+    </a>
+    <div class="comment-header">
+      <!--Avatar-->
+      <div app-avatar class="avatar profile-image-small" [user]="comment?.workspaceAccess?.user" [showStatus]="true"></div>
+      <div class="user-information">
+        <span class="name">{{comment?.workspaceAccess?.user?.name + ' ' + comment?.workspaceAccess?.user?.lastName}}</span>
+        <span class="rol">{{comment?.workspaceAccess?.rol?.name}}</span>
+      </div>
+    </div>
+    <!--Comment Wrapper-->
+    <div class="comment-content-wrapper">
+
+      <div class="comment-mention-message">
+        <!--Comment Text-->
+        <ng-container *ngIf="comment.type === 'text' || comment.type === 'file-text'  || comment.type === 'audio-text' ">
+          <ng-container *ngIf="comment.type === 'file-text'">
+            <p class="comment-text" [innerHTML]="comment.commentText | ngXtruncate:50:'...' | linky:{stripPrefix:false,newWindow: true}"></p>
+          </ng-container>
+          <ng-container *ngIf="comment.type !== 'file-text'">
+            <p class="comment-text" [innerHTML]="comment.commentText | ngXtruncate:71:'...' | linky:{stripPrefix:false,newWindow: true}"></p>
+          </ng-container>
+
+        </ng-container>
+        <!--Audio-->
+        <ng-container *ngIf="comment.type === 'audio' || comment.type === 'audio-text' ">
+          <span class="comment-message-description">
+            <i class="icon-svg ico-mic" [inlineSVG]="'assets/img/commons/comments/audio.svg'"></i>
+            {{comment.commentAudioDuration * 1000| date:'mm:ss'}}
+          </span>
+        </ng-container>
+        <!--File-->
+        <ng-container *ngIf="comment.type === 'file' || comment.type === 'file-text' ">
+          <span class="comment-message-description">
+            <i class="icon-svg ico-mic" [inlineSVG]="'assets/img/commons/comments/add_file.svg'"></i>
+            Archivo
+          </span>
+        </ng-container>
+      </div>
+    </div>
+    <!--Comment content image-->
+    <ng-container *ngIf="comment.type === 'file' || comment.type === 'file-text' ">
+      <ng-container *ngIf="comment.mimeType === 'image'">
+        <div class="comment-content-image" [ngStyle]="{ backgroundImage:'url(' + comment.commentFileUrl + ')'}">
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="(comment.type !== file || comment.type !== fileText)
+       && comment.commentLink && comment.commentLink.thumbnailUrl ">
+        <div class="comment-content-image" [ngStyle]="{ backgroundImage:'url(' + comment.commentLink.thumbnailUrl + ')'}">
+          </div>
+    </ng-container>
+  </div>
+</div>

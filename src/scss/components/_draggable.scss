@@ -1,0 +1,61 @@
+.draggable-element{
+    .drag-handle {
+        position: absolute;
+        display: none;
+        /*left: 1px;
+        top: 1px;
+        right: 1px;
+        bottom: 1px;*/
+        border-color: rgba($primary-color, 0.5);
+        z-index: 19;
+    }
+    &.focused{
+        .drag-handle{
+            display: block;
+        }
+    }
+     .drag-center{
+        position: absolute;
+        left: 0;top: 0;
+        width: 100%;height: 100%;
+    }
+    .drag-all {
+        width: 100%;
+        height: 100%;
+    }
+    .drag-top {
+        top: 0px;
+        width: 100%;
+        left: 0;
+        height: 4px;
+        border-top-width: 1px;
+        border-top-style: solid;
+    }
+    .drag-bottom {
+        bottom: 0px;
+        width: 100%;
+        left: 0;
+        height: 4px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+    .drag-left {
+        left: 0px;
+        height: 100%;
+        width: 4px;
+        top: 0;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+    .drag-right {
+        right: 0px;
+        height: 100%;
+        width: 1px;
+        top: 0;
+        border-right-width: 1px;
+        border-right-style: solid;
+    }
+    &:hover{
+        // cursor: move;
+    }
+}

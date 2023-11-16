@@ -1,0 +1,57 @@
+<div id="meeting-note-tasks" [perfectScrollbar]="{}">
+  <div class="meeting-note-inner-wrapper">
+    <div class="meeting-note-inner-content">
+      <h3 class="title">
+        <i [inlineSVG]="'assets/img/meeting-note/icono_tarea_indice.svg'"></i>
+        Tareas o compromisos
+      </h3>
+    </div>
+  </div>
+  <!--Tasks-->
+  <ng-container *ngIf="tasks.length > 0">
+    <!--Scheduled-->
+    <ng-container *ngFor="let taskDay of tasks | filterBy:['content.task.type']:'scheduled'| orderBy:['content.task.date'] | groupBy: ['content.task.date'] | pairs">
+      <div class="day-task-container">
+        <div class="day-tasks">
+          <ng-container *ngFor="let topicLine of taskDay[1] | orderBy:['timestamp']">
+
+            <!--Task-->
+            <div app-topic-line-task [id]="topicLine.id" 
+              class="topic-line topic-line-task" [withTitle]="false"
+              [anchor]="true"
+              [topicLineItem]="topicLine"></div>
+          </ng-container>
+        </div>
+        <!--Divider-->
+        <div class="day-divider with-line">
+          <span class="day-divider-label">
+            <span class="date">
+              Tareas día de la reunión&nbsp;&nbsp;{{ taskDay[0] | momentDate:'DD/MM/YY'}}
+            </span>
+          </span>
+        </div>
+      </div>
+    </ng-container>
+    <!--Normal-->
+    <ng-container *ngIf="(tasks | filterBy:['content.task.type']:'fill_now').length > 0">
+      <div class="day-task-container">
+        <div class="day-tasks">
+          <ng-container *ngFor="let topicLine of tasks | filterBy:['content.task.type']:'fill_now'| orderBy:['timestamp']">
+            <!--Task-->
+            <div app-topic-line-task [id]="topicLine.id"
+             class="topic-line topic-line-task" [withTitle]="false"
+             [anchor]="true"
+              [topicLineItem]="topicLine"></div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!--Without tasks-->
+  <div class="meeting-note-inner-wrapper" *ngIf="tasks.length === 0">
+    <div class="meeting-note-inner-content">
+      <h3 class="without-results"> Sin tareas</h3>
+    </div>
+  </div>
+</div>

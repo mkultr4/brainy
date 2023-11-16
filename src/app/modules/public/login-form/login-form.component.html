@@ -1,0 +1,103 @@
+<div class="main-panel-header">
+    <span class="main-panel-header-label">Iniciar Sesión</span>
+    <!--Message-->
+    <span class="main-panel-header-message message-login">
+      <span *ngIf="message" class="help-block {{messageType}}">{{message}}</span>
+    </span>
+  </div>
+  <!--Form-->
+  <form id="formLogin" name="formLogin" class="main-panel-form" #formLogin="ngForm"
+    autocomplete="off"
+  >
+    <div class="row no-margin-bottom" >
+      <div class="col s12">
+        <div class="input-field input-field-medium ">
+          <input
+              type="email"
+             id="userEmail" name="userEmail"
+             #emailInput="ngModel"
+            [(ngModel)]="user.email"
+            required ngvemail
+              mz-input
+              [label]="'Correo electrónico'"
+            >
+          <span class="help-block error" *ngIf="emailInput.touched && emailInput.errors?.required">
+            Debes ingresar el correo electrónico
+          </span>
+          <span class="help-block error" *ngIf="emailInput.touched  && emailInput.errors?.email">
+            Oops! correo electrónico invalido.
+          </span>
+
+        </div>
+      </div>
+      <div class="col s12">
+        <div class="input-field input-field-medium input-field-password">
+          <input type="password"
+          name="userPassword" id="userPassowrd" required [(ngModel)]="user.password" #inputPassword
+          mz-input
+              [label]="'Contraseña'"
+          >
+        </div>
+      </div>
+      <!--Options-->
+      <div class="form-help-container">
+        <div class="col s6">
+          <div class="form-help-remember-me">
+            <input type="checkbox" class="filled-in lighted medium"
+             name="rememberMe" id="rememberMe" [(ngModel)]="rememberMe">
+            <label for="rememberMe">
+              No cerrar sesión
+            </label>
+          </div>
+        </div>
+        <div class="col s6">
+          <a class="form-help form-help-reset-password"
+          href="javascript:void(0)" [routerLink]="['recover-password']">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+      </div>
+
+
+
+      <!--Button-->
+      <div class="col s12">
+        <div class="main-panel-form-button">
+
+          <button class="btn btn-medium btn-light"
+           [ngClass]="{'btn-loading':btnDisabled}" [disabled]="!formLogin.valid || btnDisabled"
+            (click)="login()">
+            {{ !btnDisabled ? 'Iniciar sesión' : 'Iniciando sesión'}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <!--Social-->
+  <div class="main-panel-social">
+    <div class="main-panel-social-label">
+      <span>o ingresa con</span>
+    </div>
+    <div class="main-panel-social-buttons">
+      <a class="social-button" (click)="signInSocial('google')">
+        <img class="icon-svg on-leave google" src="assets/img/public/logo_google.svg">
+        <img class="icon-svg on-hover google" src="assets/img/public/logo_google_active.svg">
+
+      </a>
+
+      <a class="social-button " (click)="signInSocial('facebook')">
+        <img class="icon-svg on-leave" [src]="'assets/img/public/logo_facebook.svg'" />
+        <img class="icon-svg on-hover" [src]="'assets/img/public/logo_facebook_active.svg'" />
+
+      </a>
+    </div>
+  </div>
+  <!--Footer-->
+  <div class="main-panel-footer">
+    <div class="main-panel-footer-link ">
+      <span>¿Aún no tienes cuenta?</span>
+      <a href="javascript:void(0)" [routerLink]="['/public/register']">Registrate</a>
+    </div>
+
+  </div>

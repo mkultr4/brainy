@@ -1,0 +1,24 @@
+<div class="brief-yes-no-option" [ngClass]="{
+    'checked':checked,
+    'editable':focusResponse
+  }" (click)="toggleSelection($event)">
+  <!--Delete Checkbox-->
+  <a class="brief-yes-no-remove" href="javascript:void(0)" *ngIf="focusResponse && !yesNoDefault" (click)="deleteOption($event, option)">
+    <i class="icon ion-md-close"></i>
+  </a>
+  <div class="brief-yes-no-option-table">
+    <div class="brief-yes-no-option-table-cell">
+      <div class="brief-yes-no-option-editor-wrapper">
+        <div class="brief-yes-no-option-editor"
+          #editor
+          [contentEditable]="editable && !yesNoDefault" placeholder="Escriba aquí"
+          [maxLength]="30" [(contentEditableModel)]="option.label" (contentEditableModelChange)="labelChange()"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <span class="brief-active-indicator">
+    <img src="/assets/img/brief/ico_resp_check.svg" class="active-indicator-icon">
+  </span>
+</div>

@@ -1,0 +1,112 @@
+<div class="dropdown-header-content dropdown-max-height" [perfectScrollbar] >
+
+    <!--User Information-->
+    <div class="user-information">
+        <h5 class="rol">{{workspaceAccess.rol.name}}</h5>
+        <!--Avatar-->
+        <div app-avatar class="avatar profile-image-big disabled-dropdown-toggle"
+            [user]="currentUser"
+            [showStatus]="true"
+             [overlay]="true"
+            [dropdownStatuses]="true" 
+            [userConnectionStatuses]="userConnectionStatuses"
+            (avatarOnChangeImage)="onChangeImage($event)"
+            (avatarOnChangeStatus)="onChangeStatus($event)">
+        </div>
+        <!--/Avatar-->
+        <span class="name" *ngIf="currentUser.name || currentUser.lastName">
+            {{currentUser?.name }}&nbsp;{{currentUser.lastName ? currentUser.lastName : '' }}</span>
+        <span class="email">{{currentUser.email}}</span>
+        <a class="see-profile" href="javascript:void(0)" [routerLink]="['/profile/user']" [queryParams]="{rol:workspaceAccess.rol.key}">Ver
+            mi perfil</a>
+    </div>
+    <!--User Menu-->
+    <div class="user-menu-content">
+        <!--Title-->
+        <span class="user-menu-title">ADMINISTRAR</span>
+        <!--Menu account-->
+        <ul class="user-menu">
+
+            <li *ngIf="isAdmin">
+                <a href="javascript:void(0)">
+                    <i [inlineSVG]="'assets/img/header/profile/ico_configurations.svg'" id="ico-configurations"></i>
+                    Configuraciones
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i [inlineSVG]="'assets/img/header/profile/ico_help.svg'" id="ico-help"></i>
+                    Ayuda
+                </a>
+            </li>
+            <li *ngIf="isAdmin">
+                <a href="javascript:void(0)">
+                    <i [inlineSVG]="'assets/img/header/profile/ico_support.svg'" id="ico-support"></i>
+                    Soporte
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                    (click)="changeLanguage()" >
+                    <i [inlineSVG]="'assets/img/header/profile/ico_language.svg'" id="ico-language"></i>
+                    Idioma
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i [inlineSVG]="'assets/img/header/profile/ico_recommended.svg'" id="ico-recommended"></i>
+                    Recomendar
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" id="plans-option">
+                    <i [inlineSVG]="'assets/img/header/profile/ico_plans.svg'" id="ico-plans"></i>
+                    Ver planes
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--User Menu-->
+    <div class="user-menu-content-sessions without-border">
+        <!--Title-->
+        <span class="user-menu-title">SESIONES</span>
+        <!--Menu account-->
+        <ul class="user-menu">
+            <li>
+                <a href="javascript:void(0)" (click)="changeWorkspace()">
+                    Cambiar espacio
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="logout()">
+                    Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--
+<div class="language-selection" id='language-menu' [ngClass]="{'active':showLanguageMenu}">
+    <div class="language-wrapper" [perfectScrollbar]>
+        <div class='row-lang'>
+            <div class='col-lang'>
+                <a *ngFor="let locale of languagesColumnize[0]" (click)="setLocale(locale)" [ngClass]="{'active':currentLanguage.code === locale.code}"
+                    class="language disabled-dropdown-toggle">
+                    <span class="language-code">{{locale.code}}</span>
+                    <span class="language-text">{{locale.language}}</span>
+                </a>
+            </div>
+            <div class='col-lang'>
+                <a *ngFor="let locale of languagesColumnize[1]" (click)="setLocale(locale)" [ngClass]="{'active':currentLanguage.code === locale.code}"
+                    href="javascript:void(0)" class="language disabled-dropdown-toggle">
+                    <span class="language-code">{{locale.code}}</span>
+                    <span class="language-text">{{locale.language}}</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+--->

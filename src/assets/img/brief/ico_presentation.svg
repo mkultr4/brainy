@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Cantidad" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="02_cantidad" transform="translate(-1000.000000, -113.000000)" fill="#DDDDDD">
+            <g id="ico-presentation" transform="translate(1000.000000, 113.000000)">
+                <path d="M0,15.8729756 L19.8579798,15.8729756 L19.8579798,0 L0,0 L0,15.8729756 Z M1.41414141,14.7426341 L18.4438384,14.7426341 L18.4438384,1.13034146 L1.41414141,1.13034146 L1.41414141,14.7426341 Z" id="Fill-1"></path>
+                <path d="M9.73737374,7.6097561 L13.4747475,7.6097561 C13.4747475,9.59004878 11.7876768,11.2195122 9.73737374,11.2195122 C7.68707071,11.2195122 6,9.59004878 6,7.6097561 C6,5.64136585 7.66686869,4.01717073 9.70484848,4 L9.73737374,7.6097561 Z" id="Fill-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

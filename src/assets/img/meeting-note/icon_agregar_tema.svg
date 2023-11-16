@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_agregar_tema</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon_agregar_tema" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icono_agregar-copy">
+            <circle id="Oval-2" fill-opacity="0.4" fill="#4F5C69" cx="10" cy="10" r="10"></circle>
+            <path d="M9.33333333,9.33333333 L9.33333333,6.66666667 C9.33333333,6.29847683 9.63181017,6 10,6 C10.3681898,6 10.6666667,6.29847683 10.6666667,6.66666667 L10.6666667,9.33333333 L13.3333333,9.33333333 C13.7015232,9.33333333 14,9.63181017 14,10 C14,10.3681898 13.7015232,10.6666667 13.3333333,10.6666667 L10.6666667,10.6666667 L10.6666667,13.3333333 C10.6666667,13.7015232 10.3681898,14 10,14 C9.63181017,14 9.33333333,13.7015232 9.33333333,13.3333333 L9.33333333,10.6666667 L6.66666667,10.6666667 C6.29847683,10.6666667 6,10.3681898 6,10 C6,9.63181017 6.29847683,9.33333333 6.66666667,9.33333333 L9.33333333,9.33333333 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>

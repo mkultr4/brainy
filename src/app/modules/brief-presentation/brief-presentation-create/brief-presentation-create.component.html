@@ -1,0 +1,25 @@
+<div class="modal-overlay" style="z-index: 1002; display: block; opacity: 1;    will-change: unset;"></div>
+<!---Modal create-->
+<app-modal-new-brief-presentation #modalNew [brief]="brief" 
+[owner]="currentUser"
+[workspaceAccess]="workspaceAccess"
+[coreTypes]="coreTypes"
+></app-modal-new-brief-presentation>
+<!--Section-->
+<section class="layout-workflow-sidenav layout-brief-presentation">
+  <!--Main-->
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <!--Header-->
+      <header app-brief-presentation-header [briefPresentation]="briefPresentation" class="interface-header workflow-brief-presentation-header">
+      </header>
+      <!--Screen view-->
+      <div class="screen-view" [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,'sidenav-left-compress':leftSidenavCompressed}">
+      </div>
+    </div>
+  </main>
+  <!--Right Navigation-->
+  <app-sidenav-participants [owner]="workspaceAccess.user" [emptySidenav]="true" [compressed]="rightSidenavCompressed"></app-sidenav-participants>
+  
+</section>

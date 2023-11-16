@@ -1,0 +1,21 @@
+<div class="response-select">
+  <div class="brief-select-container">
+     <div app-mz-select-container-brainy 
+     class="input-field input-field-medium brief-response-select-wrapper">
+      <select mz-select 
+        data-container="body" 
+        placeholder="Selecciona"
+       [disabled]="true" 
+        [(ngModel)]="item.responseContent.options[0]"
+        data-auto-focus="true"
+        [name]="item.id"
+        [id]="item.id"
+        >
+        <option value="" disabled>Selecciona</option>
+        <option *ngFor="let option of item.responseSettings.options" [ngValue]="option">{{option.label}}</option>
+      </select>
+  </div>
+
+
+</div>
+</div>

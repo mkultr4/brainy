@@ -1,0 +1,53 @@
+<div #popupAddTask [id]="'popup-add-task'" class="modal-prevent-close" app-modal-floating [modalFloatingEdge]="'center'"
+  [modalFloatingAlign]="'bottom'" [modalFloatingBtnId]="popupBtnId" (modalOnHide)="onHide()" [disableClosePicker]="disableClosePicker">
+  <div class="popup-add-task-wrapper">
+    <form name="addTaskForm" #addTaskForm="ngForm">
+      <!--Responsible-->
+      <app-popup-task-responsible [task]="task" [workspaceAccess]="workspaceAccess"></app-popup-task-responsible>
+      <!--Time-->
+      <div class="row no-margin-bottom" id="times-row" *ngIf="popupAddTask.show">
+        <!--Date-->
+        <div class="col s6">
+          <div class="input-field input-field-label-medium  input-field-purple-dark input-field-date input-field-medium "
+            [ngClass]="{'input-field-focused-dark': task.responsible?.id  && !task.date}">
+            <input mz-datepicker [label]="'Fecha'" [options]="datePickerOptions" [(ngModel)]="task.date" id="taskDate"
+              name="taskDate" placeholder="DD/MM/AA" type="text" required>
+            <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+          </div>
+        </div>
+        <!--Time-->
+        <div class="col s6">
+          <div class="input-field input-field-label-medium  input-field-purple-dark input-field-date input-field-medium"
+            [ngClass]="{'input-field-focused-dark': !task.hour && task.date}">
+            <input mz-timepicker id="taskHour" name="taskHour" [(ngModel)]="task.hour" [label]="'Hora'" [options]="timePickerOptions"
+              (ngModelChange)="changeHour($event)" placeholder="00:00" type="text" required>
+            <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin-bottom" id="description-row">
+        <!--Description-->
+        <div class="col s12">
+
+          <div class="input-field input-field-purple-dark  input-field-editor" [ngClass]="{'input-field-focused-dark': task.hour && !task.description}">
+            <div class="textarea" placeholder="Describe la tarea" name="taskDescription" id="taskDescription" required
+              contenteditable="true" [singleLine]="false" maxlength="500" [(contentEditableModel)]="task.description"></div>
+            <label class="active">Tarea</label>
+            <span class="character-count">{{task.description.length}}/500</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="row no-margin-bottom" id="buttons-row">
+        <!--Description-->
+        <div class="col s12">
+          <div class="popup-add-task-buttons">
+            <button class="btn btn-outline-line cancel" (click)="cancel()">Cancelar</button>
+            <button class="btn" [disabled]="!isValid()" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

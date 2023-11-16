@@ -1,0 +1,59 @@
+/*=================================================================================
+  Progress
+  ====================================================================================*/
+
+  .progress {
+    background-color: rgba($purple-color, 0.4);
+    border-radius: 0;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border-radius: 42px;
+    height: 3px;
+
+    > .indeterminate,
+    > .determinate {
+        background-color: $purple-color;
+        border-radius: 42px;
+    }
+
+    &.slim {
+        margin: 5px 0 0 0;
+        height: 1px;
+
+        >.indeterminate {
+            border-radius: 42px;
+        }
+       > .determinate {
+        border-radius: 42px;
+        }
+    }
+    &.medium {
+        margin: 5px 0 0 0;
+        height: 2.8px;
+
+        > .indeterminate {
+            border-radius: 42px;
+        }
+        > .determinate {
+            border-radius: 42px;
+        }
+    }
+    
+    &.lighted {
+        background-color: #F1EFEF;
+
+        > .indeterminate,
+        > .determinate {
+            background-color: $purple-color-light;
+        }
+    }
+
+    &.animation-disabled {
+        transition: none;
+
+        > .indeterminate,
+        > .determinate {
+            transition: none;
+        }
+    }
+}

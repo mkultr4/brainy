@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>ico_todos</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico_todos" fill="#4F5C69">
+            <g id="Group-11">
+                <path d="M7.91428571,12 C5.75248541,12 4,10.209139 4,8 C4,5.790861 5.75248541,4 7.91428571,4 C10.076086,4 11.8285714,5.790861 11.8285714,8 C11.8285714,10.209139 10.076086,12 7.91428571,12 Z M7.91428571,11.5 C9.80586098,11.5 11.3392857,9.93299662 11.3392857,8 C11.3392857,6.06700338 9.80586098,4.5 7.91428571,4.5 C6.02271045,4.5 4.48928571,6.06700338 4.48928571,8 C4.48928571,9.93299662 6.02271045,11.5 7.91428571,11.5 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

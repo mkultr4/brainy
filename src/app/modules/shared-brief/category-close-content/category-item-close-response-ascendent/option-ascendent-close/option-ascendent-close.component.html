@@ -1,0 +1,12 @@
+<div class="brief-ascendent-item close-view">
+    <div class="brief-ascendent-item-number">
+      {{ option.order }}
+    </div>
+    <!--Text container-->
+    <div class="brief-ascendent-item-text-container">
+        <div class="brief-ascendent-item-editor" 
+        [innerHTML]="option.value | sanitize:'html'"></div>
+    </div>
+    
+
+  </div>

@@ -1,0 +1,212 @@
+.typehead-autocomplete {
+    position: relative;
+    &.col {
+        .dropdown {
+            padding: 0 .75rem;
+        }
+    }
+    .dropdown {
+        width: 100%;
+        .dropdown-menu {
+            padding-left: 0px !important;
+            list-style-type: none !important;
+            background: #FFFFFF;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.07);
+            margin: 0;
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            position: relative;
+            z-index: 2;
+            max-width: 100%;
+            >li {
+                >a {
+                    display: block;
+                    font-size: 12px;
+                    line-height: 40px;
+                    padding: 0 30px;
+                    font-weight: $font-light;
+                    color: $primary-color;
+                     .highlight {
+                        background: transparent;
+                        font-weight: $font-medium;
+                    }
+                 
+                }
+                &:hover,
+                &.active {
+                    background: rgba(175, 181, 213, 0.10);
+                }
+            }
+        }
+    }
+}
+
+//Typehead of share
+.typehead-autocomplete-share {
+    @extend .typehead-autocomplete;
+    .dropdown {
+        .dropdown-menu {
+            transform: translateY(0);
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            background: #FFFFFF;
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 0;
+            >li {
+                >a {
+                    .item {
+                        display: block;
+                        padding: 18px 10px 17px 66px;
+                        position: relative;
+                        .avatar {
+                            left: 20px;
+                            top: 15px;
+                        }
+                        .name {
+                            @extend .text-overflow;
+                            display: block;
+                            font-weight: $font-regular;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: $primary-color;
+                            letter-spacing: 0.12px;
+                        }
+                        .rol {
+                            @extend .text-overflow;
+                            display: block;
+                            font-weight: $font-regular;
+                            font-size: 10px;
+                            line-height: 11px;
+                            color: $user-rol-color;
+                            letter-spacing: 0.1px;
+                        }
+                    }
+                }
+                &:hover,
+                &.active {
+                    background: rgba(175, 181, 213, 0.10);
+                }
+            }
+        }
+    }
+}
+
+.typehead-autocomplete-share-medium {
+    @extend .typehead-autocomplete-share;
+    .dropdown {
+        .dropdown-menu {
+            transform: translateY(0);
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            background: #FFFFFF;
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 0;
+            >li {
+                >a {
+                    .item {
+                        display: block;
+                        padding: 18px 10px 17px 66px;
+                        position: relative;
+                        .avatar {
+                            left: 20px;
+                            top: 19px;
+                        }
+                        .name {
+                            @extend .text-overflow;
+                            display: block;
+                            font-weight: $font-regular;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: $primary-color;
+                            letter-spacing: 0.12px;
+                        }
+                        .rol {
+                            @extend .text-overflow;
+                            display: block;
+                            font-weight: $font-regular;
+                            font-size: 10px;
+                            line-height: 11px;
+                            color: $user-rol-color;
+                            letter-spacing: 0.1px;
+                        }
+                    }
+                }
+                &:hover,
+                &.active {
+                    background: rgba(175, 181, 213, 0.10);
+                }
+            }
+        }
+    }
+}
+
+.typehead-autocomplete-user {
+    @extend .typehead-autocomplete;
+    .dropdown {
+        width: 100%;
+        .dropdown-menu {
+            @extend .dropdown-content;
+            overflow-y: hidden;
+            transition: all 0.3s ease;
+            max-height: 350px;
+            >li {
+                border-bottom: none;
+                >a {
+                    .name {
+                        @extend .text-overflow;
+                        max-width: calc(100% - 80px)
+                    }
+                    .rol {
+                        @extend .text-overflow;
+                        max-width: 80px;
+                        float: right;
+                        font-size: 10px;
+                        text-align: right;
+                        color: $primary-color-light;
+                    }
+                    &:hover,
+                    &.active {
+                        color: $purple-color-light;
+                        .rol {
+                            color: $primary-color-light;
+                        }
+                    }
+                }
+                &:hover,
+                &.active {
+                    >a {
+                        color: $purple-color-light;
+                        .rol {
+                            color: $primary-color-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.typehead-autocomplete-url{
+@extend .typehead-autocomplete;
+.dropdown {
+    
+    .dropdown-menu {
+ 
+        >li {
+            >a {
+              padding: 0 40px;
+             .favico{
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+             }
+             .url{
+                display: inline-block;
+             }
+            }
+        }
+    }
+}
+}

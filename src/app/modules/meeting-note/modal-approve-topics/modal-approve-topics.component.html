@@ -1,0 +1,142 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-approve-topics-two-cases'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close modal-close-btn">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <div class="modal-header-content">
+          <!--Title-->
+          <ng-container *ngIf="!scheduled">
+            <div class="modal-header-resume">
+              <span class="modal-header-resume-wrapper">
+                <h4 class="title">({{topicsWithoutAgreements.length}})&nbsp;&nbsp;Temas sin acuerdos</h4>
+                <h4 class="title">({{topicsPending.length}})&nbsp;&nbsp;Temas pendientes</h4>
+              </span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="scheduled">
+            <h4 class="title">Temas para Agendar:</h4>
+          </ng-container>
+          <!--Message-->
+          <p class="message" *ngIf="!scheduled">
+            Que deseas hacer con sus temas :
+          </p>
+
+        </div>
+        <ng-container *ngIf="!scheduled">
+          <div class="modal-meeting-note-options">
+            <div class="checkbox-block">
+              <input class="filled-in shined border-radius-2 medium  full-width" 
+                type="checkbox" [value]="'scheduled'"
+                [id]="'modal-topic-scheduled-cbx'" 
+                [checked]="option === 'scheduled'" 
+                (change)="onChangeOption('scheduled', $event)">
+              <label [for]="'modal-topic-scheduled-cbx'">
+                Agendar todos los temas
+              </label>
+            </div>
+            <div class="checkbox-block">
+              <input class="filled-in shined border-radius-2 medium  full-width" 
+              type="checkbox" [value]="'approve'"
+                [id]="'modal-topic-approve-cbx'"
+                 [checked]="option === 'approve'" 
+                 (change)="onChangeOption('approve', $event)">
+              <label [for]="'modal-topic-approve-cbx'">
+                Aprobar minuta
+              </label>
+            </div>
+          </div>
+        </ng-container>
+
+        <!--Scheculed next meeting-->
+        <ng-container *ngIf="scheduled">
+          <!--Topics-->
+          <div class="topic-list-modal">
+            <span class="topic-list-resume">
+              ({{topicsWithoutAgreements.length}})&nbsp;&nbsp;Temas sin acuerdos
+            </span>
+            <ng-container *ngFor="let topic of topicsWithoutAgreements">
+              <div class="topic-block">
+                <span class="title-content">{{topic.order}}.&nbsp;{{topic.title.length === 0 ? 'Tema sin titulo':topic.title }}</span>
+              </div>
+            </ng-container>
+            <span class="topic-list-resume">
+              ({{topicsPending.length}})&nbsp;&nbsp;Temas sin acuerdos
+            </span>
+            <ng-container *ngFor="let topic of topicsPending">
+              <div class="topic-block">
+                <span class="title-content">{{topic.order}}.&nbsp;{{topic.title.length === 0 ? 'Tema sin titulo':topic.title }}</span>
+              </div>
+            </ng-container>
+          </div>
+
+          <!--Location & Time-->
+          <div id="location-and-time">
+            <form name="programMeetingNote" #programMeetingNoteForm="ngForm">
+              <div class="row no-margin-bottom">
+                <!--Date-->
+                <div class="col s4">
+                  <div class="input-field input-field-label-medium  input-field-date input-field-medium " [ngClass]="{'input-field-focused-dark': !nextMeeting.date}">
+                    <input mz-datepicker [label]="'Fecha'" [options]="datePickerOptions" [(ngModel)]="nextMeeting.date"
+                      id="meetingNoteDate" name="meetingNoteDate" placeholder="DD/MM/AA" type="text" required>
+                    <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <!--Time-->
+                <div class="col s4">
+                  <div class="input-field input-field-label-medium  input-field-date input-field-medium" [ngClass]="{'input-field-focused-dark': !nextMeeting.hour && nextMeeting.date}">
+                    <input mz-timepicker id="nextMeetingHour" name="nextMeetingHour" [(ngModel)]="nextMeeting.hour"
+                      [label]="'Hora'" [options]="timePickerOptions" placeholder="00:00" type="text" required>
+                    <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <!--Hour-->
+                <div class="col s4 ">
+                  <div app-mz-select-container-brainy class="input-field input-field-medium input-field-label-medium "
+                    [ngClass]="{'input-field-focused-dark': nextMeeting.hour && !nextMeeting.duration}">
+                    <select mz-select placeholder="00:00" name="nextMeetingDuration" id="nextMeetingtDuration"
+                      data-auto-focus="true" data-container="body" [label]="'Duración'" [(ngModel)]="nextMeeting.duration"
+                      required>
+                      <option value="" selected>Seleccione una hora</option>
+                      <option *ngFor="let t of durationTimes" [value]="t">{{ t }}</option>
+                    </select>
+                  </div>
+                </div>
+                <!--Place-->
+                <div class="col s12" id="localtion-input-container">
+                  <div class="input-field   input-field-purple-dark input-field-medium input-field-place" [ngClass]="{'input-field-focused-dark': nextMeeting.duration && !nextMeeting.place}">
+                    <input name="nextMeetingPlace" [(ngModel)]="nextMeeting.place" type="text" placeholder="Ejemplo: Calle n5  Colonia Santa Cruz"
+                      [ngClass]="{'input-field-focused-dark': nextMeeting.duration && !nextMeeting.place}" required>
+                    <label class="active">Lugar</label>
+                    <i class="icon-place" [inlineSVG]="'assets/img/commons/inputs/ico_lugar.svg'"></i>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </ng-container>
+        <div class="modal-content-buttons">
+          <button class="btn btn-medium-large btn-outline-line  cancel" (click)="closeModal()" [appBtnLoading]="approving"
+            [disabled]="approving">
+            CANCELAR
+          </button>
+          <ng-container *ngIf="!scheduled">
+            <button class="btn btn-medium-large btn-outline last-button" 
+            (click)="continue()" [disabled]="approving || !option">
+              {{ approving? 'APROBANDO': 'CONTINUAR' }}
+            </button>
+          </ng-container>
+          <ng-container *ngIf="scheduled">
+            <button class="btn btn-medium-large btn-outline last-button" (click)="scheduledNextMeeting()" [disabled]="approving ||  ( programMeetingNoteForm  &&  programMeetingNoteForm.invalid )|| scheduling">
+              GUARDAR
+            </button>
+          </ng-container>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

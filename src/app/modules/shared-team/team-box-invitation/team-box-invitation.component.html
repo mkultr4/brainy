@@ -1,0 +1,66 @@
+<div class="team-box-invitation" (mouseleave)="mouseleave()">
+  <div class="team-box-invitation-pending">
+    <span>En espera</span>
+  </div>
+   
+    <!--Content-->
+    <div class="team-box-content">
+      
+      <!--Avatar-->
+      <div class="team-box-avatar-content">
+        <div app-avatar class="avatar profile-image-immense-medium" 
+          [user]="invitation" 
+          [showStatus]="false"
+          [invitation]="true"
+          ></div>
+      </div>
+      <!--Rol-->
+      <div class="team-box-rol">
+        <!--No Guest-->
+        <span *ngIf="invitation.rol.key!=='guest'">
+          {{ 'workspaceAccess.rol.' + invitation.rol.key | translate}}
+        </span>
+        <!--Guest-->
+        <span *ngIf="invitation.rol.key==='guest'">{{invitation.category.name}}</span>
+      </div>
+      <!--Email-->
+      <div class="team-box-email">
+        <span>{{invitation.email}}</span>
+      </div>
+      
+      
+    </div>
+    <div class="team-box-overlay">
+        <div class="team-box-overlay-table">
+          <div class="team-box-overlay-table-cell">
+            <!--Menu-->
+            <a class="team-box-menu"
+            mz-button
+             href="javascript:void(0)" [id]="'team-box-bt-'+invitation.id" (click)="$event.stopPropagation()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+            </a>
+            <!--Dropdown-->
+            <app-mz-dropdown-brainy #menu [id]="'team-box-dropdown-'+ invitation.id" 
+              [dropdownButtonId]="'team-box-bt-'+invitation.id" [constrainWidth]="false"
+              [belowOrigin]="true" [dropdownClass]="'toolbar-box-team'">
+              <li class="disabled">
+                <a href="javascript:void(0)">
+                  Activo
+                </a>
+              </li>
+              <li class="disabled">
+                <a href="javascript:void(0)">
+                  Suspender
+                </a>
+              </li>
+              <li (click)="eliminate()">
+                <a href="javascript:void(0)">
+                  Eliminar
+                </a>
+              </li>
+            </app-mz-dropdown-brainy>
+            <a class="view-profile" href="javascript:void(0)" (click)="viewProfile()">Ver perfil</a>
+          </div>
+        </div>
+      </div>
+  </div>

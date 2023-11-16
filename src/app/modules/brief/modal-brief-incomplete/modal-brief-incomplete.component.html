@@ -1,0 +1,22 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-brief-incomplete'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+          <h4 class="title">
+            Brief incompleto
+          </h4>
+          <h4 class="message">
+            El brief no se puede aprobar hasta que complete todas las preguntas
+          </h4>
+
+          <div class="modal-content-buttons">
+            <button class="btn btn-medium-large  modal-close">ACEPTAR</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

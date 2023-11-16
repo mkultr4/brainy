@@ -1,0 +1,57 @@
+<ul class="right interface-menu-nav">
+    <li *ngIf="isAdmin">
+        <a href="javascript:void(0); " [routerLink]="['/brands']" routerLinkActive="active" [ngClass]="{'active':sectionActive === 'brands'}">
+            <i class="icon-svg icon-header " id='ico-brands' [inlineSVG]="'assets/img/interface-menu/icono_brands.svg'"></i>
+        </a>
+    </li>
+    <li *ngIf="isAdmin">
+        <a href="javascript:void(0); " [routerLink]="['/team']" routerLinkActive="active" [ngClass]="{'active':sectionActive === 'team'}">
+            <i class="icon-svg icon-header " id='ico-team' [inlineSVG]="'assets/img/interface-menu/icono_equipos.svg'"></i>
+        </a>
+    </li>
+    <!--Notifications-->
+    <li class="with-dropdown-menu">
+        <ng-container *ngIf="sectionActive !== 'notifications'">
+            <a
+            appSidenavButton [sidenavId]="'right-notifications-nav'"
+            href="javascript:void(0);">
+                <ng-container *ngIf="unreadNotifications > 0">
+                    <span class="badge animated bounceIn" [title]="unreadNotifications">{{unreadNotifications}}</span>
+                </ng-container>
+                <i class="icon-svg icon-header" id='ico-notifications' [inlineSVG]="'assets/img/interface-menu/icono_notificaciones.svg'"></i>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="sectionActive === 'notifications'">
+            <a href="javascript:void(0);" class="active">
+                <ng-container *ngIf="unreadNotifications > 0">
+                    <span class="badge animated bounceIn" [title]="unreadNotifications">{{unreadNotifications}}</span>
+
+                </ng-container>
+                <i class="icon-svg icon-header" id='ico-notifications' [inlineSVG]="'assets/img/interface-menu/icono_notificaciones.svg'"></i>
+            </a>
+        </ng-container>
+    </li>
+    <!--User menu-->
+    <li class="with-dropdown-menu" id="user-menu">
+        <a appInterfaceDropdown gutterMaxHeight="39" dropdownTarget="#user-dropdown"
+            edge="bottom"
+            (dropdownOnShow)="onShowDropdownUser($event)"
+            (dropdownOnHide)="onHideDropdownUser($event)">
+
+            <div app-avatar class="avatar profile-image-medium-1 "
+            [user]="currentUser"
+            [showStatus]="false"></div>
+            <!--Caret-->
+            <span [inlineSVG]="'assets/img/commons/ico_caret.svg'" class="caret"></span>
+
+        </a>
+        <!--Dropdown User Info-->
+        <div class="dropdown-menu bottom" id="user-dropdown" app-user-dropdown
+            [currentUser]="currentUser"
+            [workspaceAccess]="workspaceAccess"
+            ></div>
+    </li>
+
+</ul>
+
+

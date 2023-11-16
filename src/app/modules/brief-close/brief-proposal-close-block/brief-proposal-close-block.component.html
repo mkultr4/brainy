@@ -1,0 +1,68 @@
+<div class="brief-proposal-block-header">
+    <!--Information-->
+    <div class="brief-proposal-block-header-information">
+  
+      <!--User-->
+      <div class="proposal-user-information">
+        <div class="participant-list-block participant-list-block-without-line" *ngIf="proposal.createdBy">
+          <div class="participant-information without-permissions">
+            <!--If has brand-->
+            <ng-container *ngIf="proposal.createdBy.brandCurrentCore">
+              <div app-brand-logo class="avatar profile-image-small-1" [brand]="proposal.createdBy.brandCurrentCore"></div>
+            </ng-container>
+            <!--If not has brand-->
+            <ng-container *ngIf="!proposal.createdBy.brandCurrentCore">
+              <div class="avatar profile-image-small-1" app-avatar [user]="proposal.createdBy.user" [showStatus]="false"></div>
+            </ng-container>
+  
+            <div class="participant-user-information">
+              <span class="name">
+                <!--User-->
+                {{ proposal.createdBy.user.name + ' ' + proposal.createdBy.user.lastName}}
+                &nbsp;|&nbsp;{{'workspaceAccess.rol.'+proposal.createdBy.rol.key | translate}}
+                <ng-container *ngIf="proposal.createdBy.brandCurrentCore">
+                  <!--Brand-->
+                  <span class="brand-name">
+                    {{ proposal.createdBy.brandCurrentCore.name}}
+                  </span>
+                </ng-container>
+  
+              </span>
+  
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      <!--Toolbar-->
+      <div class="proposal-header-toolbar">
+        <span class="date-created">
+          
+        </span>
+        
+        
+      </div>
+  
+  
+    </div>
+  </div>
+  
+  <div class="proposal-files-previews" *ngIf="proposal.files.length > 0">
+    <div class="proposal-files-wrapper">
+      <div class="proposal-files-col" *ngFor="let file of proposal.files | orderByImpure:'-created'">
+        <div class="proposal-image-item">
+  
+          <div class="proposal-image-item-preview" [ngStyle]="{ backgroundImage:'url(' + file.url + ')'}"></div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <ng-container *ngIf="proposal.message">
+    <div class="proposal-block-message">
+      <span class="proposal-block-message-label">Comentario </span>
+      <p class="proposal-message" [innerHTML]="proposal.message"></p>
+    </div>
+  </ng-container>

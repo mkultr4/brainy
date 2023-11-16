@@ -1,0 +1,62 @@
+<div class="note-box" [ngClass]="{'first-child':first}" (click)="edit($event)" (mouseleave)="onMouseLeave()">
+  <div class="note-box-wrapper ">
+    <div class="note-box-title" [ngClass]="{'has-reminders':note.reminders.length > 0}">
+      <span>{{note.title}}</span>
+      <i class="reminder-icon icon-svg" [inlineSVG]="'assets/img/floating-note/ico_rememberme.svg'"></i>
+    </div>
+    <ng-container *ngIf="note.content && note.content.length > 0">
+      <div class="note-box-text" [ngClass]="{'overflow':overflow}">
+        <pre [innerHTML]="note.content" #content></pre>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!note.content ||  note.content.length === 0">
+      <div class="note-box-text empty">
+        Nota vacía
+      </div>
+    </ng-container>
+    <div class="note-box-date">
+      <span>{{ (note.modified | niceDateFormatPipe:'DD [de] MMMM YYYY HH:ss') | translate:{hour:(note.modified |
+        momentDate:'HH:ss')}
+        }}
+      </span>
+    </div>
+  </div>
+  <!--Menu-->
+  <ul class="note-box-menu"  [class.active]="dropdownVisible">
+    <li>
+      <a href="javascript:void(0)" 
+        appTooltip 
+        [tooltipMessage]="'Compartir'"
+        appInterfaceDropdown
+        [dropdownTarget]="'#floating-note-menu-'+note.id"
+        (dropdownOnShow)="onShowDropdown(true)"
+        (dropdownOnHide)="onShowDropdown(false)"
+        >
+        <i class="icon-svg icon-share" [inlineSVG]="'assets/img/floating-note/ico_share.svg'"></i>
+      </a>
+      <!--Dropdown menu-->
+      <div [id]="'floating-note-menu-'+note.id" class="dropdown-menu bottom floating-note-menu">
+        <ul class="dropdown-content">
+          <li>
+            <a (click)="shareWithParticipants()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_share_users.svg'"></i>
+              Compartir
+            </a>
+          </li>
+
+          <li>
+            <a (click)="shareWithEmails()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_send_mail.svg'"></i>
+              Enviar por mail
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <a href="javascript:void(0)" (click)="delete()" appTooltip [tooltipMessage]="'Eliminar'">
+        <i class="icon-svg icon-delete" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+      </a>
+    </li>
+  </ul>
+</div>

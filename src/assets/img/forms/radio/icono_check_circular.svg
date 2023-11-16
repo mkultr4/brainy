@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="5px" height="4px" viewBox="0 0 5 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="interface_participantes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="interface_participantes_05" transform="translate(-1271.000000, -156.000000)" fill="#FFFFFF">
+            <g id="Group-2" transform="translate(1113.000000, 73.000000)">
+                <path d="M160.089411,86.759063 C160.081359,86.7682254 160.078305,86.7801643 160.06942,86.7890491 C159.914725,86.9435895 159.682074,86.9895277 159.480249,86.905384 C159.404604,86.8785352 159.335722,86.835519 159.278399,86.7793314 C159.266462,86.7633013 159.255432,86.7466163 159.245358,86.7293546 L158.158363,85.642637 C157.947212,85.4314861 157.947212,85.089143 158.158363,84.8779921 C158.369514,84.6668412 158.711857,84.6668412 158.923008,84.8779921 L159.656001,85.6112627 L161.14856,83.1636703 C161.366918,82.945389 161.720883,82.9454512 161.939165,83.1638091 C162.157446,83.382167 162.157384,83.736133 161.939026,83.9544142 L160.089411,86.759063 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

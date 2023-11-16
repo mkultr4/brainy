@@ -1,0 +1,20 @@
+<div class="feedback-close-left-sidenav" [ngClass]="{'compressed':compressed}">
+    <div class="feedback-pieces-carousel">
+        <div class="feedback-pieces-carousel-container" [perfectScrollbar]="{suppressScrollX:true}"
+          #feedbackPieceList>
+
+            <ng-container *ngFor="let piece of pieces">
+                <div class="feedback-piece-carousel-item"
+                  app-feedback-associated-piece-sidenav
+                  [pieceShow]="pieces[paginationConfig.currentPage - 1]"
+                  [piece]="piece" 
+                  (pieceOnSelect)="selectPiece($event)">
+                </div>
+            </ng-container>
+  
+        </div>
+      
+    </div>
+  
+  </div>
+  

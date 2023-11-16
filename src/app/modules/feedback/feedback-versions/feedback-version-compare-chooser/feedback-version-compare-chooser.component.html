@@ -1,0 +1,40 @@
+<a appTooltip [tooltipMessage]="'Quitar pieza'" (click)="removeCompare()" href="javascript:void(0)" class="remove-compare"
+  [ngClass]="{'hide':compare.empty}">
+  <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+</a>
+<div class="feedback-version-compare-chooser-name">
+  <ng-container *ngIf="!compare.empty">
+    <ng-container *ngIf="compare.piece.latest">
+      <span class="version">Versión actual</span>
+    </ng-container>
+    <ng-container *ngIf="!compare.piece.latest">
+      <span class="version">
+        {{compare.piece.versionNumber}}.&nbsp;versión
+      </span>
+    </ng-container>
+    <span class="name">
+      {{compare.piece.name}}
+    </span>
+  </ng-container>
+</div>
+
+<!--Dropable-->
+<div class="feedback-version-compare-chooser-droppable" (dndDragover)="onDragover($event)" (dndDrop)="onDrop($event)" [dndDropzone]="['feedback-piece']"
+  [ngClass]="{'empty':compare.empty}">
+  <!--Drop here-->
+  <div class="feedback-version-compare-chooser-droppable-wrapper">
+    <div class="feedback-version-compare-chooser-droppable-table">
+      <div class="feedback-version-compare-chooser-droppable-table-cell">
+        <div class="feedback-version-compare-chooser-droppable-text ">
+          Arrastra una imagen
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Piece preview-->
+  <ng-container *ngIf="!compare.empty">
+    <div class="compare-preview-content" app-feedback-version-compare-preview [size]="{boxWidthPreview:boxWidth,boxHeightPreview:boxHeight}"
+      [piece]="compare.piece" [filterStatuses]="filterStatuses" [filterParticipantTypes]="filterParticipantTypes">
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,56 @@
+<app-aside-nav #sidenavParticipants id="feedback-right-sidebar-main" class="primary container workflow-aside"
+  [disableScroll]="true" [sideNavMain]="true" [alwaysVisible]="true">
+  <div app-sidenav id="participants-right-sidenav" class="side-nav sidenav-with-btn-back
+             animated workflow-sidenav workflow-sidenav-right
+            rightside-navigation fixed show"
+    [ngClass]="{compressed:compressed}">
+    <div class="sidenav-wrapper" [class.compressed]="compressed">
+
+      <div class="sidenav-participants-container" [perfectScrollbar]="{suppressScrollX:true}">
+        <div class="sidenav-participants-container-wrapper">
+          <!--My Team-->
+          <h4 class="participants-block-title">{{workspace?.name}} team</h4>
+          <!--My Team Block-->
+          <div class="participants-block">
+            <!--Participant profile wrapper-->
+            <div class="participants-block-line">
+              <app-participant-profile-wrapper [owner]="owner">
+              </app-participant-profile-wrapper>
+            </div>
+            <div class="participants-block-line" *ngFor="let invitation of invitations  | filterInvitationPending:showPendingInvitations | filterInvitationMyTeam ">
+              <!--Invitation team-->
+              <app-invitation-wrapper 
+                [invitation]="invitation" 
+                [coreKey]="coreKey"
+                (invitationOnRemoveInvitation)="removeInvitation($event)"
+                (invitationOnEditPermission)="editPermissionInvitation($event)">
+              </app-invitation-wrapper>
+            </div>
+          </div>
+          <!--Guests-->
+          <h4 class="participants-block-title guest-title" *ngIf="(invitations  | filterInvitationPending:showPendingInvitations | filterInvitationGuest ).length > 0">Invitados</h4>
+          <!--Guests block-->
+          <div class="participants-block">
+            <!--Invitation-->
+            <div class="participants-block-line" *ngFor="let invitation of invitations  | filterInvitationPending:showPendingInvitations | filterInvitationGuest">
+              <app-invitation-wrapper [invitation]="invitation"
+              [coreKey]="coreKey"
+               (invitationOnRemoveInvitation)="removeInvitation($event)"
+                (invitationOnEditPermission)="editPermissionInvitation($event)">
+              </app-invitation-wrapper>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!--Btn back-->
+    <a class="btn-back-sidenav" href="javascript:void(0)" (click)="compress()" [ngClass]="{'direction-right':!compressed}">
+      <i class="icon-svg icon-arrow" [inlineSVG]="'assets/img/sidenav/ico_arrow.svg'"></i>
+    </a>
+  </div>
+</app-aside-nav>

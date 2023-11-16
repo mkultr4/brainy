@@ -1,0 +1,12 @@
+<div class="brief-table-input-select" [id]="'brief-table-input-select-'+cell.id">
+
+  <div app-mz-select-container-brainy class=" input-field brief-response-select-wrapper">
+    <select mz-select data-container="body" placeholder="Selecciona" data-auto-focus="true" [disabled]="true"
+      [(ngModel)]="cell.value">
+      <option value="" disabled>Selecciona</option>
+      <option *ngFor="let option of cell.options" value="{{option.id}}">{{option.label}}</option>
+    </select>
+  </div>
+
+
+</div>

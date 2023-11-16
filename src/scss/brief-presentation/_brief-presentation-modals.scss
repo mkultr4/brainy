@@ -1,0 +1,14 @@
+//New Brief
+#modal-new-brief-presentation{
+    @extend .modal-new-brainy-object;
+    
+    .modal-content{
+        min-height: 387px;
+        .modal-header{
+            padding-bottom: 52px;
+        }
+        .modal-content-display-btn{
+            margin-top: 17px;
+        }
+    }
+}

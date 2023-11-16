@@ -1,0 +1,8 @@
+<img src="/assets/img/brief/ico_bullet_point.svg" class="icon-list">
+<div class="brief-list-item-editor" placeholder="Escriba aquí" [(contentEditableModel)]="option.value"
+  (contentEditableModelChange)="valueChange()" [maxLength]="100" [contentEditable]="refillable" [singleLine]="false"></div>
+<a href="javascript:void(0)" 
+*ngIf="focusResponse"
+class="remove-item" (click)="deleteOption($event)">
+  <i class="icon ion-md-close"></i>
+</a>

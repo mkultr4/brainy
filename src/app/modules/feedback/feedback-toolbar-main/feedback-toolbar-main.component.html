@@ -1,0 +1,48 @@
+<app-mz-dropdown-brainy
+  [id]="dropdownId" [dropdownButtonId]="btnId"
+  [constrainWidth]="false"
+   [belowOrigin]="belowOrigin"
+    [gutter]="gutter"
+  [dropdownClass]="dropdownClass" [container]="'body'" [align]="'right'">
+  <ng-container *ngIf="editable">
+    <li>
+      <span (click)="edit()" class="edit">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+        Editar
+      </span>
+    </li>
+    <li>
+      <span class="delete" (click)="delete()">
+        <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg"> </i>
+        Eliminar
+      </span>
+    </li>
+  </ng-container>
+  <li>
+    <span (click)="download()" class="download">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_descargar.svg'"></i>
+      Descargar
+    </span>
+  </li>
+
+
+  <li>
+    <span class="version" (click)="showVersions()">
+      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/workflow-header/menu_versiones.svg'"></i>
+      Versiones y comparar
+    </span>
+  </li>
+  <li>
+    <span class="search" (click)="searchComments()">
+      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/workflow-header/menu_buscar.svg'"></i>
+      Buscar comentarios
+    </span>
+  </li>
+  <li *ngIf="isAdmin">
+    <span class="version" (click)="cancel()">
+      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/workflow-header/menu_cancelar.svg'"></i>
+      Cancelar feedback
+    </span>
+  </li>
+
+</app-mz-dropdown-brainy>

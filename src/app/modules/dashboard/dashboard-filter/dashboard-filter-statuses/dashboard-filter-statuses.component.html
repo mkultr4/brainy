@@ -1,0 +1,36 @@
+<div class="dropdown-menu dropdown-menu-navigation bottom" 
+id="dropdown-statuses" 
+[ngClass]="{'dropdown-menu-empty':cores.length === 0}">
+  <ng-container *ngIf="cores.length > 0">
+    <ul class="dropdown-content dropdown-max-height" [perfectScrollbar]="{suppressScrollX:true}">
+      <li>
+        <a href="javascript:void(0)" (click)="setFilterStatus({id: undefined,key:'all'})">
+            <span>{{'core.status.all' | translate }}</span>
+          <span>&nbsp;({{cores.length}})</span>
+        </a>
+      </li>
+      <ng-container *ngFor="let status of coreStatuses">
+        <li class="{{status.key}}" [ngClass]="{'active':filterStatus.key === status.key}">
+          <a href="javascript:void(0)" (click)="setFilterStatus(status)">
+            <ng-container *ngIf="status.key === 'archived'">
+              <i [inlineSVG]="status.ico"></i>
+            </ng-container>
+            <span>{{'core.status.'+ status.key | translate }}</span>
+            
+            <span *ngIf="status.key !== 'archived'">&nbsp;({{getCountStatus(status.key)}})</span>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </ng-container>
+  <ng-container *ngIf="cores.length === 0">
+    <ul class="dropdown-content  dropdown-max-height">
+      <li class="empty">
+        <a href="javascript:void(0)">
+          No posee estados
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="brief-presentation-left-sidenav" [ngClass]="{'compressed':compressed}">
+  <!--Carousel-->
+  <div class="brief-presentation-carousel">
+
+    <div #scrollSlides [perfectScrollbar]="{}" class="brief-presentation-carousel-container" [class.sorting]="sorting">
+      <!--Add slide-->
+      <div class="brief-presentation-item-sidenav no-draggale" id="add-slide-presentation" appTooltip
+        [tooltipMessage]="'Agregar hoja'" [alignamentTooltip]="'right'" [extraClassTooltip]="'tooltip-add-piece'"
+        (click)="addSlide()">
+        <div class="slide-wrapper-content">
+          <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_more.svg'"></i>
+        </div>
+      </div>
+      <div class="sortable-container"
+      [sortablejs]="slideshow" [sortablejsOptions]="{
+        forceFallback: true,
+        fallbackClass: 'sortable-fallback',
+        disabled: !editable,
+        filter: '.no-draggale',
+        scroll: scrollSlides,
+        handle: '.slide-drag-handler',
+        onStart: onSortStart.bind(this),
+        onEnd: onSortEnd.bind(this),
+        onUpdate: onSortUpdate.bind(this)
+    }"
+      >
+        <!--Slideshow-->
+        <ng-container *ngFor="let slide of slideshow | orderByImpure:'order';let index = index">
+          <app-brief-presentation-slide-sidenav [slide]="slide" [slideToShowId]="slideToShow?.id" [index]="index"
+            [editable]="editable" (onShowSlide)="onShowSlide($event)" (onDeleteSlide)="onDeleteSlide($event)">
+          </app-brief-presentation-slide-sidenav>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<a class="btn-back-sidenav brief-presentation-collapse-left" href="javascript:void(0)" (click)="compress()"
+  [ngClass]="{'direction-right':compressed}">
+  <i class="icon-svg icon-arrow" [inlineSVG]="'assets/img/sidenav/ico_arrow.svg'"></i>
+</a>

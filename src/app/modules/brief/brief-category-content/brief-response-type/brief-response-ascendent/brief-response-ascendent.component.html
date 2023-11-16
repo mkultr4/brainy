@@ -1,0 +1,30 @@
+<div class="response-ascendent" [ngClass]="{
+            'enabled-editing':editable,
+            'refillable':refillable
+            }">
+  <div class="options-list">
+
+    <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options;let i = index">
+      <app-option-ascendent
+        [option]="option" 
+        [editable]="editable" 
+        [refillable]="refillable"
+        [focusResponse]="focusResponse" 
+        (onDelete)="deleteOption($event)" 
+        (onChange)="onChangeSettings()"
+      ></app-option-ascendent>
+    </ng-container>
+    <!--Add-->
+    <div  *ngIf="focusResponse"
+      class="brief-ascendent-item add-option" (click)="addOption()" 
+      >
+      <div class="brief-ascendent-item-number">
+
+      </div>
+      <div class="brief-ascendent-item-text-container">
+        <span class="add-option-text">Agregar&nbsp;+</span>
+      </div>
+    </div>
+  </div>
+
+</div>

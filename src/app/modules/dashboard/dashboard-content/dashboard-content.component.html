@@ -1,0 +1,141 @@
+<!--preloader-->
+<app-preloader [show]="true"></app-preloader>
+<!--Tutorial-->
+<app-dashboard-tutorial
+  [showCarousel]="hasTour"
+  [emptyMessage]="dashboardEmpty"
+  (dashboardOnTourEnd)="onTourEnd()">
+</app-dashboard-tutorial>
+<!--Dashboard daily message-->
+<app-dashboard-daily-message #dashboardDailyMessage [user]="currentUser"></app-dashboard-daily-message>
+<!--Interface-->
+<div class="layout-interface layout-with-footer">
+  <section class="layout-interface-content">
+    <header #dashboardHeader class="interface-header" id='dashboard-header'>
+      <!--HEADER CONTENT-->
+      <app-dashboard-header
+        [currentUser]="currentUser"
+       [workspaceAccess]="workspaceAccess"
+       (headerOnNewProject)="newProject()"
+       >
+      </app-dashboard-header>
+          <!--Header Filter-->
+          <div class="navbar-default navbar-fixed navbar-filter"
+          app-dashboard-filter
+          [mainSearch]="mainSearch"
+          [filterOrderColumn]="filterOrderColumn"
+          [filterOrderDirection]="filterOrderDirection"
+          [workspaceAccess]="workspaceAccess"
+          [cores]="cores"
+          [brands]="brands"
+          [projects]="projects"
+          [coreStatuses]="coreStatuses"
+          [coreTypes]="coreTypes"
+          [filterBrand]="filterBrand"
+          [filterProject]="filterProject"
+          [filterType]="filterType"
+          [filterStatus]="filterStatus"
+          [filterCore]="filterCore"
+          (filterOnChangeFilterBrand)="onChangeFilterBrand($event)"
+          (filterOnChangeFilterProject)="onChangeFilterProject($event)"
+          (filterOnChangeFilterType)="onChangeFilterType($event)"
+          (filterOnChangeFilterStatus)="onChangeFilterStatus($event)"
+          (filterOnChangeFilterCore)="onChangeFilterCore($event)"
+          (filterOnChangeFilterOrder)="onChangeFilterOrder($event)"
+          (filterOnChangeMainSearch)="onChangeMainSearch($event)"></div>
+    </header>
+    <!--MAIN CONTENT-->
+    <main>
+      <div class="dashboard-item-menu-wrapper container">
+        <ul class="dashboard-items-menu">
+          <li *ngIf="canViewWorkflow">
+            <a href="javascript:void(0)">
+              Workflow
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="dashboard-items-wrapper" *ngIf="cores.length > 0">
+        <section class="dashboard-items-content container">
+          <div class="dashboard-items-list">
+
+            <div class='dashboard-list-content'>
+              <ng-container
+              *ngFor="
+              let core of cores
+              | filterBy:['title','project.name','brand.name']: mainSearch
+              | filterCoreByProject: filterProject
+              | filterCoreByBrand: filterBrand
+              | filterCoreByType: filterType
+              | filterCoreByStatus: filterStatus
+              |  orderBy: orderBy
+              ">
+                  <div
+                  app-dashboard-box
+                  class="dashboard-box dashboard-box-{{core.type.key}} "
+                  [id]="'dashboard-box-'+core.id"
+                  [core]="core"
+                  [workspaceAccess]="workspaceAccess"
+                  (boxOnCancel)="boxOnCancel($event)"
+                  >
+                </div>
+
+
+              </ng-container>
+            </div>
+            <!--Without results-->
+            <h1 class="without-results"
+            *ngIf="(cores
+            | filterBy:['title','project.name','brand.name']: mainSearch
+            | filterCoreByProject: filterProject
+            | filterCoreByBrand: filterBrand
+            | filterCoreByType: filterType
+            | filterCoreByStatus: filterStatus
+            ).length === 0">
+              {{ 'commons.without-results' | translate }}
+
+            </h1>
+          </div>
+        </section>
+      </div>
+      <!--Dashboard empty message-->
+      <div *ngIf="cores.length === 0" class="brainy-empty-message">
+        <div class="container">
+            <img src="assets/img/commons/empty-lists/img_dashobard_vacio.svg">
+            <h1 class="title">Aún no tienes proyectos</h1>
+            <p class="message">
+                Necesitas más información para crear un proyecto <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+            </p>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+<!--Paper bin-->
+<a class="paper-bin-floating" [routerLink]="['/paper-bin']" *ngIf="canViewPaperBin">
+  <i class="icon-svg" [inlineSVG]="'assets/img/commons/icono_papelera_dashboard.svg'"></i>
+</a>
+<!--Footer-->
+<app-interface-footer></app-interface-footer>
+<!--New Project-->
+<app-modal-new-project
+[currentUser]="currentUser"
+[workspaceAccess]="workspaceAccess"
+[briefTemplateTour]="hasBriefTemplateTour"
+></app-modal-new-project>
+<!--Notification-->
+<app-sidenav-notifications [empty]="dashboardEmpty"></app-sidenav-notifications>
+<!--Floating Note-->
+<app-floating-note [empty]="dashboardEmpty"></app-floating-note>
+<!--Change workspace-->
+
+<!--Cancel project-->
+<app-modal-cancel-core #modalCancel></app-modal-cancel-core>
+<!--Cancel Meeting note-->
+<app-modal-cancel-meeting-note #modalCancelMeetingNote></app-modal-cancel-meeting-note>
+<!--Archive project-->
+<app-modal-dashboard-archive-project></app-modal-dashboard-archive-project>
+<!--Modal download-->
+<app-modal-download-project></app-modal-download-project>
+<!--Chnage workspace-->
+<app-modal-change-workspace></app-modal-change-workspace>

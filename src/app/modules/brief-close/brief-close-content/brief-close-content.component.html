@@ -1,0 +1,36 @@
+<div class="layout-visual-closing layout-visual-closing-meeting-note">
+    <div class="layout-visual-closing-overlay" 
+      [ngStyle]="{backgroundImage :'url(' + brief?.coverImage + ')'}">
+      <div class="visual-closing-brand">
+        <a class="visual-closing-brand-link " [routerLink]="['/']">
+          <i class="icon-svg" [inlineSVG]="'/assets/img/logo_brainy.svg'"></i>
+          <span class="visual-closing-logo-text">Brief</span>
+        </a>
+      </div>
+      <!--Upload cover image-->
+      <div class="core-close-upload-image">
+        <span class="core-upload-image-btn" appTooltip appFilePicker accept="image/*" (filePick)="chooseFile($event)"
+          [tooltipMessage]="'Cambiar imagen '" [edgeTooltip]="'left'">
+          <i [inlineSVG]="'assets/img/brief/close/ico_camera.svg'"></i>
+        </span>
+  
+      </div>
+    </div>
+<!--Visual-->
+<app-brief-close-visual 
+[brief]="brief" 
+[givebacks]="givebacks"
+[finalists]="finalists"
+[categories]="categories"
+[showBrand]="showBrand"
+[invitations]="invitations" [canShare]="canShare" [canRequestModification]="canRequestModification"
+[canRequestOpen]="canRequestOpen" [canRequestOpenDirect]="canRequestOpenDirect" [coreStatuses]="coreStatuses">
+</app-brief-close-visual>
+<!--Floating note-->
+<app-floating-note  [core]="brief"></app-floating-note>
+<!--Modal notification-->
+<app-modal-notification-core #modalNotificationCore (modalNotificationOnClose)="modalNotificationOnClose($event)"></app-modal-notification-core>
+<!-- Modal notification request permission accept-->
+<app-modal-request-permission-accept #modalRequestPermissionAccept (modalOnAcceptPermission)="modalOnAcceptPermission()"></app-modal-request-permission-accept>
+    
+  </div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_help</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon_help" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(1.000000, 1.000000)" fill="#4F5C69" id="Group">
+            <g>
+                <path d="M4.5,8 L5.5,8 L5.5,7 L4.5,7 L4.5,8 L4.5,8 Z M5,-1.65423231e-13 C2.24,-1.65423231e-13 0,2.24 0,5 C0,7.76 2.24,10 5,10 C7.76,10 10,7.76 10,5 C10,2.24 7.76,-1.65423231e-13 5,-1.65423231e-13 L5,-1.65423231e-13 Z M5,9 C2.795,9 1,7.205 1,5 C1,2.795 2.795,1 5,1 C7.205,1 9,2.795 9,5 C9,7.205 7.205,9 5,9 L5,9 Z M5,2 C3.895,2 3,2.895 3,4 L4,4 C4,3.45 4.45,3 5,3 C5.55,3 6,3.45 6,4 C6,5 4.5,4.875 4.5,6.5 L5.5,6.5 C5.5,5.375 7,5.25 7,4 C7,2.895 6.105,2 5,2 L5,2 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

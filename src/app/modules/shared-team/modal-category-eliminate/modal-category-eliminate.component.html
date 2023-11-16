@@ -1,0 +1,32 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-category-eliminate'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+
+        <h4 class="title">Eliminar Categoria</h4>
+        <p class="message">
+          Los usuarios quedarán sin grupo
+          <br> y quedarían como invitados sin grupo
+
+        </p>
+
+
+        <div class="modal-content-buttons">
+          
+          <button class="btn btn-medium-large " 
+          [disabled]="btnDisabled" 
+          [appBtnLoading]="btnDisabled"
+            (click)="eliminate()">
+            {{ btnDisabled ? 'ELIMINANDO':'ELIMINAR' }}
+          </button>
+          <button class="btn btn-medium-large btn-outline-line cancel last-button modal-close" [disabled]="btnDisabled">CANCELAR</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

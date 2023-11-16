@@ -1,0 +1,48 @@
+<ul class="brief-presentation-toolbar-actions">
+  <li>
+    <a href="javascript:void(0)" class="presentation-toolbar-action rectangle" (click)="addShape('rectangle')">
+        <i [inlineSVG]="'assets/img/brief-presentation/toolbar/area_cuadrado.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="presentation-toolbar-action circle" (click)="addShape('circle')">
+        <i [inlineSVG]="'assets/img/brief-presentation/toolbar/area_circulo.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="presentation-toolbar-action text" (click)="addTextElement()">
+        <i [inlineSVG]="'assets/img/brief-presentation/toolbar/tool_texto.svg'"></i>
+    </a>
+  </li>
+  <li>
+
+    <a href="javascript:void(0)" class="presentation-toolbar-action image"  appFilePicker accept="image/*"
+    (filePick)="chooseImage($event)"
+    >
+        <i [inlineSVG]="'assets/img/brief-presentation/toolbar/tool_img.svg'"></i>
+    </a>
+
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="presentation-toolbar-action color"
+    appInterfaceDropdown dropdownTarget="#dropdown-editable-colors" [center]="true"
+    >
+        <i [inlineSVG]="'assets/img/brief-presentation/toolbar/tool_color.svg'"></i>
+    </a>
+    <app-element-dropdown-colors
+    [focusedType]="elementFocused?.type"
+    (onSetForecolor)="onSetForecolor($event)"
+    (onSetBackcolor)="onSetBackcolor($event)"
+    (onRemoveFormat)="onRemoveFormat($event)"
+    ></app-element-dropdown-colors>
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="presentation-toolbar-action font-size" 
+    appInterfaceDropdown dropdownTarget="#dropdown-font-size" [center]="true"
+    >
+      <i [inlineSVG]="'assets/img/brief-presentation/toolbar/tool_font_size.svg'"></i>
+    </a>
+    <app-element-dropdown-font-size (onSetFontSize)="onSetFontSize($event)"></app-element-dropdown-font-size>
+
+  </li>
+</ul>

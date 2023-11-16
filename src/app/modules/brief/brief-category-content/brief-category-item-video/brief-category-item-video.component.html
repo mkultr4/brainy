@@ -1,0 +1,52 @@
+<!--Sortable-->
+<div class="brief-caregory-item-sortable" *ngIf='focusedIn && !enabledCommentsAction '>
+  <div class="brief-caregory-item-sortable-drag-handle">
+    <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_move_brief.svg'"></i>
+  </div>
+</div>
+<!--Video content-->
+<div class="brief-category-item-video-wrapper">
+
+  <!--Delete-->
+  <a 
+  appTooltip
+      [tooltipMessage]="'Eliminar video'"
+    href="javascript:void(0)" *ngIf="editable  && !enabledCommentsAction" class="gallery-image-remove closest-alert"
+    app-alert-dialog [message]="'¿Quieres elminar el video?'" 
+    [edge]="'right'" 
+    [acceptText]="'Si'" 
+    [cancelText]="'No'"
+    [alertClass]="'alert-brief-category-item alert-disabled-trigger'"
+     [alertOverlayClass]="'alert-disabled-trigger'"
+    (alertOnAccept)="delete()">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+  </a>
+  <!--Change-->
+  <a 
+  appTooltip
+      [tooltipMessage]="'Cambiar video'"
+  href="javascript:void(0)" *ngIf="editable  && !enabledCommentsAction" class="gallery-image-change"
+    (click)="changeVideo()">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_change_img.svg'"></i>
+    Cambiar
+  </a>
+  <!--Video-->
+  <iframe #iframeVideo class="brief-video" type="text/html" allowfullscreen width="100%" height="419" frameborder="0"></iframe>
+  <!--Comments-->
+  <div #commentsWrapper class="brief-category-item-video-comments"
+     [style.width.px]="calculatedWidth" 
+     [style.height.px]="calculatedHeight"
+     [class.visible]="enabledCommentsAction"
+     >
+    <ng-container *ngFor="let commentThread of commentThreads 
+         | filterCommentThreadStatus:filterStatuses
+         | filterCommentThreadParticipantType: filterParticipantTypes">
+      <app-comment-thread-image [commentThread]="commentThread"
+         [naturalWidth]="briefCategoryItem.content.video.sizes.width"
+        [naturalHeight]="briefCategoryItem.content.video.sizes.height"
+        [commentThreadStatus]="commentThread.status"
+        [hidden]="sorting">
+      </app-comment-thread-image>
+    </ng-container>
+  </div>
+</div>

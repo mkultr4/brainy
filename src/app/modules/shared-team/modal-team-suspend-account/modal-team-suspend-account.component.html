@@ -1,0 +1,29 @@
+<app-mz-modal-brainy #modal [options]="modalSuspendOptions" [modalId]="'modal-suspend-account'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <h4 class="title">Suspender usuario</h4>
+        <p class="message">
+            Estás a punto de suspender este perfil, ya no<br>
+            recibira más notificaciones del sistema.
+
+        </p>
+
+        <div class="modal-content-buttons">
+
+            <button class="btn btn-medium-large btn-outline-line cancel modal-close">CANCELAR</button>
+          <button class="btn btn-medium-large last-button" [disabled]="btnDisabled" [appBtnLoading]="btnDisabled"
+            (click)="suspend()">
+            {{ btnDisabled ? 'SUSPENDIENDO':'SUSPENDER' }}
+          </button>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

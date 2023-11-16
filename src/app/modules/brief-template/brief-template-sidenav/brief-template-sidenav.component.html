@@ -1,0 +1,116 @@
+<app-aside-nav #briefTemplateSidenav id="brief-template-sidenav" class="secondary" disableScroll="true" class="secondary overlay-show"
+    (asideOnHide)="onHide()" (asideOnShow)="onShow()">
+    <div app-sidenav id="slide-out-brief-template-view" class="side-nav fixed interface-resize rightside-navigation animated box-shadow-line">
+        <a class="sidenav-close-big close-sidenav" href="javascript:void(0);">
+            <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'" class="icon-svg"></i>
+        </a>
+        <div #scroll class="template-sidenav-wrapper"  [perfectScrollbar]="{supressScrollbarX:true}">
+            
+            <ng-container *ngIf="template">
+                <div  class="template-sidenav-container">
+
+                    <div class="brief-template-view observer">
+                        <!--Header-->
+                        <div class="brief-template-header" [ngStyle]="{backgroundImage :'url(' + template.cover + ')'}">
+                            <div class="brief-template-header-text">
+                                Brief <br>
+                                {{ template.title }}
+                            </div>
+                        </div>
+                        <div class='brief-template-view-content'>
+                            <div class='brief-divider'></div>
+                            <div class='brief-category'>
+                                <h3 class='brief-category-title'>1.&nbsp;La compañia</h3>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Describa la empresa lo más detallado posible.</h3>
+                                    <p class='brief-category-item-content'>Lorem ipsum dolor sit amet, consectetuer
+                                        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                        natoque
+                                        penatibus et magni<p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Tipo de empresa, tipo familiar, o societaría,
+                                        etc.</h3>
+                                    <p class='brief-category-item-content'>Lorem ipsum dolor sit amet, consectetuer
+                                        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                        natoque
+                                        penatibus et magni<p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Año de fundación.</h3>
+                                    <p class='brief-category-item-content'>1979<p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Lugar donde nace.</h3>
+                                    <p class='brief-category-item-content'>Design was still so misunderstood that<p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Cuántos años llevan en el mercado</h3>
+                                    <p class='brief-category-item-content'>10 a 25 años<p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Breve historia, cómo nace.</h3>
+                                    <p class='brief-category-item-content'>These conversatios could derail any other
+                                        topics, because we were designers and we alone understood the user <p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Tamaño de la empresa, ejemplo local.</h3>
+                                    <p class='brief-category-item-content'>Local<p>
+                                </div>
+                                <div class='brief-category-item-sidenav'>
+                                    <h3 class='brief-category-item-title'>Cantidad de trabajadores.</h3>
+                                    <p class='brief-category-item-content'>+100<p>
+                                </div>
+                            </div>
+                            <div class='brief-category'>
+                                    <h3 class='brief-category-title'>2.&nbsp;La compañia</h3>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Describa la empresa lo más detallado posible.</h3>
+                                        <p class='brief-category-item-content'>Lorem ipsum dolor sit amet, consectetuer
+                                            adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                            natoque
+                                            penatibus et magni<p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Tipo de empresa, tipo familiar, o societaría,
+                                            etc.</h3>
+                                        <p class='brief-category-item-content'>Lorem ipsum dolor sit amet, consectetuer
+                                            adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                            natoque
+                                            penatibus et magni<p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Año de fundación.</h3>
+                                        <p class='brief-category-item-content'>1979<p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Lugar donde nace.</h3>
+                                        <p class='brief-category-item-content'>Design was still so misunderstood that<p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Cuántos años llevan en el mercado</h3>
+                                        <p class='brief-category-item-content'>10 a 25 años<p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Breve historia, cómo nace.</h3>
+                                        <p class='brief-category-item-content'>These conversatios could derail any other
+                                            topics, because we were designers and we alone understood the user <p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Tamaño de la empresa, ejemplo local.</h3>
+                                        <p class='brief-category-item-content'>Local<p>
+                                    </div>
+                                    <div class='brief-category-item-sidenav'>
+                                        <h3 class='brief-category-item-title'>Cantidad de trabajadores.</h3>
+                                        <p class='brief-category-item-content'>+100<p>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </ng-container>
+        </div>
+
+    </div>
+</app-aside-nav>

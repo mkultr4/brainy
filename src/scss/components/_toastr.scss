@@ -1,0 +1,158 @@
+#toast-container {
+    pointer-events: all;
+    position: fixed;
+    z-index: 999999;
+    margin-top: 20px;
+    margin-right: 23px;
+    right: 0;
+    top: 0;
+    @media #{$small-and-down} {
+        bottom: 0;
+        top: auto;
+        max-width: 100%;
+        .toast-brainy {
+            margin: 0 auto;
+        }
+    }
+    @media #{$medium-only} {
+        left: auto;
+        bottom: auto;
+        max-width: 89%;
+    }
+    @media #{$large-and-up} {
+        top: 0;
+        right: 0;
+        max-width: 89%;
+    }
+}
+
+.toast-brainy {
+    display:block;
+    width: 416px;
+    max-width: 100%;
+    padding: 47px 33px 39px 33px;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 15px;
+    background-position: 41px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-image: none;
+    .toast-close-button {
+        font-size: 16px;
+        opacity: 1;
+        right: 14px;
+        top: 14px;
+        margin: 0;
+        text-shadow: none;
+        position: absolute;
+        color: #fff;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        line-height: 16px;
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+    .toast-title {
+        font-weight: $font-medium;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .toast-message {
+        font-weight: $font-light;
+        font-size: 18px;
+        >p.checkbox {
+            margin: 0;
+            [type="checkbox"] {
+                +label {
+                    font-weight: $font-light;
+                    font-size: 18px;
+                    color: #FFFFFF;
+                    line-height: 18px;
+                    padding-left: 36px;
+                    height: auto;
+                }
+                &.filled-in {
+                    &:not(:checked) {
+                        &+label {
+                            &:after {
+                                height: 18px;
+                                width: 18px;
+                                background-color: transparent;
+                                border: 1px solid #FFFFFF;
+                                border-radius: 2px;
+                                top: 0px;
+                                z-index: 0;
+                            }
+                        }
+                    }
+                    &:checked {
+                        &+label {
+                            &:before {
+                                border-left: 2px solid transparent;
+                                border-right: 3px solid #4648C7;
+                                border-bottom: 4px solid #4648C7;
+                                border-radius: 2px;
+                                left: 0px;
+                            }
+                            &:after {
+                                height: 18px;
+                                width: 18px;
+                                background: #FFFFFF;
+                                border: 1px solid #FFFFFF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include mq($until:tablet) {
+        max-width: 70%;
+    }
+    @media #{$small-and-down} {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+.toast-info {
+    
+    background-color: $purple-color-light;
+    .toast-message,
+    .toast-title {
+        color: #fff;
+    }
+}
+
+.toast-error {
+    
+    background-color: #FFE3EA;
+    border: 1px solid rgba(255, 52, 102, 0.31);
+    border-radius: 2px;
+    padding: 31px 41px 28px 71px;
+    max-width: 600px;
+    width: auto;
+    background-image: url("/assets/img/commons/ico_toast_error.svg");
+    
+    .toast-close-button{
+        svg{
+            polygon{
+                fill: #FF3466;
+            }
+        }
+        
+    }
+    .toast-message,
+    .toast-title {
+        color: #FF3466;
+        text-align: left;
+    }
+    .toast-message{
+        font-size: 14px;
+    }
+}
+

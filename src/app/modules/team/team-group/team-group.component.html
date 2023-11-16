@@ -1,0 +1,43 @@
+<ng-container *ngIf="(guests && guests.length > 0) || (invitations && invitations.length > 0)">
+    <div class="team-list-content">
+      <!--My team-->
+  
+      <ng-container *ngFor="let wa of guests 
+          | filterTeamAccountStatus: filterStatus.key
+          | filterWorkspaceAccessGuest: true
+          | filterSearchUser:query
+          | orderBy:{property: order.column, direction: order.direction}">
+        <app-team-box [workspaceAccess]="wa" [currentWorkspaceAccessId]="workspaceAccess.id"></app-team-box>
+      </ng-container>
+  
+  
+      <ng-container *ngFor="let invitation of invitations | filterInvitationGuestCategory:categoryId | filterBy:['email']:query">
+        <app-team-box-invitation [invitation]="invitation"></app-team-box-invitation>
+      </ng-container>
+    </div>
+    <ng-container
+    *ngIf="(guests 
+  | filterTeamAccountStatus:filterStatus.key
+  | filterWorkspaceAccessGuest:true
+  | filterSearchUser:query
+  ).length === 0 && (invitations | filterInvitationGuestCategory:categoryId | filterBy:['email']:query).length === 0"
+    >
+      <h1 class="without-results">
+        {{ 'commons.without-results' | translate }}
+  
+      </h1>
+    </ng-container>
+  </ng-container>
+  <!--Empty-->
+  <ng-container *ngIf="(guests && guests.length === 0) && (invitations && invitations.length === 0)">
+    <div class="brainy-empty-message">
+      <div class="container">
+        <img src="assets/img/commons/empty-lists/img_dashobard_equipos.svg">
+        <h1 class="title">Invita colaboardores</h1>
+        <p class="message">
+          Necesitas más información para invitar
+          <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+        </p>
+      </div>
+    </div>
+  </ng-container>

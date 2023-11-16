@@ -1,0 +1,49 @@
+<div class="dropdown-menu dropdown-menu-navigation bottom" [id]="drodpownId"
+[ngClass]="{'dropdown-menu-empty':empty}"
+>
+<ng-container *ngIf="!empty">
+
+  <!--Dropdown Order-->
+  <div class="dropdown-menu-content dropdown-max-height" [perfectScrollbar]="{suppressScrollX:true}">
+    <!--Dropdown order AZ-->
+    <div class="dropdown-order-item">
+      <span class="dropdown-order-title">{{orderAlphText}}</span>
+      <a href="javascript:void(0)" (click)="setOrder(orderAlph,-1)" class="dropdown-order-option disabled-dropdown-toggle" [ngClass]="{'active':filterOrderColumn === orderAlph && filterOrderDirection === -1}">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+        Ascendente
+      </a>
+      <a href="javascript:void(0)" class="dropdown-order-option disabled-dropdown-toggle" (click)="setOrder(orderAlph,1)" [ngClass]="{'active':filterOrderColumn === orderAlph && filterOrderDirection === 1}">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+        Descendente
+      </a>
+    </div>
+    <!--Dropdown order Date-->
+    <div class="dropdown-order-item">
+      <span class="dropdown-order-title">{{orderDateText}}</span>
+      <a href="javascript:void(0)" class="dropdown-order-option disabled-dropdown-toggle" (click)="setOrder(orderDate,-1)" [ngClass]="{'active':filterOrderColumn === orderDate  && filterOrderDirection === -1}">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+        Más reciente
+      </a>
+      <a href="javascript:void(0)" class="dropdown-order-option disabled-dropdown-toggle" (click)="setOrder(orderDate,1)" [ngClass]="{'active':filterOrderColumn === orderDate && filterOrderDirection === 1}">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+        Más Antigua
+      </a>
+
+    </div>
+  </div>
+
+
+</ng-container>
+<ng-container *ngIf="empty">
+
+  <ul class="dropdown-content  dropdown-max-height">
+    <li class="empty">
+      <a href="javascript:void(0)">
+        {{emptyText}}
+      </a>
+    </li>
+  </ul>
+
+</ng-container>
+
+</div>

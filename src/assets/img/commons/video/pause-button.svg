@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="12px" viewBox="0 0 10 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_pause_24px</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="interface_video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="interface_video_05" transform="translate(-319.000000, -567.000000)" fill="#4F5C69">
+            <g id="ic_pause_24px" transform="translate(319.000000, 567.000000)">
+                <g id="Group">
+                    <path d="M0,11.8333333 L3.33333333,11.8333333 L3.33333333,0.166666667 L0,0.166666667 L0,11.8333333 L0,11.8333333 Z M6.66666667,0.166666667 L6.66666667,11.8333333 L10,11.8333333 L10,0.166666667 L6.66666667,0.166666667 L6.66666667,0.166666667 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

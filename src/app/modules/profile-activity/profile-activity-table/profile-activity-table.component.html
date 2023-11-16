@@ -1,0 +1,26 @@
+<!--Activity-->
+<table class="activity-table-audit">
+    <ng-container *ngIf="audits.length > 0">
+        <tr *ngFor="let auditory of audits">
+            <td class="line-time"></td>
+            <td colspan="3" class="activity-cell">
+                <div class="activity-table-box">
+                    <span class="activity">{{auditory.activity}}</span>
+                    <span class="date">
+                        {{auditory.timestamp | momentDate:'DD/MM/YYYY hh:mm a'}}
+                    </span>
+                </div>
+            </td>
+        </tr>
+    </ng-container>
+    <!--Without Activity-->
+    <ng-container *ngIf="audits.length === 0">
+        <tr class="activities">
+            <td >
+                <h5 class="without-results">
+                    Sin actividad
+                </h5>
+            </td>
+        </tr>
+    </ng-container>
+</table>

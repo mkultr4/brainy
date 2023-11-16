@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icono_eliminar_active02" fill="#3C4FBC">
+            <g id="icono_eliminar">
+                <path d="M0,11.7052258 L7.92694064,11.7052258 L7.92694064,2.20547945 L0,2.20547945 L0,11.7052258 Z M0.717157635,11.0152207 L7.12706447,11.0152207 L7.12706447,2.96368138 L0.717157635,2.96368138 L0.717157635,11.0152207 Z" id="Fill-1"></path>
+                <polygon id="Fill-2" points="2.52054795 8.94571284 3.23190073 8.94571284 3.23190073 4.16438356 2.52054795 4.16438356"></polygon>
+                <polygon id="Fill-3" points="4.49315068 8.94571284 5.20450347 8.94571284 5.20450347 4.16438356 4.49315068 4.16438356"></polygon>
+                <polygon id="Fill-4" points="2.19352365 0 2.19352365 0.625477423 0 0.625477423 0 1.33476205 7.77566315 1.33476205 7.77566315 0.625477423 5.5821395 0.625477423 5.5821395 0"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

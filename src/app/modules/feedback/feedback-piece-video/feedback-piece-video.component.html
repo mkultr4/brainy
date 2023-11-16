@@ -1,0 +1,97 @@
+<div class="workflow-primary-content piece-container-video piece-workflow-wrapper" #workflowPrimaryContent>
+  <!--Toolbar shape-->
+  <app-feedback-toolbar-shape [piece]="piece" [calculatedHeight]="calculatedHeight" [calculatedWidth]="calculatedWidth"
+    [containerWidth]="containerWidth" [containerHeight]="containerHeight">
+  </app-feedback-toolbar-shape>
+
+  <div class="video-player feedback-workflow-container" [style.width.px]="calculatedWidth" (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)">
+    <div class="video-player-container">
+      <!--Comments thread-->
+      <div #commentThreadContent class="video-player-comment-thread closest-comment-thread-container" [ngClass]="{'adding-comment-thread':addingCommentThread}"
+        [style.width.px]="calculatedWidth" [style.height.px]="calculatedHeight" (click)="pieceActionClick($event)">
+        <ng-container *ngFor="let commentThread of piece.commentThreads
+                                                              | filterCommentThreadStatus:filterStatuses
+                                                              | filterCommentThreadParticipantType: filterParticipantTypes">
+          <!--Point thread-->
+          <ng-container *ngIf="commentThread.type === 'pin'">
+            <app-comment-thread-feedback-point [piece]="piece" [pieceSize]='{
+                calculatedHeight: calculatedHeight ,
+                calculatedWidth: calculatedWidth 
+              }' [commentThread]="commentThread" [commentThreadStatus]="commentThread.status" 
+                [show]="!commentThread.saved || (this.currentTime >= commentThread.timeStart &&  this.currentTime <= commentThread.timeEnd)"
+              (onWorkingPoint)="onWorkingPoint($event)">
+            </app-comment-thread-feedback-point>
+          </ng-container>
+          <!--Point Shape-->
+          <ng-container *ngIf="commentThread.type === 'circle' || commentThread.type === 'rectangle'">
+            <app-comment-thread-feedback-shape [commentThread]="commentThread" [show]="!commentThread.saved || 
+                      (this.currentTime >= commentThread.timeStart &&  this.currentTime <= commentThread.timeEnd)" 
+                      [piece]="piece"
+              [commentThreadStatus]="commentThread.status" [pieceSize]='{
+                calculatedHeight: calculatedHeight ,
+                calculatedWidth: calculatedWidth 
+              }' (onWorkingShape)="onWorkingPoint($event)">
+            </app-comment-thread-feedback-shape>
+          </ng-container>
+        </ng-container>
+      </div>
+      <span *ngIf="hasTour" id="pulse-target-0" style="right: 21px; top: 17px;" class="tour-active pulse"></span>
+
+      <!--Video-->
+      <video #pieceVideo class="video" id="pieceVideo" preload="auto" [width]="calculatedWidth" [height]="calculatedHeight"
+        [muted]="muted" (loadeddata)="onLoadVideo($event)" (timeupdate)="timeupdate($event)" (ended)="onended($event)">
+        <source [src]=" piece.url | sanitize:'url'" [type]=" piece.fileType" />
+        <p>Your browser does not support the video tag.</p>
+      </video>
+      <div class="video-player-timeline">
+        <!--Slider-->
+        <!--<div #slider class="slider" data-direction="horizontal" (click)="seek($event)">
+          <div class="progress" [ngStyle]="{width:(currentTime * 100) /  piece.setting.duration + '%'}">
+            <div #sliderPin class="pin" id="progress-pin" data-method="rewind"></div>
+          </div>
+          <ng-container *ngFor="let commentThread of piece.commentThreads 
+          | filterCommentThreadStatus:filterStatuses
+          | filterCommentThreadParticipantType: filterParticipantTypes
+          | filterBy:['saved']: true
+          | unique:'timeStart'
+          ">
+            <span class="comment-thread-mark" (click)="seekTo($event,commentThread.timeStart )" 
+            [style.left]="(commentThread.timeStart * 100) / piece.duration + '%'"></span>
+          </ng-container>
+        </div> -->
+      </div>
+      <div class="video-player-controls-container">
+        <ul class="video-player-controls left">
+          <li>
+            <a class="item play-button {{videoAction}}" href="javascript:void(0)" (click)="playVideo()">
+              <i class="icon-svg play-icon" [inlineSVG]="'assets/img/commons/video/play-button.svg'"> </i>
+              <i class="icon-svg pause-icon" [inlineSVG]="'assets/img/commons/video/pause-button.svg'"> </i>
+            </a>
+          </li>
+          <li>
+            <a class="item volumen-button" href="javascript:void(0)" (click)="setMuted()" [ngClass]="{'muted':muted}">
+              <i class="icon-svg volumen-on-icon" [inlineSVG]="'assets/img/commons/video/volume-button.svg'"> </i>
+              <i class="icon-svg volumen-off-icon" [inlineSVG]="'assets/img/commons/video/volumen-button-off.svg'"> </i>
+            </a>
+          </li>
+          <!--<li>
+            <span class="item times">
+              <span class="current-time">{{currentTime * 1000| date:'mm:ss'}}</span>
+              <span>/</span>
+              <span class="total-time">{{ piece.setting.duration * 1000| date:'mm:ss'}}</span>
+            </span>
+          </li> -->
+        </ul>
+        <ul class="video-player-controls right">
+          <li>
+            <a class="item" href="javascript:void(0)" (click)="toggleFullScreen()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/video/fullscreen-button.svg'"> </i>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

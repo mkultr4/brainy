@@ -1,0 +1,47 @@
+<!--Floating note popup add-->
+<div class="floating-note-popup-content floating-note-popup-content-new">
+  <form name="formNewNote" #formNewNote="ngForm">
+    <div class="row no-margin-bottom">
+      <div class="col s12">
+        <div class="input-field input-field-center input-field-active  input-field-title">
+          <input 
+              #inputTitle
+              name="title" [(ngModel)]="note.title" placeholder="Escribe un título" required autocomplete="off"
+             (ngModelChange)="onChangeTitle($event)">
+          <label class="active font-medium">Título de la nota</label>
+        </div>
+      </div>
+      <div class="col s12">
+        <div app-mz-select-container-brainy class="input-field  input-field-purple-dark input-field-label-medium "
+        [ngClass]="{'input-field-focused-dark': titleChange && !brandSelected.id}"
+        >
+          <select mz-select placeholder="Selecciona" id="brandSelected" name="brandSelected" [label]="'Marca'"
+            [(ngModel)]="brandSelected.id" (ngModelChange)="onChangeBrand($event)" required #selectBrand="ngModel"
+            [disabled]="!titleChange" tabindex="2"
+            ><option value="" selected>Seleccione una marca</option>
+            <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col s12" *ngIf="projects">
+        <div app-mz-select-container-brainy class="input-field  input-field-purple-dark input-field-label-medium "
+        [ngClass]="{'input-field-focused-dark': brandSelected.id && !projectSelected.id}"
+        >
+          <select mz-select placeholder="Selecciona" id="project" name="project" [label]="'Proyecto'" [(ngModel)]="projectSelected.id"
+            (ngModelChange)="onChangeProject($event)" [disabled]="!brandSelected.id"
+            required #selectProject="ngModel">
+            <option value="" selected>Seleccione un proyecto</option>
+            <option *ngFor="let project of projects | filterBy:['brand.id']:brandSelected.id"  [value]="project.id">{{
+              project.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col s12">
+        <div class="button-container">
+          <button class="btn btn-medium" [disabled]="!formNewNote.valid" (click)="createNote()" type="button">CREAR</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

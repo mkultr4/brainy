@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>play-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="interface_video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.9">
+        <g id="interface_video_03" transform="translate(-317.000000, -567.000000)" fill="#4F5C69">
+            <g id="play-button" transform="translate(317.000000, 567.000000)">
+                <polygon id="play_arrow---material" points="2 0 11.0356815 5.77230776 6.8000643 8.47816741 2 11.5446155"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

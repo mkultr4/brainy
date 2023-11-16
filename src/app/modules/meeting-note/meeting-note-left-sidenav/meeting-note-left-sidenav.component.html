@@ -1,0 +1,109 @@
+<app-aside-nav #draftLeftSidebarMain id="meeting-note-left-sidebar-main"
+ class="secondary container workflow-aside"
+  [disableScroll]="true" [sideNavMain]="true" [alwaysVisible]="true">
+  <div app-sidenav id="meeting-note-left-sidenav" class="side-nav
+          side-nav-main
+          leftside-navigation
+          workflow-sidenav
+          workflow-sidenav-left
+          interface-resize
+          animated
+          show
+          "
+    [ngClass]="{'show':!compressed}">
+    <!--Header-->
+    <div class="workflow-sidenav-left-header">
+      <a class="header-link" [routerLink]="['/']">
+        <i class="icon-svg" [inlineSVG]="'assets/img/logo_brainy.svg'"></i>
+        <span id="meeting-note">Meeting Note</span>
+      </a>
+    </div>
+    <div 
+      class="workflow-sidenav-left-main-content"
+        id="meeting-note-sidenav-main-content"
+          [class.with-agreements]="agreements.length > 0"
+            [class.with-tasks]="tasks.length > 0">
+      <div  class="workflow-sidenav-left-main-content-inner"
+        id="meeting-note-sidenav-main-innner">
+        <!--Structure-->
+        <span class="structure-label">Estructura</span>
+        <!--Add topic-->
+        <div class="new-element-section">
+          <a class="new-element-btn" (click)="addTopic()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/icon_agregar_tema.svg'"></i>
+            <span class="new-element-btn-text">Temas</span>
+          </a>
+        </div>
+        <!--List-->
+        <ng-container *ngIf="topics | showTopicList">
+          <div #topicList 
+          [perfectScrollbar]="{suppressScrollX:true}" 
+          class="topic-list-sidenav" 
+          [sortablejs]="topics"
+          [sortablejsOptions]="{
+            forceFallback: true,
+            fallbackClass: 'sortable-fallback',
+          disabled: !editable,
+          filter: '.static',
+          handle: '.topic-drag-handler',
+          onStart: onSortStart.bind(this),
+          onEnd: onSortEnd.bind(this),
+          onUpdate: onSortUpdate.bind(this)
+         }">
+
+            <!--Topic-->
+            <ng-container *ngFor="let topic of topics | orderBy:['order']; let index = index">
+              <div class="topic" app-topic-item [topic]="topic" [topicShow]="topicShow" [view]="view" [editable]="editable"
+                [visible]="!compressed" [index]="index" [sortingSubTopic]="sortingSubTopic" (topicOnSelect)="showTopic($event)"
+                (topicOnRemove)="removeTopic($event)" (topicOnSortingSubTopic)="topicOnSortingSubTopic($event)"
+                (topicOnSortSubTopic)="topicOnSortSubTopic()" (topicOnDragOver)="topicOnDragOver()" (topicOnScroll)="topicOnScroll($event)"
+                [ngClass]="{'is-pending':topic.pending,'show':topic.id === topicShow.id && view === 'topic'}">
+              </div>
+            </ng-container>
+
+          </div>
+        </ng-container>
+        <ng-container *ngIf="agreements.length > 0 || tasks.length">
+          <div class="topic-statuses">
+            <!--Tasks-->
+            <div class="statuses" *ngIf="tasks.length > 0" (click)="showView('tasks')" [ngClass]="{'show':view === 'tasks'}">
+              <span>
+                <i class='icon-svg' [inlineSVG]="'assets/img/meeting-note/icono_tarea_indice.svg'"></i>
+                Tareas o compromisos&nbsp;
+                <span class="count">({{tasks.length}})</span>
+              </span>
+            </div>
+            <!--Agreements-->
+            <div class="statuses" *ngIf="agreements.length > 0" (click)="showView('agreements')" [ngClass]="{'show':view === 'agreements'}">
+              <span>
+                <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/icon_acuerdos_indice.svg'"></i>
+                Acuerdos&nbsp;
+                <span class="count">({{agreements.length}})</span>
+              </span>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+    <div class="topic-statuses-disabled">
+      <div class="statuses" *ngIf="tasks.length === 0">
+        <span>
+          <i class='icon-svg' [inlineSVG]="'assets/img/meeting-note/icono_tarea_indice.svg'"></i>Tareas o compromisos</span>
+      </div>
+      <ng-container *ngIf="!scheduled && agreements.length === 0">
+        <div class="statuses">
+          <span>
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/icon_acuerdos_indice.svg'"></i>Acuerdos</span>
+        </div>
+      </ng-container>
+    </div>
+
+  </div>
+
+</app-aside-nav>
+
+<a class="btn-back-sidenav left-position" href="javascript:void(0)" (click)="compress()" [ngClass]="{'direction-right':compressed}">
+  <i class="icon-svg icon-arrow" [inlineSVG]="'assets/img/sidenav/ico_arrow.svg'"></i>
+</a>

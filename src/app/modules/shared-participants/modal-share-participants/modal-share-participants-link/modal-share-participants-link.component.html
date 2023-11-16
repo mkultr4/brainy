@@ -1,0 +1,58 @@
+<ng-container *ngIf="modalId">
+    <div app-modal-floating class="modal-floating modal-prevent-close modal-share-participants-link" 
+    [id]="'modal-share-participants-link-' + modalId " [ngClass]="{'configuring':configuring}"
+        [modalFloatingBtnId]="'#modal-share-participants-link-btn-' + modalId" [modalFloatingEdge]="'left'" [modalFloatingAlign]="'bottom'"
+        [modalFloatingGutter]="-110" (modalOnHide)="onHide()" (modalOnShow)="onShow()">
+        <a class="modal-close">
+            <i [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'" id="icon-svg"></i>
+        </a>
+        <div class="form-share-link">
+            <ng-container>
+                <!--Link-->
+                <div class="input-wrapper-btn">
+                    <input readonly="true" type="text" [(ngModel)]="urlToShare" #urlToShareInput>
+                    <!--Copy-->
+                    <a href="javascript:void(0)" class="btn-copy" 
+                    [ngxClipboard]="urlToShareInput" (cbOnSuccess)="onCopyToClipboard()">
+                        Copiar
+                    </a>
+                </div>
+            </ng-container>
+            <!--Configuration-->
+            <div class="share-link-configuration" [ngClass]="{'configuring':configuring}">
+                <a class="" href="javascript:void(0)" (click)="configure()">
+                    <i [inlineSVG]="'assets/img/commons/ico_configurations.svg'" id="ico-configurations"></i>
+                    Configuraciones de enlace
+                </a>
+
+            </div>
+            <ng-container *ngIf="configuring">
+                <div class="share-link-configurations-content">
+                    <!--Password-->
+                    <div class="checkbox-block">
+                        <span class="checkbox-block-title">Protección con contraseña</span>
+                        <input [id]="'cbx-password'" type="checkbox" class="filled-in medium gray-darken" [(ngModel)]="shareLinkHasPassword">
+                        <label [for]="'cbx-password'">
+                            Solicitar contraseña
+                        </label>
+                        <ng-container *ngIf="shareLinkHasPassword">
+                            <span class="share-link-passowrd">
+                                <span>Contraseña:</span>&nbsp;
+                                <span>W4h-ccs-dAl</span>
+                            </span>
+                        </ng-container>
+                    </div>
+                    <!--Disabled -->
+                    <div class="checkbox-block">
+                        <span class="checkbox-block-title">Vencimiento de enlace</span>
+                        <input [id]="'cbx-expire'" type="checkbox" class="filled-in medium gray-darken">
+                        <label [for]="'cbx-expire'">
+                            Deshabilitar el enlace compartido
+                        </label>
+                    </div>
+
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

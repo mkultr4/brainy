@@ -1,0 +1,49 @@
+<a class="participant-information" href="javascript:void(0)" [ngClass]="{'without-permissions':!permissionButton}">
+  <ng-container *ngIf="!invitation.workspaceAccess">
+    <div class="avatar {{avatarClass}}" app-avatar [user]="invitation" [showStatus]="false" 
+    [specialRol]="invitation?.groupReference"
+    ></div>
+  </ng-container>
+  <ng-container *ngIf="invitation.workspaceAccess">
+    <div class="avatar {{avatarClass}}" app-avatar [user]="invitation.workspaceAccess.user"
+    [showStatus]="false" 
+    [specialRol]="invitation?.groupReference"
+    ></div>
+  </ng-container>
+  <div class="participant-user-information">
+    <ng-container *ngIf="!invitation.workspaceAccess">
+      <span class="name">
+        {{invitation.email}}&nbsp;
+        <span class="new-user" *ngIf="labelNew">(Nuevo)</span>
+      </span>
+      <span class="rol">{{invitation.rol.name}}</span>
+    </ng-container>
+    <ng-container *ngIf="invitation.workspaceAccess">
+      <span class="name">
+        <span class="name">{{invitation.workspaceAccess.user.name + ' ' + invitation.workspaceAccess.user.lastName}}</span>
+      </span>
+      <span class="rol">{{invitation.workspaceAccess.rol.name}}</span>
+    </ng-container>
+  </div>
+  <!--Group-->
+  <ng-container *ngIf="permissionButton">
+    <div class="participant-user-permissions">
+      <a href="javascript:void(0)" 
+        class="participant-user-permissions-btn" [id]="btnId" 
+        [ngClass]="{'special-group':invitation.groupReference === 'editor' 
+        || invitation.groupReference === 'approver'}">
+        <span *ngIf="!invitation.groupReference">Asignar</span>
+        <span *ngIf="invitation.groupReference === 'editor'">Editor</span>
+        <span *ngIf="invitation.groupReference === 'approver'">Aprobador</span>
+        <span *ngIf="invitation.groupReference === 'comment'">Comentar</span>
+        <i class="icon-svg" [inlineSVG]="'assets/img/share/caret.svg'"></i>
+      </a>
+      <app-invitation-block-dropdown [dropdownId]="dropdownId" [btnId]="btnId" (invitationOnSetPermission)="onSetPermission($event)">
+      </app-invitation-block-dropdown>
+    </div>
+  </ng-container>
+</a>
+<a href="javascript:void(0)" class="participant-remove" app-alert-dialog [message]="'¿Quieres eliminar la invitación?'" [acceptText]="'Si'"a
+  [cancelText]="'No'" [alertClass]="'alert-participants-sidenav'" (alertOnAccept)="deleteInvitation()">
+  <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+</a>

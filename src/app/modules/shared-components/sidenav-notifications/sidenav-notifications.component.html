@@ -1,0 +1,50 @@
+<app-aside-nav #rightNotificationsNav id="right-notifications-nav" class="secondary" [disableScroll]="true">
+    <div app-sidenav id="slide-out-notifications" class="side-nav fixed interface-resize rightside-navigation animated box-shadow-1">
+        <!--Header Sidenav-->
+        <div class="header-big">
+            <h5 class="header-title">
+                Notificaciones
+                <span *ngIf="unreadMessages > 0">({{unreadMessages}})</span>
+                <!--Menu Tollbar-->
+                <ul class="menu-toolbar-header">
+
+                    <li>
+                        <a class="close" href="javascript:void(0);" (click)="rightNotificationsNav.hideSidenav()">
+                            <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+                        </a>
+
+                    </li>
+                </ul>
+            </h5>
+        </div>
+        <!--Notifications-->
+        <ng-container *ngIf="notifications">
+            <ng-container *ngIf="notifications.length > 0">
+                <div class="notifications-list" [perfectScrollbar]="{supressScrollX:true}">
+                    <div app-notification class="notification"
+                        *ngFor="let notification of notifications
+                        | orderBy:{property: 'timestamp', direction: -1}
+                        "
+                        [ngClass]="{'unread': ! notification.read}"
+                        [notification]="notification"
+                        (notificationOnMarkRead)="markRead($event)"
+                        ></div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="notifications.length ===  0">
+                <div class="notifications-list">
+                    <div class="brainy-empty-message-sidenav with-border-top">
+
+                        <img src="assets/img/commons/empty-lists/img_notificaciones_vacio.svg">
+                        <h1 class="title">No tiene notificaciones</h1>
+
+
+                    </div>
+                </div>
+            </ng-container>
+            <div class="notifications-footer">
+                <a href="javascript:void(0)" [routerLink]="['/notifications']">Visualizar todas</a>
+            </div>
+        </ng-container>
+    </div>
+</app-aside-nav>

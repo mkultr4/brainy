@@ -1,0 +1,18 @@
+<div 
+    class="brief-presentation-text"
+    
+    [style.left.px]="element.left"
+    [style.top.px]="element.top"
+    [style.width.px]="element.width"
+    [style.height.px]="element.height"
+    
+    [style.backgroundColor]="element.styleBackground"
+>
+  <div 
+  [contentEditable]="false"
+  [style.fontSize.px]="element.styleFontSize"
+  [style.color]="element.styleColor"
+  [innerHTML]="element.content.text"
+  >
+  </div>
+</div>

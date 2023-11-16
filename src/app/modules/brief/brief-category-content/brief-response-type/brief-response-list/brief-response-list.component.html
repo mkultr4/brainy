@@ -1,0 +1,35 @@
+<div class="response-list" [ngClass]="{
+  'refillable':refillable,
+  'editable':editable,
+  'focusResponse':focusResponse
+}">
+
+  <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options">
+    <div class="brief-list-item" app-option-list 
+      [option]="option" 
+      [editable]="editable" 
+      [refillable]="refillable"
+      [focusResponse]="focusResponse" 
+      (onDelete)="deleteOption($event)" 
+      (onChange)="onChangeSettings()"></div>
+  </ng-container>
+  <!--Add other filling-->
+  <ng-container *ngIf="!focusResponse">
+      <div class="add-other-item">
+        <a href="javascript:void(0)" (click)="addOption()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_add_email.svg'"></i>
+          Añadir otro
+        </a>
+      </div>
+    </ng-container>
+  <ng-container *ngIf="focusResponse">
+    <div class="brief-list-item brief-list-item-add" (click)="addOption()">
+      <img src="assets/img/brief/ico_bullet_point.svg" class="icon-list">
+      <span class="brief-list-item-add-text">Agregar&nbsp;+</span>
+    </div>
+  </ng-container>
+
+
+
+
+</div>

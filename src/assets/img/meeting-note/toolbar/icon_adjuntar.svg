@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="13px" viewBox="0 0 7 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icono_link_barwriting</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-25" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="interface_minuta_llenado_ahora_llena" transform="translate(-548.000000, -140.000000)" fill="#FFFFFF">
+            <g id="Group-2-Copy" transform="translate(389.000000, 133.000000)">
+                <g id="icono_link_barwriting" transform="translate(159.000000, 7.000000)">
+                    <path d="M0.575,3 L7.4,3 C8.8365,3 10,4.13909091 10,5.54545455 C10,6.95181818 8.8365,8.09090909 7.4,8.09090909 L1.875,8.09090909 C0.978,8.09090909 0.25,7.37818182 0.25,6.5 C0.25,5.62181818 0.978,4.90909091 1.875,4.90909091 L6.75,4.90909091 L6.75,6.18181818 L1.8165,6.18181818 C1.459,6.18181818 1.459,6.81818182 1.8165,6.81818182 L7.4,6.81818182 C8.115,6.81818182 8.7,6.24545455 8.7,5.54545455 C8.7,4.84545455 8.115,4.27272727 7.4,4.27272727 L0.575,4.27272727 C-0.6795,4.27272727 -1.7,5.27181818 -1.7,6.5 C-1.7,7.72818182 -0.6795,8.72727273 0.575,8.72727273 L6.75,8.72727273 L6.75,10 L0.575,10 C-1.401,10 -3,8.43454545 -3,6.5 C-3,4.56545455 -1.401,3 0.575,3 Z" id="Shape" transform="translate(3.500000, 6.500000) rotate(90.000000) translate(-3.500000, -6.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

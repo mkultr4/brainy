@@ -1,0 +1,21 @@
+<div class="brief-category-item-question-child-container" *ngIf="childs.length > 0">
+<ng-container *ngFor="let briefCategoryItem of childs | orderBy:'order';let last = last">
+  <app-brief-category-item-question-child
+  [id]="briefCategoryItem.id" 
+  [briefCategoryItem]="briefCategoryItem"
+  [options]="options"
+  [optionsChecked]="optionsChecked"
+  [editable]="editable"
+  [enabledCommentsAction]="enabledCommentsAction"
+  [canRefill]="canRefill"
+  [refillable]="refillable"
+  [sorting]="sorting"
+  [focusQuestion]="focusQuestion"
+  [focusResponse]="focusResponse"
+  [enableDelete]="childs.length > 1"
+  [candAdd]="last && childs.length < options.length "
+  (onAddQuestion)="onAddQuestion()"
+  (onDeleteQuestion)="onDeleteQuestion($event)"
+  ></app-brief-category-item-question-child>
+</ng-container>
+</div>

@@ -1,0 +1,12 @@
+<div 
+    class="brief-presentation-image"
+    [style.left.px]="element.left"
+    [style.top.px]="element.top"
+    [style.width.px]="element.width"
+    [style.height.px]="element.height"
+>
+  <img  [src]="element.content.file.url | sanitize:'url'"
+  [style.width.px]="element.width"
+    [style.height.px]="element.height"
+  >
+</div>

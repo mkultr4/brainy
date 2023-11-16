@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="33px" viewBox="0 0 45 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Mensaje-de-bienvenida" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03_mensajes_bienvenida" transform="translate(-1078.000000, -437.000000)" fill="#4648C7" fill-rule="nonzero">
+            <g id="Group-5" transform="translate(1060.000000, 413.000000)">
+                <g id="Group" transform="translate(18.000000, 24.000000)">
+                    <path d="M44.7757831,15.5227956 L30.3755134,0.278362458 C30.0269412,-0.0840974229 29.4312275,-0.0866979515 29.0956154,0.236215961 C28.7545133,0.56433093 28.7294931,1.16666715 29.0533151,1.51146138 L42.0191559,15.2426559 L0.90000561,15.2426559 C0.402932512,15.2426559 0,15.6441237 0,16.1393898 C0,16.634656 0.402932512,17.0361238 0.90000561,17.0361238 L42.0191559,17.0361238 L29.0533151,30.7673632 C28.7292231,31.1121574 28.7492032,31.7197843 29.0956154,32.0426086 C29.4417575,32.3654328 29.998771,32.3734137 30.3755134,32.0004621 L44.7757831,16.7559841 C45.1180553,16.3363126 45.0280547,15.821946 44.7757831,15.5227956 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,61 @@
+<div class="brief-category-item-files" *ngIf="responseSettings.acceptFiles.audio ||  responseSettings.acceptFiles.image || 
+      responseSettings.acceptFiles.file ||  responseSettings.acceptFiles.video || 
+      responseSettings.acceptFiles.link  ">
+  <div class='accept-files-content'>
+    <span class="accept-files-title">Completa tu respuesta</span>
+    <!--Popup record-->
+    
+    <!--Accept files-->
+    <ul class="accept-files">
+      <!--Audio-->
+      <li *ngIf="responseSettings.acceptFiles.audio">
+        <a href="javascript:void(0)"
+          [id]="'popup-category-item-record-btn-'+briefCategoryItemId" 
+         class="file-action modal-floating-trigger" appTooltip [tooltipMessage]="'Grabar audio'">
+          <span>
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/files/ico_audio_brief.svg'"></i>
+          </span>
+        </a>
+        <app-popup-record [briefCategoryItemId]="briefCategoryItemId"
+        (onAcceptAudio)="onAcceptAudio($event)"
+        ></app-popup-record>
+      </li>
+      <!--Video-->
+      <li *ngIf="responseSettings.acceptFiles.video">
+        <a class="file-action" href="javascript:void(0)" appTooltip [tooltipMessage]="'Agregar video'" (click)="uploadVideo()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/brief/files/ico_video_brief.svg'"></i>
+        </a>
+      </li>
+      <!--Image-->
+      <li *ngIf="responseSettings.acceptFiles.image">
+        <a class="file-action" href="javascript:void(0)" appFilePicker accept="image/*" (filePick)="chooseImage($event)"
+          appTooltip [tooltipMessage]="'Agregar imagen'">
+          <span>
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/files/ico_imagen_brief.svg'"></i>
+          </span>
+        </a>
+      </li>
+      <!--File-->
+      <li *ngIf="responseSettings.acceptFiles.file">
+        <a class="file-action" href="javascript:void(0)" appFilePicker (filePick)="chooseFile($event)" appTooltip
+          [tooltipMessage]="'Agregar archivos'">
+          <span>
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/files/ico_adjuntar_brief.svg'"></i>
+          </span>
+        </a>
+      </li>
+
+      <!--Link-->
+      <li *ngIf="responseSettings.acceptFiles.link">
+        <a href="javascript:void(0)" class="file-action modal-floating-trigger" appTooltip [tooltipMessage]="'Agregar link'"
+          (click)="uploadLink()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/brief/files/ico_link_brief.svg'"></i>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <!--Files Content-->
+  <!--<brief-category-item-files-content [categoryItem]="categoryItem"></brief-category-item-files-content>-->
+  <!--/Files Content-->
+</div>

@@ -1,0 +1,228 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-new-meeting-note'" [modalClass]="'modal-vertically-center'">
+  <a [routerLink]="['/dashboard']" href="javascript:void(0)" class="modal-close-btn" [queryParams]="{'createProject':true}">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Crear Minuta
+      </h5>
+    </div>
+    <div class="modal-content-display">
+      <form name="FormNewFeed" class="form-default" id="new-meeting-note-form" #newCoreForm="ngForm">
+        <div class="modal-content-display-inner">
+          <div class="row no-margin-bottom">
+            <!---Title-->
+            <div class="col s12">
+              <div class="input-field input-field-big input-field-center input-field-active input-field-purple-dark ">
+                <input type="text" class="placeholder-light" name="feedbackTitle" [(ngModel)]="meetingNote.title"
+                  tabindex="1" placeholder="Escribe el título" #inputTitle autocomplete="off" maxlength="100" required
+                  (ngModelChange)="onChangeTitle($event)">
+                <label class="active">Título</label>
+              </div>
+            </div>
+          </div>
+          <!--Compressed-->
+          <div class="compressed">
+            <!--Brand-->
+            <div id="brand-content">
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+                  <div app-mz-select-container-brainy class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                    [ngClass]="{'input-field-focused-dark': titleChange && !brand.id}">
+                    <select mz-select data-container="body" placeholder="Selecciona" id="coreBrandId" name="coreBrandId"
+                      [label]="'Marca'" [(ngModel)]="brand.id" (ngModelChange)="onChangeBrand($event)" required
+                      [disabled]="!titleChange" tabindex="2">
+                      <option value="" selected class="disabled">Seleccione una marca</option>
+                      <option [value]="'newBrand'">Nueva Marca</option>
+                      <option *ngFor="let b of brands" [value]="b.id">{{ b.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!--New Brand Configuration-->
+              <div id="new-brand-conf" *ngIf="brand.id === 'newBrand'">
+                <div class="row no-margin-bottom">
+                  <div class="col s12">
+                    <div class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                      [ngClass]="{'input-field-focused-dark': brand.id ==='newBrand' && !newBrand.name}">
+                      <input mz-input [label]="'Nombre de la marca'" tabindex="3" [(ngModel)]="newBrand.name" type="text"
+                        name="newBrandName" required autocomplete="off" />
+                    </div>
+                  </div>
+                  <div class="col s12">
+                    <div class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                      [ngClass]="{'input-field-focused-dark': newBrand.name  && !newProject.name }">
+                      <input mz-input tabindex="4" [label]="'Nombre del proyecto'" [(ngModel)]="newProject.name" type="text"
+                        name="newProjectName" [disabled]="!newBrand.name" autocomplete="off" required />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Project-->
+            <div id="project-content" *ngIf="brand && brand.id !== 'newBrand'">
+              <ng-container *ngIf="projects">
+                <div class="row no-margin-bottom">
+                  <div class="col s12">
+                    <div app-mz-select-container-brainy class="input-field input-field-medium-big input-field-purple-dark  input-field-label-medium "
+                      [ngClass]="{'input-field-focused-dark': brand.id && !project.id}">
+                      <select mz-select placeholder="Selecciona" id="coreProjectId" name="coreProjectId" [label]="'Proyecto'"
+                        [(ngModel)]="project.id" data-container="body" (ngModelChange)="onChangeProject($event)"
+                        [disabled]="!brand.id || brand.id === 'newBrand'" required tabindex="5">
+                        <option value="" selected class="disabled">Seleccione un proyecto</option>
+                        <option [value]="'newProject'">Nuevo Proyecto</option>
+                        <option *ngFor="let p of  projects | filterBy:['brand.id']:brand.id" [value]="p.id">{{ p.name
+                          }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <!---New Project Configuration-->
+              <div id="new-project-conf" *ngIf="project.id === 'newProject'" required>
+                <div class="row no-margin-bottom">
+                  <div class="col s12">
+                    <div class="input-field input-field-medium-big
+                    input-field-purple-dark input-field-label-medium  "
+                      [ngClass]="{'input-field-focused-dark': project.id === 'newProject' && !newProject.name}">
+                      <input mz-input [label]="'Nombre del proyecto'" name="newProjectName" tabindex="6" [(ngModel)]="newProject.name"
+                        type="text" autocomplete="off" required />
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Meeting note type-->
+            <div id="meeting-note-type">
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+
+                  <div app-mz-select-container-brainy class="input-field
+                   input-field-medium-big input-field-purple-dark input-field-label-medium "
+                    [ngClass]="{'input-field-focused-dark': focusMeetingType() && !meetingNote.meetingNoteType.key}">
+                    <select mz-select placeholder="Selecciona" id="meetingNoteType" name="meetingNoteType" [label]="'Tipos de minuta'"
+                      [(ngModel)]="meetingNote.meetingNoteType" required [disabled]="!focusMeetingType() && !meetingNote.meetingNoteType.key">
+                      <option value="" selected class="disabled">Seleccione el tipo</option>
+                      <option *ngFor="let type of  meetingNoteTypes" [ngValue]="type">{{'meeting-note.type.' + type.key | translate }}</option>
+
+                    </select>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+            <!--Location & Time-->
+            <div id="location-and-time" *ngIf="meetingNote.meetingNoteType && 
+            meetingNote.meetingNoteType.key === scheduledText">
+              <div class="row no-margin-bottom">
+                <!--Date-->
+                <div class="col s4">
+                  <div class="input-field placeholder-14 
+                  input-field-purple-dark
+                    input-field-date input-field-medium-big" [ngClass]="{'input-field-focused-dark': meetingNote.meetingNoteType && !meetingNote.date}">
+                    <input mz-datepicker [label]="'Fecha'" [options]="datePickerOptions" [(ngModel)]="meetingNote.date"
+                      id="draftDate" name="draftDate" placeholder="DD/MM/AA" type="text" required>
+                      <i class="caret-forward" 
+                      [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <!--Time-->
+                <div class="col s4">
+                  <div class="input-field placeholder-14 
+                  input-field-purple-dark
+                  input-field-date input-field-medium-big" [ngClass]="{'input-field-focused-dark': !meetingNote.hour && meetingNote.date}">
+                    <input mz-timepicker id="draftHour" name="draftHour" [(ngModel)]="meetingNote.hour" [label]="'Hora'"
+                      [options]="timePickerOptions" placeholder="00:00" type="text" required>
+                      <i class="caret-forward" 
+                      [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <div class="col s4 ">
+                  <div app-mz-select-container-brainy 
+                    class="input-field placeholder-14 input-field-medium-big 
+                    input-field-purple-dark
+                    input-field-label-medium "
+                    [ngClass]="{'input-field-focused-dark': meetingNote.hour && !meetingNote.duration}">
+                    <select mz-select placeholder="00:00" name="draftDuration" id="draftDuration" data-auto-focus="true"
+                      [label]="'Duración'" [(ngModel)]="meetingNote.duration" required
+                      data-container="body"
+                      >
+                      <option value="" selected>Seleccione una hora</option>
+                      <option *ngFor="let t of durationTimes" [value]="t">{{ t }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class=" col s12 ">
+                  <div class="input-field  
+                  input-field-purple-dark
+                  input-field-medium-big input-field-place" [ngClass]="{'input-field-focused-dark': meetingNote.duration && !meetingNote.place}">
+                    <input name="draftPlace" [(ngModel)]="meetingNote.place" type="text" placeholder="Ejemplo: Calle n5  Colonia Santa Cruz"
+                      [ngClass]="{'input-field-focused-dark': meetingNote.duration && !meetingNote.place}" required>
+                    <label class="active">Lugar</label>
+                    <i class="icon-place" 
+                      [inlineSVG]="'assets/img/commons/inputs/ico_lugar.svg'"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Sync Options-->
+            <div class="sync-option-container" *ngIf="meetingNote.meetingNoteType.key === scheduledText">
+              <div class="sync-title">
+                <h6>Sincronizarse con:</h6>
+              </div>
+              <div class="sync-buttons-container">
+                <a 
+                  [class.active]="meetingNote.syncType === 'google'"
+                    (click)="selectSync('google')"
+                    class="sync-button" 
+                    href="javascript:void(0)">
+                    <img class="sync-button-active" src="assets/img/meeting-note/check_sincronizacion.svg">
+                  <img class="icon-svg on-leave google" src="assets/img/logos/logo_google.svg">
+                  <img class="icon-svg on-hover google" src="assets/img/logos/logo_google_active.svg">
+                </a>
+                <a 
+                [class.active]="meetingNote.syncType === 'outlook'"
+                (click)="selectSync('outlook')"
+                class="sync-button" href="javascript:void(0)">
+                  <img class="sync-button-active" src="assets/img/meeting-note/check_sincronizacion.svg">
+                  <img class="icon-svg on-leave outlook" src="assets/img/logos/logo_outlook.svg">
+                  <img class="icon-svg on-hover outlook" src="assets/img/logos/logo_outlook_active.svg">
+
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-content-display-btn">
+      <div class="modal-content-display-inner">
+        <div class="compressed">
+          <!--Buttons-->
+          <div class="center upload-button" id="upload-feed-btn">
+            <button class="btn btn-large" [ngClass]="{'btn-loading':btnDisabled}" [disabled]="btnDisabled || !newCoreForm.valid"
+              (click)="create()">
+              {{btnDisabled ? 'CREANDO' : 'CREAR'}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-content-display-back">
+    <a class="back-button" href="javascript:void(0)" [routerLink]="['/dashboard']" [queryParams]="{'createProject':true}">
+
+      <i [inlineSVG]="'assets/img/participants/ico_arrow_left.svg'" class="icon-svg back-icon"></i>
+      volver
+    </a>
+  </div>
+
+</app-mz-modal-brainy>

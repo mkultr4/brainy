@@ -1,0 +1,19 @@
+<aside class="tertiary">
+  <div id="slide-out-feedback-associated" 
+    [class.show]="sidenavShow" 
+    [class.minimize]="minimize" 
+    class="">
+    <ng-container *ngIf="feedback">
+      <app-feedback-associated-content 
+      [feedback]="feedback"
+      [pieces]="pieces"
+      (onMinimize)="onMinimize($event)"
+      ></app-feedback-associated-content>
+    </ng-container>
+
+  </div>
+  <div class="sidenav-overlay"
+  [class.hide]="!sidenavShow" 
+  (click)="closeSidenav()"
+  ></div>
+</aside>

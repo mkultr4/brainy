@@ -1,0 +1,53 @@
+#modal-change-workspace {
+    .form-change-workspace {
+        max-width: 350px;
+        margin: 0 auto;
+        padding-top: 76px;
+        .form-change-workspace-title {
+            font-size: 24px;
+            letter-spacing: 0.5px;
+            line-height: 28px;
+            margin-bottom: 7px;
+        }
+        .form-change-workspace-tip {
+            font-size: 12px;
+            color: rgba($primary-color, 0.4);
+            letter-spacing: 0.04px;
+            line-height: 14px;
+            white-space: nowrap;
+        }
+        .participant-list-block-wrapper {
+            padding-top: 31px;
+            padding-bottom: 22px;
+            .participant-list-block {
+                height: auto;
+                border-bottom: transparent;
+                .participant-information {
+                    padding-left: 46px;
+                    .avatar {
+                        left: 0;
+                    }
+                    .participant-user-information {
+                        .name {
+                            font-size: 14px;
+                            line-height: 16px;
+                            margin-bottom: 3px;
+                        }
+                        .rol {
+                            font-size: 12px;
+                            line-height: 14px;
+                        }
+                    }
+                }
+            }
+        }
+        .form-change-workspace-button {
+            text-align: center;
+            padding-top: 36px;
+            .btn{
+                width: 195px;
+                
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.user-information-block{
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    .avatar{
+        left: 0;
+        top: 0;
+    }
+    .user-information-block-information{
+        text-align: left;
+        .name{
+            display: block;
+            font-weight: $font-regular;
+            font-size: 12px;
+            line-height: 17px;
+            color:$primary-color;
+            margin-bottom: 1px;
+            letter-spacing: 0.12px;
+        }
+        .rol{
+            display: block;
+            font-weight: $font-regular;
+            font-size: 10px;
+            line-height: 11px;
+            color: $user-rol-color;
+            letter-spacing: 0.1px;
+        }
+    }
+}

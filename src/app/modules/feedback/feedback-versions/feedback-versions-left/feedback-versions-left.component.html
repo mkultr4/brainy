@@ -1,0 +1,43 @@
+<div class="feedback-left-versions"
+   [ngClass]="{'compressed':compressed}">
+  <div class="feedback-pieces-carousel">
+    <ng-container *ngIf="!isFeedbackVideo">
+      <div class="feedback-pieces-carousel-container"
+      [perfectScrollbar]="{suppressScrollX:true}"
+      >
+        <!--Item-->
+        <ng-container *ngFor="let piece of pieces">
+          <div *ngIf="!piece.empty">
+            <app-feedback-versions-left-piece 
+              [piece]="piece"
+              [compareVersion]="(comparedVersions |  filterBy:['piece.id']:piece.id).length > 0"
+              [pieceShow]="pieceShow"
+              (onSelect)="selectPiece($event)" 
+              >
+            </app-feedback-versions-left-piece>
+          </div>
+        </ng-container>
+
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isFeedbackVideo">
+      <ng-container *ngIf="pieces.length > 0 && pieces[0] && pieces[0].commentThreads">
+
+
+        <!--Group by frame and the second element is the list of threads-->
+        <ng-container *ngFor="let frame of pieces[0].commentThreads 
+                            | filterBy:['saved']:true
+                            | groupBy: 'timeStart' 
+                            | pairs  ">
+
+
+          <app-feedback-piece-frame [commentThreads]="frame[1]"></app-feedback-piece-frame>
+
+
+        </ng-container>
+
+      </ng-container>
+    </ng-container>
+  </div>
+
+</div>

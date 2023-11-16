@@ -1,0 +1,17 @@
+<div class="brief-yes-no-option close-view" [ngClass]="{'checked':checked}" >
+
+<div class="brief-yes-no-option-table">
+  <div class="brief-yes-no-option-table-cell">
+    <div class="brief-yes-no-option-editor-wrapper">
+      <div class="brief-yes-no-option-editor"
+         [innerHTML]="option.label | sanitize:'html'" 
+        ></div>
+    </div>
+  </div>
+</div>
+
+
+<span class="brief-active-indicator">
+  <img src="/assets/img/brief/ico_resp_check.svg" class="active-indicator-icon">
+</span>
+</div>

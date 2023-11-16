@@ -1,0 +1,37 @@
+<div class="response-select">
+  <div class="brief-select-container">
+    <ng-container *ngIf="!focusResponse">
+      <div class="brief-response-overlay" *ngIf="!refillable"></div>
+      <div app-mz-select-container-brainy class="input-field input-field-medium brief-response-select-wrapper" >
+        <select mz-select data-container="body" placeholder="Selecciona"
+           [disabled]="!refillable" 
+          [(ngModel)]="briefCategoryItem.responseContent.options[0]"
+          (ngModelChange)="contentChange()"
+          data-auto-focus="true"
+          >
+          <option value="" disabled>Selecciona</option>
+          <option *ngFor="let option of briefCategoryItem.responseSettings.options" [ngValue]="option">{{option.label}}</option>
+        </select>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="focusResponse">
+      <div class="brief-select-options-container">
+        <ul class='brief-select-options'>
+          <li *ngFor="let option of briefCategoryItem.responseSettings.options; let i = index">
+            <app-option-select [option]="option" [editable]="editable" [refillable]="refillable" [focusResponse]="focusResponse"
+              (onDelete)="deleteOption($event)" (onChange)="onChangeSettings()"></app-option-select>
+
+          </li>
+          <li>
+            <div class="brief-select-option">
+              <div class="brief-select-option-content">
+                <a href='javascript:void(0)' class="brief-select-option-add" (click)="addOption()"> Agregar +</a>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
+</div>

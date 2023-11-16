@@ -1,0 +1,93 @@
+<app-aside-nav #commentsThreadSearchSideNav 
+  id="comment-thread-nav-search" class="secondary" 
+  [disableScroll]="true" 
+  (asideOnHide)="onHide()"
+  (asideOnShow)="onShow()">
+  <div app-sidenav id="slide-out-comment-thread-search" 
+  class="side-nav rightside-navigation animated box-shadow-line">
+    <!--Toolbar menu-->
+    <ul class="menu-toolbar-default">
+      <li>
+        <a class="close" href="javascript:void(0);" 
+        (click)="commentsThreadSearchSideNav.hideSidenav()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+        </a>
+      </li>
+    </ul>
+    <!--Header-->
+    <div class="sidenav-comment-thread-search-header">
+      <div class="comment-thread-search-input-wrapper">
+        <input type="text" name="commentSearch"
+        [(ngModel)]="search"
+        (ngModelChange)="onChangeSearch($event)"
+        placeholder="Buscar  comentarios">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_search.svg'"></i>
+      </div>
+      <!--Filters-->
+      <div class="comment-thread-search-filters ">
+
+        <a href="javascript:void(0)" class="button-dropdown-filter" id="btn-dd-filter-types">
+          <i *ngIf="typeFilter" class="type-icon-dropdown svg-icon baseline" [inlineSVG]="typeFilter.ico"></i>
+          {{typeFilter?.name ? typeFilter.name : 'Tipo de archivo'}}
+          <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/ico_caret.svg'"></i>
+        </a>
+
+        <!--Dropdown Types-->
+        <app-mz-dropdown-brainy [id]="'dropdown-comment-filter-types'" 
+          [dropdownButtonId]="'btn-dd-filter-types'" [constrainWidth]="false"
+          [dropdownClass]="'dropdown-type-comments'" [align]="'right'">
+          <li *ngFor="let type of commentThreadTypes">
+            <span (click)="setType(type)" class="{{type.key}}">
+              <i class="type-icon-dropdown svg-icon baseline" [inlineSVG]="type.ico"></i>
+              {{type.name}}
+            </span>
+          </li>
+        </app-mz-dropdown-brainy>
+        <a href="javascript:void(0)" class="button-dropdown-filter last" id="btn-dd-filter-status">
+          <i *ngIf="statusFilter" class="status-icon-dropdown svg-icon baseline" [inlineSVG]="statusFilter.ico"></i>
+          {{statusFilter?.name ? statusFilter.name : 'Status'}}
+          <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/ico_caret.svg'"></i>
+        </a>
+        <!--Dropdown Statuses-->
+        <app-mz-dropdown-brainy [id]="'dropdown-comment-filter-status'" [dropdownButtonId]="'btn-dd-filter-status'" [constrainWidth]="false"
+          [dropdownClass]="'dropdown-status-comments-filter'" [align]="'left'">
+          <li *ngFor="let status of commentThreadStatuses">
+            <span (click)="setStatus(status)" class="{{status.key}}">
+              <i class=" status-icon-dropdown svg-icon baseline" [inlineSVG]="status.ico"></i>
+              {{status.name}}
+            </span>
+          </li>
+        </app-mz-dropdown-brainy>
+
+      </div>
+    </div>
+    <div class="comment-thread-pool-search">
+      <ng-container *ngIf="commentThreadMessageFilter">
+       <!--Summary-->
+       <div class="comment-thread-pool-summary">
+         <span *ngIf="commentThreadMessageFilter && commentThreadMessageFilter.length > 0">
+           <ng-container *ngIf="commentThreadMessageFilter.length > 1">
+              {{commentThreadMessageFilter.length}} Resultados
+           </ng-container>
+           <ng-container *ngIf="commentThreadMessageFilter.length === 1">
+              {{commentThreadMessageFilter.length}} Resultado
+           </ng-container>
+         </span>
+       </div>
+       <!--Resultados-->
+       <div class="comment-thread-pool-results" [perfectScrollbar]="{suppressScrollX:true}">
+         <ng-container *ngFor="let comment of commentThreadMessageFilter;let i = index">
+           
+            <app-comment-box-search 
+            (commentOnGo)="goToComment($event)"
+            [comment]="comment" 
+            [workspaceAccess]="workspaceAccess"
+            [currentUser]="currentUser"
+            [index]="i" 
+            [filter]="search"></app-comment-box-search>
+        </ng-container>
+       </div>
+       </ng-container>
+    </div>
+  </div>
+</app-aside-nav>

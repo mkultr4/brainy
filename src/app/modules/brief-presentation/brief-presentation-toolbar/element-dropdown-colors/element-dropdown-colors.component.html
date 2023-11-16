@@ -1,0 +1,39 @@
+<div class="dropdown-menu dropdown-menu-colors dropdown-menu-presentation bottom" id="dropdown-editable-colors">
+  <div class="dropdown-content">
+
+    <ng-container *ngIf=" focusedType !== 'circle' && focusedType !== 'rectangle'">
+      <div class="color-choser-header">
+        <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title" [ngClass]="{'active':cmd === 'forecolor'}"
+          (mousedown)="changeCmd($event, 'forecolor')">Texto</a>
+        <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title" [ngClass]="{'active':cmd === 'backcolor'}"
+          (mousedown)="changeCmd($event, 'backcolor')">
+          Background
+        </a>
+      </div>
+      <div class="color-chooser" *ngFor="let color of colors" [ngStyle]="{'backgroundColor':color}">
+        <a href="javascript:void(0)" (mousedown)="execute($event,cmd,color)"></a>
+      </div>
+      <div class="color-chooser remove-format">
+        <i class="material-icons">format_color_reset</i>
+        <a href="javascript:void(0)" (mousedown)="execute($event,'removeFormat',cmd)">
+        </a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf=" focusedType === 'circle' || focusedType === 'rectangle'">
+      <div class="color-choser-header color-choser-one-header">
+
+        <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title">
+          Color
+        </a>
+      </div>
+      <div class="color-chooser" *ngFor="let color of colors" [ngStyle]="{'backgroundColor':color}">
+        <a href="javascript:void(0)" (mousedown)="execute($event,'backcolor',color)"></a>
+      </div>
+      <div class="color-chooser remove-format">
+        <i class="material-icons">format_color_reset</i>
+        <a href="javascript:void(0)" (mousedown)="execute($event,'removeFormat','backcolor')">
+        </a>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Edicion_brief" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01_bar_tools-" transform="translate(-383.000000, -261.000000)" fill="#595A9C">
+            <g id="ico-toolbar-brief-add" transform="translate(374.000000, 252.000000)">
+                <path d="M14,14 L10,14 L10,14 C9.44771525,14 9,14.4477153 9,15 C9,15.5522847 9.44771525,16 10,16 L14,16 L14,20 C14,20.5522847 14.4477153,21 15,21 C15.5522847,21 16,20.5522847 16,20 L16,16 L20,16 C20.5522847,16 21,15.5522847 21,15 C21,14.4477153 20.5522847,14 20,14 L16,14 L16,10 C16,9.44771525 15.5522847,9 15,9 C14.4477153,9 14,9.44771525 14,10 L14,10 L14,14 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

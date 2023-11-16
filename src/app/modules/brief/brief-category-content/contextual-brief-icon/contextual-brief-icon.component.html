@@ -1,0 +1,138 @@
+
+<div 
+[id]="'select-icon-'+option.id"  
+app-modal-floating
+[modalFloatingEdge]="'right'"
+[modalFloatingBtnId]="'#option-btn-'+option.id"
+(modalOnShow)="onShow(true)"
+(modalOnHide)="onShow(false)"
+class="modal-prevent-close contextual-brief-icon 
+        category-item-floating-menu" >
+<!--Nav-->
+<ul class="contextual-brief-icon-nav"
+    appAnchorScroll
+    [containerWatch]="'#select-icon-container' + option.id"
+    >
+    <li>
+        <a href="#ico-section-1" class="active">
+            <i class="icon ion-md-person"></i>
+        </a>
+    </li>
+    <li>
+        <a href="#ico-section-2" >
+            <i class="icon ion-logo-twitter"></i>
+
+        </a>
+    </li>
+    <li>
+        <a href="#ico-section-3" >
+            <i class="icon ion-md-airplane"></i>
+        </a>
+    </li>
+    <li>
+        <a href="#ico-section-4" >
+            <i class="icon ion-md-happy"></i>
+        </a>
+    </li>
+    <li>
+        <a href="#ico-section-5" >
+            <i class="icon ion-md-beer"></i>
+        </a>
+    </li>
+</ul>
+<div class="contextual-brief-icon-wrapper" 
+     [id]="'select-icon-container' + option.id"
+      [perfectScrollbar]="{suppressScrollX:true}"
+     >
+    <div class="contextual-brief-icon-content">
+
+        <div class="icons-list" id="ico-section-1">
+            <h5 class="icons-title first">Personas</h5>
+            <div class="ico-block" 
+                 *ngFor="let ico of icons"
+                  (click)="changeIcon($event, ico)" 
+                 >
+                <div class="ico-block-wrapper">
+                    <div class="ico-block-content">
+                        <span class="ico-item">
+                            <i *ngIf="ico.font === 'ionicons'"  class="icon {{ico.value}}"></i>
+                            <i *ngIf="ico.font === 'material-icons'" class="material-icons">{{ico.value}}</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="icons-list" id="ico-section-2">
+            <h5 class="icons-title">Tecnología</h5>
+            <div class="ico-block" 
+            *ngFor="let ico of icons"
+            (click)="changeIcon($event, ico)" 
+                 >
+                <div class="ico-block-wrapper">
+                    <div class="ico-block-content">
+                        <span class="ico-item">
+                          <i *ngIf="ico.font === 'ionicons'"  class="{{ico.value}}"></i>
+                          <i *ngIf="ico.font === 'material-icons'" class="material-icons">{{ico.value}}</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="icons-list" id="ico-section-3">
+            <h5 class="icons-title">Viaje</h5>
+            <div class="ico-block" 
+            *ngFor="let ico of icons"
+            (click)="changeIcon($event, ico)" 
+                 >
+                <div class="ico-block-wrapper">
+                    <div class="ico-block-content">
+                        <span class="ico-item">
+                          <i *ngIf="ico.font === 'ionicons'"  class="{{ico.value}}"></i>
+                          <i *ngIf="ico.font === 'material-icons'" class="material-icons">{{ico.value}}</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="icons-list" id="ico-section-4">
+            <h5 class="icons-title">Emojis</h5>
+            <div class="ico-block" 
+            *ngFor="let ico of icons"
+            (click)="changeIcon($event, ico)" 
+                 >
+                <div class="ico-block-wrapper">
+                    <div class="ico-block-content">
+                        <span class="ico-item">
+                          <i *ngIf="ico.font === 'ionicons'"  class="{{ico.value}}"></i>
+                          <i *ngIf="ico.font === 'material-icons'" class="material-icons">{{ico.value}}</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="icons-list" id="ico-section-5">
+            <h5 class="icons-title">Ocio</h5>
+            <div class="ico-block" 
+            *ngFor="let ico of icons"
+            (click)="changeIcon($event, ico)" 
+                 >
+                <div class="ico-block-wrapper">
+                    <div class="ico-block-content">
+                        <span class="ico-item">
+                          <i *ngIf="ico.font === 'ionicons'"  class="{{ico.value}}"></i>
+                          <i *ngIf="ico.font === 'material-icons'" class="material-icons">{{ico.value}}</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</div>

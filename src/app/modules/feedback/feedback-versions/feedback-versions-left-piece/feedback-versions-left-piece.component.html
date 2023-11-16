@@ -1,0 +1,16 @@
+<ng-container *ngIf="compareVersion.length > 0">
+    <pre>{{piece.id}}</pre>
+  <pre>{{compareVersion}}</pre>
+</ng-container>
+
+<div class="feedback-piece-carousel-item" 
+[ngClass]="{'compare-active':compareVersion}">
+  
+  <div class="feedback-piece-carousel-item-content" [dndDraggable]="piece" [dndType]="'feedback-piece'"
+   [ngStyle]="{ backgroundImage:'url(' + piece.url + ')'}"
+    [ngClass]="{'active':pieceShow.id === piece.id || pieceShow.parentId === piece.id  }" (click)="select()">
+    <a class="compare-selected-btn">
+      <i class="compare-select-icon icon-svg" [inlineSVG]="'assets/img/commons/check.svg'"></i>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-change-language'"
+  [modalClass]="'modal-vertically-center '">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content">
+    <!--Title-->
+    <h2 class="modal-title">Selecciona un idioma:</h2>
+    <!--Chooser-->
+    <div class="modal-chooser-language-content">
+      <div class="modal-chooser-language-wrapper">
+        <div class="row no-margin-bottom">
+          <div class="col s12 m4 l4">
+            <a class="language-block"
+            href="javascript:void(0)"
+               *ngFor="let locale of languagesColumnize[0]" (click)="setLocale(locale)"
+              [ngClass]="{'active':currentLanguage.code === locale.code}">
+              <span class="language-code">{{locale.code}}</span>
+              <span class="language-text">{{locale.language}}</span>
+            </a>
+          </div>
+          <div class="col s12 m4 l4">
+            <a class="language-block" 
+            href="javascript:void(0)"
+            *ngFor="let locale of languagesColumnize[1]" (click)="setLocale(locale)"
+              [ngClass]="{'active':currentLanguage.code === locale.code}">
+              <span class="language-code">{{locale.code}}</span>
+              <span class="language-text">{{locale.language}}</span>
+            </a>
+          </div>
+          <div class="col s12 m4 l4">
+            <a class="language-block"
+            href="javascript:void(0)"
+             *ngFor="let locale of languagesColumnize[2]" (click)="setLocale(locale)"
+              [ngClass]="{'active':currentLanguage.code === locale.code}">
+              <span class="language-code">{{locale.code}}</span>
+              <span class="language-text">{{locale.language}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

@@ -1,0 +1,53 @@
+<div class="daily-message-overlay" *ngIf="show" [@dailyMessageAnimation] (click)="close()">
+  <div class="daily-message-wrapper">
+    <div class="daily-message-content ">
+      <!--daily-message -->
+      <div class="daily-message ">
+        <!--wrapper-->
+        <div class="daily-message-item-wrapper">
+          <div class="daily-message-item-content">
+            <div class="daily-message-item daily-message-dashboard " (click)="$event.preventDefault();$event.stopPropagation()">
+
+              <img class="daily-message-dashboard-img" src="assets/img/ilustracion_ejemplo.png">
+
+              <div class="daily-message-dashboard-message">
+                <div class="daily-message-dashboard-message-wrapper ">
+                  <div class="daily-message-dashboard-message-content">
+                    <h1 class="title">Hola {{user?.name}}</h1>
+                    <h4 class="subtitle">¡Buen inicio de semana!</h4>
+                    <p class="tip">Estas son tus novedades diarias: </p>
+                    <div class="news-content">
+                      <div class="news-block" *ngFor="let message of messages"
+                      [class.active]="message.active"
+                      >
+                        <a href="javascrit:void(0)">
+                            <ng-container *ngIf="!message.active">
+                              <i class="icon-svg ico-check" [inlineSVG]="'assets/img/daily-messages/check_mensajes.svg'"></i>
+                          </ng-container>
+                          <ng-container *ngIf="message.active">
+                              <i class="icon-svg ico-check" [inlineSVG]="'assets/img/daily-messages/check_active_mensajes.svg'"></i>
+                          </ng-container>
+                          
+                          
+                          {{ message.message}}
+                        </a>
+
+                      </div>
+                    </div>
+                    <div class="button-section">
+                      <a href="javascript:void(0)" class="btn btn-light btn-medium-large" (click)="close()">
+                        Comienza ahora
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

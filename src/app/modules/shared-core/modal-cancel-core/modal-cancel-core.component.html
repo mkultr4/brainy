@@ -1,0 +1,31 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-dashbord-cancel'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="core">
+          <h4 class="title">
+            {{ 'dashboard.modal-cancel.title.'+ core.type.key | translate }}
+          </h4>
+          <ng-container *ngIf="core.status.id !== 'approved'">
+            <h4 class="message">
+                {{ 'dashboard.modal-cancel.not-approved.'+ core.type.key | translate }}
+            </h4>
+          </ng-container>
+          <div class="modal-content-buttons">
+              <button class="btn btn-medium-large " [ngClass]="{'btn-loading':canceling}" [disabled]="canceling"
+              (click)="cancel()">{{ canceling ? 'CANCELANDO' :'SI, CONTINUAR'}}</button>
+            <button class="btn btn-medium-large btn-outline-line cancel  modal-close  last-button">
+              NO, CERRAR
+            </button>
+            
+
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

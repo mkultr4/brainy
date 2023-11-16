@@ -1,0 +1,77 @@
+<!--Content-->
+<div 
+    class="brief-category-item-content-question brief-category-item-content-question-child" 
+    [class.focusedIn]="focusResponse"
+    [class.visible]="isVisible()"
+  
+  >
+
+  <!--Config-->
+  <ng-container *ngIf="focusResponse">
+    <div class="brief-category-item-response-parent">
+      <div class="label">Si la respuesta es:</div>
+      <div class="input-field-select">
+        <input readonly="true"
+         [(ngModel)]="briefCategoryItem.optionParent.label" type='text' [id]="'select-btn-question-child' + briefCategoryItem.id"
+          placeholder="Selecciona">
+        <app-mz-dropdown-brainy [id]="'select-question-child' + briefCategoryItem.id" [dropdownButtonId]="'select-btn-question-child' + briefCategoryItem.id"
+          [constrainWidth]="true" [belowOrigin]="false" [gutter]="0" [dropdownClass]="'select-dropdown category-item-floating-menu'">
+          <li *ngFor='let option of options' (click)='selectParentOption($event, option)'>
+            <span class='center-align'>{{option.label || 'Vacío'}}</span>
+          </li>
+        </app-mz-dropdown-brainy>
+      </div>
+    </div>
+  </ng-container>
+  <!--Question-->
+  <div class="brief-category-item-question-text">
+    <p #mainText class="brief-text-area-title-text  main-text" placeholder="Escribe una pregunta"
+      [(contentEditableModel)]="briefCategoryItem.title" (contentEditableModelChange)="onChangeQuestion()" [singleLine]="true"
+      [maxLength]="200" 
+      [sanitizeHTML]="false"
+      [contentEditable]="editable" (focus)="onQuestionFocus($event)"><br></p>
+  </div>
+  <!--Description-->
+  <div class="brief-category-item-description" [ngClass]="{'description-no-visible':briefCategoryItem.description.length === 0}">
+    <p class="brief-text-area-description-text" placeholder="Descripción" [(contentEditableModel)]="briefCategoryItem.description"
+      (contentEditableModelChange)="onChangeQuestion()" 
+      [sanitizeHTML]="false"
+      [singleLine]="false" [maxLength]="405" [contentEditable]="editable"
+      (focus)="onQuestionFocus($event)"><br></p>
+  </div>
+  <!--Response container-->
+  <div class="brief-category-item-question-response-container ">
+    <!--Response type-->
+    <div app-brief-response-type class="brief-response-type-container" [class.focusedIn]="focusResponse"
+      [briefCategoryItem]="briefCategoryItem" [focusResponse]="focusResponse" [refillable]="refillable || (editable && canRefill)"
+      [editable]="editable" (onResponseContentChange)="onResponseContentChange($event)" (onResponseFocus)="onResponseFocus()">
+    </div>
+  </div>
+  <!--Toolbar Bottom-->
+  <div *ngIf="focusResponse && !enabledCommentsAction" class="brief-category-item-toolbar-bottom">
+    <div class="row">
+      <div class="col s6">
+        <!--Add question-->
+        <a 
+          *ngIf="candAdd" 
+          href="javascript:void(0)" class="add-question" (click)="addQuestion($event)">
+          Agregar pregunta +
+        </a>
+      </div>
+      <div class="col s6">
+        
+            <a 
+              appTooltip
+              [tooltipMessage]="'Eliminar pregunta'"
+              href="javascript:void(0)" class="remove-question closest-alert disable-brief-comment" 
+              app-alert-dialog [message]="'¿Quieres eliminar la pregunta?'"
+              [edge]="'right'" [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-category-item alert-disabled-trigger'"
+              [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="delete()">
+              <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+              Eliminar 
+            </a>
+        
+      </div>
+    </div>
+  </div>
+</div>

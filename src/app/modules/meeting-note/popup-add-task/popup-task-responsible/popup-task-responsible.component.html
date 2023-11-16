@@ -1,0 +1,48 @@
+<ng-template #itemAvatar let-model="item" let-index="index" let-query="query">
+  <span class="item">
+    <div app-avatar class="avatar" [user]="model.user"></div>
+    <span class="name">{{model?.user.name + ' ' + model?.user.lastName}}</span>
+    <span class="rol">{{model?.rol.name}}</span>
+  </span>
+</ng-template>
+<!--Responsible-->
+<div class="responsible-container">
+  <span class="responsible-title" [class.not-responsible]="!task.responsible">Responsables</span>
+  <div class="responsible closest-alert" *ngIf="task.responsible">
+    <div class="user-information">
+      <span class="avatar" app-avatar [user]="task.responsible.user"></span>
+        <span class="name">{{task.responsible.user.name + ' '+task.responsible.user.lastName}}</span>
+        <span class="rol">{{'workspaceAccess.rol.' + task.responsible.rol.key | translate}}</span>
+        <a href="javascript:void(0)" class="remove" 
+        app-alert-dialog [message]="'¿Quieres eliminar el responsable?'"
+        [acceptText]="'Si'"  [cancelText]="'No'" 
+        [alertClass]="'alert-participants-sidenav modal-prevent-close'" 
+        (alertOnAccept)="removeResponsible()"
+        [container]="'#popup-add-task'"
+        >
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+      </a>
+    </div>
+        
+    
+  </div>
+</div>
+<!--Async search-->
+<div class="search-participant">
+  <div class="input-field-search-nav">
+    <div class="input-field input-field-purple-dark typehead-autocomplete-share-medium " [ngClass]="{'input-field-focused-dark':!task.responsible}">
+      <input mz-input [label]="''" [placeholder]="'Ingrese el nombre '" class="filter-search-input" name="asyncParticipantSearch"
+        #asyncInput="ngModel" [(ngModel)]="asyncParticipantSearch" [typeahead]="dataSourceParticipants"
+        [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="7" [typeaheadItemTemplate]="itemAvatar"
+        (typeaheadLoading)="changeTypeaheadLoading($event)" (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+        (typeaheadOnSelect)="typeaheadOnSelect($event)" required autocomplete="off">
+      <span class="help-block info" *ngIf="typeaheadNoResults">
+        No existen usuarios para su busqueda
+      </span>
+
+    </div>
+
+
+  </div>
+
+</div>

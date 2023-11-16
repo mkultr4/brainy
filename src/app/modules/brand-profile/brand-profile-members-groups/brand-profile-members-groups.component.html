@@ -1,0 +1,33 @@
+<!--Categories-->
+<ng-container *ngIf="categories.length > 0">
+  <div class="team-list-content">
+    <ng-container *ngFor="let category of categories 
+          | filterBy:['name']:query
+          | orderBy:{property: order.column, direction: order.direction}">
+      <app-team-box-category [category]="category" [viewUrl]="'../group/'" (boxOnEdit)="onEdit($event)" (boxOnDelete)="onDelete($event)">
+      </app-team-box-category>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="(  categories 
+      | filterBy:['name']:query).length === 0">
+    <h1 class="without-results">
+      {{ 'commons.without-results' | translate }}
+
+    </h1>
+  </ng-container>
+</ng-container>
+<!--Empty-->
+<ng-container *ngIf="categories.length === 0">
+  <div class="brainy-empty-message">
+    <img src="assets/img/commons/empty-lists/img_equipos_vacio.svg">
+    <h1 class="title">No tienes grupos creados</h1>
+    <p class="message">
+      Necesitas más información para crear grupos
+      <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+    </p>
+  </div>
+</ng-container>
+
+
+<app-modal-category-eliminate #modalDelete></app-modal-category-eliminate>
+<app-modal-category-edit #modalEdit></app-modal-category-edit>

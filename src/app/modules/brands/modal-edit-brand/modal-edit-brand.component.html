@@ -1,0 +1,59 @@
+<!--Modal-->
+<div id="modal-share-guests" [@modalFadeAnimation]="stateModal" class="animated-modal animated-modal-full-width {{stateModal}}">
+  <div class="modal-content">
+    <!--Modal Brand-->
+    <span class="modal-brand-name">
+      <i [inlineSVG]="'/assets/img/logo_brainy.svg'" class="icon-svg"></i>
+      Brainy
+    </span>
+
+    <!--Modal Close-->
+    <a href="javascript:void(0)" class="modal-close close-animated-modal" (click)="closeModal()">
+      <i [inlineSVG]="'/assets/img/commons/icono_closed_big.svg'" class="icon-svg"></i>
+    </a>
+    <div class="modal-content-inner">
+      <!--Modal header-->
+      <div class="modal-header">
+        <!--Title-->
+        <h5 class="modal-header-title">
+          Edición marca
+        </h5>
+      </div>
+      <!--Display-->
+      <div class="modal-content-display">
+        <ng-container *ngIf="brand">
+          <form class="form-edit-brand" #formEditBrand="ngForm">
+            <div app-brand-logo class="avatar profile-image-immense" 
+            [brand]="brand" [overlay]="true"
+            (logoOnChangeImage)="onChangeImage($event)"
+            ></div>
+            <div class="form-edit-brand-content">
+              <!--Email-->
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+                  <div class="input-field input-field-medium">
+                    <!---->
+                    <input mz-input [label]="'Nombre de la marca'" 
+                    [(ngModel)]="brand.name" type="text" name="brandName" 
+                    (ngModelChange)="onChangeName($event)"
+                    autocomplete="off"
+                    #inputName required>
+
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="form-edit-brand-button">
+                    <button class="btn btn-semi-medium  btn-outline-light" 
+                    [disabled]="(!file && btnDisabled) || formEditBrand.invalid || uploading"
+                    (click)="save()">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</div>

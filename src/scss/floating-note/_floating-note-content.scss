@@ -1,0 +1,1281 @@
+//Fixed action floating note
+.fixed-floating-note-btn {
+  left: 56px;
+  bottom: 35px;
+  position: fixed;
+  z-index: 998;
+}
+
+//Smart note
+.btn-floating-note {
+  background: #ffffff;
+  box-shadow: 0 0 6px 0 rgba(79, 92, 105, 0.19);
+  color: $primary-color;
+  height: 74px;
+  width: 74px;
+  text-align: center;
+  transition: all 0.3s ease;
+  > i {
+    color: $primary-color;
+    line-height: 72px;
+    height: 72px;
+    svg {
+      margin-left: 5px;
+      margin-bottom: 3px;
+    }
+  }
+  &:hover {
+    background: #ffffff; //box-shadow: 4px -3px 5px 0 rgba(57, 58, 111, 0.36);
+    transform: scale(1.2);
+  }
+}
+
+//Smart note tooolbar
+.toolbar-floating-note {
+  width: 28px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  border-radius: 2px;
+  background-color: $purple-color-dark2;
+  .toolbar-option {
+    color: #fff;
+    display: block;
+    width: 28px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+    > i {
+      color: #fff;
+      font-size: 14px;
+      line-height: 20px;
+      height: 20px;
+    }
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    margin-left: -5px;
+    border-top: 5px solid $purple-color-dark2;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  .creating-note-message {
+    display: none;
+  }
+  &.creating {
+    width: auto;
+    background: #18191a;
+    &:before {
+      display: none;
+    }
+    .toolbar-option {
+      display: none;
+    }
+    .creating-note-message {
+      display: block;
+      padding: 4px 7px;
+      color: #ffffff;
+      font-size: 9px;
+      font-family: $font-family-brand;
+    }
+  }
+}
+
+.floating-note-selection-wrapper {
+  background-color: rgba($purple-color-light, 0.1);
+}
+
+//Note box list
+.note-box-list {
+  @extend .perfect-scrollbar;
+  display: inline-block;
+  width: 100%;
+  max-height: calc(100% - 65px);
+}
+.note-box-list-empty {
+  text-align: center;
+  margin-top: 47px;
+  img {
+    margin-bottom: 25px;
+  }
+  h2 {
+    font-weight: $font-light;
+    font-size: 24px;
+    color: rgba($primary-color, 0.6);
+    letter-spacing: 0.38px;
+    text-align: center;
+    line-height: 32px;
+  }
+}
+
+//Note box menu
+.note-box-menu {
+  display: none;
+  margin: 0;
+  position: absolute;
+  right: 17px;
+  bottom: 10px;
+  > li {
+    float: left;
+    > a {
+      height: 15px;
+      line-height: 15px;
+      padding: 0 3px;
+      display: block;
+      background: transparent;
+
+      .icon-delete {
+        svg {
+          rect,
+          path {
+            fill: $primary-color;
+          }
+        }
+      }
+      .icon-share {
+        svg {
+          margin-bottom: 2px;
+          path {
+            fill: $primary-color;
+          }
+        }
+      }
+      &:hover {
+        background: transparent;
+        .icon-delete {
+          svg {
+            rect,
+            path {
+              fill: #dddddd;
+            }
+          }
+        }
+        .icon-share {
+          svg {
+            path {
+              fill: #dddddd;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.active {
+    display: block;
+  }
+}
+
+.full-size {
+  .note-box-menu {
+    right: 25px;
+  }
+}
+
+//Note box
+.note-box {
+  display: inline-block;
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+  min-height: 95px;
+  .note-box-wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid rgba($primary-color, 0.1);
+    .note-box-title {
+      @extend .text-overflow;
+      font-weight: $font-regular;
+      font-size: 12px;
+      color: $primary-color;
+      line-height: 16px;
+      margin-bottom: 3px;
+      position: relative;
+      .reminder-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: none;
+        svg {
+          width: 8px;
+          height: 8px;
+          path {
+            fill: $purple-color-lighten;
+          }
+        }
+      }
+      &.has-reminders {
+        padding-right: 15px;
+        .reminder-icon {
+          display: block;
+        }
+      }
+    }
+    .note-box-text {
+      font-weight: $font-light;
+      font-size: 12px;
+      margin: 0 0 12px 0;
+      color: rgba($primary-color, 0.7);
+      max-height: 32px;
+      min-height: 32px;
+      overflow: hidden;
+      position: relative;
+      > pre {
+        margin: 0;
+        font-weight: $font-light;
+        font-family: $font-family;
+        line-height: 16px;
+        font-size: 12px;
+        color: rgba($primary-color, 0.7);
+        word-break: break-word;
+        white-space: pre-wrap;
+      }
+      &.empty {
+        font-style: italic;
+      }
+      &.overflow {
+        /*
+            &:after {
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                content: "";
+                background: linear-gradient(to top, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0) 80%);
+                pointer-events: none;
+            }*/
+      }
+    }
+    .note-box-date {
+      line-height: 11px;
+      font-size: 10px;
+      letter-spacing: 0.1px;
+      color: rgba($purple-color-lighten, 0.6);
+    }
+  }
+  &.first-child {
+    .note-box-wrapper {
+      border-color: transparent;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(174, 181, 216, 0.08);
+    .note-box-menu {
+      display: block;
+    }
+  }
+}
+
+//Note box full size
+.full-size {
+  .note-box {
+    padding: 0 30px;
+    min-height: 116px;
+    .note-box-wrapper {
+      padding-top: 20px;
+      padding-bottom: 15px;
+      .note-box-title {
+        margin-bottom: 5px;
+      }
+      .note-box-text {
+        margin: 0 0 15px 0;
+      }
+      .note-box-date {
+      }
+    }
+  }
+}
+
+.floating-note-popup {
+  position: absolute;
+  width: 300px;
+  height: 435px;
+  max-height: 94vh;
+  max-width: 90vw;
+  background: #ffffff;
+  border: 1px solid #f4eded;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
+  border-radius: 4px;
+  bottom: 0;
+  z-index: 2;
+  .floating-note-popup-back,
+  .floating-note-popup-close {
+    width: 16px;
+    height: 16px;
+    display: block;
+    position: absolute;
+    border-radius: 16px;
+    line-height: 16px;
+  }
+  .floating-note-popup-close {
+    color: $primary-color;
+    top: 8px;
+    right: 6px;
+    z-index: 2;
+    text-align: center;
+    > i {
+      vertical-align: middle;
+    }
+    &:hover {
+      background-color: #f3f3f8;
+    }
+  }
+  .floating-note-popup-back {
+    top: 8px;
+    left: 17px;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  .floating-note-popup-rembember,
+  .floating-note-popup-expand {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    bottom: 7px;
+    > a {
+      line-height: 20px;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      display: block;
+    }
+  }
+  .floating-note-popup-expand {
+    position: absolute;
+    left: 4px;
+    &:hover {
+      > a {
+        > i {
+          svg {
+            path {
+              fill: #595a9c;
+            }
+          }
+        }
+      }
+    }
+  }
+  .floating-note-popup-rembember {
+    right: 18px;
+    > a {
+      &:hover {
+        > i {
+          svg {
+            path {
+              fill: rgba($primary-color, 0.7);
+            }
+          }
+        }
+      }
+      &.has-reminders {
+        > i {
+          svg {
+            path {
+              fill: $purple-color-dark2;
+            }
+          }
+        }
+        &:hover {
+          > i {
+            svg {
+              path {
+                fill: $purple-color-dark2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.full-size {
+    width: 540px;
+    height: 962px;
+    .floating-note-popup-back {
+      left: 30px;
+    }
+    .floating-note-popup-rembember {
+      right: 30px;
+    }
+  }
+}
+
+//Edit Burguer menu
+.floating-note-edit-burguer-menu {
+  @extend .dropdown-toolbar;
+  width: 190px;
+  transform: translateY(-6px);
+  > li {
+    > span,
+    > a {
+      padding-left: 40px;
+      > i {
+        margin-right: 15px;
+        svg {
+          path,
+          polygon {
+            fill: $primary-color;
+          }
+        }
+      }
+      &:hover {
+        > i {
+          svg {
+            path,
+            polygon {
+              fill: $purple-color-light;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Default content
+.floating-note-popup-content {
+  padding: 35px 0px 38px 0px;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  .floating-note-popup-header-container {
+    padding: 0 20px;
+    margin-bottom: 15px;
+    .floating-note-popup-header {
+      font-weight: $font-regular;
+      color: $primary-color;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      line-height: 24px;
+      padding-right: 24px;
+      position: relative;
+      .add-note {
+        width: 24px;
+        height: 24px;
+        background: #fff;
+        border-radius: 24px;
+        display: block;
+        border: 1px solid rgba(206, 211, 239, 0.13);
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.15);
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-align: center;
+        line-height: 23px;
+        > i {
+          color: $primary-color;
+          font-size: 12px;
+          vertical-align: middle;
+        }
+        &:hover {
+          background-color: $purple-color-light;
+          > i {
+            svg {
+              path {
+                fill: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  } //Search
+  .search {
+    padding: 0 20px;
+    margin-bottom: 10px;
+    .search-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      .placeholder {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        font-weight: $font-regular;
+        font-size: 12px;
+        color: rgba($primary-color, 0.3);
+        text-align: center;
+        line-height: 26px;
+        padding-right: 24px;
+        z-index: -1;
+        display: none;
+        .search-icon {
+          margin-right: 5px;
+          display: inline-block;
+          vertical-align: middle;
+          width: 10px;
+          svg {
+            height: 10px;
+            path {
+              fill: rgba($primary-color, 0.3);
+            }
+          }
+        }
+      }
+      input {
+        margin: 0;
+        z-index: 1;
+        height: 26px;
+        line-height: 26px;
+        border: 1px solid rgba(#dde0e4, 0.25);
+        padding: 0 24px;
+        font-size: 12px;
+        box-sizing: border-box;
+        background: rgba(#dde0e4, 0.25);
+        border-radius: 2px;
+        &:hover {
+          background-color: transparent;
+          border-color: rgba($primary-color, 0.2);
+          & + .placeholder {
+            color: $primary-color;
+            .search-icon {
+              svg {
+                path {
+                  fill: $primary-color;
+                }
+              }
+            }
+          }
+        }
+        &:focus {
+          box-shadow: none;
+          border-color: $primary-color;
+          background-color: #fff;
+          & + .placeholder {
+            display: none;
+          }
+        }
+      }
+      &.empty {
+        .placeholder {
+          display: block;
+        }
+      }
+    }
+  } //Note box list
+  .note-box-list {
+    max-height: calc(100% - 75px);
+  }
+}
+
+//Default Popup content
+.full-size {
+  .floating-note-popup-content {
+    .floating-note-popup-header-container,
+    .search {
+      padding: 0 30px;
+    }
+  }
+}
+
+//New
+.floating-note-popup-content-new {
+  padding-top: 73px;
+  padding-left: 20px;
+  padding-right: 20px;
+  .input-field {
+    margin-bottom: 22px;
+  }
+  .input-field-title {
+    padding-top: 17px;
+    height: auto;
+  }
+  .button-container {
+    text-align: center;
+    padding-top: 15px;
+    .btn {
+      font-weight: $font-medium;
+      padding: 0;
+      text-align: center;
+      width: 120px;
+    }
+  }
+}
+
+//New note full size
+.full-size {
+  .floating-note-popup-content-new {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.note-participants {
+  height: 20px;
+  text-align: center;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  margin-top: -10px;
+  .note-participants-content {
+    display: inline-block;
+    .avatar {
+      display: inline-block;
+      float: left;
+      position: relative;
+      z-index: 2;
+      :nth-child(1) {
+        z-index: 6;
+      }
+      :nth-child(2) {
+        z-index: 5;
+      }
+      :nth-child(3) {
+        z-index: 4;
+      }
+      :nth-child(4) {
+        z-index: 3;
+      }
+      :nth-child(5) {
+        z-index: 2;
+      }
+      :nth-child(6) {
+        z-index: 1;
+      }
+      & + .avatar {
+        margin-left: -4px;
+      }
+    }
+    .participant-circle-more {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      display: inline-block;
+      float: left;
+      margin-left: -7px;
+      border: 1px solid #afb4d5;
+      font-size: 8px;
+      color: #afb4d5;
+      letter-spacing: 0.08px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 20px;
+    }
+  }
+}
+
+//Popup
+#dropdown-note-user-information {
+  @extend .perfect-scrollbar;
+  @extend .modal-floating;
+  width: 190px;
+  max-height: 50vh;
+  padding: 24px 0;
+  max-width: 80vw;
+  background: #ffffff;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.13);
+  position: absolute;
+  display: none;
+  z-index: 998;
+  .dropdown-note-user-information-container {
+    padding: 0px 26px;
+    .participants-list-wrapper {
+      max-height: none;
+      .participants-list {
+        padding: 0;
+        min-height: auto;
+        .participant-list-block {
+          height: auto;
+          border-bottom: none;
+          margin-top: 12px;
+          .participant-information {
+            border: none;
+            padding: 0px 0px 0px 40px;
+            height: auto;
+            .avatar {
+              left: 0;
+              top: 4px;
+            }
+            .participant-user-information {
+              width: 100%;
+              .owner-note {
+                @extend .text-overflow;
+                font-size: 9px;
+                line-height: 11px;
+                color: rgba($purple-color-lighten, 0.5);
+                display: block;
+                margin-bottom: 5px;
+              }
+            }
+          }
+          &:before {
+            display: none;
+          }
+          &:first-child {
+            margin-top: 0;
+          }
+          &.owner-note-block {
+            .participant-information {
+              .avatar {
+                top: 19px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.maximize {
+    max-height: 80vh;
+  }
+}
+
+//Edit Note
+.floating-note-popup-content-edit {
+  padding-top: 28px;
+  .floating-note-edit-header-container {
+    padding: 0 20px;
+    .floating-note-edit-header {
+      padding: 15px 24px 15px 0px;
+      line-height: 11px;
+      font-size: 10px;
+      color: rgba($primary-color, 0.5);
+      letter-spacing: 0.1px;
+      position: relative;
+      border-bottom: 1px solid rgba($primary-color, 0.1);
+      .floating-note-edit-header-burguer {
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+        display: block;
+        right: 0;
+        top: 50%;
+        margin-top: -12px;
+        position: absolute;
+        text-align: center;
+        line-height: 24px;
+        background: transparent;
+        padding: 0;
+        > i {
+          transition: all 0.3s ease-out;
+          font-size: 14px;
+          line-height: 24px;
+          height: 24px;
+          width: 24px;
+          vertical-align: middle;
+          display: inline-block;
+        }
+        &:hover {
+          opacity: 0.6;
+        }
+        &.active {
+          > i {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+    }
+    .floating-note-edit-menu-editor {
+      padding: 16px 0;
+      margin: 0;
+      display: inline-block;
+      width: 100%;
+      > li {
+        line-height: 14px;
+        float: left;
+        > a {
+          line-height: 14px;
+          height: 14px;
+          font-size: 12px;
+          text-align: center;
+          width: 14px;
+          display: block;
+          > i {
+            font-size: 12px;
+            height: auto;
+            color: #d6d8db;
+            display: inline-block;
+            vertical-align: middle;
+          }
+          &:hover {
+            color: #4f5c69;
+            > i {
+              color: #4f5c69;
+            }
+          }
+        }
+      }
+    }
+    .floating-note-title {
+      font-size: 14px;
+      @extend .text-overflow;
+      padding-bottom: 10px;
+      .floating-note-title-editable {
+        @extend .content-editable-default;
+        @extend .content-editable-style;
+        white-space: nowrap !important;
+        &:not(:focus) {
+          @extend .text-overflow;
+        }
+      }
+    }
+  }
+  .floating-note-description-container {
+    @extend .perfect-scrollbar;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: calc(100% - 117px);
+    .floating-note-editable {
+      @extend .content-editable-default;
+      @extend .content-editable-style;
+      font-weight: $font-light;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}
+
+//Edit note full size
+.full-size {
+  .floating-note-popup-content-edit {
+    .floating-note-edit-header-container {
+      padding: 0 30px;
+      .floating-note-edit-header {
+        padding-bottom: 23px;
+        padding-top: 23px;
+        font-size: 12px;
+        .note-participants {
+          right: 52px;
+        }
+      }
+    }
+    .floating-note-description-container {
+      padding-left: 30px;
+      padding-right: 30px;
+      height: calc(100% - 134px);
+    }
+  }
+}
+
+//Create reminder
+.floating-note-popup-content-reminder {
+  padding-top: 25px;
+  height: 100%;
+  padding-bottom: 38px;
+  .reminder-note-header-wrapper {
+    padding: 0 20px;
+    height: 45px;
+    .reminder-note-header {
+      display: inline-block;
+      float: left;
+      width: 100%;
+      padding: 12px 0;
+      line-height: 20px;
+      border-bottom: 1px solid rgba(79, 92, 105, 0.1);
+      .reminder-note-header-label {
+        float: left;
+        font-weight: $font-medium;
+        font-size: 12px;
+        color: $primary-color;
+        letter-spacing: 0.12px;
+      }
+      .reminder-note-header-user {
+        .user-label {
+          position: relative;
+          float: right;
+          padding-right: 36px; //font-family: Roboto-Regular;
+          font-size: 12px;
+          color: $purple-color-lighten;
+          letter-spacing: 0.12px;
+          .avatar {
+            right: 5px;
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.full-size {
+  .floating-note-popup-content-reminder {
+    .reminder-note-header-wrapper {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+}
+
+//Reminder form
+.reminder-form {
+  padding: 0 20px;
+  .reminder-form-wrapper-dates {
+    padding-top: 29px;
+    padding-bottom: 18px;
+  }
+  .reminder-form-row {
+    margin: 0 -5px;
+    .col {
+      padding: 0 5px;
+    }
+    .reminder-form-row-label {
+      line-height: 28px;
+      text-align: right;
+      font-size: 12px;
+      letter-spacing: 0.12px;
+      display: block;
+      color: $primary-color;
+    }
+    .input-field {
+      margin: 0;
+      > input[type] {
+        max-width: 95px;
+        margin: 0;
+        border: none !important;
+        &:hover {
+          cursor: pointer;
+          &.empty {
+            @include placeholder {
+              color: $primary-color;
+            }
+          }
+          &:not(.empty) {
+            color: rgba($primary-color, 0.6) !important;
+          }
+        }
+      }
+    }
+  }
+  .reminder-form-divider {
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: rgba(79, 92, 105, 0.1);
+  }
+  .reminder-form-configuration {
+    text-align: center;
+    margin-bottom: 56px;
+    line-height: 20px;
+    z-index: 2;
+    position: relative;
+    .reminder-form-configuration-label {
+      font-size: 12px;
+      letter-spacing: 0.12px;
+      display: inline-block;
+      color: $primary-color;
+      > i {
+        margin-left: 6px;
+      }
+    }
+    #reminder-notification-type {
+      min-width: 63px;
+    }
+    .reminder-form-configuration-input[type="text"] {
+      height: 20px;
+      line-height: 20px;
+      margin: 0 13px 0 11px;
+      border: 1px solid #dddddd;
+      box-shadow: none;
+      border-radius: 1px;
+      display: inline-block;
+      width: 28px;
+      text-align: center;
+      font-size: 12px;
+      &:focus {
+        border: 1px solid #dddddd;
+        box-shadow: none;
+      }
+    }
+  }
+  .reminder-form-button {
+    text-align: center;
+    &.create {
+      .btn {
+        width: 120px;
+        padding: 0;
+      }
+    }
+    &.update {
+      .btn {
+        width: 80px;
+        padding: 0;
+        &.accept {
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+}
+
+.full-size {
+  .reminder-form {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+//Reminder list
+.reminder-list {
+  @extend .perfect-scrollbar;
+  height: calc(100% - 45px);
+  max-height: calc(100% - 45px);
+  display: inline-block;
+  width: 100%;
+  .reminder-form {
+    .reminder-form-wrapper-dates {
+      padding-top: 10px;
+      padding-bottom: 0px;
+    }
+    .reminder-form-divider {
+      margin: 10px 0;
+    }
+    .reminder-form-configuration {
+      padding-top: 10px;
+      margin-bottom: 38px;
+    }
+  }
+}
+
+//Reminder list box
+.reminder-list-box {
+  padding: 0px 20px 0px 20px;
+  position: relative;
+  .reminder-list-box-wrapper {
+    border-bottom: 1px solid rgba(79, 92, 105, 0.1);
+    padding-bottom: 16px;
+    padding-top: 28px;
+    .reminder-date-content-wrapper {
+      text-align: center;
+      .reminder-date-content {
+        position: relative;
+        display: inline-block;
+        text-align: left;
+        .reminder-date-icon {
+          display: inline-block;
+          float: left;
+          margin-right: 11px;
+          font-weight: $font-regular;
+          color: $primary-color;
+        }
+        .reminder-date {
+          text-align: left;
+          font-size: 14px;
+          line-height: 15px;
+          margin-bottom: 2px;
+          min-width: 140px;
+          font-weight: $font-regular;
+          color: $primary-color;
+        }
+        .reminder-hour {
+          font-size: 14px;
+          color: rgba($primary-color, 0.4);
+          letter-spacing: 0.15px;
+          padding-left: 23px;
+          margin-bottom: 15px;
+          line-height: 15px;
+          min-width: 140px;
+          font-weight: $font-regular;
+        }
+      }
+    }
+  }
+  .reminder-toolbar {
+    @extend .note-box-menu;
+    top: 7px;
+    left: auto;
+    right: 20px;
+    > li {
+      > a {
+        padding: 0 3px;
+        &.edit-reminder {
+          > i {
+            svg {
+              path {
+                fill: $primary-color;
+              }
+            }
+          }
+        }
+        &.delete-reminder {
+          > i {
+            svg {
+              rect,
+              path {
+                fill: $primary-color;
+              }
+            }
+          }
+        }
+        &:hover {
+          &.edit-reminder {
+            > i {
+              svg {
+                path {
+                  fill: #dddddd;
+                }
+              }
+            }
+          }
+          &.delete-reminder {
+            > i {
+              svg {
+                rect,
+                path {
+                  fill: #dddddd;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    .reminder-toolbar {
+      display: block;
+    }
+  }
+}
+
+.full-size {
+  .reminder-list-box {
+    padding: 0 30px;
+    .reminder-toolbar {
+      right: 30px;
+    }
+  }
+}
+
+//Reminder add new
+.reminder-add-new {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  > a {
+    font-weight: $font-regular;
+    display: inline-block;
+    padding: 18px 7px 18px 0;
+    font-size: 14px;
+    color: rgba($primary-color, 0.4);
+    letter-spacing: 0.15px;
+    line-height: 15px;
+    > i {
+      margin-right: 7px;
+      float: left;
+      line-height: 15px;
+      height: 15px;
+      svg {
+        path {
+          stroke: rgba($primary-color, 0.4);
+        }
+        polygon {
+          fill: rgba($primary-color, 0.4);
+        }
+      }
+    }
+    &:hover {
+      color: $purple-color-lighten;
+      > i {
+        svg {
+          path {
+            stroke: $purple-color-lighten;
+          }
+          polygon {
+            fill: $purple-color-lighten;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Reminder notification type drodpown
+#dropdown-reminder-notification-types {
+  max-width: 80px;
+  min-width: 80px;
+  padding: 6px 0;
+  transform: translate(-2px, -45px);
+  > li {
+    > a {
+      padding-left: 17px;
+    }
+  }
+}
+
+//Menu
+.floating-note-menu.bottom {
+  right: 0;
+  left: auto;
+  width: 190px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  transform: translate(-10px, -16px);
+  .dropdown-content {
+    padding: 12px 0;
+    > li {
+      > span,
+      > a {
+        padding-left: 40px;
+        > i {
+          height: 30px;
+          margin-right: 15px;
+          svg {
+            path,
+            polygon {
+              fill: $primary-color;
+            }
+          }
+        }
+        &:hover {
+          > i {
+            svg {
+              path,
+              polygon {
+                fill: $purple-color-light;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Alert dialog
+.alert-floating-popup {
+  min-width: 197px;
+  max-width: 197px;
+  margin-top: 15px;
+}
+
+//Share
+.floating-note-popup-content-share {
+  .note-participants-list {
+    height: calc(100% - 75px);
+    .participants-list-wrapper {
+      padding: 20px 50px;
+      max-height: calc(100% - 60px);
+      height: calc(100% - 60px);
+      @extend .perfect-scrollbar;
+      .participants-list {
+        padding: 0;
+        .participant-list-block {
+          .participant-information {
+            .participant-user-information {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .participants-button-section {
+    text-align: center;
+    > .btn {
+      width: 150px;
+      padding: 0;
+    }
+  }
+}

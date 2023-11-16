@@ -1,0 +1,189 @@
+<div class="floating-note-popup-content floating-note-popup-content-edit closest-alert">
+    <!--Delete-->
+    <div app-alert-dialog [message]="'¿Estas seguro de eliminar la nota?'" [acceptText]="'Si'" [cancelText]="'No'"
+        [alertClass]="'alert-floating-popup'" [edge]="'center'" [show]="isShowDeleteAlert"
+        (alertOnAccept)="acceptDelete()" (alertOnCancel)="cancelDelete()">
+    </div>
+    <div class="floating-note-edit-header-container">
+        <!--Header-->
+        <div class="floating-note-edit-header">
+            <span class="floating-note-edit-date">
+                {{note.created | momentDate:'DD MMMM YYYY hh:mm'}}
+            </span>
+            <ng-container *ngIf="note.invitations.length > 0">
+                <!--dropdown-->
+                <div id="dropdown-note-user-information" [class.maximize]="maximize" [perfectScrollbar]="{}">
+                    <div class="dropdown-note-user-information-container">
+                        <!--Participants list-->
+                        <div class="participants-list-wrapper">
+                            <ul class="participants-list">
+                                <!--current user-->
+                                <li class="participant-list-block owner-note-block">
+                                    <a class="participant-information" href="javascript:void(0)">
+                                        <div class="avatar profile-image-smaller" app-avatar [user]="currentUser"
+                                            [showStatus]="false"></div>
+                                        <div class="participant-user-information">
+                                            <span class="owner-note">Propietario nota</span>
+                                            <span class="name">{{note?.owner?.name + ' ' + note?.owner?.lastName}}</span>
+                                            <span class="rol">
+                                                {{ 'workspaceAccess.rol.' + note?.ownerRol?.key | translate}}
+                                            </span>
+                                        </div>
+
+                                    </a>
+                                </li>
+                                <!--List-->
+                                <li *ngFor="let inv of note.invitations" class="participant-list-block">
+                                    <a class="participant-information" href="javascript:void(0)">
+                                        <div class="avatar profile-image-smaller" app-avatar [user]="inv.workspaceAccess.user"
+                                            [showStatus]="false"></div>
+                                        <div class="participant-user-information">
+                                            <span class="name">{{inv.workspaceAccess.user.name + ' ' + inv.workspaceAccess.user.lastName}}</span>
+                                            <span class="rol">
+                                                {{ 'workspaceAccess.rol.' + inv.workspaceAccess.rol.key | translate}}
+                                            </span>
+                                        </div>
+
+                                    </a>
+                                </li>
+                        
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--Participants-->
+                <div class="note-participants" appDropdownWrapper [timeout]="0" [gutter]="5" [edge]="'bottom'"
+                    [dropdownTarget]="'#dropdown-note-user-information'">
+                    <div class="note-participants-content">
+                        <!--If has more 6 user-->
+                        <ng-container *ngIf="note.invitations.length > 6">
+                            <ng-container
+                                *ngFor="let inv of (note.invitations ? note.invitations.slice(0,5): []) ">
+                                <div class="avatar profile-image-smaller" app-avatar [user]="inv.workspaceAccess.user"></div>
+                            </ng-container>
+                            <!--More-->
+                            <div class="participant-circle participant-circle-more">
+                                <span>+{{note.workspaceAccesses.length - 5}}</span>
+                            </div>
+                        </ng-container>
+                        <!--If has  6 user or minus-->
+                        <ng-container *ngIf="note.invitations.length <= 6">
+                            <ng-container *ngFor="let inv of note.invitations ">
+                                <div class="avatar profile-image-smaller" app-avatar [user]="inv.workspaceAccess.user"></div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </ng-container>
+
+            <a class="floating-note-edit-header-burguer" mz-button [id]="'floating-note-edit-btn-burguer-edit'">
+                <i [inlineSVG]="'assets/img/floating-note/ico_menu.svg'"></i>
+            </a>
+            <app-mz-dropdown-brainy #menu [id]="'floating-note-edit-burguer-menu'"
+                [dropdownClass]="'floating-note-edit-burguer-menu'"
+                [dropdownButtonId]="'floating-note-edit-btn-burguer-edit'" [constrainWidth]="false" [belowOrigin]="true"
+                [align]="'right'">
+                <li>
+                    <span (click)="shareWithParticipants()">
+                        <i class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_share_users.svg'"></i>
+                        Compartir
+                    </span>
+                </li>
+                <li>
+                    <span (click)="export()" class="download">
+                        <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_descargar.svg'"></i>
+                        Exportar PDF
+
+                    </span>
+                </li>
+                <li>
+                    <span (click)="shareEmail($event)">
+
+                        <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_mail.svg'"></i>
+                        Enviar por email
+
+                    </span>
+                </li>
+
+                <li>
+                    <span class="delete" (click)="delete()">
+                        <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg"> </i>
+                        Eliminar
+                    </span>
+                </li>
+
+
+            </app-mz-dropdown-brainy>
+        </div>
+        <!--Menu editor-->
+        <ul class="floating-note-edit-menu-editor">
+            <li>
+                <a href="javascript:void(0)" (click)="executeCommand($event, 'bold')">
+                    <i class="material-icons">format_bold</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="executeCommand($event,'italic')">
+                    <i class="material-icons">format_italic</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="executeCommand($event, 'underline')">
+                    <i class="material-icons">format_underlined</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="waves-effect"
+                    (mousedown)="executeCommand($event,'insertUnorderedList')">
+                    <i class="material-icons">format_list_bulleted</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="waves-effect"
+                    (mousedown)="executeCommand($event,'insertOrderedList')">
+                    <i class="material-icons">format_list_numbered</i>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)" (click)="executeCommand($event,'justifyleft')">
+                    <i class="material-icons">format_align_left</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="executeCommand($event,'justifyCenter')">
+                    <i class="material-icons">format_align_center</i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="executeCommand($event,'justifyRight')">
+                    <i class="material-icons">format_align_right</i>
+                </a>
+            </li>
+        </ul>
+        <div class="floating-note-title">
+            <div class="floating-note-title-editable" [(contentEditableModel)]="note.title" [singleLine]="true"
+                autocorrect="off" [maxLength]="100" [contentEditable]="true" placeholder="Escribe un texto">
+                <br>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="floating-note-description-container" [perfectScrollbar]="{supressScrollX:true}">
+
+        <div #mainText placeholder="Escribe un texto" [(contentEditableModel)]="note.content" [singleLine]="false"
+            autocorrect="off" [maxLength]="500" [contentEditable]="true" class="floating-note-editable"
+            [sanitizeHTML]="false">
+            <br>
+        </div>
+    </div>
+</div>
+
+<!--Remember me-->
+<div class="floating-note-popup-rembember">
+    <a href="javascript:void(0)" (click)="createReminder()"
+        [ngClass]="{'has-reminders': this.note.reminders.length > 0}">
+        <i class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_rememberme.svg'"></i>
+    </a>
+</div>

@@ -1,0 +1,48 @@
+<div class="response-quantity">
+  <div class="brief-quantity-container">
+    <!--Input Field-->
+    <div class="brief-quantity-input-field">
+      <div class="brief-quantity-input-wrapper" [ngClass]="{
+                             'quantity-number': briefCategoryItem.responseSettings.quantity.type === 'number',
+                             'quantity-percentage': briefCategoryItem.responseSettings.quantity.type === 'percentage',
+                             'quantity-currency': briefCategoryItem.responseSettings.quantity.type=== 'currency'
+                            }">
+        <!--Ico-->
+        <i class="brief-quantity-input-icon-currency" [inlineSVG]="'assets/img/brief/response-types/quantity/ico_currency_big.svg'"></i>
+        <!--Input-->
+        <input class="brief-quantity-input {{briefCategoryItem.responseSettings.quantity.type}}" 
+          [ngClass]="{'editable':focusResponse}"
+          [(ngModel)]="briefCategoryItem.responseContent.quantity" 
+          [disabled]="!refillable" [placeholder]="briefCategoryItem.responseSettings.quantity.placeholder "
+          mask='{{briefCategoryItem.responseSettings.quantity.mask}}' type="text">
+        <i class="brief-quantity-input-icon-percentage" [inlineSVG]="'assets/img/brief/response-types/percentage/ico_percentage.svg'"></i>
+      </div>
+    </div>
+    <!--Configuration-->
+    <ng-container *ngIf="focusResponse">
+      <div class="brief-response-quantity-configuration">
+        <ul class="quantity-menu">
+          <li>
+            <a href="javascript:void(0)" [ngClass]="{'active':briefCategoryItem.responseSettings.quantity.type === 'currency'}"
+              (click)="changeType('currency')">
+              <i  [inlineSVG]="'assets/img/brief/response-types/quantity/ico_currency.svg'"></i>
+              Monetario
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" [ngClass]="{'active':briefCategoryItem.responseSettings.quantity.type === 'number'}"
+              (click)="changeType('number')">
+              <i  [inlineSVG]="'assets/img/brief/response-types/quantity/ico_number.svg'"></i>
+              Numérico</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" [ngClass]="{'active':briefCategoryItem.responseSettings.quantity.type === 'percentage'}"
+              (click)="changeType('percentage')">
+              <i  [inlineSVG]="'assets/img/brief/response-types/percentage/ico_percentage_min.svg'"></i>
+              Porcentage</a>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="12px" viewBox="0 0 17 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Crear_brief" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="06_crear_brief_admin" transform="translate(-282.000000, -205.000000)" fill="#D8D8D8" fill-rule="nonzero">
+            <g id="hover" transform="translate(90.000000, 191.000000)">
+                <g id="agregar_inactivo" transform="translate(186.000000, 6.000000)">
+                    <path d="M18.1947126,8.69921902 L12.5343682,14.3595635 L9.97056514,11.7957604 C9.07156926,10.8967645 7.57324279,10.8967645 6.67424691,11.7957604 C5.77525103,12.6947563 5.77525103,14.1930827 6.67424691,15.0920786 L10.869561,19.2873927 C11.335707,19.7535387 11.9350376,19.9866117 12.5343682,19.9866117 C13.1336988,19.9866117 13.7330294,19.7535387 14.1991754,19.2873927 L21.4910309,11.9955372 C22.3900267,11.0965414 22.3900267,9.5982149 21.4910309,8.69921902 C20.592035,7.76692699 19.1270047,7.76692699 18.1947126,8.69921902 Z" id="Shape-Copy-2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

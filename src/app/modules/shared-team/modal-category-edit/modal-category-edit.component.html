@@ -1,0 +1,42 @@
+<app-animate-modal #modal 
+[modalId]="'modal-category-edit'" 
+(modalOnShow)="modalOnShow()"
+ (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <!--Modal header-->
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Edición grupo
+      </h5>
+    </div>
+    <!--Display-->
+    <div class="modal-content-display">
+      <ng-container *ngIf="category">
+        <form class="form-edit-category" #formEditCategory="ngForm">
+          <div class="form-edit-category-content">
+            <!--Email-->
+            <div class="row no-margin-bottom">
+              <div class="col s12">
+                <div class="input-field input-field-medium">
+                  <!---->
+                  <input mz-input [label]="'Nombre de la marca'" [(ngModel)]="category.name" type="text" name="categoryName"
+                    (ngModelChange)="onChangeName($event)" #inputName required>
+
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="form-edit-brand-button">
+                  <button class="btn btn-semi-medium  btn-outline-light"
+                   [disabled]=" btnDisabled || formEditCategory.invalid "
+                    (click)="save()">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </ng-container>
+    </div>
+
+  </div>
+</app-animate-modal>

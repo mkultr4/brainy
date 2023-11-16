@@ -1,0 +1,72 @@
+<div class="toolbar-menu-actions" id="main-toolbar-menu-category" [ngClass]="{
+  'toolbar-visible': (toolbarVisible && editable) || (forceShow && editable),
+   'toolbar-open':showToolbar ,
+   'brief-template':template
+ }"
+  [style.top.px]="toolbarTop">
+  <ng-container *ngIf="!isComment">
+    <a class="toolbar-btn" id="brief-toolbar-btn-actions" (click)="toggleToolbar($event)" href="javascript:void(0)">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_add_toolbar.svg'"></i>
+    </a>
+    <span class="pulse-target" id="pulse-target-brief-action"></span>
+    <div class="menu-actions-wrapper">
+      <ul class="menu-actions">
+        <!--Sub topic-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'QUESTION')" appTooltip
+            [tooltipMessage]="'Agregar pregunta'" [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/toolbar/ico_agregar_pregunta.svg'"></i>
+          </a>
+        </li>
+        <!--Sub topic-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'SUB_CATEGORY')" appTooltip
+            [tooltipMessage]="'Agregar subcategoría'" [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_subtema.svg'"></i>
+          </a>
+        </li>
+        <!--Text-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'TEXT')" appTooltip [tooltipMessage]="'Agregar texto'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_texto.svg'"></i>
+          </a>
+        </li>
+
+        <!--Image-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'IMAGE')" appFilePicker accept="image/*"
+            (filePick)="chooseImage($event)" appTooltip [tooltipMessage]="'Agregar imagen'" [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_imagen_bar.svg'"></i>
+          </a>
+        </li>
+        <!--Video-->
+        <li>
+          <a class="action" href="javascript:void(0)" 
+            (mousedown)="addItem($event, 'VIDEO')" appTooltip
+            [tooltipMessage]="'Agregar video'" [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_video_bar.svg'"></i>
+          </a>
+        </li>
+        <!--Ico-->
+        <li *ngIf="template">
+          <a class="action modal-floating-trigger"
+            [id]="'option-btn-action-add-ico'"
+             (mousedown)="addItem($event, 'ICON')"
+              appTooltip [tooltipMessage]="'Agregar icono'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/toolbar/ico_iconografia_brief.svg'"></i>
+          </a>
+          <!--Contextual-->
+          <app-contextual-brief-icon  
+            #contextualAddIcon
+            [option]="{id:'action-add-ico'}" 
+            (onShowModal)="onShowContextualIcon($event)"
+            (onChangeIco)="onChangeIco($event)"></app-contextual-brief-icon>
+        </li>
+
+
+      </ul>
+    </div>
+  </ng-container>
+</div>

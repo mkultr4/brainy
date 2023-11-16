@@ -1,0 +1,35 @@
+
+  <!--Workflow toolbar-->
+  <ul class="workflow-toolbar-menu" [class.share-and-approve]="shareAndApprove">
+    <li *ngIf="showWorkflow">
+      <a href="javascript:void(0)" class="btn-workflow">
+        Workflow
+      </a>
+    </li>
+    <ng-container *ngIf="canShare">
+      <li>
+        <a id="workflow-btn-share" class="btn btn-semi-medium btn-outline-line btn-share" (click)="share()">
+          <span class="pulse-tour" id="pulse-target-interface-share"></span>
+          Compartir
+        </a>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="isApprover">
+      <li>
+        <a class="btn btn-semi-medium btn-outline-line btn-share btn-approve" (click)="approve()">
+          Aprobar
+        </a>
+      </li>
+    </ng-container>
+    <li>
+      <a href="javascript:void(0)" class="btn-burguer" id="btn-toolbar-main">
+        <i [inlineSVG]="'assets/img/commons/icono_menu.svg'"></i>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="btn-close" (click)="goBack()">
+        <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'"></i>
+      </a>
+    </li>
+  </ul>
+

@@ -1,0 +1,19 @@
+<div class="frame-video-container">
+  <div class="frame-video-content" [style.height.px]="commentThreads[0].frameHeight">
+    <div class="frame-video-table">
+      <div class="frame-video-table-cell" (click)="seekVideoTo()">
+        <div class="frame-image" [style.width.px]="commentThreads[0].frameWidth" [style.height.px]="commentThreads[0].frameHeight"
+          [style.backgroundImage]="'url('+commentThreads[0].frameImage+')'">
+          <ng-container *ngFor="let commentThread of commentThreads ">
+            <ng-container *ngIf="commentThread.type === 'pin'">
+              <app-feedback-piece-frame-pin [commentThread]="commentThread"></app-feedback-piece-frame-pin>
+            </ng-container>
+            <ng-container *ngIf="commentThread.type === 'circle' || commentThread.type === 'rectangle' ">
+              <app-feedback-piece-frame-shape [commentThread]="commentThread"></app-feedback-piece-frame-shape>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

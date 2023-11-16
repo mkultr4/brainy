@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="16px" viewBox="0 0 11 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <g id="ico_edit_template" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" >
+        <g id="05_brief_ajuste" transform="translate(-248.000000, -205.000000)" fill="#fff">
+            <g id="ic_create_24px" transform="translate(254.000000, 213.000000) rotate(-15.000000) translate(-254.000000, -213.000000) translate(247.000000, 206.000000)">
+                <g id="Group" transform="translate(0.550510, 0.414214)">
+                    <path d="M0,9.8553202 L0,12.4483706 L2.59305039,12.4483706 L10.2408204,4.80060063 L7.64776996,2.20755024 L0,9.8553202 L0,9.8553202 Z M12.2461127,2.79530833 C12.5157899,2.52563108 12.5157899,2.08999862 12.2461127,1.82032138 L10.6280492,0.202257931 C10.358372,-0.0674193103 9.92273951,-0.0674193103 9.65306227,0.202257931 L8.38765368,1.46766652 L10.9807041,4.06071692 L12.2461127,2.79530833 L12.2461127,2.79530833 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

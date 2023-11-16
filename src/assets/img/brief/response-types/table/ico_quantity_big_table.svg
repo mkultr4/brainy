@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_moneda</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="ico-quantity-table" stroke="#4f5c69">
+            <path d="M8,1 L8,13.4264854 M5,9.55287009 C5,10.8449144 6.3429003,11.8922457 8,11.8922457 C9.6570997,11.8922457 11,10.8444109 11,9.55287009 C11,8.26032226 9.6570997,7.21299094 8,7.21299094 M8,7.21299094 C6.3429003,7.21299094 5,6.16565962 5,4.87311178 C5,3.58106747 6.3429003,2.53373615 8,2.53373615 C9.6570997,2.53373615 11,3.581571 11,4.87311178" id="Page-1"></path>
+        </g>
+    </g>
+</svg>

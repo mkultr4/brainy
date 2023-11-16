@@ -1,0 +1,17 @@
+<div class="dropdown-menu-navigation bottom" id="dropdown-types" >
+<ul class="dropdown-content dropdown-max-height" [perfectScrollbar]="{suppressScrollX:true}">
+
+    <li *ngFor="let type of typesFilter" 
+      [ngClass]="{'active':filterType === type}">
+      <a href="javascript:void(0)" (click)="setFilterType(type)">
+        <span>
+            <ng-container *ngIf="type === 'all'">Todos</ng-container>
+            <ng-container *ngIf="type === 'my'">Mis workspaces</ng-container>
+            <ng-container *ngIf="type === 'shared'">Compartidos</ng-container>
+        </span>
+        <span>&nbsp;({{ (workspacesAccesses | filterWorkspaceType:type:currentUser.id ).length}})</span>
+        </a>
+    </li>
+  </ul>
+
+</div>

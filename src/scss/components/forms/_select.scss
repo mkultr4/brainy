@@ -1,0 +1,207 @@
+//Select
+.select-wrapper {
+    @include input-caret(3px);
+    margin: 0;
+    transition: 0s margin ease-out, 0.3s border ease;
+    .caret {
+        display: none;
+    }
+    >input.select-dropdown {
+        font-size: 12px;
+        height: 28px;
+        line-height: 28px;
+        box-sizing: border-box;
+        padding-right: 16px;
+        border-bottom: 1px solid rgba($primary-color, 0.2);
+        letter-spacing: 0.33px;
+        margin-bottom: 0px;
+        &[readonly] {}
+        &:hover {
+            &:not(:disabled) {
+                cursor: pointer;
+            }
+        }
+        &:disabled {
+            &:after {
+                color: rgba($primary-color, 0.42);
+            }
+        }
+    }
+    &:not(.focused) {
+        input.select-dropdown {
+            @include placeholder {
+                color: transparent !important;
+                visibility: hidden;
+            }
+        }
+    }
+    &.active {
+        &+label {
+            color: $primary-color;
+        }
+    }
+    &+label {
+        top: 0;
+        left: 0;
+    }
+}
+
+.input-field {
+    .select-wrapper {
+        input.select-dropdown {}
+        &:after {
+            height: 27px;
+            line-height: 27px;
+            font-size: 12px;
+            color: rgba($primary-color, 0.70);
+        }
+        &.active {
+            &+label {
+                color: $purple-color-light;
+            }
+        }
+    }
+    &.input-field-small {
+        .select-wrapper {
+            input.select-dropdown {
+                height: 33px;
+                line-height: 33px;
+            }
+        }
+    }
+    &.input-field-medium {
+        .select-wrapper {
+            input.select-dropdown {
+                height: 27px;
+                font-size: 14px;
+                font-weight: $font-light;
+            }
+        }
+        label {
+            font-size: 14px;
+            transform: translateY(4px);
+            &.active {
+                font-size: 12px;
+            }
+        }
+    }
+    &.input-field-medium-big {
+        .select-wrapper {
+            input.select-dropdown {
+                font-size: 16px;
+                height: 27px;
+                font-weight: $font-light;
+            }
+            &:after {
+                height: 27px;
+                line-height: 27px;
+            }
+        }
+        label {
+            font-size: 12px;
+            transform: translateY(6px);
+            &.active {
+                font-size: 12px;
+            }
+        }
+    }
+    &.select-disabled {
+        .select-wrapper {
+            input.select-dropdown {
+                border: none;
+            }
+            &:after {
+                content: "";
+            }
+        }
+    }
+    &.input-field-always-blue-light {
+        input {
+            border-bottom-color: $purple-color-light;
+        }
+        label {
+            color: $purple-color-light;
+        }
+    }
+    &.input-field-focused {
+        .select-wrapper {
+            input.select-dropdown {
+                border-bottom-color: $purple-color-light;
+            }
+        }
+    }
+    &.input-field-purple-dark {
+        .select-wrapper {
+            &.active {
+                &+label {
+                    color: $purple-color-dark2;
+                }
+            }
+        }
+    }
+    &.input-field-focused-dark {
+        .select-wrapper {
+            input.select-dropdown {
+                border-bottom-color: $purple-color-dark2;
+            }
+            &+label {
+                &.active {
+                    color: $purple-color-dark2;
+                }
+            }
+        }
+    }
+    &.input-field-help-label {
+     
+        .label-help {
+            position: absolute;
+            bottom: 9px;
+            left: -18px;
+            font-weight: $font-regular;
+            color: $primary-color;
+            transition: all .2s ease;
+            height: auto;
+            >i {
+                color: $primary-color;
+                font-size: 10px;
+                >svg {
+                    #circle,
+                    #circle-outer {
+                        fill: $purple-color-light;
+                    }
+                    #symbol-question,
+                    #symbol-question-dot {
+                        fill: #fff;
+                    }
+                }
+            }
+            &:hover {
+                color: $purple-color-light;
+                >i {
+                    >svg {
+                        #circle,
+                        #circle-outer {
+                            fill: $purple-color-light;
+                        }
+                        #symbol-question,
+                        #symbol-question-dot {
+                            fill: #fff;
+                        }
+                    }
+                }
+            }
+       
+        }
+        &.input-field-medium {
+            .label-help {
+                bottom: 9px;
+                font-size: 14px;
+                line-height: 14px;
+                >i {
+                    font-size: 14px;
+                }
+             
+            }
+        }
+    }
+}

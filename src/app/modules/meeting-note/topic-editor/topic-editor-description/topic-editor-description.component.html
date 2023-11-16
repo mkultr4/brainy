@@ -1,0 +1,65 @@
+<div #scrollDescription id="scroll-topic-description" class="topic-description-editable-wrapper closest-comment-thread-container"
+    [perfectScrollbar]="{suppressScrollX:true}">
+    <!--Title-->
+    <app-topic-editor-title [topic]="topic" [editable]="_editable" [showTour]="showTour"
+    [commentThreads]="_commentThreads | filterBy:['objectReference']:'topic-title'"
+    [filterStatuses]="_filterStatuses"
+    [filterParticipantTypes]="_filterParticipantTypes"
+    ></app-topic-editor-title>
+    <!--Description-->
+    <div class="topic-description-editable-container">
+        <div #editor id="editor-description" class="topic-description-editor" tabindex="2" placeholder="Escribe una descripción del tema."
+            [class.editable]="_editable && !enabledCommentsAction" 
+            [class.focused-in]="focusEditor" 
+            [contentEditable]="_editable && !enabledCommentsAction" (focus)="editorOnFocus($event)"
+            (blur)="editorOnBlur($event)" (input)="editorRead($event)" 
+            (keydown)="editorKeyDown($event)" (keypress)="editorKeyPress($event)"
+            (keyup)="editorKeyUp($event)" (click)="editorClick($event)" [sortablejs]="topicLineItems"
+            [sortablejsOptions]="{
+                forceFallback: true,
+                fallbackClass: 'topic-line-fallback',
+                ghostClass: 'topic-line-ghost',
+                disabled: !_editable && !enabledCommentsAction,
+                scroll: scrollDescription,
+                filter: '.static',
+                handle: '.task-drag-handler',
+                onStart: onSortStart.bind(this),
+                onEnd: onSortEnd.bind(this),
+                onUpdate: onSortUpdate.bind(this),
+                onAdd: onSortAdd.bind(this),
+                onRemove: onSortRemove.bind(this),
+                  group: {
+                    name: 'topic-editor-group',
+                    pull: 'clone',
+                    put: true,
+                    revertClone:true
+                  }}
+                "></div>
+
+    </div>
+
+    <!--Comments-->
+    <ng-container *ngFor="let commentThread of _commentThreads 
+    | filterBy:['levelId']: referenceLine 
+    | filterCommentThreadEditor
+    | filterCommentThreadStatus: _filterStatuses
+    | filterCommentThreadParticipantType: _filterParticipantTypes">
+        <app-comment-thread-meeting-note 
+        [commentThread]="commentThread" 
+        [commentThreadStatus]="commentThread.status" 
+        [hidden]="sorting"
+        ></app-comment-thread-meeting-note>
+    </ng-container>
+<!--Edition Log-->
+<ng-container *ngFor="let topicEditionLog of topicEditionLogs">
+    <app-topic-edition-log [topicEditionLog]="topicEditionLog"></app-topic-edition-log>
+  </ng-container>
+    <!--Toolbar-->
+    <app-topic-editor-toolbar #topicEditorToolbar [editable]="_editable && !sorting" 
+        [enableComments]="enableComments"
+        (toolbarOnAction)="toolbarOnAction($event)"></app-topic-editor-toolbar>
+    <!--Topic editor toolbar comments-->
+    <app-topic-editor-toolbar-comments [top]="toolbarCommentsTop" 
+    [enabledCommentsAction]="enabledCommentsAction"
+        [show]="isShowToolbarComments || enabledCommentsAction || forceShowToolbarComments" (toolbarOnActivateComments)="onActivateComments($event)"></app-topic-editor-toolbar-comments>
+</div>

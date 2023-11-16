@@ -1,0 +1,16 @@
+<div class="workspace-box" (click)="selectWorkspaceAccess()">
+  <span class="workspace-messages " appTooltip
+   [tooltipMessage]="workspaceAccess.workspace.messages + ' mensajes nuevos'" [alignamentTooltip]="'left'"
+    [ngClass]="{'empty':workspaceAccess.workspace.messages === 0}">
+    <span class="object-status-notification-number">
+      {{workspaceAccess.workspace.messages}}</span>
+    <i class="material-icons">chat_bubble_outline</i>
+  </span>
+  <div class="workspace-box-content">
+    <div class="workspace-logo avatar profile-image-immense-medium" 
+    app-workspace-logo [workspace]="workspaceAccess.workspace"></div>
+    <h2 class="workspace-name">{{workspaceAccess.workspace.name}}</h2>
+    <span class="workspace-date">{{workspaceAccess.workspace.modified | momentDate : 'DD/MM/YYYY'}}</span>
+    <span class="my-workspace" *ngIf="workspaceAccess.workspace.ownerId === currentUser.id">Tu workspace</span>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div #commentThreadPoint [id]="'thread-'+ commentThread.id" 
+    [hidden]="hidden"
+    (click)="showCommentSidebarThread($event)" 
+    [style.left]="'calc('+ ((commentThread.originalLeft * 100 ) /  naturalWidth ) + '% - '+ pinSize / 2  +'px)'"
+     [style.top]="'calc('+ ((commentThread.originalTop * 100 ) /  naturalHeight ) + '% - '+ pinSize / 2  +'px)'"
+    [ngClass]="[  'comment-thread comment-thread-point-meeting-note comment-thread-point ' + commentThread.status.key,
+    commentThread.unreadMessages? 'unread-messages' : ''
+]">
+    <span>{{commentThread.number}}</span>
+    <span *ngIf="commentThread.saved" class="comment-thread-point-participant">
+        <!--Team-->
+        <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'team'" [inlineSVG]="'/assets/img/commons/comments/ico_pin_team.svg'"></i>
+        <!--Private-->
+        <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'private'" [inlineSVG]="'/assets/img/commons/comments/ico_pin_private.svg'"></i>
+        <!--Just me-->
+        <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'just-me'" [inlineSVG]="'/assets/img/commons/comments/ico_pin_just_me.svg'"></i>
+    </span>
+</div>

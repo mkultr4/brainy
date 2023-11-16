@@ -1,0 +1,67 @@
+<div id="brief-givebacks-container" class="brief-sections-container">
+  <!--Category header-->
+  <div class='brief-sections-header'>
+    <div class='brief-header'>
+      <div class='brief-header-content'>
+        <!--Menu-->
+        <div class="workflow-primary-header" *ngIf="workflowMenu">
+          <app-brief-category-menu [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"></app-brief-category-menu>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="brief-sections-content">
+    <!--Givebacks wrapper-->
+    <div class="brief-sections-wrapper">
+      <div class="brief-sections-title-wrapper">
+        <div class="brief-sections-title-content">
+          <div class="brief-sections-title">
+            <span class="title">
+              <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_finalista_title.svg'"></i>
+              Finalista
+            </span>
+            <span class="date-limit" [class.with-date]="dateOfResults" [class.editable]="canEditDate">
+              <ng-container *ngIf="isTemplate">
+                fecha limite: DD/MM/ AAAA
+              </ng-container>
+              <ng-container *ngIf="!isTemplate">
+                <span class="date-limit-input-wrapper input-field">
+                  <span class="label-date">fecha limite:</span>
+                  <input mz-datepicker type="text" placeholder="DD/MM/ AAAA" [options]="datePickerOptionsResults"
+                    [(ngModel)]="dateOfResults" (ngModelChange)="onChangeDate($event)" id="briefResultsDate" name="briefResultsDate"
+                    placeholder="DD/MM/AA" [disabled]="!canEditDate" [class.with-date]="dateOfResults">
+                  <i class="icon-svg ico-drop" [inlineSVG]="'assets/img/brief/ico_flecha_drop.svg'"></i>
+                </span>
+              </ng-container>
+
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="brief-sections-primary-container" [perfectScrollbar]="{}">
+        <div class="brief-sections-primary-container-wrapper">
+          <ng-container *ngIf="finalists.length === 0">
+            <h4 class="without-results">Aún no tienes participantes </h4>
+          </ng-container>
+          <ng-container *ngIf="finalists.length > 0">
+                  <!--Proposals-->
+                  <div class="brief-proposal-list">
+                    <ng-container *ngFor="let proposal of finalists | orderBy:'-created'">
+                      <app-proposal-block 
+                        [finalist]="true"
+                        [proposal]="proposal" 
+                        [canEdit]="canEditProposals"
+                        [declined]="proposal.status === 'declined'"
+                        (onUpdateProposal)="onUpdateProposal($event)"
+                        
+                        ></app-proposal-block>
+                    </ng-container>
+                  </div>
+                
+
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>

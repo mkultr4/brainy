@@ -1,0 +1,14 @@
+<div class="panel-wrapper">
+  <div class="feature-panel"></div>
+  <div class="main-panel" #mainPanel>
+    <div class="main-panel-content">
+      <!--Logo-->
+      <div class="main-panel-logo">
+        <a href="javascript:void(0)" [routerLink]="['/']">
+          <img [src]="'assets/img/public/logo_brainy.svg'" class="image-logo"> Brainy
+        </a>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

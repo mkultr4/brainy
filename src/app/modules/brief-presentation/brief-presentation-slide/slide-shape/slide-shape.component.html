@@ -1,0 +1,55 @@
+
+<div 
+[id]="'brief-presentation-element-' + element.id" 
+  class="brief-presentation-element brief-presentation-shape" 
+  [ngClass]="{'focused':focused,
+              'dragging':dragging,
+              'resizing':resizing}"
+  [style.left.px]="element.left"
+  [style.top.px]="element.top" 
+  [style.width.px]="element.width"
+  [style.height.px]="element.height" 
+  [attr.data-x]="element.left"
+  [attr.data-y]="element.top"
+  appResizable 
+  [resizableAspectRatio]="true" 
+  [resizableContainment]="'body'"
+  [resizableEnabled]="focused" 
+  appDraggable
+  [draggableEnabled]="focused" 
+  [draggableContainment]="'body'"
+  [draggableHandle]="'.drag-handle'" 
+  (resizeOnStart)="onResizeStart($event)"
+  (resizeOnResizing)="onResizing($event)" 
+  (resizeOnStop)="onResizeStop($event)" 
+  (draggableOnStart)="onDragStart($event)"
+  (draggableOnDragging)="onDragging($event)" 
+  (draggableOnStop)="onDragStop($event)" 
+  
+  >
+  
+
+  <!--Shape-->
+  <div #shape class="shape {{element.type}}"
+  [style.backgroundColor]="element.styleBackground"
+  [style.width.px]="element.width" 
+  [style.height.px]="element.height" 
+  ></div>
+
+       <!--Resizable-->
+       <div class="resizable-handle r-bottom resizable-bottom"></div>
+       <div class="resizable-handle r-top  resizable-top"></div>
+       <div class="resizable-handle r-left resizable-left"></div>
+       <div class="resizable-handle r-right resizable-right"></div>
+       <div class="resizable-handle r-bottom r-right resizable-bottom-right"></div>
+       <div class="resizable-handle r-top r-left resizable-top-left"></div>
+       <div class="resizable-handle r-bottom r-left resizable-bottom-left"></div>
+       <div class="resizable-handle r-top r-right resizable-top-right"></div>
+     
+       <!--Drag Handle-->
+       <div class="drag-handle drag-top"></div>
+       <div class="drag-handle drag-bottom"></div>
+       <div class="drag-handle drag-left"></div>
+       <div class="drag-handle drag-right"></div> 
+
+</div>

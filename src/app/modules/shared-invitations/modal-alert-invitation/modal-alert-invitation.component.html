@@ -1,0 +1,45 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-alert-invitation'" [modalClass]="'modal-vertically-center modal-alert'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close" >
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="invitation">
+          <div class="user-from-invitation">
+            <div class="user-from-invitation-wrapper">
+              <div class="avatar profile-image-medium-1" app-avatar [user]="invitation?.from?.user"></div>
+              <span class="name">
+                {{invitation?.from?.user?.name + ' '+ invitation?.from?.user?.lastName}}
+              </span>
+              <span class="rol">
+                {{invitation?.from?.rol?.name}}
+              </span>
+            </div>
+          </div>
+          <h2 class="title">
+            Te ha invitado a su equipo de {{invitation?.referenceDescription}}.
+          </h2>
+          <p class="message">
+            Con privilegio (<span class="text-capitalize">{{invitation?.rol?.name}}</span>)
+          </p>
+          <!--Accept-->
+          <div class="modal-content-buttons">
+              
+            <button class="btn btn-medium-large btn-outline-line cancel "
+              [disabled]="btnDisabled"
+              [appBtnLoading]="btnDisabled"
+              (click)="cancelInvitation()"
+            >{{btnDisabled? 'CANCELANDO': 'CANCELAR'}}</button>
+            <button class="btn btn-medium-large   accept last-button" 
+              [disabled]="btnDisabled"
+              [appBtnLoading]="btnDisabled"
+              (click)="acceptInvitation()">{{btnDisabled? 'PROCESANDO': 'ACEPTAR'}}</button>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</app-mz-modal-brainy>

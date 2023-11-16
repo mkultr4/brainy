@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="15px" viewBox="0 0 20 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>ico_small_money</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-small-quantity" fill="#393A6F">
+            <path d="M3,3 L17,3 L17,13.1538462 L3,13.1538462 L3,3 Z M3.8,3.84615385 L3.8,12.3076923 L16.2,12.3076923 L16.2,3.84615385 L3.8,3.84615385 Z" id="Combined-Shape-Copy"></path>
+            <g id="Group-14" transform="translate(7.000000, 6.000000)">
+                <rect id="Rectangle-19" x="0" y="1.25" width="1" height="3.33333333"></rect>
+                <rect id="Rectangle-19-Copy" x="6" y="1.25" width="1" height="3.33333333"></rect>
+                <rect id="Rectangle-19-Copy-2" x="3" y="0" width="1" height="4.58333333"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

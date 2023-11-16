@@ -1,0 +1,9 @@
+<div class="feedback-piece-carousel-item-content" 
+  [ngStyle]="{ backgroundImage:'url(' + piece.url + ')'}" 
+  [ngClass]="{'active':pieceShow.id === piece.id}"  (click)="select()">
+
+  
+</div>
+
+
+<span class="order">{{piece.order}}</span>

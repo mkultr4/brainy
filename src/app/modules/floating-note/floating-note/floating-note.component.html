@@ -1,0 +1,22 @@
+<div class="fixed-floating-note-btn" >
+  <a class="btn-floating btn-floating-note" (click)="openPopup()">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_floating_note.svg'"></i>
+  </a>
+  <app-floating-note-popup #popup 
+    [currentUser]="currentUser"
+    [workspaceAccess]="workspaceAccess"
+    [core]="core"
+    [empty]="empty"
+    [coreTypes]="coreTypes"
+    (onClose)="onClosePopup()" 
+    (onOpen)="onOpenPopup()"
+    (onExportNote)="onExport($event)"
+    >
+  </app-floating-note-popup>
+</div>
+
+<app-toolbar-floating-note (onCreateNote)="onCreateNoteToolbar($event)"></app-toolbar-floating-note>
+
+
+<!--Download-->
+<app-modal-download-project #modalDownload [withComments]="false" [showWithSubscription]="false"></app-modal-download-project>

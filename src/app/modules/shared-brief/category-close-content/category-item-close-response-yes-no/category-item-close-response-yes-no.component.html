@@ -1,0 +1,12 @@
+<div class="response-yes-no" >
+  <div class="response-yes-no-content">
+      <ng-container *ngFor="let option of item.responseSettings.options | orderByImpure:['order'];let index = index">
+        <app-option-yes-no-close 
+          [option]="option"
+          [checked]="item.responseContent.options.indexOf(option) >= 0"
+        ></app-option-yes-no-close>
+
+      </ng-container>
+     
+  </div>
+</div>

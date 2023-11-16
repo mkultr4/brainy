@@ -1,0 +1,60 @@
+<div id="brief-givebacks-container" class="brief-sections-container">
+  <!--Category header-->
+  <div class='brief-sections-header'>
+    <div class='brief-header'>
+      <div class='brief-header-content'>
+        <!--Menu-->
+        <div class="workflow-primary-header" *ngIf="workflowMenu">
+          <app-brief-category-menu [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"></app-brief-category-menu>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="brief-sections-content">
+    <!--Givebacks wrapper-->
+    <div class="brief-sections-wrapper">
+      <div class="brief-sections-title-wrapper">
+        <div class="brief-sections-title-content">
+          <div class="brief-sections-title">
+            <span class="title">
+              <i [inlineSVG]="'assets/img/brief/ico_devoluciones_title.svg'"></i>
+              Devoluciones
+            </span>
+            <!--Date-->
+            <span class="date-limit" [class.with-date]="dateOfGivebacks" [class.editable]="canEditDate">
+              <ng-container *ngIf="isTemplate">
+                fecha limite: DD/MM/ AAAA
+              </ng-container>
+              <ng-container *ngIf="!isTemplate">
+                <span class="date-limit-input-wrapper input-field">
+                  <span class="label-date">fecha limite:</span>
+                  <input mz-datepicker type="text" placeholder="DD/MM/ AAAA" [options]="datePickerOptionsGivebacks"
+                    [(ngModel)]="dateOfGivebacks" (ngModelChange)="onChangeDate($event)" id="briefGiveBackdate" name="briefGiveBackdate"
+                    placeholder="DD/MM/AA" [disabled]="!canEditDate">
+                  <i class="icon-svg ico-drop" [inlineSVG]="'assets/img/brief/ico_flecha_drop.svg'"></i>
+                </span>
+              </ng-container>
+
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="brief-sections-primary-container" [perfectScrollbar]="{}">
+        <div class="brief-sections-primary-container-wrapper">
+          <ng-container *ngIf="givebacks.length === 0">
+            <h4 class="without-results left-align">Aún no tienes devoluciones </h4>
+          </ng-container>
+          <ng-container *ngIf="givebacks.length > 0">
+            <ng-container *ngFor="let giveback of givebacks">
+              <app-brief-giveback-block [giveback]="giveback" [workspaceAccess]="workspaceAccess" (onEditGiveback)="onEditGiveback($event)"
+                (onDeleteGiveback)="onDeleteGiveback($event)" (onReplyGiveback)="onReplyGiveback($event)"
+                (onGoToQuestion)="onGoToQuestion($event)"
+                (onDeleteReplyGiveback)="onDeleteReplyGiveback($event)"></app-brief-giveback-block>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+
+// Toolbar topic
+#main-toolbar-menu-category {
+    position: absolute;
+    left: -19px;
+    top: 35px;
+
+    .menu-actions-wrapper {
+        .menu-actions {
+            width: 130px;
+        }
+    }
+    &.brief-template{
+        .menu-actions-wrapper {
+            .menu-actions {
+                width: 154px;
+            }
+        }   
+    }
+    #pulse-target-brief-action{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 30px;
+        left: 5px;
+        top: 5px;
+    }
+}
+.brief-toolbar-comments{
+    @extend .topic-editor-toolbar-comments;
+    right: -40px;
+}
+.brief-toolbar-returns{
+    @extend .topic-editor-toolbar-comments;
+    right: -40px;
+}

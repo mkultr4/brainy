@@ -1,0 +1,17 @@
+<a class="participant-information" href="javascript:void(0)">
+
+  <div class="avatar {{avatarClass}}" app-avatar [user]="{email: email}" [showStatus]="false"></div>
+
+  <div class="participant-user-information">
+      <span class="name">
+        {{email}}
+      </span>
+  </div>
+
+</a>
+<a href="javascript:void(0)" class="participant-remove" app-alert-dialog 
+  [message]="'¿Quieres eliminar el email?'" [acceptText]="'Si'"
+  [cancelText]="'No'" [alertClass]="'alert-participants-sidenav'" 
+    (alertOnAccept)="delete()">
+  <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+</a>

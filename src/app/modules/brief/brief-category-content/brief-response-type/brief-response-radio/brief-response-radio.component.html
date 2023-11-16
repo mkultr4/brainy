@@ -1,0 +1,25 @@
+<div class="response-radio">
+
+  <div class="brief-radio-list">
+    <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options |  orderByImpure:['order']">
+      <app-option-radio
+        [option]="option"
+        [editable]="editable"
+        [refillable]="refillable"
+        [focusResponse]="focusResponse"
+        [selected]="briefCategoryItem.responseContent.options.indexOf(option) >= 0"
+        (onToggleSelection)="toggleSelection($event)"
+        (onDelete)="deleteOption($event)"
+        (onChange)="onChangeSettings()"
+      ></app-option-radio>
+    </ng-container>
+    <!--Add Option-->
+    <ng-container *ngIf="focusResponse">
+      <div class="brief-radio brief-radio-add" (click)="addOption()">
+        <span class="brief-radio-add-text">Agregar&nbsp;+</span>
+      </div>
+    </ng-container>
+  </div>
+
+
+</div>

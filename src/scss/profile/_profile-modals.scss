@@ -1,0 +1,85 @@
+#modal-profile-assign-project {
+    @extend .modal-new-brainy-object;
+
+    .modal-content {
+        min-height: 300px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        .modal-header {}
+
+        @include mq($from: desktop) {
+            padding: 98px 0 98px;
+        }
+    }
+}
+
+#modal-profile-unlink-project {
+    @extend .modal-delete;
+
+    max-height: 90vh;
+    height: 560px;
+
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                .user-information-unlink {
+                    margin-bottom: 15px;
+                    .user-information-block {
+                        display: inline-block;
+                        width: auto;
+                    }
+                }
+                .unlink-options{
+                    padding: 30px 0;
+                    .checkbox-block{
+                        width: 200px;
+                        margin: 0 auto 20px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+
+    @include mq($from: desktop) {
+        padding-bottom: 73px;
+        padding-top: 89px;
+    }
+}
+
+#modal-profile-remove-project {
+    max-height: 90vh;
+
+    @extend .modal-delete;
+
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                .message {
+                    padding-bottom: 29px;
+                }
+
+                .projects {
+                    margin-bottom: 14px;
+                }
+
+                .checkbox-block {
+                    font-size: 14px;
+                }
+
+                .user {
+                    text-align: center;
+                    font-size: 14px;
+                    color: $purple-color-light;
+                    margin-bottom: 61px;
+                }
+            }
+        }
+    }
+
+    @include mq($from: desktop) {
+        padding-bottom: 73px;
+        padding-top: 89px;
+    }
+}

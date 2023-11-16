@@ -1,0 +1,30 @@
+
+<div class="modal-overlay" style="z-index: 1002; display: block; opacity: 1;    will-change: unset;"></div>
+<!--Modal create-->
+<app-modal-new-feedback #modalNew [feedback]="feedback" [workspaceAccess]="workspaceAccess"></app-modal-new-feedback>
+<!--Left Navigation-->
+<app-feedback-left-sidenav-empty [compressed]="leftSidenavCompressed"></app-feedback-left-sidenav-empty>
+<!--Layout Feedback-->
+<section class="layout-workflow-sidenav layout-feedback ">
+  <!--Main-->
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <!--Header-->
+      <header app-feedback-header class="interface-header  workflow-feedback-header" [workspaceAccess]="workspaceAccess" [feedback]="feedback"
+        [editable]="headerEditable" [canShare]="canShare" [canApprove]="canApprove" [isApprover]="isApprover"></header>
+      <!--Screen view-->
+      <div class="screen-view" [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,'sidenav-left-compress':leftSidenavCompressed}">
+        <app-feedback-piece-empty
+        [rightSidenavCompressed]="rightSidenavCompressed"
+        [leftSidenavCompressed]="leftSidenavCompressed"
+        ></app-feedback-piece-empty>
+      </div>
+    </div>
+
+  </main>
+</section>
+<!--Left Navigation-->
+<app-sidenav-participants [compressed]="rightSidenavCompressed" [owner]="workspaceAccess.user"></app-sidenav-participants>
+<!--Floating Note-->
+<app-floating-note></app-floating-note>

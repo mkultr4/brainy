@@ -1,0 +1,70 @@
+<nav class="interface-nav interface-filter-nav bg-white">
+  <div class="container">
+    <div class="nav-wrapper">
+      <ul id="nav-dashboard-filter" [ngClass]="{'hide':isShowSearch}">
+        <!--Search-->
+        <li class="search">
+          <a href="javascript:void(0)" (click)="toggleSearch()">
+            <i [inlineSVG]="'assets/img/commons/ico_search.svg'" class="icon-svg ng-scope" id="ico-nav-search"></i>
+          </a>
+        </li>
+        <li class="first-nav-item with-dropdown-menu" *ngIf="view !== 'group'"
+          [ngClass]="{'filter-active':filterStatus.key !== 'all'}">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-filter-team-status">
+            <ng-container *ngIf="filterStatus.key === 'all'">
+              <span>
+                {{ 'dashboard.status' | translate}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="filterStatus.key !== 'all'">
+              {{'workspaceAccess.status.'+ filterStatus.key | translate}}
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <app-dropdown-filter-team-status [accountStatuses]="accountStatuses" [filterStatus]="filterStatus"
+            [view]="view" [workspaceAccesses]="workspaceAccesses"
+            (filterOnChangeFilterStatus)="onChangeFilterStatus($event)"></app-dropdown-filter-team-status>
+        </li>
+        <li class="with-dropdown-menu filter-order" [ngClass]="{
+                            'first-nav-item':view === 'group',
+                            'filter-active':filterOrderChange
+                            }">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-order">
+            <ng-container *ngIf="!filterOrderChange">
+              <span>Ordenar</span>
+            </ng-container>
+            <ng-container *ngIf="filterOrderChange">
+              <i class="order-direction" [ngClass]="{'invested':filterOrderDirection=== -1}"
+                [inlineSVG]="'assets/img/commons/icono_arrow_up.svg'"></i>
+              <ng-container *ngIf="filterOrderColumn === 'user.name'">
+                <span>Ordenar</span>
+              </ng-container>
+              <ng-container *ngIf="filterOrderColumn === 'modified'">
+                <span>Actividad</span>
+              </ng-container>
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons  caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <!--Dropdown Order-->
+          <app-dropdown-order [orderAlph]="'user.name'" [filterOrderDirection]="filterOrderDirection"
+            [filterOrderColumn]="filterOrderColumn" (filterOnChangeFilterOrder)="changeFilterOrder($event)">
+          </app-dropdown-order>
+        </li>
+      </ul>
+      <button class="btn btn-pill-nav btn-invite-people" (click)="invite()" [ngClass]="{'hide':isShowSearch}">
+        <span class="icon-add icon-svg" [inlineSVG]="'assets/img/commons/ico_invite_people.svg'"></span>
+        <span>Personas</span>
+      </button>
+      <!--Search Field-->
+      <ng-container *ngIf="isShowSearch">
+        <app-input-field-search-nav [search]="mainSearch" [searchPlaceholder]="'Busca por nombre o correo electrónico'"
+          (inputOnClose)="toggleSearch()" (inputOnChangeSearch)="changeMainSearch($event)">
+        </app-input-field-search-nav>
+      </ng-container>
+
+    </div>
+
+  </div>
+</nav>

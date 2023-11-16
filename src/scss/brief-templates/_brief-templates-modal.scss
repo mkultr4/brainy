@@ -1,0 +1,56 @@
+#modal-new-brief-template{
+    @extend .modal-new-brainy-object;
+    .modal-content{
+        min-height: 440px;
+    }
+}
+#modal-brief-assign-permissions {
+    .modal-content {
+        .modal-content-inner {
+            .modal-header {
+                padding: 76px 0 30px  0;
+
+                .modal-header-title {
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+}
+
+#assign-permission-container {
+    height: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    .input-field-search-nav-wrapper {
+        margin-bottom: 16px;
+
+        .input-field-search-nav {
+            margin: 0;
+
+            .input-field-search-content {
+                .filter-search-input {
+                    border-color: rgba($primary-color, 0.2);
+
+                    &:focus {
+                        border: 1px solid #666666;
+                    }
+                }
+            }
+        }
+    }
+
+    .participants-list-container {
+        padding: 20px 0 20px 0;
+    }
+
+    .button-container {
+        padding: 20px 0 20px 0;
+        text-align: center;
+        .btn{
+            width: 200px;
+        }
+    }
+}

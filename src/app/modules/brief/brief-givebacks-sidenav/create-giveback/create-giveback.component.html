@@ -1,0 +1,83 @@
+<div class="giveback-editor-view">
+  <!--Category-->
+  <div class="giveback-category">
+    <span class="category-title">
+      <i [inlineSVG]="'assets/img/brief/ico_subcategory.svg'" class="ico-subcategory"></i>
+      {{ !categoryTitle ? 'Sin título' : categoryTitle }}
+    </span>
+    <ng-container *ngIf="subcategoryTitle">
+      <span class="sub-category-title">|&nbsp;
+        {{ subcategoryTitle }}
+      </span>
+    </ng-container>
+  </div>
+  <!--Question-->
+  <div class="giveback-item-title">
+    <span *ngIf="briefCategoryItem.title">
+      {{ briefCategoryItem.title }}
+    </span>
+    <span *ngIf="!briefCategoryItem.title">
+      Sin pregunta
+    </span>
+  </div>
+  <!--Giveback editor--->
+  <div class="giveback-editor-container">
+    <!--Title-->
+    <div class="giveback-title">
+      Tienes observaciones de la respuesta para:
+    </div>
+    <!--User-->
+    <div class="participant-list-block-without-line" *ngIf="briefCategoryItem && briefCategoryItem.fillAnswerBy">
+      <div class="participant-information without-permissions">
+        <!--BRAND-->
+        <ng-container *ngIf="briefCategoryItem.fillAnswerBy.brandCurrentCore">
+            <div app-brand-logo class="avatar profile-image-medium-1"
+            [brand]="briefCategoryItem.fillAnswerBy.brandCurrentCore"></div>
+        </ng-container>
+        <ng-container *ngIf="!briefCategoryItem.fillAnswerBy.brandCurrentCore">
+            <div class="avatar profile-image-medium-1" app-avatar [user]="briefCategoryItem.fillAnswerBy.user"
+              [showStatus]="false" ></div>
+          </ng-container>
+          <!--/END BRAND-->
+        <div class="participant-user-information">
+          <span class="name">
+            <!--If has brand-->
+            <ng-container *ngIf="briefCategoryItem.fillAnswerBy.brandCurrentCore">
+              <span class="brand-name">
+                {{ briefCategoryItem.fillAnswerBy.brandCurrentCore.name}}&nbsp;|
+              </span>
+            </ng-container>
+            {{ briefCategoryItem.fillAnswerBy.user.name + ' ' +
+            briefCategoryItem.fillAnswerBy.user.lastName}}
+            &nbsp;
+            <ng-container *ngIf="briefCategoryItem.fillAnswerBy.groupReference === 'editor' || briefCategoryItem.fillAnswerBy.groupReference === 'approver'">|&nbsp;{{'workspaceAccess.rol.'+
+              briefCategoryItem.fillAnswerBy.groupReference | translate}}</ng-container>
+          </span>
+          <span class="rol">{{ 'workspaceAccess.rol.' + briefCategoryItem?.fillAnswerBy?.rol?.key
+            | translate}}</span>
+        </div>
+      </div>
+    </div>
+    <!--Editor-->
+    <div class="content-editable-message-container">
+      <app-content-editable-menu [show]="showMenu"></app-content-editable-menu>
+      <div class="content-editable-message" contenteditable="true" placeholder="Escriba un mensaje"
+        [(contentEditableModel)]="message" [singleLine]="false" [maxLength]="500" (focus)="showMenu = true;" (blur)="showMenu = false;">
+        <br>
+      </div>
+      <ng-container *ngIf="giveback.createdBy && workspaceAccess.id === giveback.createdBy.id">
+        <ul class="content-editable-menu-options">
+          <li>
+            <a class="save" href="javascript:void(0)" (click)="updateGiveback()">Guardar</a>
+          </li>
+          <li>
+            <a class="cancel" href="javascript:void(0)" (click)="closeSidenav()">Cancelar</a>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+    <div class="giveback-content-buttons right-align" *ngIf="!briefCategoryItem.giveback.id">
+      <button class="btn btn-light" [disabled]="message.length === 0 || btnDisabled" (click)="addGiveback()">Enviar</button>
+    </div>
+  </div>
+</div>

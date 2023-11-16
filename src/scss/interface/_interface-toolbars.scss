@@ -1,0 +1,147 @@
+.editable-toolbar{
+  margin: 0;
+ > li{
+      display:inline-block;
+      float:left;
+      height:15px;
+      position: relative;
+       a,span{
+          padding: 0 5px;
+          height: 15px;
+          line-height:15px;
+          text-align:center;
+          display:block;
+          opacity: 0.5;
+          i{
+              font-size: 13px;
+              color: #DDDDDD;
+              line-height: inherit;
+              &.icon-svg{
+                //  svg{height: 10px;margin-bottom:1px;}
+
+              }
+          }
+          &:hover{
+              cursor: pointer;
+              opacity: 1;
+              i{
+                  color:$primary-color;
+                  #ico-attachment{
+                      path{
+                          stroke: $primary-color;
+                      }
+                  }
+                  #ico-video{
+                      #rectangle,#play{
+                          stroke: $primary-color;
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
+
+
+.toolbar-actions {
+    z-index: 120;
+    position: absolute;
+    display: none;
+    .toolbar-btn {
+        position: relative;
+        z-index: 5;
+        transition: all 0.3s ease;
+        display: block;
+        margin-left: 5px;
+        margin-top: 5px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 30px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        >i {
+            font-size: 15px;
+            line-height: 30px;
+            color: $purple-color-dark2;
+        }
+    }
+    &.toolbar-visible {
+        display: block;
+    }
+    &.editing-item {
+        display: none;
+    }
+}
+
+.toolbar-menu-actions {
+    @extend .toolbar-actions;
+    left: 31px;
+    width: 40px;
+    height: 40px; 
+    .menu-actions-wrapper {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-40px);
+        transition: all 0.2s cubic-bezier(0.42, 0.0, 0.58, 1.0);
+        z-index: 4;
+        position: absolute;
+        background: $purple-color;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.58);
+        border-radius: 2px;
+        top: 9px;
+        left: 40px;
+        height: 28px;
+        .menu-actions {
+            display: inline-block;
+            margin: 0;
+            padding: 0 5px;
+            border-radius: 2px;
+            height: 28px;
+            li {
+                display: inline-block;
+                float: left;
+                text-align: center;
+                line-height: 28px;
+                .action {
+                    line-height: 28px;
+                    height: 28px;
+                    display: block;
+                    padding: 0 5px; //width: 25px;
+                    text-align: center;
+                    font-size: 14px;
+                    color: #fff;
+                    >i {
+                        height: 26px;
+                        display: inline-block;
+                    }
+                    &:hover {
+                        opacity: 0.5;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        &.show {}
+
+    }
+    &.toolbar-open {
+        .toolbar-btn {
+            transform: rotate(-45deg);
+            box-shadow: none;
+            >i {
+                svg {
+                    #ico-toolbar-brief-add {
+                        fill: rgba($primary-color, 0.2);
+                    }
+                }
+            }
+        }
+        .menu-actions-wrapper{
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0px);
+        }
+    }
+}

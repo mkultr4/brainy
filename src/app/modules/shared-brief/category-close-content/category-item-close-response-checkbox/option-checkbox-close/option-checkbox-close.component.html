@@ -1,0 +1,30 @@
+<div class="brief-checkbox close-view" [ngClass]="{'checked': checked }">
+  <!--Delete Checkbox-->
+
+  <!--Checkbox Option-->
+  <div class="brief-checkbox-option">
+
+    <div class="brief-checkbox-option-content">
+      <!--Checkbox-->
+      <div class="brief-checkbox-selector" [ngClass]="{ 'without-icon': !option.icon}">
+        <i class="brief-checkbox-selector-posisionated" [inlineSVG]="'assets/img/brief/response-types/checkbox/ico_add_icons.svg'">
+        </i>
+        <!--Button select icon-->
+        <button [disabled]='true' class="brief-checkbox-selector-btn" [id]="'option-btn-'+option.id">
+          <!--Ico Select-->
+          <span *ngIf="option.icon" class="icon-select">
+            <i *ngIf="option.icon.font === 'ionicons'" class="{{option.icon.value}}"></i>
+            <i *ngIf="option.icon.font === 'material-icons'" class="material-icons">{{option.icon.value}}</i>
+          </span>
+        </button>
+      </div>
+      <!--Label-->
+      <div class="brief-checkbox-content-label-container">
+        <div [maxLength]="29" placeholder="Escriba aquí" class="brief-checkbox-content-label" [(contentEditableModel)]="option.label">
+        </div>
+      </div>
+    </div>
+    <span class="brief-active-indicator">
+      <img src="assets/img/brief/ico_resp_check.svg" class="active-indicator-icon">
+    </span>
+  </div>

@@ -1,0 +1,93 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-change-feedback-piece'" [modalClass]="'modal-vertically-center modal-alert'">
+  <a href="javascript:void(0)" class="modal-close modal-close-btn">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="piece">
+          <!--Upload-->
+          <ng-container *ngIf="!showAlertError">
+            <h2 class="title-replace">
+              {{ 'feedback.replace-piece.title.'+piece.type | translate }}
+            </h2>
+            <!--Drop Image-->
+
+            <div class="feedback-piece-drop-area">
+              <div *ngIf="uploading" class="uploading-overlay"></div>
+              <!--Drop Area-->
+              <ng-container *ngIf="!uploading && !file">
+                <div class="drop-area-zone" appFileDropzone (fileDrop)="fileRead($event)">
+                  <div class="drop-area-zone-container" appFilePicker (filePick)="fileRead($event)">
+                    <div class="drop-here">
+                      <i class="drop-here-icon material-icons">cloud_upload</i>
+                      <span class="drop-here-text" [innerHTML]="'feedback.replace-piece.upload-message.'+piece.type | translate">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <!--/Drop Area-->
+              <!--File information-->
+              <ng-container *ngIf="uploading || file">
+                <div class="file-information-container" [ngClass]="{'uploading':uploading}">
+                  <div class="file-information">
+                    <div class="file-information-image" [style.backgroundImage]="previewUrl"></div>
+                    <div class="file-information-text">
+                      {{file?.name}}
+                    </div>
+                    <a href="javascript:void(0)" class="file-remove" (click)="removeFile($event)">
+                      <i class="icon ion-md-close-circle-outline"></i>
+                    </a>
+                  </div>
+                  <div class="progress lighted" [ngClass]="{'animation-disabled':!uploading}">
+                    <div class="determinate" [ngStyle]="{width: barProgress + '%'}"></div>
+                  </div>
+                </div>
+              </ng-container>
+              <!--/File information-->
+
+            </div>
+
+
+            <!--Checkbox-->
+            <div class="checkbox-block">
+              <input type="checkbox" class="filled-in shined medium" id="piece-mantain-comments" [(ngModel)]="mantainComments">
+              <label for="piece-mantain-comments">
+                {{ 'feedback.replace-piece.mantain-comments.'+piece.type | translate }}
+              </label>
+            </div>
+            <button class="btn btn-large btn-upload" [disabled]="btnDisabled || changingImage" [appBtnLoading]="changingImage"
+              (click)="change()">
+              {{ changingImage ? 'REMPLAZANDO' : 'REMPLAZAR' }}
+
+            </button>
+          </ng-container>
+          <!--Error-->
+          <ng-container *ngIf="showAlertError">
+            <h2 class="title">
+              <span class="title-error">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_alert_error.svg'"></i>
+                ¡Proceso fallido!
+              </span>
+            </h2>
+            <p class="message">
+              No se ha podido cargar la imagen correctamente.
+              <br> Compruebe su conexión y vuelva a intentarlo.
+            </p>
+            <div class="modal-content-buttons">
+              <button class="btn btn-medium-large btn-outline-line cancel  modal-close">
+                CANCELAR
+              </button>
+              <button class="btn btn-medium-large  btn-outline-line last-button accept" (click)="retry()">
+                REINTENTAR
+              </button>
+
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</app-mz-modal-brainy>

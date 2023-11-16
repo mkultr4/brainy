@@ -1,0 +1,81 @@
+<div class="dropdown dropdown-profile left" [id]="'invitation-profile-'+invitation.id">
+  <div class="user-profile-content">
+    <!--Profile-->
+    <div class="user-profile">
+      <!--Avatar-->
+      <div app-avatar [user]="invitation.workspaceAccess? invitation.workspaceAccess.user : invitation"
+       class="avatar profile-image-default"
+        [ngClass]="{ 'with-halo':  invitation.groupReference === 'editor' || invitation.groupReference === 'approver'}"></div>
+      <!--Email-->
+      <ng-container *ngIf="!invitation.workspaceAccess">
+        <div class="user-profile-name">
+          {{invitation.email}}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="invitation.workspaceAccess">
+        <div class="user-profile-name">
+          {{invitation.workspaceAccess.user.name + ' ' + invitation.workspaceAccess.user.lastName }}
+        </div>
+      </ng-container>
+      <!--Rol-->
+      <ng-container *ngIf="!invitation.workspaceAccess"> 
+        <div class="user-profile-rol">
+          {{invitation.rol.name}}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="invitation.workspaceAccess"> 
+          <div class="user-profile-rol">
+              {{invitation.workspaceAccess.rol.name}}
+            </div>
+      </ng-container>
+    </div>
+    <!--Permissions-->
+    <div class="user-permissions">
+      <!--Comentar-->
+      <div class="checkbox-block">
+        <input class="radio-rounded invested" type="radio" id="{{invitation.id + '-comment'}}" name="{{invitation.id + '-permission'}}"
+          value="comment" [(ngModel)]="invitation.groupReference" (ngModelChange)="onChangePermissions($event)">
+        <label for="{{invitation.id + '-comment'}}" class="dropdown-prevent-close">
+          <i class="icon-svg " [inlineSVG]="'assets/img/share/icono_comentar.svg'"></i>
+          Comentar
+        </label>
+      </div>
+      <!--See-->
+      <div class="checkbox-block" [ngClass]="{'active':invitation.groupReference === 'member'}">
+        <input class="radio-rounded invested" type="radio" id="{{invitation.id + '-see'}}" name="{{invitation.id + '-permission'}}"
+          value="editor" [(ngModel)]="invitation.groupReference" (ngModelChange)="onChangePermissions($event)">
+        <label for="{{invitation.id + '-see'}}" class="dropdown-prevent-close">
+          <i class="icon-svg " [inlineSVG]="'assets/img/share/icono_editar.svg'"></i>
+          Editor (Member)
+        </label>
+      </div>
+      <!-- Referent -->
+      <div class="checkbox-block" [ngClass]="{'active':invitation.groupReference === 'special-member'}">
+        <input class="radio-rounded invested" type="radio" id="{{invitation.id + '-referent'}}" name="{{invitation.id  + '-permission'}}"
+          value="approver" [(ngModel)]="invitation.groupReference" (ngModelChange)="onChangePermissions($event)">
+        <label for="{{invitation.id + '-referent'}}" class="change-referent profile-close">
+          <i class="icon-svg ng-scope" [inlineSVG]="'assets/img/share/icono_aprobar.svg'"></i>
+          Aprobador (SM)
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="participant-footer">
+    <ng-container *ngIf="!invitation.active">
+      <div class='pending-invitation'>
+        Invitación pendiente
+      </div>
+    </ng-container>
+    <ng-container *ngIf="invitation.active">
+      <div class="user-delete">
+        <a href="javascript:void(0)" (click)="cancelInvitation()">
+          {{ 'core.invitations.dropdown-delete.'+ coreKey | translate}}
+        </a>
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf="withArrow" class="arrow"></div>
+
+</div>

@@ -1,0 +1,41 @@
+<div class="feedback-version-compare-preview" 
+[style.width.px]="boxWidthPreview" [style.height.px]="boxHeightPreview">
+  <div class="feedback-version-compare-preview-wrapper"
+  [perfectScrollbar]="{suppressScrollX:false}"
+  >
+
+    <div class="feedback-version-compare-preview-container" 
+    [style.width.px]="calculatedWidth"
+      [style.height.px]="calculatedHeight">
+      <img class="feedback-version-compare-preview-img" 
+        [src]="_piece.url | sanitize:'url'" 
+        [style.width.px]="calculatedWidth"
+        [style.height.px]="calculatedHeight">
+      <div class="closest-comment-thread-container"
+      [style.width.px]="calculatedWidth"
+        [style.height.px]="calculatedHeight"
+      >
+        <ng-container *ngFor="let commentThread of commentThreads 
+                                                  | filterCommentThreadStatus:filterStatuses
+                                                  | filterCommentThreadParticipantType: filterParticipantTypes">
+          <!--Point thread-->
+          <ng-container *ngIf="commentThread.type === 'pin'">
+            <app-feedback-piece-pin [piece]="_piece" [commentsEnabled]="false" [pieceSize]='{
+                  calculatedHeight: calculatedHeight,
+                  calculatedWidth: calculatedWidth
+                }' [commentThread]="commentThread">
+            </app-feedback-piece-pin>
+          </ng-container>
+          <!--Shape-->
+          <ng-container *ngIf="commentThread.type === 'circle' || commentThread.type === 'rectangle'">
+            <app-feedback-piece-shape [commentThread]="commentThread" [commentsEnabled]="false" [piece]="_piece" [pieceSize]='{
+                calculatedHeight: calculatedHeight,
+                calculatedWidth: calculatedWidth }'>
+            </app-feedback-piece-shape>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>

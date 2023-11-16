@@ -1,0 +1,23 @@
+<div 
+    app-modal-floating
+    [modalFloatingEdge]="'right'"
+    [modalFloatingBtnId]="'#table-cell-btn-'+cell.id"
+    (modalOnShow)="onShowFn(true)"
+    (modalOnHide)="onShowFn(false)"
+     class="modal-prevent-close contextual-brief-table category-item-floating-menu">
+    <div class="contextual-brief-table-content">
+        <span class="title">Personalizar celda</span>
+        <ul class='contextual-brief-table-types'>
+            <li *ngFor="let type of tableCellTypes">
+                <a href="javascript:void(0)"
+                   [ngClass]="{'active':cell.type.key === type.key && !cell.isNew}"
+                   (click)="changeType($event,type)">
+                    <i class='icon-svg' [inlineSVG]="type.icon"></i>
+                    <span>{{'brief.cell-type.' + type.key | translate}}</span>
+                </a>
+                
+            </li>
+            
+        </ul>
+    </div>
+</div>

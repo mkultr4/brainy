@@ -1,0 +1,59 @@
+<!--Table Input-->
+
+<div [id]="'cell-' + cell.id" class="brief-table-input" [ngClass]="{'
+            focused':focused,
+            'enabled-editing':editable,
+            'contextual-open':isShowContextualTable ,
+            'input-percentage': cell.type.key === 'percentage'
+        }">
+
+  <!--Contextual-->
+  <app-contextual-response-table 
+    *ngIf="editable"
+    [cell]="cell" 
+    [tableCellTypes]="tableCellTypes"
+    (onChangeType)="onChangeType($event)"
+    (onShowContextual)="onShowContextual($event)">
+  </app-contextual-response-table>
+  <!--Type cell-->
+  <ng-container [ngSwitch]="cell.type.key">
+    <!--Text-->
+    <app-table-input-text *ngSwitchCase="'text'"
+       (onFocus)="onFocus($event)" 
+       (onChangeSettings)="onChangeSettings()"
+       [cell]="cell" [editable]="editable"
+      [refillable]="refillable" [isResizing]="isResizing">
+    </app-table-input-text>
+    <!--Percentage-->
+    <app-table-input-percentage *ngSwitchCase="'percentage'" 
+    (onFocus)="onFocus($event)"
+    (onChangeSettings)="onChangeSettings()"
+    [cell]="cell" [editable]="editable"
+      [refillable]="refillable" [isResizing]="isResizing">
+    </app-table-input-percentage>
+    <!--Date-->
+    <app-table-input-date *ngSwitchCase="'date'" (onFocus)="onFocus($event)" 
+    (onChangeSettings)="onChangeSettings()"
+    [cell]="cell" [editable]="editable"
+      [refillable]="refillable" [isResizing]="isResizing">
+    </app-table-input-date>
+    <!--Quantity-->
+    <app-table-input-quantity *ngSwitchCase="'quantity'" (onFocus)="onFocus($event)"
+    (onChangeSettings)="onChangeSettings()"
+     [cell]="cell" [editable]="editable"
+      [refillable]="refillable" [isResizing]="isResizing">
+    </app-table-input-quantity>
+    <!--Select-->
+    <app-table-input-select *ngSwitchCase="'select'" (onFocus)="onFocus($event)"
+    (onChangeSettings)="onChangeSettings()"
+     [cell]="cell" [editable]="editable"
+      [refillable]="refillable" [isResizing]="isResizing">
+    </app-table-input-select>
+  </ng-container>
+
+
+  <!--Table Menu-->
+  <a href="javascript:void(0)" [id]="'table-cell-btn-'+cell.id" class="brief-table-input-menu modal-floating-trigger">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+  </a>
+</div>

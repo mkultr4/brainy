@@ -1,0 +1,75 @@
+<!--For first item-->
+<ng-container *ngIf="topic && (index === 0 && topic.title.length > 0) || index > 0 || topic.saved">
+
+  <!--Collpase-->
+  <span  [class.collapse]="collapse"  [class.editing]="iEditable" class="topic-collapse" (click)="showTopic()">
+    <!--Drag Handle-->
+    <a class="topic-drag-handler" href="javascript:void(0)" *ngIf="editable">
+      <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_ordenar_feedback.svg'"></i>
+    </a>
+    <ng-container *ngIf="topic.descriptionItems && (topic.descriptionItems | filterItemSubTopic).length > 0">
+      <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/icon_estatus_drop.svg'" (click)="collapseClick()"></i>
+    </ng-container>
+    <!--Title HTML-->
+    <span  class="title-content" [innerHTML]="topic.title.length === 0 ? 'Tema sin titulo': topic.title | sanitize:'html'"></span>
+    <!--Editor-->
+    <span  class="title-content-editable" *ngIf="visible">
+      <span 
+      class="editor" #editor placeholder="Escriba un tema" 
+        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+        [sanitizeHTML]="false"
+        [contentEditable]="iEditable" 
+        [(contentEditableModel)]="topic.title"
+        (contentEditableModelChange)="onChangeTopicTitle($event)" 
+        [maxLength]="100" (blur)="blurEditor()"></span>
+    </span>
+
+    <!--Menu-->
+    <ul *ngIf="editable && !iEditable" class="topic-menu-options-sidenav">
+      <li>
+        <a class="edit" href="javascript:void(0)" (click)="editTitle()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+        </a>
+      </li>
+      <li>
+        <a class="remove" href="javascript:void(0)" app-alert-dialog [message]="'¿Estas seguro de eliminar el tema?'"
+          [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-meeting-note-sidenav'" (alertOnAccept)="removeTopic()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+        </a>
+      </li>
+
+    </ul>
+    <!--Pending-->
+    <i *ngIf="topic.pending" class="topic-pending-ico" [inlineSVG]="'/assets/img/meeting-note/icono_tema_pendiente_activo.svg'"></i>
+  </span>
+
+
+  <ul 
+  #subtopicList
+  class="subtopic-list-sidenav browser-default" 
+  [id]="'subtopic-list-group'" 
+  [class.collapse]="collapse" 
+  [sortablejs]="topic.descriptionItems | filterItemSubTopic "
+  [sortablejsOptions]="sortableOptions"
+  [class.empty]="(topic.descriptionItems | filterItemSubTopic).length === 0"
+  [class.active]="topicShow.id === topic.id"
+  >
+    <ng-container *ngFor="let item of topic.descriptionItems | filterItemSubTopic | orderBy:['order']">
+      <li 
+        [attr.data-id]="item.id"
+        [attr.data-topic-id]="topic.id"
+        [attr.data-order]="item.order"
+        class="sub-topic-item-draggable">
+        <app-sub-topic-item 
+        [item]="item" [editable]="editable"
+        [topicShow]="topicShow"
+        [visible]="visible"
+        (subTopicOnRemove)="removeSubTopic($event)"
+        (subTopicOnUpdate)="updateSubTopic($event)"
+         (subTopicClick)="subTopicClick()"
+         ></app-sub-topic-item>
+      </li>
+    </ng-container>
+  </ul>
+
+</ng-container>

@@ -1,0 +1,12 @@
+<div *ngIf="workspace && workspace.thumbnail; else acronymAvatar" 
+class="circle profile-image" 
+[ngStyle]="{ backgroundColor:workspace.backgroundColor,backgroundImage:'url(' + workspace?.thumbnail + ')'}"
+
+>
+</div>
+<ng-template #acronymAvatar>
+    <div class="brainy-logo circle profile-image" 
+    [ngStyle]="{ backgroundColor:workspace.backgroundColor}">
+           <img class="logo" src="assets/img/logo_brainy.svg">
+    </div>
+</ng-template>

@@ -1,0 +1,34 @@
+{
+    "commons": {
+        "without-results":"Without results",
+        "name":"Nom",
+        "last-name":"Le nom",
+        "email":"Courrier électronique",
+        "password":"Passe",
+        "language":"Langage",
+        "save":"Sauvegarder",
+        "profile":"Profil",
+        "my-profile":"Mon profil"
+        
+    },
+    "dates":{
+        "today":"Hoy",
+        "yesterday":"Ayer"
+    },
+    "dashboard":{
+        "brands":"Brands",
+        "projects":"Projects",
+        "types":"Types",
+        "status":"Status",
+        "order":"Order"
+    },
+    "profile":{
+        "you-account":"Ton compte",
+        "activity":"Activité",
+        "you-plan":"Votre plan",
+        "billing":"Facturation",
+        "benefits":"Avantages",
+        "your-permissions":"Vos autorisations"
+        
+    }
+}

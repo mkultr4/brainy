@@ -1,0 +1,38 @@
+<div class="category-title">
+  <span>{{category.title}}</span>
+</div>
+<div class="category-items-content">
+  <!--Items-->
+  <ng-container *ngFor="let item of category.items">
+    <ng-container [ngSwitch]="item.type">
+      <!--Subcategory-->
+      <div class="brief-category-item-close brief-category-item-close-sub-category" *ngSwitchCase="'SUB_CATEGORY'">
+        <span [innerHTML]="item.title | sanitize:'html'"></span>
+      </div>
+      <!--Question-->
+      <div class="brief-category-item-close brief-category-item-close-question" app-category-item-close-question
+        *ngSwitchCase="'QUESTION'" [item]="item">
+      </div>
+      <!--Text-->
+      <div *ngSwitchCase="'TEXT'" class="brief-category-item-close brief-category-item-close-text">
+        <p [innerHTML]="item.description | sanitize:'html'"></p>
+      </div>
+      <!--Image-->
+      <div *ngSwitchCase="'IMAGE'" class="brief-category-item-close brief-category-item-close-image">
+          <img class="gallery-image" #imgRef contenteditable="false" 
+          [src]="item.content.file.url | sanitize:'url'">
+      </div>
+      <!--Video-->
+      <div *ngSwitchCase="'VIDEO'" class="brief-category-item-close brief-category-item-close-video"
+      app-category-item-close-video [item]="item"
+      >
+      </div>
+      <!--Dynamic-content-->
+      <div *ngSwitchCase="'DYNAMIC_CONTENT'" 
+        app-category-item-close-dynamic-content
+        class="brief-category-item-close brief-category-item-close-dynamic-content"
+        [item]="item">
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

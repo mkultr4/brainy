@@ -1,0 +1,132 @@
+<div class="profile-user-billing-breadcrumb">
+  <!--Back to billing-->
+  <a class="back-to-billing" routerLinkActive="active" [routerLink]="['../bill']">
+    <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'" class="icon-svg back-icon"></i>
+    <span> Facturación</span>
+  </a>
+</div>
+<div class="row">
+  <div class="col s1"></div>
+  <div class="col s11">
+    <div class="profile-user-billing-history-content">
+      <div class="profile-user-billing-history-title">
+        <span id="content" #content>Histórico de pagos</span>
+        <a class="profile-user-billing-filter" id="btn-filter-billing-history" mz-button>
+          <span>{{filterValue.text}}</span>
+          <i class="material-icons caret">keyboard_arrow_down</i>
+        </a>
+        <!--Dropdown-->
+        <app-mz-dropdown-brainy [id]="'dropdown-filter-billing-history'" [dropdownButtonId]="'btn-filter-billing-history'"
+          [constrainWidth]="false" [belowOrigin]="false" 
+          [align]="'right'">
+          <li *ngFor="let filter of filterHistory" [ngClass]=" {'active':filterValue.filter === filter.filter}">
+            <a href="javascript:void(0)" (click)="setFilter(filter)">
+              {{filter.text}}
+            </a>
+          </li>
+        </app-mz-dropdown-brainy>
+      </div>
+      <!--Table history-->
+      <table class="table-billing-history">
+        <thead>
+          <tr>
+            <th class="date">Fecha</th>
+            <th>Descripción</th>
+            <th>Métodos de Pago</th>
+            <th>Estatus</th>
+            <th class="total">Total</th>
+            <th class="button"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let history of billingHistoryFilter | 
+                orderBy:'-date'">
+            <!-- Date -->
+            <td>{{history.date | momentDate:'DD/MM/YY'}}</td>
+            <!-- Descripction -->
+            <td>{{history.description}}</td>
+            <!-- payment-method -->
+            <td class="payment-method">
+              <span *ngIf="history.paymentMethod != 'Pendiente'">
+                <div>
+                  <div class="col s2 m2 l2 card-logo-box">
+                    <span>
+                      <img [src]="'/assets/img/pic_mastecard_icon.svg'" class="icon-svg card-logo">
+                    </span>
+                  </div>
+                  <div class="col s10 m10 l10 box-card-number">
+                    <div class="col s5 m7 l6 enconde-number-card">
+                      <span>*** *** ***</span>
+                    </div>
+                    <div class="col s3 m3 l3 number-card">
+                      <span> 9953 </span>
+                    </div>
+                  </div>
+                </div>
+              </span>
+              <span *ngIf="history.paymentMethod === 'Pendiente'">
+                <span class="status">Pendiente</span>
+              </span>
+            </td>
+            <!-- Status -->
+            <td>
+              <span *ngIf="history.paymentMethod != 'Pendiente'">
+                {{history.status}}
+              </span>
+              <span class="status" *ngIf="history.paymentMethod === 'Pendiente'">
+                Pendiente
+              </span>
+            </td>
+            <!-- Total -->
+            <td>$ {{history.total}}</td>
+            <!-- Action -->
+            <td class="actions">
+              <!--If not pending-->
+              <ng-container *ngIf="history.paymentMethod !== 'Pendiente'">
+                <!--Trigger-->
+                <button class="btn btn-action" mz-button [id]="'btn-action-history-'+history.id">
+                  <i class="icon-svg" [inlineSVG]="'/assets/img/commons/sidenav/ico_menu.svg'"></i>
+                </button>
+                <!--Dropdown-->
+                <app-mz-dropdown-brainy [id]="'dropdown-action-billing-history-'+history.id" [dropdownButtonId]="'btn-action-history-'+history.id"
+                  [constrainWidth]="false" [dropdownClass]="'dropdown-action-billing-history'" [belowOrigin]="false">
+                  <li>
+                    <a href="javascript:void(0)" (click)="download()">
+                      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/ico_download_csv.svg'"></i>
+                      Descargar csv
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" (click)="downloadPDF()">
+                      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/ico_download_pdf.svg'"></i>
+                      Descargar pdf
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/ico_print.svg'"></i>
+                      Imprimir
+                    </a>
+                  </li>
+                </app-mz-dropdown-brainy>
+              </ng-container>
+              <!--If pending-->
+              <ng-container *ngIf="history.paymentMethod === 'Pendiente'">
+                <div class="pay-now">
+                  <a href=""> <span>Pagar ahora</span></a>
+                </div>
+              </ng-container>
+            </td>
+          </tr>
+          <tr *ngIf="billingHistoryFilter.length === 0">
+            <td class="empty" colspan="6">
+              <h5 class="without-results">
+                Sin datos para mostrar
+              </h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

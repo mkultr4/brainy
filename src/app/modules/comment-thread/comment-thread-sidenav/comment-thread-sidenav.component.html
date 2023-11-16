@@ -1,0 +1,262 @@
+<app-aside-nav #commentsThreadSideNav id="comment-thread-nav" class="tertiary"
+ [disableScroll]="true" (asideOnHide)="onHide()" (asideOnShow)="onShow()">
+  <div app-sidenav id="slide-out-comments-thread" class="side-nav fixed interface-resize
+     rightside-navigation animated box-shadow-line">
+    <!--Header-->
+    <div class="sidenav-comments-thread-header" #sidenavHeader>
+      <div class="sidenav-comments-thread-header-content">
+        <!--Comment Thread circle-->
+        <div *ngIf="sidenavInformation && sidenavInformation.show" class="comment-thread comment-thread-point comment-thread-circle {{commentThread?.status?.key}}">
+          <span>{{commentThread.number}}</span>
+          <span class="comment-thread-point-participant" *ngIf="commentThread.participantType">
+            <!--Team-->
+            <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'team'" [inlineSVG]="'assets/img/commons/comments/ico_pin_team.svg'"></i>
+            <!--Private-->
+            <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'private'" [inlineSVG]="'assets/img/commons/comments/ico_pin_private.svg'"></i>
+            <!--Just me-->
+            <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'just-me'" [inlineSVG]="'assets/img/commons/comments/ico_pin_just_me.svg'"></i>
+          </span>
+        </div>
+        <!--Title Comment Thread-->
+        <textarea rows="1" appAutoGrow maxlength="100" class="textarea-editable" #commentThreadTitle [(ngModel)]="commentThread.title"
+          (blur)="onBlurCommentThreadTitle()" [readonly]="commentThreadTitleReadOnly" placeholder="Título del comentario">
+        </textarea>
+
+        <!--Toolbar menu-->
+        <ul class="menu-toolbar-default">
+          <li>
+            <a class="burguer" href="javascript:void(0);" id="btn-toolbar-side-comment-thread">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+            </a>
+            <!--Toolbar-->
+            <app-mz-dropdown-brainy [id]="'toolbar-side-comment-thread'" [align]="'left'" [dropdownButtonId]="'btn-toolbar-side-comment-thread'"
+              [constrainWidth]="false" [belowOrigin]="true" [gutter]="0" 
+              [dropdownClass]="'dropdown-toolbar'" [container]="'body'">
+              <li *ngIf="canEdit && commentsEnabled">
+                <span (click)="setEditableCommentTile()" class="edit">
+                  <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                  Editar título
+                </span>
+              </li>
+              <li>
+                <span (click)="downloadCommentThread()">
+                  <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_descargar.svg'"></i>
+                  Descargar
+                </span>
+              </li>
+              <li *ngIf="canEdit && commentsEnabled">
+                <span class="delete" (click)="deleteCommentThread()">
+                  <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+                  Eliminar PIN
+                </span>
+              </li>
+
+            </app-mz-dropdown-brainy>
+          </li>
+          <li>
+            <a class="close" href="javascript:void(0);" (click)="commentsThreadSideNav.hideSidenav()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+            </a>
+
+          </li>
+        </ul>
+      </div>
+      <!--Options-->
+      <div class="commnet-thread-options" *ngIf="isShowSidenav">
+
+        <!--Participants Type-->
+        <a href="javascript:void(0)" 
+        class="participants-drodpown-btn" id="btn-dropdown-status-participants-thread" 
+        [ngClass]="{'disabled':commentThread && commentThread.status && commentThread.status.key !== 'resolved' && !commentsEnabled}">
+          <i class="icon-svg type-ico" [inlineSVG]="commentThread?.participantType?.ico"></i>
+          {{'participant.type.' + commentThread?.participantType?.key | translate}}
+          <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/ico_caret.svg'"
+          *ngIf="(commentThread && commentThread.status && commentThread.status.key !== 'resolved') && commentsEnabled"
+          ></i>
+        </a>
+        <!--Dropdowm-->
+        <app-mz-dropdown-brainy [id]="'dropdown-status-participants-thread'" 
+        [dropdownButtonId]="'btn-dropdown-status-participants-thread'"
+          [constrainWidth]="false" [belowOrigin]="false" [align]="'left'" [dropdownClass]="'dropdown-participants-type'">
+          <li *ngFor="let type of participantTypes">
+            <a (click)="setParticipantsType(type)">
+              <i class="icon-svg" [inlineSVG]="type.ico"></i>
+              <span>
+                  {{'participant.type.' + type.key | translate}}
+              </span>
+            </a>
+          </li>
+        </app-mz-dropdown-brainy>
+        <!--Status-->
+        <a class="status-comments-drodpown-btn {{commentThread?.status?.key}}"
+         href="javascript:void(0)" id="btn-dropdown-status-comment-thread-nav"
+          [ngClass]="{'disabled':  (commentThread && commentThread.status && commentThread.status.key === 'resolved') &&  !commentsEnabled}">
+          <i class="icon-svg status-icon-dropdown {{commentThread?.status?.key}}" 
+          [inlineSVG]="commentThread?.status?.ico">
+          </i>
+          {{'comment.status.' + commentThread?.status?.key | translate}}
+          <i *ngIf="(commentThread && commentThread.status && commentThread.status.key !== 'resolved') && commentsEnabled"
+           class="icon-svg caret" [inlineSVG]="'assets/img/commons/ico_caret.svg'"></i>
+        </a>
+        <app-mz-dropdown-brainy 
+          *ngIf="commentThread && commentThread.status && commentThread.status.key !== 'resolved'" 
+          [id]="'dropdown-status-comment-thread-nav'"
+          [dropdownButtonId]="'btn-dropdown-status-comment-thread-nav'"
+          [constrainWidth]="false" [belowOrigin]="false" 
+          [dropdownClass]="'dropdown-status-comments'">
+          <li *ngFor="let status of _commentThreadStatuses">
+            <span  class="{{status.key}}" (click)="setStatusSidenav(status)">
+              <i class="icon-svg status-icon-dropdown" [inlineSVG]="status.ico"></i>
+              {{'comment.status.' + status.key  | translate}}
+            </span>
+          </li>
+        </app-mz-dropdown-brainy>
+      </div>
+    </div>
+    <!--Content-->
+    <div class="sidenav-comments-thread-content" #sidenavContent
+    [ngClass]="{'comment-thread-resolved':commentThread && commentThread.status && commentThread.status.key === 'resolved'}"
+    >
+      <!--Resolved-->
+      <div class="sidenav-comments-thread-resolved" 
+      *ngIf="commentThread && commentThread.status && commentThread.status.key === 'resolved'">
+        <div class="sidenav-comments-thread-resolved-wrapper">
+          <div class="sidenav-comments-thread-resolved-content">
+            <span>Comentario resuelto por:</span>
+            <span class="resolved-by">
+              {{commentThread.resolvedBy.user.name + ' '+commentThread.resolvedBy.user.lastName}}&nbsp;|&nbsp; {{commentThread.resolvedBy.rol.name}}
+            </span>
+            <span class="resolved-at">
+              {{commentThread.resolvedAt | momentDate:'dddd DD/MM/YYYY hh:ss'}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <!--Comment Thread-->
+      <div class="comment-thread-wrapper" *ngIf="view === 'comments'">
+        <!--Thread-->
+        <div class="comment-thread-content" id="comment-content-scroller"
+        *ngIf="commentThreadMessages.length > 0"
+        >
+          <div class="comment-thread-content-inner" 
+          #scrollComments
+          [perfectScrollbar]="{suppressScrollX:true}" 
+          [ngClass]="{'resolved':commentThread && commentThread.status && commentThread.status.key === 'resolved'}">
+            <!--Days wrapper-->
+            <div #daysWrapper class="days-wrapper">
+
+
+              <div class="day-container" *ngFor="let day of dayMessages">
+                <div class="day-divider" [ngClass]="{'with-line': day.day === yesterday || day.day === today }">
+                  <p class="day-divider-label">
+                    <ng-container *ngIf="day.day != today && day.day != yesterday">
+                      <span class="date">{{day.day | momentDate:'dddd DD [de]'}}</span>
+                      <span class="month">{{day.day | momentDate:'MMMM'}}</span>
+                      <span class="year">{{day.day | momentDate:'YYYY'}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="day.day === yesterday">
+                      <span>Ayer</span>
+                    </ng-container>
+                    <ng-container *ngIf="day.day === today">
+                      <span>Hoy</span>
+                    </ng-container>
+                  </p>
+                </div>
+                <div class="day-msg">
+
+
+                  <app-comment-box 
+                    [workspaceAccess]="workspaceAccess" *ngFor="let comment of commentThreadMessages 
+                                          | filterCommentMessageByDay:day.day
+                                          | filterCommentMessagePrimary
+                                          | filterBy:['saved']: true
+                                          | orderBy:'timestamp';
+                                          trackBy:trackById;
+                                          let first= first;" 
+                    [first]="first" 
+                    [disabledEdition]="(commentThread && commentThread.status && commentThread.status.key === 'resolved')|| !commentsEnabled"
+                    [commentThread]="commentThread" 
+                    [comment]="comment" 
+                    (commentOnResize)="onResizeComment()"
+                    (commentOnReply)="onReplyComment($event)"
+                    (commentOnScrollToComment)="scrollToComment($event)"
+                    >
+
+
+
+                  </app-comment-box>
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="comment-content" *ngIf="commentThreadMessages.length === 0">
+          <h4 class="center empty-text-color">Sin comentarios</h4>
+        </div>
+      </div>
+      <!--Comment  Summary-->
+      <div class="comment-summary-wrapper" *ngIf="view === 'summary'">
+        <div class="comment-summary-content">
+          <div class="comment-summary-title ">
+            <span>Participantes</span>
+          </div>
+          <!--Participants-->
+          <ng-container *ngIf="workspaceAccessPerComments">
+            <div class="participant-block-inline" *ngFor="let summary of workspaceAccessPerComments">
+              <div app-avatar class="avatar profile-image-small" [user]="summary.user" [showStatus]="true"></div>
+              <div class="participant-block-inline-content ">
+                <span class="user-name">{{summary.user.name + ' '+ summary.user?.lastName}}</span>
+                <span class="user-rol">{{summary.user.rol.name}}</span>
+              </div>
+
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!--Sumary-->
+      <ng-container *ngIf="workspaceAccessPerComments">
+        <div class="comment-thread-summary" (click)="toggleView()">
+          <span>Comentarios</span>
+          <span class="participants" *ngIf="workspaceAccessPerComments">{{workspaceAccessPerComments.length===0 ? 'Sin':workspaceAccessPerComments.length}} participantes</span>
+        </div>
+      </ng-container>
+    </div>
+    <!--Footer-->
+    <div class="sidenav-comments-thread-footer" #sidenavFooter
+    [ngClass]="{'comment-thread-resolved':commentThread && commentThread.status && commentThread.status.key === 'resolved'}"
+    >
+      <div class="sidenav-comments-thread-footer-wrapper" [ngClass]="{'comment-audio':newComment.type === 'audio'}">
+        <!--Not resolved-->
+        <ng-container *ngIf="commentThread && commentThread.status && commentThread.status.key !== 'resolved' && commentsEnabled">
+          <app-comment-input 
+          #commentInput 
+          *ngIf="sidenavInformation.show && commentAction!=='record'" 
+          [comment]="newComment" 
+          [commentMention]="commentMention"
+          [autoFocus]="true" 
+          (inputOnStartRecordAction)="onStartRecordAction($event)"
+          (inputOnRemoveMention)="onRemoveMention($event)"
+          ></app-comment-input>
+          <app-comment-input-record *ngIf="commentAction === 'record'" 
+          (recordOnCancel)="onCancelRecord()" 
+          (recordOnAccept)="onAcceptRecord($event)"></app-comment-input-record>
+          <div class="btn-container">
+            <button class="btn btn-light button-send-comment" (click)="sendMessage()" [disabled]="newComment.isEmpty()" *ngIf="commentAction!=='record'">Enviar</button>
+          </div>
+        </ng-container>
+        <!--Resolved-->
+        <ng-container *ngIf="(commentThread && commentThread.status && commentThread.status.key === 'resolved') || !commentsEnabled">
+          <textarea class="comment-resolved-textarea" placeholder="(Pin cerrado a comentarios)" [disabled]="true"></textarea>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</app-aside-nav>
+<!--Modal Delete-->
+<app-modal-delete-comment-thread (onDelete)="onDelete()"></app-modal-delete-comment-thread>
+<!--Modal Download-->
+<app-modal-download-comment-thread></app-modal-download-comment-thread>

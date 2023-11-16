@@ -1,0 +1,88 @@
+<div class="brand-profile-summary-wrapper {{view}}">
+  <div class="brand-profile-summary-nav">
+    <div class="brand-profile-summary-content container">
+      <div class="interface-header-display-back ">
+        <a class="back-button" href="javascript:void(0)" 
+          [routerLink]="['/brands']">
+          <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'"
+           class="icon-svg back-icon"></i>
+          Brands
+        </a>
+      </div>
+      <!--Breadcrumb-->
+      <div class="brand-profile-summary-breadcrumb">
+
+
+      </div>
+      <!--Summary-->
+      <div class="brand-profile-summary">
+        <div class="brand-information">
+          <div class="row no-margin-bottom">
+
+            <div class="col s6 m6 l6">
+              <!--Back-->
+              <div class="brand-information-container">
+                <a href="javascript:void(0)" class="brand-logo-link" [routerLink]="['/brands']">
+                  <div app-brand-logo class="avatar profile-image-immense-1 brand-logo" [brand]="brand"></div>
+                </a>
+                <!--Name-->
+                <div class="brand-name-container">
+                  <a href="javascript:void(0)" class="brand-name" [routerLink]="['/brands']">
+                    {{brand.name}}
+                  </a>
+                </div>
+                <!--Projects-->
+                <div class="brands-projects-container">
+                  <a class="brands-projects" href="javascript:void(0)" 
+                  [class.inactive]="view === 'members'"
+                   [routerLink]="['projects']">
+                    
+                    <span [ngPlural]="brand.coresCount">
+                      <ng-template ngPluralCase="0">
+                        {{ 'brands.without-projects' | translate }}
+                      </ng-template>
+                      <ng-template ngPluralCase="1">
+                        {{ 'brands.projects-singular' | translate:{count:brand.coresCount} }}
+                      </ng-template>
+                      <ng-template ngPluralCase="other">
+                        {{ 'brands.projects-plural' | translate:{count:brand.coresCount} }}
+                      </ng-template>
+                    </span>
+    
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col s6 m6 l6">
+              <div class="team-box-participants-wrapper" [ngClass]="{'active':view === 'members'}" (click)="viewParticipants()">
+                <div class="team-box-participants">
+                  <div class="team-box-participants-content">
+                    <!--If has more 6 user-->
+                    <ng-container *ngIf="brand.workspaceAccesses.length > 6">
+                      <ng-container *ngFor="let workspaceAccess of (brand.workspaceAccesses ? brand.workspaceAccesses.slice(0,5): []) ">
+                        <div class="avatar profile-image-smaller" app-avatar [user]="workspaceAccess.user"></div>
+                      </ng-container>
+                      <!--More-->
+                      <div class="participant-circle participant-circle-more">
+                        <span>+{{brand.workspaceAccesses.length - 5}}</span>
+                      </div>
+                    </ng-container>
+                    <!--If has  6 user or minus-->
+                    <ng-container *ngIf="brand.workspaceAccesses.length <= 6">
+                      <ng-container *ngFor="let workspaceAccess of brand.workspaceAccesses ">
+                        <div class="avatar profile-image-smaller" app-avatar [user]="workspaceAccess.user"></div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+                <a href="javascript:void(0)">Participantes</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

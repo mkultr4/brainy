@@ -1,0 +1,889 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h1>INDEX</h1>
+      <ol>
+        <li>
+          Login
+          <ol>
+            <li>
+              <a [routerLink]="['/public/login']">Inicio de Sesión</a>
+
+            </li>
+            <li>
+              <a [routerLink]="['/public/login']" [queryParams]="{ 
+              message: 'Oops! Esa combinación de correo electrónico / contraseña no es válida.' ,
+              messageType:'error',
+              autocomplete:true
+            }">Inicio
+                de Sesión / errror usuario contraseña</a>
+            </li>
+            <li>
+              <a [routerLink]="['/public/login/recover-password-confirm/abcs-esas-as']">Recuperar contraseña
+                confirmación</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Registro
+          <ol>
+            <li>
+              <a [routerLink]="['/public/register']">
+                Registrarse
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/public/thanks']">Registro mensaje</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Errores
+          <ol>
+            <li>
+              <a [routerLink]="['/error/service-unavailable']">Servicio no disponible</a>
+            </li>
+            <li>
+              <a [routerLink]="['/error/confirmation-expired']">Confirmacion expirada</a>
+            </li>
+            <li>
+              <a [routerLink]="['/error/register-unavailable']">Registro no disponible</a>
+            </li>
+          </ol>
+        </li>
+        <!--Workspaces-->
+        <li>
+          Workspaces
+          <ol>
+            <li>
+              <a [routerLink]="['/workspaces']">Tus workspaces</a>
+            </li>
+            <li>
+              <a [routerLink]="['/workspaces']" [queryParams]="{ messageInformative: true }">Tus workspaces / Mensaje
+                informativo</a>
+            </li>
+            <li>
+              <a [routerLink]="['/workspaces']" [queryParams]="{ alertInvitation: true }">Tus workspaces / Alerta de
+                invitacion</a>
+            </li>
+          </ol>
+        </li>
+        <!--Dashboard-->
+        <li>
+          Dashboard
+          <ol>
+            <li>
+              Equipo
+              <ol>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'super-admin' }">Tablero Super Administrador</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' }">Tablero Administrador</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'co-admin' }">Tablero Co-admin</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'manager' }">Tablero Manager</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'team' }">Tablero Team</a>
+                </li>
+              </ol>
+
+            </li>
+            <li>
+              Mensajes de bienvenida
+              <ol>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , dashboardEmpty:'true'}">Dashboard
+                    vacio</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' ,dashboardEmpty:'true', tour:'true'}">Mensajes
+                    1ra vez registro gratis
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , dailyMessage:'true'}">Mensajes
+                    Diarios</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <!--Brands-->
+        <li>
+          Marcas
+          <ol>
+            <li>
+              <a [routerLink]="['/brands']" [queryParams]="{ rol: 'admin' }">Marcas</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brands']" [queryParams]="{ rol: 'admin',empty:true }">Marcas vacias</a>
+            </li>
+          </ol>
+        </li>
+        <!--My profile-->
+        <li>
+          Mi perfil
+          <ol>
+            <li>
+              <a [routerLink]="['/profile/user/']" [queryParams]="{ rol: 'admin' }">Admin</a>
+            </li>
+            <li>
+              <a [routerLink]="['/profile/user/']" [queryParams]="{ rol: 'team' }">Team</a>
+            </li>
+          </ol>
+        </li>
+        <!--Team-->
+        <li>
+          Equipos
+          <ol>
+            <li>
+              <a [routerLink]="['/team']" [queryParams]="{ rol: 'admin' }">Equipos</a>
+            </li>
+            <li>
+              <a [routerLink]="['/team']" [queryParams]="{ rol: 'admin',empty:true,tour:true }">Equipos tutorial</a>
+            </li>
+            <li>
+              <a [routerLink]="['/team']" [queryParams]="{ rol: 'admin',empty:true }">Equipos vacios</a>
+            </li>
+            <li>
+              <a [routerLink]="['/team/group']" [queryParams]="{ rol: 'admin',empty:true }">Grupos vacios</a>
+            </li>
+          </ol>
+        </li>
+        <!--Feedback-->
+        <li>Feedback
+          <ol>
+            <li>
+              <a [routerLink]="['/feedback']" [queryParams]="{ rol: 'admin' }">Crear</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin' ,'create':true,'withoutInvitations':true}">Feedback
+                creado vacio</a>
+            </li>
+            <li>
+              Roles
+              <ol>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin' }"> Super admin, Admin, Co-admin,
+                    Manager</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin' ,'withoutInvitations':true}"> Super
+                    admin, Admin, Co-admin,
+                    Manager / <b>Sin invitaciones</b></a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'team' }">Team, Guest</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'team' ,'withoutInvitations':true}">Team,
+                    Guest /<b>Sin invitaciones</b></a>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin',specialRol:'approver' }"> Super
+                        admin, Admin, Co-admin,
+                        Manager</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'team',specialRol:'approver' }">Team,
+                        guest</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin',specialRol:'editor' }"> Super
+                        admin, Admin, Co-admin,
+                        Manager</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'team',specialRol:'editor' }">Team,
+                        guest</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin','create':true ,tour:'true','withoutInvitations':true }">Tutorial</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin', forceError:true }"> Forzar error</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{unreadMessages:'true' }">Pines animacion</a>
+            </li>
+            <!--Open Feedback-->
+            <li>
+              Re-abrir feedback
+              <ol>
+                <li>
+                  Solicitud Modificacion
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'manager'}">
+                        Solictud de modificacion [Admin, co-admin, manager]
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li>
+                  Solicitud Permisos
+                  <ol>
+                    <!--Member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager', specialRol: 'editor','soliciteModificationFeedback':true}">
+                        Respuesta editor
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'editor','solicitePermissionAcceptedFeedback':true}">
+                        Respuesta aprobador editor solicitud de permisos aceptada
+                      </a>
+                    </li>
+                    <!--Special member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'approver','solicitePermissionFeedback':true}">
+                        Respuesta aprobador
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback',1]" [queryParams]="{ rol:'manager', specialRol: 'approver','simulateEdition':true}">
+                        Respuesta aprobador <b>alerta fue editado</b>
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+              </ol>
+            </li>
+            <!--Feedback Approbed-->
+            <li>
+              Visual Aprobado
+              <ol>
+                <li>
+                  <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'admin' }"> [Super admin, Admin,
+                    Co-admin, Manager]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'team' }">[Team, Guest]</a>
+                </li>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'admin', 'specialRol':'editor'}">
+                        [Super admin, Admin,
+                        Co-admin, Manager]</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'team','specialRol':'editor' }">[Team,
+                        Guest]</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'admin' ,'specialRol':'approver'}">
+                        [Super admin, Admin,
+                        Co-admin, Manager]</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'team' ,'specialRol':'approver'}">[Team,
+                        Guest]</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <!--Meeting Note-->
+        <li>
+          Minuta
+          <ol>
+            <li>
+              <a [routerLink]="['/meeting-note']" [queryParams]="{ rol: 'admin' }">Crear</a>
+            </li>
+            <li>
+              <a [routerLink]="['/meeting-note/3']" [queryParams]="{ rol: 'admin' ,'create':true,'withoutInvitations':true}">
+                Minuta creada vacia
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/meeting-note/3']" [queryParams]="{ rol: 'admin' ,'create':true,'withoutInvitations':true,type:'scheduled'}">
+                Minuta programada creada vacia
+              </a>
+            </li>
+            <li>
+              Roles
+              <ol>
+                <li>
+                  <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'admin' }"> Super admin, Admin, Co-admin,
+                    Manager</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'admin' ,'withoutInvitations':true}">
+                    Super
+                    admin, Admin, Co-admin,
+                    Manager / <b>Sin invitaciones</b></a>
+                </li>
+                <li>
+                  <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'team' }">Team, Guest</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'team' ,'withoutInvitations':true}">Team,
+                    Guest /<b>Sin invitaciones</b></a>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'admin',specialRol:'approver' }">
+                        Super
+                        admin, Admin, Co-admin,
+                        Manager</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'team',specialRol:'approver' }">Team,
+                        guest</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'admin',specialRol:'editor' }"> Super
+                        admin, Admin, Co-admin,
+                        Manager</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note/1']" [queryParams]="{ rol: 'team',specialRol:'editor' }">Team,
+                        guest</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <a [routerLink]="['/meeting-note/3']" [queryParams]="{ rol: 'admin','create':true ,tour:'true','withoutInvitations':true}">
+                Tutorial
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/meeting-note/3']" [queryParams]="{ rol: 'admin' ,'create':true,'withoutInvitations':true,canceled:true}">
+                Minuta cancelada
+              </a>
+            </li>
+            <!--Open Meeting note-->
+            <li>
+              Re-abrir Minuta
+              <ol>
+                <li>
+                  Solicitud Modificacion
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'manager'}">
+                        Solictud de modificacion [Admin, co-admin, manager]
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li>
+                  Solicitud Permisos
+                  <ol>
+                    <!--Member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager', specialRol: 'editor','soliciteModificationMeetingNote':true}">
+                        Respuesta editor
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'editor','solicitePermissionAcceptedMeetingNote':true}">
+                        Respuesta aprobador editor solicitud de permisos aceptada
+                      </a>
+                    </li>
+                    <!--Special member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'approver','solicitePermissionMeetingNote':true}">
+                        Respuesta aprobador
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note',3]" [queryParams]="{ rol:'manager', specialRol: 'approver','showAudit':true}">
+                        Respuesta aprobador <b>alerta lista de modificaciones</b>
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note',3]" [queryParams]="{ rol:'manager', specialRol: 'approver','simulateEdition':true}">
+                        Respuesta aprobador <b>alerta fue editado</b>
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+              </ol>
+            </li>
+            <!--Meeting Approbed-->
+            <li>
+              Visual Aprobado
+              <ol>
+                <li>
+                  <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'admin' }"> [Super admin, Admin,
+                    Co-admin, Manager]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'team' }">[Team, Guest]</a>
+                </li>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'admin', 'specialRol':'editor'}">
+                        [Super admin, Admin,
+                        Co-admin, Manager]</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'team','specialRol':'editor' }">[Team,
+                        Guest]</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'admin' ,'specialRol':'approver'}">
+                        [Super admin, Admin,
+                        Co-admin, Manager]</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'team' ,'specialRol':'approver'}">[Team,
+                        Guest]</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <!--Brief Tutoriales-->
+        <li>
+          Tutoriales de <b>Brief</b>
+          <ol>
+            <li>
+              <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin',briefTemplateTour:true}">Tutorial libreria
+                template</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brief/template/1']" [queryParams]="{ rol: 'admin','create':true,'withoutInvitations':true,
+              'tourCreate':true,'tourResponse':false,'statusKey':'edit'}">Tutorial
+                crear Template</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'admin','create':true,'withoutInvitations':true, 'tourInterface':true,
+                 'statusKey':'process','autoFillResponse':true}">Tutorial
+                pitch</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brief/template-pitch/1']" [queryParams]="{ rol: 'admin','create':true,'withoutInvitations':true, 'tourCreate':true,
+                 'tourResponse':'true',
+                 'statusKey':'edit'}">Tutorial
+                template pitch</a>
+            </li>
+          </ol>
+        </li>
+        <!--Brief Template-->
+        <li>
+          Brief templateas
+          <ol>
+            <li>
+              Roles
+              <ol>
+                <li>
+                  <a [routerLink]="['/brief-templates']" [queryParams]="{ rol: 'admin'}">Admin</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief-templates']" [queryParams]="{ rol: 'manager' }">Manager</a>
+                </li>
+
+              </ol>
+            </li>
+
+          </ol>
+        </li>
+        <!--Brief-->
+        <li>
+          Brief
+          <ol>
+            <li>
+              <a [routerLink]="['/brief/project']" [queryParams]="{ rol: 'admin', templateId:'1' }">Crear proyecto</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brief/template']" [queryParams]="{ rol: 'admin' }">Crear Template</a>
+            </li>
+            <li>
+              Roles
+              <ol>
+                <li>
+                  <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'admin' }"> Super admin, Admin,
+                    Co-admin,
+                    Manager</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'admin' ,'withoutInvitations':true}">
+                    Super
+                    admin, Admin, Co-admin,
+                    Manager / <b>Sin invitaciones</b></a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'team' }">Team</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'team' ,'withoutInvitations':true}">Team/<b>Sin
+                      invitaciones</b></a>
+                </li>
+                <li><a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'guest' }">Guest</a></li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'admin',specialRol:'approver',statusKey:'process' }">
+                        Super
+                        admin, Admin, Co-admin,
+                        Manager
+                        <b>[estado en proceso]</b>
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'team',specialRol:'approver',statusKey:'process'  }">Team,
+                        guest <b>[estado en proceso]</b>
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'admin',specialRol:'editor',statusKey:'edit' }">
+                        Super
+                        admin, Admin, Co-admin,
+                        Manager
+                        <b>[estado en edicion]</b>
+
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'team',specialRol:'editor',statusKey:'edit' }">Team,
+                        guest
+                        <b>[estado en edicion]</b>
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'guest',specialRol:'editor',statusKey:'process' }">
+                        Team, guest (editor puede llenar brief)
+                        <b>[estado en en proceso]</b>
+
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+
+            <!--Open Brief-->
+            <li>
+              Re-abrir Brief
+              <ol>
+                <li>
+                  Solicitud Modificacion
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/close/3']" [queryParams]="{ rol: 'manager'}">
+                        Solictud de modificacion [Admin, co-admin, manager]
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li>
+                  Solicitud Permisos
+                  <ol>
+                    <!--Member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager', specialRol: 'editor','soliciteModificationBrief':true}">
+                        Respuesta editor
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'editor','solicitePermissionAcceptedBrief':true}">
+                        Respuesta aprobador editor solicitud de permisos aceptada
+                      </a>
+                    </li>
+                    <!--Special member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'approver','solicitePermissionBrief':true}">
+                        Respuesta aprobador
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project',3]" [queryParams]="{ rol:'manager', specialRol: 'approver','showAudit':true,statusKey:'edit'}">
+                        Respuesta aprobador <b>alerta lista de modificaciones</b>
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project',3]" [queryParams]="{ rol:'manager', specialRol: 'approver','simulateEdition':true,statusKey:'edit'}">
+                        Respuesta aprobador <b>alerta fue editado</b>
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+              </ol>
+            </li>
+            <li>
+              Devoluciones
+              <ol>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'guest',specialRol:'editor',autoFillResponse:true }">Editor
+                        añadir devolucion</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'guest',specialRol:'editor',autoFillResponse:true ,addGiveback:true,addGivebackResponse:true}">Editor
+                        respuesta aprobador</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/project/1']" [queryParams]="{ rol: 'guest','workspaceAccessId':'15',specialRol:'approver',autoFillResponse:true,addGiveback:true }">Aprobador
+                        responder devolucion</a>
+                    </li>
+                  </ol>
+                </li>
+
+              </ol>
+            </li>
+
+            <li>
+              Flujo de aprobación
+              <ol>
+                <li>Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{ specialRol:'editor',notificationBriefFilled:true }">Notificación
+                        brief lleno</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{ specialRol:'approver',notificationBriefGiveback:true }">Notificación
+                        brief observaciones</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <!--Brief Approbed-->
+            <li>
+              Visual Aprobado
+              <ol>
+                <li>
+                  <a [routerLink]="['/brief/close/3']" [queryParams]="{ rol: 'admin' }"> [Super admin, Admin,
+                    Co-admin, Manager]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/close/3']" [queryParams]="{ rol: 'team' }">[Team, Guest]</a>
+                </li>
+                <li>
+                  Editor
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/close/3']" [queryParams]="{ rol: 'admin', 'specialRol':'editor'}">
+                        [Super admin, Admin,
+                        Co-admin, Manager]</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/close/3']" [queryParams]="{ rol: 'team','specialRol':'editor' }">[Team,
+                        Guest]</a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Aprobador
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'admin' ,'specialRol':'approver'}">
+                        [Super admin, Admin,
+                        Co-admin, Manager]</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/meeting-note/close/3']" [queryParams]="{ rol: 'team' ,'specialRol':'approver'}">[Team,
+                        Guest]</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <!--Pitch-->
+        <li>
+          Pitch
+          <ol>
+            <!--Upload proposal-->
+            <li>
+              <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest' , messageUploadProposal:true,statusKey:'process',autoFillResponse:true}">
+                Subir propuesta
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest','workspaceAccessId':'15',specialRol:'approver',autoFillResponse:true }">Pitch
+                sin devoluciones ni propuestas</a>
+            </li>
+            <li>
+
+              <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest','workspaceAccessId':'15',specialRol:'approver',autoFillResponse:true,addGiveback:true }">Pitch
+                con devoluciones</a>
+
+            </li>
+            <li>
+
+              <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest','workspaceAccessId':'15',specialRol:'editor',autoFillResponse:true,addProposals :true }">Pitch
+                con propuestas</a>
+
+            </li>
+            <li>
+              Mensajes Diarios
+              <ol>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , dailyMessage:'true','dailyMessageKey':'pitch'}">Mensajes
+                    Diarios Pre finalista</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , dailyMessage:'true','dailyMessageKey':'pitch-finalist'}">Mensajes
+                    Diarios finalista</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , dailyMessage:'true','dailyMessageKey':'pitch-discarded'}">Mensajes
+                    Diarios propuesta rechazada</a>
+                </li>
+
+              </ol>
+
+            </li>
+            <li>
+              Mensajes
+              <ol>
+                <li>
+                  <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest' , messagePreFinalist:true,statusKey:'process',autoFillResponse:true}">Mensajes
+                    Pre finalista</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest' , messageFinalist:true,statusKey:'process',autoFillResponse:true}">
+                    Mensajes finalista</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'guest' , messageDiscarded:true,statusKey:'process',autoFillResponse:true}">
+                    Propuesta descartada</a>
+                </li>
+              </ol>
+            </li>
+            <!--Open Brief-->
+            <li>
+              Re-abrir Pitch
+              <ol>
+
+                <li>
+                  <a [routerLink]="['/brief/project/pitch/1']" [queryParams]="{ rol: 'manager',specialRol:'approver',autoFillResponse:true,addGiveback:true,addProposals :true,'addFinalist':true}">Vista
+                    aprobador</a>
+
+                </li>
+                <li>
+                  Solicitud Modificacion
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/brief/close/3']" [queryParams]="{ rol: 'manager','templateType':'pitch'}">
+                        Solictud de modificacion [Admin, co-admin, manager]
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li>
+                  Solicitud Permisos
+                  <ol>
+                    <!--Member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager', specialRol: 'editor','soliciteModificationPitch':true}">
+                        Respuesta editor
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'editor','solicitePermissionAcceptedPitch':true}">
+                        Respuesta aprobador editor solicitud de permisos aceptada
+                      </a>
+                    </li>
+                    <!--Special member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{rol:'manager',  specialRol: 'approver','solicitePermissionPitch':true}">
+                        Respuesta aprobador
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project/pitch',3]" [queryParams]="{ rol:'manager', specialRol: 'approver','showAudit':true,statusKey:'edit',autoFillResponse:true,addGiveback:true,addProposals :true,'addFinalist':true}">
+                        Respuesta aprobador <b>alerta lista de modificaciones</b>
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/brief/project/pitch',3]" [queryParams]="{ rol:'manager', specialRol: 'approver','simulateEdition':true,statusKey:'edit',autoFillResponse:true,addGiveback:true,addProposals :true,'addFinalist':true}">
+                        Respuesta aprobador <b>alerta fue editado</b>
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <!--Presentacion-->
+        <li>
+          Presentación
+          <ol>
+
+            <li>
+              <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'super-admin' ,'allCoreApproved':true}">
+                PRESENTACION FINAL BRIEF CREATIVO
+              </a>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

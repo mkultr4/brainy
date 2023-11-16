@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="15px" viewBox="0 0 20 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_small_selection</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_small_selection" fill="#393A6F">
+            <g transform="translate(4.000000, 1.000000)">
+                <ellipse id="Oval-2-Copy" cx="5.85966473" cy="5.85966473" rx="1.84660457" ry="1.84660457"></ellipse>
+                <path d="M5.89429583,11.0889135 C3.13468137,11.0889135 0.89769448,8.81125411 0.89769448,6.00146484 C0.89769448,3.19167558 3.13468137,0.914016197 5.89429583,0.914016197 C8.65391028,0.914016197 10.8908972,3.19167558 10.8908972,6.00146484 C10.8908972,8.81125411 8.65391028,11.0889135 5.89429583,11.0889135 M5.89429583,0 C2.63901852,0 0,2.68700067 0,6.00146484 C0,9.31592901 2.63901852,12.0029297 5.89429583,12.0029297 C9.14957314,12.0029297 11.7885917,9.31592901 11.7885917,6.00146484 C11.7885917,2.68700067 9.14957314,0 5.89429583,0" id="Fill-1"></path>
+            </g>
+        </g>
+    </g>
+</svg>

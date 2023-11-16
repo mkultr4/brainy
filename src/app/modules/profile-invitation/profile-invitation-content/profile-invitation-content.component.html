@@ -1,0 +1,64 @@
+<div class="layout-interface layout-with-footer" id="layout-profile">
+
+  <section class="layout-interface-content">
+    <!--Header-->
+    <header #dashboardHeader class="subsections-header scrolled-down" id='profile-header'>
+      <!--First Header-->
+      <app-header-default [currentUser]="currentUser" [workspaceAccess]="workspaceAccess" [breadcrumb]="'commons.profile' | translate">
+      </app-header-default>
+    </header>
+
+    <!--MAIN CONTENT-->
+    <main>
+      <!--Wrapper-->
+      <div class="interface-content" id="profile-main-content">
+        <!--Navigation-->
+        <div class="interface-navigation">
+          <div class="interface-navigation-content">
+            <div class="interface-navigation-wrapper container">
+              <!--Back-->
+
+              <a class="back-to" href="javascript:void(0)" (click)="goBack()">
+                <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'" class="icon-svg back-icon"></i>
+                Equipos
+              </a>
+              <ul class="navigation">
+                <li>
+                  <a href="javascript:void(0)" [routerLink]="['account']" routerLinkActive="active">
+                    Cuenta
+                  </a>
+                </li>
+                <li class="disabled">
+                  <a href="javascript:void(0)">
+                    Actividad
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--Content-->
+        <div class="profile-wrapper">
+          <!--List-->
+          <div class="profile-content container">
+
+
+            <router-outlet></router-outlet>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+<!--Notification-->
+<app-sidenav-notifications></app-sidenav-notifications>
+
+<app-interface-footer [extraClass]="'invested'"></app-interface-footer>
+<!--Permissions-->
+<app-sidenav-permissions></app-sidenav-permissions>
+
+<!--Chnage workspace-->
+<app-modal-change-workspace></app-modal-change-workspace>

@@ -1,0 +1,13 @@
+<div class="task-block-wrapper" 
+  [id]="'task-'+ topicLineItem.content.task.id" 
+  [class.editable]="editable" 
+  [class.anchor]="anchor" 
+  app-task-block 
+  [task]="topicLineItem.content.task"
+  [withTitle]="withTitle"
+  [editable]="editable" 
+  [draggable]="editable" 
+  (taskOnRemove)="removeTask($event)"
+  (taskOnEdit)="editTask()"
+  >
+</div>

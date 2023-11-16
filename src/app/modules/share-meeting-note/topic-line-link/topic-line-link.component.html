@@ -1,0 +1,9 @@
+<a 
+  [href]="enableComments ?  '' : topicLineItem.content.link" 
+  [target]="enableComments ? 'undefined' : '_blank'" 
+  contenteditable="false" [class.editable]="editable">
+  <span class="link-content" [innerHTML]="topicLineItem.content.text | sanitize:'html'">
+  </span>
+  <i *ngIf="editable" class="icon-svg icon-delete" (click)="remove($event)" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+
+</a>

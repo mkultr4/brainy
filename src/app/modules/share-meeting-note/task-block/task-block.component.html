@@ -1,0 +1,56 @@
+<!--Drag handler-->
+<a class="task-drag-handler" href="jascript:void(0)" *ngIf="draggable">
+  <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_ordenar_feedback.svg'"></i>
+</a>
+<!--Task-->
+<div class="task-block">
+  <div class="task-block-content">
+    <ul class="task-block-menu" *ngIf="editable">
+      <li>
+        <a class="edit" (click)="editTask()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+        </a>
+      </li>
+      <li>
+        <a class="delete closest-alert" app-alert-dialog [message]="'¿Estas seguro de eliminar la tarea?'" [acceptText]="'Si'"
+          [cancelText]="'No'" [alertClass]="'alert-task-remove'" (alertOnAccept)="removeTask()" (alertOnOpen)="alertOpen(true)"
+          (alertOnClose)="alertOpen(false)">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+        </a>
+      </li>
+    </ul>
+    <h4 class="task-title" *ngIf="withTitle">Tarea</h4>
+    <!--Task header-->
+    <div class="task-header">
+      <div class="row no-margin-bottom">
+        <div class="col s4">
+          <div class="responsible">
+            <div class="user-information">
+              <span class="avatar" app-avatar [user]="task.responsible.user"></span>
+              <span class="name">{{task.responsible.user.name + ' '+task.responsible.user.lastName}}</span>
+              <span class="rol">{{'workspaceAccess.rol.' + task.responsible.rol.key | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col s8">
+          <ng-container *ngIf="task.type === 'fill_now'">
+            <span class="task-date scheduled">
+              Fecha de entrega &nbsp;&nbsp;&nbsp;&nbsp;{{task.timestamp |
+              momentDate:'DD/MM/YY'}}&nbsp;&nbsp;{{task.timestamp | momentDate:'hh:mm a'}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="task.type === 'scheduled'">
+            <span class="task-date fill-now">
+              Tarea programada &nbsp;&nbsp;&nbsp;&nbsp;{{task.timestamp |
+              momentDate:'DD/MM/YY'}}&nbsp;&nbsp;{{task.timestamp | momentDate:'hh:mm a'}} </span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <!--Description-->
+    <div class="task-description">
+      <span class="task-description-content" [innerHTML]="task.description | sanitize: 'html'"></span>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+.brands-items-wrapper {
+    @extend .team-items-wrapper;
+
+    .team-items-content {
+        .team-items-list {
+            padding-top: 40px;
+            .brainy-empty-message{
+                position: relative;
+            }
+            &.empty-list{
+                padding-top: 60px;
+            }
+        }
+    }
+}
+.toolbar-box-brand{
+    @extend .toolbar-box-dashboard;
+    // width: 124px;
+}
+.form-edit-brand{
+    max-width: 500px;
+    margin: 0 auto;
+    padding-left: 150px;
+    position: relative;
+    .avatar{
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .form-edit-brand-content{
+        .form-edit-brand-button{
+            .btn{
+                width: 150px;
+            }
+        }
+    }
+}

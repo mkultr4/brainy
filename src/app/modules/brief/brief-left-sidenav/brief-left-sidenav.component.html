@@ -1,0 +1,90 @@
+<app-aside-nav #briefLeftSidebarMain id="brief-left-sidebar-main" class="secondary container workflow-aside"
+  [disableScroll]="true" [sideNavMain]="true" [alwaysVisible]="true">
+  <div app-sidenav id="brief-left-sidenav" class="
+      side-nav
+      side-nav-main
+      leftside-navigation
+      workflow-sidenav
+      workflow-sidenav-left
+      interface-resize
+      animated
+      show"
+    [ngClass]="{'show':!compressed}">
+    <!--Header-->
+    <div class="workflow-sidenav-left-header">
+      <a class="header-link" [routerLink]="['/']">
+        <i class="icon-svg" [inlineSVG]="'assets/img/logo_brainy.svg'"></i>
+        <span id="meeting-note">Brief</span>
+      </a>
+
+    </div>
+    <!--Main content-->
+    <div class="workflow-sidenav-left-main-content" id="brief-sidenav-main-content">
+      <!--Inner-->
+      <div class="workflow-sidenav-left-main-content-inner" id="brief-sidenav-main-innner">
+        <!--Structure-->
+        <span class="structure-label ">Estructura</span>
+        <!--New category-->
+        <div class="new-element-section">
+          <a class="new-element-btn" (click)="addCategory()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/icon_agregar_tema.svg'"></i>
+            <span class="new-element-btn-text">Categoría</span>
+          </a>
+        </div>
+        <ng-container *ngIf="briefCategories | showCategoriesList">
+          <div #categoriesList [perfectScrollbar]="{suppressScrollX:true}" 
+          class="category-list-sidenav"
+           [class.without-givebacks]="!withGiveBacks"
+           [sortablejs]="briefCategories"
+            [sortablejsOptions]="{
+            forceFallback: true,
+            fallbackClass: 'sortable-fallback',
+            disabled: !editable,
+            filter: '.static',
+            handle: '.category-drag-handler',
+            onStart: onSortStart.bind(this),
+            onEnd: onSortEnd.bind(this),
+            onUpdate: onSortUpdate.bind(this)
+           }">
+
+            <ng-container *ngFor="let briefCategory of briefCategories | orderBy:['order']; let index = index">
+              <div class="category" app-category-item [id]="briefCategory.id" [briefCategory]="briefCategory" [view]="view"
+                [briefCategoryShow]="briefCategoryShow" [editable]="editable" [visible]="!compressed" [index]="index"
+                [sortingSubCategory]="sortingSubCategory" (categoryOnSelect)="showCategory($event)" (categoryOnRemove)="removeCategory($event)"
+                (categoryOnSortingSubCategory)="categoryOnSortingSubCategory($event)" (categoryOnSortSubCategory)="categoryOnSortSubCategory()"
+                (categoryOnDragOver)="categoryDragOver()" (categoryOnRemoveSubCat)="onRemoveSubCategory($event)"
+                (categoryOnUpdateSubCat)="onUpdateSubCategory($event)" [ngClass]="{'show':briefCategory.id === briefCategoryShow.id && view === 'category' }">
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="withGiveBacks">
+        <div class="category-statuses">
+          <!--Givebacks-->
+          <div class="statuses" (click)="showView('givebacks')" [ngClass]="{'show':view === 'givebacks'}">
+            <span>
+              <i class='icon-svg' [inlineSVG]="'assets/img/brief/ico_devoluciones.svg'"></i>
+              Devoluciones
+              <ng-container *ngIf="givebacks.length > 0">
+                <span class="count">({{givebacks.length}})</span>
+              </ng-container>
+              <ng-container *ngIf="hasRepliesNews">
+                <span class="badge-reply-news"></span>
+              </ng-container>
+            </span>
+          </div>
+          
+        </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+
+</app-aside-nav>
+
+
+
+<a class="btn-back-sidenav left-position" href="javascript:void(0)" (click)="compress()" [ngClass]="{'direction-right':compressed}">
+  <i class="icon-svg icon-arrow" [inlineSVG]="'assets/img/sidenav/ico_arrow.svg'"></i>
+</a>

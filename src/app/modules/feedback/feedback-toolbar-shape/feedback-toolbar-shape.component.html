@@ -1,0 +1,99 @@
+<!--Toolbar shape-->
+<ul class="toolbar-feedback-shape"
+[style.marginTop.px]="marginTop"
+[style.top]="top"
+[style.left]="left"
+[style.right]="right"
+[ngClass]="{'focus-shape':focusShape && focusShape.focus}">
+  <li class="with-dropdown-menu">
+    <a href="javascript:void(0)" 
+    appInterfaceDropdown dropdownTarget="#dropdown-stroke-colors"
+     (mousedown)="mousedownToolbarShape($event)"
+      [center]="true"
+      [edge]="dropdownEdge"
+      >
+      <i class="icon-svg ico-fill-border" 
+      [inlineSVG]="'assets/img/commons/toolbar/icono_bar_contorno.svg'"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-colors {{dropdownEdge}}" id="dropdown-stroke-colors">
+      <div class="dropdown-content">
+        <div class="color-choser-header">
+          <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title">
+            Color
+          </a>
+        </div>
+        <div class="color-chooser" *ngFor="let color of colors" [ngStyle]="{'backgroundColor':color}">
+          <a href="javascript:void(0)" (mousedown)="execute($event,'border-color',color)"></a>
+        </div>
+        <div class="color-chooser remove-format">
+          <i class="material-icons">format_color_reset</i>
+          <a href="javascript:void(0)" (mousedown)="execute($event,'border-color','transparent')">
+          </a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="with-dropdown-menu">
+    <a href="javascript:void(0)" 
+    appInterfaceDropdown 
+    dropdownTarget="#dropdown-fill-colors" 
+    [edge]="dropdownEdge"
+    [center]="true"
+    (mousedown)="mousedownToolbarShape($event)">
+      <i class="icon-svg ico-fill" 
+      [inlineSVG]="'assets/img/commons/toolbar/icono_bar_color.svg'"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-colors {{dropdownEdge}}" id="dropdown-fill-colors">
+      <div class="dropdown-content">
+        <div class="color-choser-header">
+          <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title">
+            Color
+          </a>
+        </div>
+        <div class="color-chooser" *ngFor="let color of colors" [ngStyle]="{'backgroundColor':color}">
+          <a href="javascript:void(0)" (mousedown)="execute($event,'background-color',color)"></a>
+        </div>
+        <div class="color-chooser remove-format">
+          <i class="material-icons">format_color_reset</i>
+          <a href="javascript:void(0)" (mousedown)="execute($event,'background-color','transparent')">
+          </a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="with-dropdown-menu">
+    <a href="javascript:void(0)" appInterfaceDropdown 
+    dropdownTarget="#dropdown-shape-border"
+     [center]="true"
+     [edge]="dropdownEdge"
+     (mousedown)="mousedownToolbarShape($event)">
+      <i class="icon-svg ico-border" 
+      [inlineSVG]="'assets/img/commons/toolbar/icono_bar_line.svg'"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-borders {{dropdownEdge}}" id="dropdown-shape-border">
+      <div class="dropdown-content">
+        <li>
+          <a href="javascript:void(0)" (mousedown)="execute($event,'border-width',1)">
+            <span class="border-1"></span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" (mousedown)="execute($event,'border-width',2)">
+            <span class="border-2"></span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" (mousedown)="execute($event,'border-width',3)">
+            <span class="border-3"></span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" (mousedown)="execute($event,'border-width',4)">
+            <span class="border-4"></span>
+          </a>
+        </li>
+      </div>
+    </div>
+  </li>
+
+</ul>

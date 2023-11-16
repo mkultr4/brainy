@@ -1,0 +1,26 @@
+<div #participantsScroll class="participants-list-wrapper perfect-scrollbar perfect-scrollbar-always-visible" [perfectScrollbar]="{supressScrollX:true}">
+    <ul class="participants-list">
+
+
+        <!--Invitations-->
+        <ng-container *ngFor="let invitation of invitations">
+            <li class="participant-list-block-invitation closest-alert"
+            app-invitation-block
+            [invitation]="invitation"
+            [permissionButton]="canAssignPermission"
+            (invitationOnDelete)="deleteInvitation($event)"
+            (invitationSetPermission)="setPermissionInvitation($event)"
+            ></li>
+        </ng-container>
+
+
+    </ul>
+</div>
+<div class="participants-button-section">
+    <button class="btn btn-medium-large btn-font-medium" [disabled]="btnInvitingParticipants" (click)="inviteParticipants()"
+        [ngClass]="{'btn-loading': btnInvitingParticipants}">
+        {{btnInvitingParticipants ? 'COMPARTIENDO' : 'COMPARTIR'}}
+    </button>
+
+
+</div>

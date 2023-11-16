@@ -1,0 +1,54 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-profile-unlink-project'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content-table ">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <h4 class="title">Desvincular a:</h4>
+        <!--Workspace-->
+        <div class="user-information-unlink" *ngIf="workspaceAccess">
+          <div class="user-information-block">
+            <div class="avatar profile-image-medium-1" app-avatar [user]="workspaceAccess.user"></div>
+            <div class="user-information-block-information">
+              <span class="name">{{workspaceAccess.user.name + ' '+ workspaceAccess.user.lastName }}</span>
+              <span class="rol">{{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <!--Unlink options-->
+        <div class="unlink-options">
+          <div class="checkbox-block">
+            <input class="filled-in medium" type="checkbox" id="unlink-brand" 
+            [(ngModel)]="unlinkBrand" (click)="linkBrand()" [disabled]="(unlinkCore == false && unlinkBrand == true && unlinkProject == true)" [appBtnLoading]="btnDisabled">
+            <label class="font-weight-light" for="unlink-brand"> la marca </label>
+          </div>
+         
+          <div class="checkbox-block">
+            <input class="filled-in medium" type="checkbox" 
+            id="unlink-project" 
+            [(ngModel)]="unlinkProject" [disabled]="(unlinkCore == true && unlinkBrand == true && unlinkProject == true)" (click)="linkProject()">
+            <label class="font-weight-light" for="unlink-project">del proyecto y sus archivos</label>
+          </div>
+          <div class="checkbox-block">
+            <input class="filled-in medium" type="checkbox"
+             id="unlink-core" [(ngModel)]="unlinkCore" (click)="linkCore()" [disabled]="(unlinkCore == true && unlinkBrand == true && unlinkProject == true) || (unlinkBrand == false && unlinkProject == true)">
+            <label class="font-weight-light" for="unlink-core">del archivo</label>
+          </div>
+
+        </div>
+        <!--Buttons-->
+        <div class="modal-content-buttons">
+          <button class="btn btn-medium-large " 
+          [disabled]="(unlinkCore == false && unlinkBrand == false && unlinkProject == false)"  (click)="unlink()">
+            {{ btnDisabled ? 'DESVINCULANDO':'SI, DESVINCULAR' }}
+          </button>
+          <button class="btn btn-medium-large btn-outline-line cancel modal-close last-button">CANCELAR</button>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</app-mz-modal-brainy>

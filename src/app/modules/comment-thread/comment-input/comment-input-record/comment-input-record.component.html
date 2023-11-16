@@ -1,0 +1,46 @@
+<div class="comment-input-record-wrapper " [ngClass]="{'has-audio':audioSrc}">
+  <div class="comment-input-record">
+
+    <!--Title-->
+    <div class="comment-input-record-title" [class.recording]="isRecording">
+      <i class="icon-svg ico-mic" [inlineSVG]="'assets/img/commons/comments/ico_microphone.svg'"></i>
+      <ng-container *ngIf="!isRecording">
+        <span>Grabar</span>
+      </ng-container>
+      <ng-container *ngIf="isRecording">
+          <span>Grabando</span>
+        </ng-container>
+    </div>
+    <!--Player-->
+    <app-audio-player [audioSrc]="audioSrc" [notVisibleEmpty]="true" [durationRecord]="audioDuration" (playerOnPlay)="onPlayerPlay()"
+      (playerOnPause)="onPlayerPause()" (playerOnStop)="onPlayerStop()">
+    </app-audio-player>
+    <!--Michropone waves-->
+    <div id="waveform-record" [class.not-recording]="!isRecording"></div>
+    <!--Audio recored options-->
+    <div class="audio-recorder">
+      <!--Audio Debug-->
+      <div class="hide">
+        <audio #recordAudio autoplay controls></audio>
+      </div>
+      <!--Time Elpased Record-->
+      <span class="time-elapsed">{{timeElapsed * 1000| date:'mm:ss' }}</span>
+      <!--Buttons-->
+      <div class="record-buttons-section">
+        <button class="record-btn-action play-btn {{playerAction}}" (click)="startPlayer()" [disabled]="isRecording || !audioSrc">
+          <i class="icon-svg ico-play" [inlineSVG]="'assets/img/commons/comments/ico_play.svg'"></i>
+          <i class="icon-svg ico-pause" [inlineSVG]="'assets/img/commons/comments/ico_pause.svg'"></i>
+        </button>
+        <button type="button" class="record-btn record-action" (click)="dispatchAction()" [ngClass]="{'is-recording':isRecording}">
+        </button>
+        <button class="record-btn-action ok-btn" [disabled]="isRecording || !audioSrc" (click)="acceptRecord()">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--Buttons-->
+  <div class="comment-input-record-buttons">
+    <button class="btn btn-flat left" (click)="cancel()">Cancelar</button>
+  </div>
+</div>

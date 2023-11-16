@@ -1,0 +1,105 @@
+<div class="floating-note-popup-content-reminder">
+  <!--Header-->
+  <div class="reminder-note-header-wrapper">
+    <div class="reminder-note-header ">
+      <!--Title-->
+      <div class="reminder-note-header-label ">
+        <span>Recordatorios</span>
+      </div>
+      <!--User-->
+      <div class="reminder-note-header-user">
+        <a class="user-label">
+          <span>Solo yo</span>
+          <span class="avatar profile-image-smaller" app-avatar [user]="currentUser"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--/Header-->
+  <!--Form-->
+  <form class="reminder-form" #reminderForm="ngForm" name="reminderForm">
+    <div class="reminder-form-wrapper-dates">
+      <!--Date-->
+      <div class="row reminder-form-row">
+        <div class="col s4">
+          <label class="reminder-form-row-label">Fecha:</label>
+        </div>
+        <div class="col s8">
+          <div class="input-field inline input-field-date">
+            <input mz-datepicker [label]="''" [options]="datePickerOptions" 
+              [(ngModel)]="noteReminder.date" id="reminderDate" name="reminderDate"
+              [class.empty]="!noteReminder.date"
+              placeholder="DD/MM/AAAA" type="text" required tabindex="2" title="">
+              <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+          </div>
+        </div>
+      </div>
+      <!--Hour-->
+      <div class="row reminder-form-row">
+
+        <div class="col s4">
+          <label class="reminder-form-row-label">Hora:</label>
+        </div>
+        <div class="col s8">
+          <div class="input-field inline input-field-date">
+            <input mz-timepicker id="reminderHour" name="reminderHour" 
+              [(ngModel)]="noteReminder.hour" [label]="''" 
+              [options]="timePickerOptions"
+              [class.empty]="!noteReminder.hour"
+              placeholder="00:00" title="" type="text" required tabindex="3"
+               (ngModelChange)="onChangeHour($event)">
+               <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Divider-->
+    <div class="reminder-form-divider"></div>
+    <!--Reminder Configuration-->
+    <div class="reminder-form-configuration">
+      <span class="reminder-form-configuration-label">Notificación:</span>
+      <input type="text" class="reminder-form-configuration-input" [(ngModel)]="noteReminder.notificationValue" placeholder="00" 
+      type="text"
+      mask="00"
+      autocomplete="off"
+      maxlength="2" name="reminderNotificationValue" required>
+      <input type="hidden" [(ngModel)]="noteReminder.notificationType" name="reminderNotifcationType" required>
+      <a href="javascript:void(0)" class="reminder-form-configuration-label" id="reminder-notification-type">
+        {{'commons.'+noteReminder.notificationType | translate}}
+        <i class="ion-ios-arrow-down"></i>
+      </a>
+      <app-mz-dropdown-brainy [id]="'dropdown-reminder-notification-types'" [dropdownButtonId]="'reminder-notification-type'" [constrainWidth]="false"
+        [belowOrigin]="false">
+        <li *ngFor="let type of notificationTypes" (click)="setNotificationType(type)">
+          <a href="javacript:void(0)">
+            {{'commons.'+type | translate}}
+          </a>
+        </li>
+      </app-mz-dropdown-brainy>
+
+    </div>
+    <!--Button-->
+    <!--If create-->
+    <ng-container *ngIf="!noteReminder.id">
+      <div class="reminder-form-button create">
+        <button class="btn btn-medium " type="button" [disabled]="reminderForm.invalid" (click)="createReminder()">
+          Recordar nota
+        </button>
+      </div>
+    </ng-container>
+    <!--If edit-->
+    <ng-container *ngIf="noteReminder.id">
+      <div class="reminder-form-button update">
+        <button class="btn btn-small btn-outline-line cancel" type="button" 
+         (click)="updateReminder(false)">
+          Cancelar
+        </button>
+        <button class="btn btn-small accept" type="button" 
+        [disabled]="reminderForm.invalid" (click)="updateReminder(true)">
+            Guardar
+        </button>
+      </div>
+    </ng-container>
+  </form>
+  <!--Form-->
+</div>

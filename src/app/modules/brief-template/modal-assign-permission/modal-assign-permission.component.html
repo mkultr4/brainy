@@ -1,0 +1,61 @@
+<app-animate-modal #modal [modalId]="'modal-brief-assign-permissions'" (modalOnShow)="modalOnShow()" (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <!--Modal header-->
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Acceso a templates
+      </h5>
+    </div>
+    <!--Display-->
+    <div class="modal-content-display">
+
+      <div id="assign-permission-container">
+        <!--Filter-->
+        <app-input-field-search-nav [closBtn]="false"
+         [searchPlaceholder]="'Buscar'"
+         [search]="search"
+         (inputOnChangeSearch)="changeSearch($event)"
+         ></app-input-field-search-nav>
+        <!--Participants-->
+        <div class="participants-list-container">
+          <ng-container *ngFor="let workspaceAccess of workspaceAccesses 
+          | filterSearchUser: search">
+            <!--Profile-workspace-permission-->
+            <div class="profile-workspace-permission">
+              <div class="profile-workspace-permission-content">
+                <div app-avatar class="avatar profile-image-medium-1" [user]="workspaceAccess.user" [showStatus]="false"></div>
+                <div class="profile-user-information">
+                  <span class="name">{{workspaceAccess.user.name + ' '+workspaceAccess.user.lastName}}</span>
+                  <span class="rol">{{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}}</span>
+                </div>
+                <!--Permission-->
+                <div class="switch" *ngFor="let permission of workspaceAccess.permissions">
+                  <label [for]="'role-'+permission.key +workspaceAccess.id">
+
+                    <input type="checkbox" (click)="onChangeAccess()" [name]="'role-'+permission.key+workspaceAccess.id"
+                      [id]="'role-'+permission.key+workspaceAccess.id" [(ngModel)]="permission.permitted"
+                      (ngModelChange)="onChangeAccess()">
+                    <span class="lever"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+          </ng-container>
+        </div>
+        <div class="button-container">
+          <button class="btn btn-purple btn-medium-large" [disabled]="!hasChangePermission || btnLoading"
+            [appBtnLoading]="btnLoading" (click)="save()">
+            {{ btnLoading ? 'GUARDANDO':'GUARDAR'}}
+          </button>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</app-animate-modal>

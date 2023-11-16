@@ -1,0 +1,93 @@
+<div class="team-box" [ngClass]="{'my-profile':workspaceAccess.id === currentWorkspaceAccessId}"
+  (mouseleave)="mouseleave()">
+
+  <!--Content-->
+  <div class="team-box-content">
+    <!--Name-->
+    <div class="team-box-name">
+      <span [title]="workspaceAccess.user.name + ' '+workspaceAccess.user.lastName">
+        {{workspaceAccess.user.name + ' '+workspaceAccess.user.lastName}}
+      </span>
+    </div>
+    <!--Avatar-->
+    <div class="team-box-avatar-content">
+      <div app-avatar class="avatar profile-image-immense-medium" [user]="workspaceAccess.user" [showStatus]="true"
+        [showAccountStatus]="true" [accountStatus]="workspaceAccess.accountStatus"></div>
+    </div>
+    <!--Rol-->
+    <div class="team-box-rol">
+      <span>
+        {{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}}
+      </span>
+    </div>
+    <!--Email-->
+
+    <!--Status-->
+    <div class="team-box-status">
+      <span>
+        {{ 'workspaceAccess.status-singular.' + workspaceAccess.accountStatus.key  | translate}}
+      </span>
+    </div>
+    <!--Customers-->
+    <div class="team-box-customers">
+      <div class="team-box-customers-content">
+        <!--Customers-->
+        <!--If has more 4 customers-->
+        <ng-container *ngIf="workspaceAccess?.brands?.length > 4">
+          <ng-container *ngFor="let customer of (workspaceAccess?.brands ? workspaceAccess?.brands?.slice(0,3): []) ">
+            <div class="avatar customer-circle" app-brand-logo [brand]="customer"></div>
+          </ng-container>
+          <!--More-->
+          <div class="customer-circle customer-circle-more">
+            <span>+{{workspaceAccess.brands.length - 4}}</span>
+          </div>
+        </ng-container>
+        <!--If has  4 customers or minus-->
+        <ng-container *ngIf="workspaceAccess?.brands?.length <= 4">
+          <ng-container *ngFor="let customer of workspaceAccess?.brands ">
+            <div class="avatar  customer-circle" app-brand-logo [brand]="customer"></div>
+          </ng-container>
+        </ng-container>
+        <!--If has more 4 customers-->
+
+      </div>
+    </div>
+  </div>
+  <div class="team-box-overlay">
+    <div class="team-box-overlay-table">
+      <div class="team-box-overlay-table-cell">
+        <!--Menu-->
+        <a class="team-box-menu" mz-button href="javascript:void(0)" [id]="'team-box-bt-'+workspaceAccess.id"
+          (click)="$event.stopPropagation()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+        </a>
+        <!--Dropdown-->
+        <app-mz-dropdown-brainy #menu [id]="'team-box-dropdown-'+ workspaceAccess?.id"
+          [dropdownButtonId]="'team-box-bt-'+workspaceAccess.id" [constrainWidth]="false" [belowOrigin]="true"
+          [dropdownClass]="'toolbar-box-team'">
+          <li (click)="activate($event)" [ngClass]="{'active': workspaceAccess.accountStatus.key === 'active'}">
+            <a href="javascript:void(0)">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/status/user/online.svg'"></i>
+              Activo
+            </a>
+          </li>
+          <li (click)="suspend($event)" [ngClass]="{'active': workspaceAccess.accountStatus.key === 'suspended'}">
+            <a href="javascript:void(0)">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/status/user/suspended.svg'"></i>
+              Suspender
+            </a>
+          </li>
+          <li (click)="eliminate($event)" [ngClass]="{'active': workspaceAccess.accountStatus.key === 'eliminated'}">
+            <a href="javascript:void(0)">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+
+              Eliminar
+            </a>
+          </li>
+        </app-mz-dropdown-brainy>
+        <a class="view-profile" href="javascript:void(0)" (click)="viewProfile()">Ver perfil</a>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,29 @@
+<app-mz-modal-brainy #modal [options]="modalEliminateOptions" [modalId]="'modal-eliminate-account'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+ <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+          <h4 class="title">Eliminar usuario</h4>
+        <p class="message">
+          Si eliminas este perfil, perderás los datos<br>
+          para siempre.
+        </p>
+
+        <div class="modal-content-buttons">
+            <button class="btn btn-medium-large btn-outline-line cancel modal-close">CANCELAR</button>
+          <button class="btn btn-medium-large last-button" 
+          [disabled]="btnDisabled" 
+          [appBtnLoading]="btnDisabled"
+            (click)="eliminate()">
+            {{ btnDisabled ? 'ELIMINANDO':'ELIMINAR' }}
+          </button>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

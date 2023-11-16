@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="11px" viewBox="0 0 12 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_border_color_24px</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Acuerdos_crear_tarea" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.3">
+        <g id="12_minuta_crear_tarea--" transform="translate(-995.000000, -946.000000)">
+            <g id="Group-25" transform="translate(385.000000, 935.000000)">
+                <g id="Group-24" transform="translate(15.000000, 0.000000)">
+                    <g id="ic_border_color_24px" transform="translate(595.000000, 11.000000)">
+                        <g id="Group">
+                            <polygon id="Shape" points="0 0 12 0 12 11 0 11"></polygon>
+                            <path d="M8.875,3.20947917 L7,1.49072917 L2,6.0740625 L2,7.7928125 L3.875,7.7928125 L8.875,3.20947917 L8.875,3.20947917 Z M10.355,1.8528125 C10.55,1.6740625 10.55,1.3853125 10.355,1.2065625 L9.185,0.1340625 C8.99,-0.0446875 8.675,-0.0446875 8.48,0.1340625 L7.5,1.03239583 L9.375,2.75114583 L10.355,1.8528125 L10.355,1.8528125 Z" id="pencil" fill="#4F5C69"></path>
+                            <polygon id="pencil-line" fill="#4F5C69" points="0 9.16666667 12 9.16666667 12 11 0 11"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

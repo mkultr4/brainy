@@ -1,0 +1,15 @@
+<div class="response-radio">
+
+  <div class="brief-radio-list">
+    <ng-container *ngFor="let option of item.responseSettings.options |  orderByImpure:['order']">
+      <app-option-radio-close
+        [option]="option"
+        [selected]="item.responseContent.options.indexOf(option) >= 0"
+        
+      ></app-option-radio-close>
+    </ng-container>
+    
+  </div>
+
+
+</div>

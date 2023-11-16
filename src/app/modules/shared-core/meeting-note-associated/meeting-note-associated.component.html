@@ -1,0 +1,215 @@
+<app-aside-nav #meetingNoteSidenav id="meeting-note-associated-sidenav" class="tertiary" [disableScroll]="true"
+  (asideOnHide)="onHide()" (asideOnShow)="onShow()">
+  <div app-sidenav id="slide-out-meeting-note-associated"
+   class="side-nav visual-meeting-note-sidenav 
+  rightside-navigation animated  box-shadow-line">
+
+    <!--Visual-->
+    <div class="visual-brainy-object-container" [perfectScrollbar]="{suppressScrollX:true}">
+      <!--Toolbar menu-->
+      <ul class="menu-toolbar-default">
+        <li>
+          <a class="close close-sidenav" href="javascript:void(0)" (click)="hideSidenav()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+          </a>
+        </li>
+      </ul>
+      <ng-container *ngIf="meetingNote">
+        <!--Header-->
+        <div class="visual-brainy-object-header">
+          <div class="brainy-object-title">
+            <span>
+              {{ meetingNote.title }}
+            </span>
+          </div>
+          <div class="brainy-object-project">
+            <span>
+              <ng-container *ngIf="meetingNote.meetingNoteType.key === 'scheduled'">
+                {{ meetingNote.project.brand.name }}&nbsp;({{meetingNote.project.name}})&nbsp;{{meetingNote.date + ' ' + meetingNote.hour |
+                momentDate:'DD/MM/YYYY HH:mm a'}}&nbsp;&nbsp;{{meetingNote.place}}
+              </ng-container>
+              <ng-container *ngIf="meetingNote.meetingNoteType.key === 'fill_now'">
+                {{ meetingNote.project.brand.name }}&nbsp;({{meetingNote.project.name}})&nbsp;/&nbsp;{{meetingNote.modified |
+                momentDate:'DD/MM/YYYY'}}
+              </ng-container>
+            </span>
+          </div>
+          <ng-container *ngIf="meetingNote.status.key === 'approved'">
+            <div class="brainy-object-date">
+              <span>
+                {{ meetingNote.approvedDate | momentDate:'DD/MM/YYYY HH:mm a'}}
+              </span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="meetingNote.status.key !== 'approved'">
+            <div class="brainy-object-date">
+              <span>
+                {{ meetingNote.created | momentDate:'DD/MM/YYYY HH:mm a'}}
+              </span>
+            </div>
+          </ng-container>
+          <div class="brainy-object-status">
+            <span>
+              <i [inlineSVG]="meetingNote.status.ico" class="status-icon"></i>
+              <span>
+                {{'core.status.'+ meetingNote.status.key | translate }}
+              </span>
+            </span>
+          </div>
+
+        </div>
+        <!--Participants-->
+        <div class="participants-content">
+          <div class="participants-content-header">
+            <span>Participantes</span>
+          </div>
+          <div class="participants-list">
+            <!--Closing-->
+            <div class="participants-list-row">
+              <div class="header">
+                <span>Cerrada por:</span>
+              </div>
+              <div class="list">
+                <span class="user">Fabio Briones
+                  <span class="rol">&nbsp;|&nbsp;Manager</span>
+                </span>
+              </div>
+            </div>
+            <!--Create-->
+            <div class="participants-list-row">
+              <div class="header">
+                <span>Creada por:</span>
+              </div>
+              <div class="list">
+                <span class="user">Maria Greene
+                  <span class="rol">&nbsp;|&nbsp;Manager</span>
+                </span>
+              </div>
+            </div>
+            <!--Organizer-->
+            <div class="participants-list-row">
+              <div class="header">
+                <span>Organizador:</span>
+              </div>
+              <div class="list">
+                <span class="user">Pamela Berry
+                  <span class="rol">&nbsp;|&nbsp;Team</span>
+                </span>
+              </div>
+            </div>
+            <!--Colaborators-->
+            <div class="participants-list-row">
+              <div class="header">
+                <span>Colaboradores:</span>
+              </div>
+              <div class="list">
+                <span class="user">Dolores Borgoña</span>
+                <span class="user">Luis Menoz</span>
+                <span class="user">Martina Jaramillo</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!--Visual Draft-->
+        <div class="visual-meeting-note">
+          <!--Agreements-->
+          <div class="meeting-note-block">
+            <h4 class="meeting-note-block-header">
+              <i class="material-icons">assignment</i>
+              <span>Acuerdos</span>
+            </h4>
+            <div class="agreements-block">
+              <h5 class="topic-title">
+                <span>Content writing</span>
+                <span class="edited">
+                  (<i class="material-icons">create</i>Contenido editado)
+
+                </span>
+              </h5>
+              <p class="agreements-content">
+                Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica,
+                sport etc, litot Europa usa li sam vocabular.
+
+              </p>
+            </div>
+            <div class="agreements-block">
+              <h5 class="topic-title">
+                <span>Jerarquía de los títulos</span>
+
+              </h5>
+              <p class="agreements-content">
+                Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica,
+                sport etc, litot Europa usa li sam vocabular.
+
+              </p>
+            </div>
+
+          </div>
+          <!--Tasks-->
+          <div class="meeting-note-block meeting-note-tasks">
+            <h4 class="meeting-note-block-header">
+              <i class="material-icons">check_box</i>
+              <span>Tareas asignadas</span>
+            </h4>
+            <!--Task-->
+            <div class="task-block">
+              <div class="task-block-content">
+                <div class="responsible">
+                  <div class="user">
+                    <div class="avatar" app-avatar [user]="{'name': 'Ariel','lastName': 'López','acronym': 'AL','status': 'offline','photoUrl': '/assets/img/avatar_ariel.png','email': 'ariel@teamknowlogy.com'}"></div>
+                    <span class="name">Ariel López</span>
+                    <span class="rol">Manager</span>
+                  </div>
+                </div>
+                <div class="task">
+                  <span class="description">Li Europan lingues es membres del sam familie. Lor separat existentie es un
+                    mythr uniform grammatica, pronunciation
+                    e plu sommun paroles.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Meeting-->
+          <div class="meeting-note-block meeting">
+            <h4 class="meeting-note-block-header">Próxima reunión</h4>
+            <span class="next-meeting-date">2/07/2017 10:30am</span>
+            <span class="next-meeting-place">
+              <i class="material-icons">location_on</i>Mexicali 64, Condesa</span>
+            <div class="next-meeting-see">
+              <a href="javascript:void(0)">Ver reunión
+                <i class="icon ion-ios-arrow-round-forward"></i>
+              </a>
+
+            </div>
+            <!--Pending topic list-->
+            <div class="pending-topic-list">
+              <h4>Temas Pendientes </h4>
+              <div class="topic-pending-block">
+                <h6>1. Europan lingues es membres </h6>
+                <p>
+                  Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food
+                  truck
+                  sriracha cornhole
+                  single-origin coffee church-key roof party. Leggings ethical McSweeney's, normcore you probably
+                  haven't
+                  heard
+                  of them Marfa organic squid. Slow-carb 90's ennui Godard pug asymmetrical, narwhal VHS Tonx High
+                  Life.
+                  Retro
+                  dreamcatcher synth Godard pickled Etsy jean shorts beard, pour-over fanny pack mumblecore. Quinoa
+                  retro
+                  aesthetic
+                  polaroid, Williamsburg American Apparel plaid small batch. Blue Bottle Vice fanny pack, Williamsburg
+                  roof party
+                  Wes Anderson mlkshk seitan brunch before they sold out lo-fi XOXO tofu scenester small batch.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</app-aside-nav>

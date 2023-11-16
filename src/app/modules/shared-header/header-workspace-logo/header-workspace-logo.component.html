@@ -1,0 +1,41 @@
+<div class="brand-logo-interface">
+  <!--Logos-->
+  <div *ngIf="workspaceAccess.workspace.thumbnail;then workspaceLogo else brainyLogo"></div>
+  <!--Workspace Logo-->
+  <ng-template #workspaceLogo>
+      <a 
+      href="javascript:void(0);"
+      class="workspace-logo" (click)="goTo()">
+          <div class="logo-wrapper">
+              <img class="logo-img" [src]="workspaceAccess.workspace.thumbnail">
+          </div>
+          <span class="brand-location" *ngIf="showWorkspaceAccess">
+              <span class="workspace-text">
+                  {{workspaceAccess.workspace.userId === currentUser.id ? 'My workspace':'Workspace' }}
+              </span>
+              <span class="dashboard-text">
+                  Dashboard
+              </span>
+          </span>
+      </a>
+  </ng-template>
+  <!--Brainy Logo-->
+  <ng-template #brainyLogo>
+      <a 
+      href="javascript:void(0);"
+      class="brainy-logo"  (click)="goTo()">
+          <div class="logo-wrapper">
+              <img class="logo-img" [src]="'assets/img/logo_brainy_site.svg'">
+          </div>
+          <!--Brand location-->
+          <span class="brand-location" *ngIf="showWorkspaceAccess">
+              <span class="workspace-text">
+                  {{workspaceAccess.workspace.userId === currentUser.id ? 'My workspace':'Workspace' }}
+              </span>
+              <span class="dashboard-text">Dashboard</span>
+          </span>
+      </a>
+  </ng-template>
+
+
+</div>

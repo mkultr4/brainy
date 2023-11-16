@@ -1,0 +1,81 @@
+<!--Agreements-->
+<div class="agreements-content" [class.editable]="editable" [class.disabled]="disabled"
+ [class.with-agreement]="topicLineItems.length >= 1 && 
+  ( topicLineItems[0].content.text !== '' && 
+  topicLineItems[0].content.text !== topicLineTextEmpty)"
+  [class.focused-in]="focusEditor">
+  <div class="agreements-content-inner">
+    <!--Title-->
+    <app-topic-editor-agreement-title
+    [enableComments]="enableComments"
+    [commentThreads]="_commentThreads | filterBy:['objectReference']:'agreement-title'"
+    [filterStatuses]="_filterStatuses"
+    [filterParticipantTypes]="_filterParticipantTypes"
+    (onAddComment)="onAddCommentTitle()"
+    ></app-topic-editor-agreement-title>
+    <!--Editable-->
+    <div class="topic-editable-toolbar-container">
+      <app-topic-editable-toolbar [contentEditableId]="'editor-agreement'">
+      </app-topic-editable-toolbar>
+    </div>
+
+    <div #scrollDescription id="scroll-agreements" class="agreements-main-container closest-comment-thread-container"
+      [perfectScrollbar]="{}">
+      <!--Agreement-->
+      <div class="agreements-text-wrapper">
+        <div class="agreements-text-content">
+          <div #editor class="agreement-editor" id="editor-agreement" placeholder="Escribe los acuerdos o conclusiones."
+            placeholder="Escribe una descripción del tema." [class.editable]="_editable && !disabled && !enabledCommentsAction"
+            [class.focused-in]="focusEditor" [contentEditable]="_editable && !disabled && !enabledCommentsAction"
+            (focus)="editorOnFocusAgreement($event)" (blur)="editorOnBlur($event)" (input)="editorRead($event)"
+            (keydown)="editorKeyDown($event)" (keypress)="editorKeyPress($event)" (keyup)="editorKeyUp($event)" (click)="editorClickAgreement($event)"
+            [sortablejs]="topicLineItems" 
+            [sortablejsOptions]="{
+                  forceFallback: true,
+                  fallbackClass: 'topic-line-fallback',
+                  ghostClass: 'topic-line-ghost',
+                  disabled: !_editable || disabled && !enabledCommentsAction,
+                  scroll: scrollDescription,
+                  filter: '.static',
+                  handle: '.task-drag-handler',
+                  onStart: onSortStart.bind(this),
+                  onEnd: onSortEnd.bind(this),
+                  onUpdate: onSortUpdate.bind(this),
+                  onAdd: onSortAdd.bind(this),
+                  onRemove: onSortRemove.bind(this),
+                  group: {
+                    name: 'topic-editor-group',
+                    pull: 'clone',
+                    put: true,
+                    revertClone:true
+                  }
+              }">
+          </div>
+        </div>
+      </div>
+      <!--Comments-->
+      <ng-container *ngFor="let commentThread of _commentThreads 
+      | filterBy:['levelId']: referenceLine 
+      | filterCommentThreadEditor
+      | filterCommentThreadStatus:_filterStatuses
+      | filterCommentThreadParticipantType: _filterParticipantTypes">
+        <app-comment-thread-meeting-note [commentThread]="commentThread" [commentThreadStatus]="commentThread.status"
+          [hidden]="sorting"></app-comment-thread-meeting-note>
+      </ng-container>
+      <!--Edition Log-->
+      <ng-container *ngFor="let topicEditionLog of topicEditionLogs">
+        <app-topic-edition-log [topicEditionLog]="topicEditionLog"></app-topic-edition-log>
+      </ng-container>
+      <!--Toolbar-->
+      <app-topic-editor-toolbar #topicEditorToolbar [editable]="_editable && !sorting && !disabled" [enableComments]="enableComments"
+        [scrollId]="'#scroll-agreements'" (toolbarOnAction)="toolbarOnAction($event)"></app-topic-editor-toolbar>
+      <!--Topic editor toolbar comments-->
+      <app-topic-editor-toolbar-comments 
+        [top]="toolbarCommentsTop" 
+        [enabledCommentsAction]="enabledCommentsAction"
+        [show]="isShowToolbarComments || enabledCommentsAction || forceShowToolbarComments" (toolbarOnActivateComments)="onActivateComments($event)"></app-topic-editor-toolbar-comments>
+    </div>
+
+  </div>
+
+</div>

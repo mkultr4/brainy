@@ -1,0 +1,100 @@
+<div class="team-box-category" (mouseleave)="mouseleave()">
+
+  <!--Content-->
+  <div class="team-box-content">
+    <!--Name-->
+    <div class="team-box-name" [title]="category.name">
+      <span>
+        {{category.name}}
+      </span>
+    </div>
+    <!--Avatar-->
+    <div class="team-box-avatar-content">
+      <div class="avatar-category">
+        <div class="avatar-category-content">
+          <ng-container *ngIf="category?.workspaceAccesses && category?.workspaceAccesses.length > 0">
+            <div class="profile-category profile-category-{{category?.workspaceAccesses.slice(0,3).length}}">
+              <div *ngFor="let workspaceAccess of category?.workspaceAccesses.slice(0,3)" class="profile-image" 
+                [ngStyle]="{ backgroundImage:'url(' + workspaceAccess.user.profilePicture + ')'}"></div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="category.workspaceAccesses && category.workspaceAccesses.length  === 0">
+            <span class="acronym-category">
+              {{category.name.substring(0,1)}}
+            </span>
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+    <!--Rol-->
+    <div class="team-box-rol">
+      <span> Invitados</span>
+    </div>
+    <!--Email-->
+    <div class="team-box-email">
+
+      <span>Integrantes ({{category.workspaceAccesses.length}}) </span>
+     
+    </div>
+    <!--Status-->
+    <div class="team-box-status">
+    </div>
+    <!--Customers-->
+    <div class="team-box-customers">
+      <div class="team-box-customers-content">
+        <!--Customers-->
+        <!--If has more 4 customers-->
+        <ng-container *ngIf="category?.brands?.length > 4">
+          <ng-container *ngFor="let customer of (category?.brands ? category?.brands.slice(0,3): []) ">
+            <div class="avatar customer-circle" app-brand-logo [brand]="customer"></div>
+          </ng-container>
+          <!--More-->
+          <div class="customer-circle customer-circle-more">
+            <span>{{category?.brands.length - 4}}</span>
+          </div>
+        </ng-container>
+        <!--If has  4 customers or minus-->
+        <ng-container *ngIf="category?.brands?.length <= 4">
+          <ng-container *ngFor="let customer of category?.brands ">
+            <div class="avatar customer-circle" app-brand-logo [brand]="customer"></div>
+          </ng-container>
+        </ng-container>
+        <!--If has more 4 customers-->
+
+      </div>
+    </div>
+  </div>
+  <!--Overlay-->
+  <div class="team-box-overlay">
+    <div class="team-box-overlay-table">
+      <div class="team-box-overlay-table-cell">
+        <a class="team-box-menu" mz-button href="javascript:void(0)" [id]="'team-box-bt-'+category?.id" 
+        (click)="$event.stopPropagation()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+        </a>
+        <!--Dropdown-->
+        <app-mz-dropdown-brainy #menu [id]="'team-box-dropdown-'+ category?.id"
+         [dropdownButtonId]="'team-box-bt-'+category?.id" 
+        [constrainWidth]="false"
+          [belowOrigin]="true" [dropdownClass]="'toolbar-box-category'">
+          <li (click)="edit()">
+            <a href="javascript:void(0)" class="edit">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+              <span>Editar</span>
+            </a>
+          </li>
+          <li (click)="delete()">
+            <a href="javascript:void(0)" class="delete">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+              Eliminar
+            </a>
+          </li>
+
+        </app-mz-dropdown-brainy>
+        <a class="view-profile" href="javascript:void(0)" (click)="viewCategory()">ver grupo</a>
+      </div>
+    </div>
+  </div>
+
+</div>

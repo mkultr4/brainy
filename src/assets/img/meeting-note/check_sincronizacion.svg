@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 11</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="7.5" cy="7.5" r="7.5"></circle>
+        <filter x="-43.3%" y="-36.7%" width="186.7%" height="186.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.320001132 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <polygon id="path-3" points="1.82006792e-16 4.73906331 1.82006792e-16 -2.89723352e-05 7.48642729 -2.89723352e-05 7.48642729 4.73906331 0 4.73906331"></polygon>
+    </defs>
+    <g id="Page-33" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="crear_minuta_programada_03" transform="translate(-700.000000, -626.000000)">
+            <g id="Group-13" transform="translate(704.000000, 629.000000)">
+                <g id="Group-19">
+                    <g id="Group-11">
+                        <g id="Oval-5-Copy-4">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <circle stroke="#4648C7" stroke-width="1" stroke-linejoin="square" fill="#FFFFFF" fill-rule="evenodd" cx="7.5" cy="7.5" r="7"></circle>
+                        </g>
+                        <g id="Group-7-Copy-4" transform="translate(4.000000, 5.000000)">
+                            <g id="Page-1">
+                                <mask id="mask-4" fill="white">
+                                    <use xlink:href="#path-3"></use>
+                                </mask>
+                                <g id="Clip-2"></g>
+                                <path d="M6.77439337,0.000259303722 C6.59518012,0.00486914766 6.42491097,0.0699831933 6.30002484,0.182060024 L2.71079089,3.30407683 L1.18598758,1.97788235 C1.05580124,1.86148379 0.877250518,1.79579352 0.690749482,1.79608163 C0.0716190476,1.79665786 -0.23347412,2.45096759 0.210086957,2.82638175 L2.1976646,4.55507323 C2.33116356,4.67608163 2.51733333,4.74263625 2.71012836,4.73889076 C2.90358592,4.74292437 3.09008696,4.67608163 3.22457971,4.55507323 L7.27592547,1.03055942 C7.72710559,0.649094838 7.4034617,-0.0158751501 6.77439337,0.000259303722" id="Fill-1" fill="#4648C7" mask="url(#mask-4)"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

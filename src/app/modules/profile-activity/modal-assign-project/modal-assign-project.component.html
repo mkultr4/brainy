@@ -1,0 +1,81 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-profile-assign-project'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Agrega una marca y proyecto
+      </h5>
+    </div>
+    <form name="FormNewBrief" class="form-default" id="new-brief-form" #profileAssignForm="ngForm">
+      <div class="modal-content-display">
+
+        <div class="modal-content-display-inner">
+
+          <div class="compressed">
+            <!--Brand-->
+            <div id="brand-content">
+              <div class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium " 
+              app-mz-select-container-brainy
+              [ngClass]="{'input-field-focused-dark': !brandSelected.id}"
+              >
+                <select mz-select data-container="body" placeholder="Selecciona" id="brandSelected" name="brandSelected"
+                  [label]="'Marca'" [(ngModel)]="brandSelected.id" (ngModelChange)="onChangeBrand($event)" required>
+                  <option value="" disabled>Seleccione una marca</option>
+                  <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+                </select>
+              </div>
+
+            </div>
+            <!--Project-->
+            <div id="project-content" *ngIf="brandSelected.id !== 'newBrand'">
+              <!--Project-->
+
+              <ng-container *ngIf="projects">
+                <div class="col s12">
+                  <div app-mz-select-container-brainy class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                  [ngClass]="{'input-field-focused-dark': brandSelected.id && !projectSelected.id}"
+                  >
+                    <select mz-select placeholder="Selecciona" id="projectSelected" name="projectSelected" [label]="'Proyecto'"
+                      [(ngModel)]="projectSelected.id" data-container="body" [disabled]="!brandSelected.id || brandSelected.id === 'newBrand'"
+                      required>
+                      <option value="" disabled>Seleccione un proyecto</option>
+                      <option [value]="'all'">Todos</option>
+                      <option *ngFor="let project of projects | filterBy:['brand.id']:brandSelected.id" [value]="project.id">{{
+                        project.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </ng-container>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-content-display-btn">
+        <div class="modal-content-display-inner">
+          <div class="compressed">
+            <!--Buttons-->
+            <div class="center upload-button">
+              <button class="btn btn-large" 
+              [appBtnLoading]="btnDisabled" 
+              [disabled]="!profileAssignForm.valid || btnDisabled"
+                (click)="assign()">
+                {{ btnDisabled ? 'AGREGANDO': 'AGREGAR' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</app-mz-modal-brainy>

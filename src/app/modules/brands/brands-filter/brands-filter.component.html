@@ -1,0 +1,74 @@
+<nav class="interface-nav interface-filter-nav bg-white" *ngIf="brands">
+  <div class="container">
+    <div class="nav-wrapper">
+
+      <ul id="nav-dashboard-filter" [ngClass]="{'hide':isShowSearch}">
+        <!--Search-->
+        <li class="search">
+          <a href="javascript:void(0)" (click)="toggleSearch()">
+            <i [inlineSVG]="'assets/img/commons/ico_search.svg'" class="icon-svg ng-scope" id="ico-nav-search"></i>
+          </a>
+        </li>
+
+        <!--Status-->
+        <li class="first-nav-item with-dropdown-menu" [ngClass]="{'filter-active':filterBrand.id !== 'all'}">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-filter-brands" center="true">
+
+
+            <ng-container *ngIf="filterBrand.id === 'all'">
+              <span>Marcas</span>
+            </ng-container>
+            <ng-container *ngIf="filterBrand.id !== 'all'">
+              <span>
+                {{filterBrand.name}}
+              </span>
+            </ng-container>
+
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <app-dropdown-filter-brands [brands]="brands" [filterBrand]="filterBrand" (dropdownOnChangeFilterBrand)="changeFilterBrand($event)">
+          </app-dropdown-filter-brands>
+        </li>
+        <!--FILTER PROJECTS-->
+        <li class="with-dropdown-menu filter-order" [ngClass]="{'filter-active':filterOrderChange}">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-order" center="true">
+            <ng-container *ngIf="!filterOrderChange">
+              <span>{{ 'dashboard.order' | translate}}</span>
+            </ng-container>
+            <ng-container *ngIf="filterOrderChange">
+              <i class="order-direction"
+              [ngClass]="{'invested':filterOrderDirection === -1}"
+              [inlineSVG]="'assets/img/commons/icono_arrow_up.svg'"></i>
+              <ng-container *ngIf="filterOrderColumn === 'name'">
+                <span>Ordenar</span>
+              </ng-container>
+              <ng-container *ngIf="filterOrderColumn === 'modified'">
+                <span>Actividad</span>
+              </ng-container>
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons  caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <app-dropdown-order [orderAlph]="'name'" [empty]="brands.length === 0"
+          [emptyText]="'Sin marcas'" [filterOrderColumn]="filterOrderColumn"
+            [filterOrderDirection]="filterOrderDirection"
+             (filterOnChangeFilterOrder)="changeFilterOrder($event)">
+          </app-dropdown-order>
+        </li>
+
+      </ul>
+
+
+      <!--Search Field-->
+      <ng-container *ngIf="isShowSearch">
+        <app-input-field-search-nav [search]="mainSearch" [searchPlaceholder]="'Busca nombres de marca'" 
+          (inputOnClose)="toggleSearch()"
+          (inputOnChangeSearch)="changeMainSearch($event)">
+        </app-input-field-search-nav>
+      </ng-container>
+
+    </div>
+
+  </div>
+</nav>

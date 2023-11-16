@@ -1,0 +1,77 @@
+<app-preloader [show]="true"></app-preloader>
+<div class="layout-interface layout-with-footer">
+  <section class="layout-interface-content">
+    <!--Header-->
+    <header #dashboardHeader class="subsections-header  scrolled-down" id='paper-bin-header'>
+      <!--First Header-->
+
+      <app-header-default [currentUser]="currentUser" [workspaceAccess]="workspaceAccess" [breadcrumb]="'Marcas'">
+      </app-header-default>
+      <!--Filter-->
+      <div class="navbar-default navbar-fixed navbar-filter" app-brands-filter
+      [brands]="brands" [filterOrderDirection]="filterOrderDirection"
+        [filterOrderColumn]="filterOrderColumn" [filterBrand]="filterBrand" (filterOnChangeMainSearch)="onChangeMainSearch($event)"
+        (filterOnChangeFilterOrder)="onChangeFilterOrder($event)" (filterOnChangeFilterBrand)="onChangeFilterBrand($event)">
+      </div>
+    </header>
+
+    <!--MAIN CONTENT-->
+    <main>
+      <!--Wrapper-->
+      <div class="brands-items-wrapper" *ngIf="brands">
+
+        <!--Content-->
+        <div class="team-items-content">
+          <!--List-->
+          <div class="team-items-list" [ngClass]="{'empty-list': brands.length === 0 }">
+            <ng-container *ngIf="brands.length > 0">
+              <div class="team-list-content">
+                <!--My team-->
+                <ng-container *ngFor="let brand of brands
+                        | filterBy:['name']:mainSearch
+                        | filterByBrand:filterBrand
+                        |  orderBy: orderBy">
+                  <app-brand-box [brand]="brand" (boxOnDelete)="onDelete($event)" (boxOnEdit)="onEdit($event)">
+                  </app-brand-box>
+                </ng-container>
+
+              </div>
+              <h1 class="without-results" *ngIf="(brands
+            | filterBy:['name']:mainSearch
+            | filterByBrand:filterBrand
+            ).length === 0">
+                {{ 'commons.without-results' | translate }}
+
+              </h1>
+            </ng-container>
+            <!--Empty-->
+            <ng-container *ngIf="brands.length === 0">
+              <div class="brainy-empty-message">
+                <img src="assets/img/commons/empty-lists/img_brands_vacio.svg">
+                <h1 class="title">No tienes marcas </h1>
+                <p class="message">
+                  Necesitas más información para crear una marca
+                  <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+<!--Modal delete-->
+<app-modal-delete-brand #modalDelete></app-modal-delete-brand>
+<!--Modal edit brand-->
+<app-modal-edit-brand #modalEdit></app-modal-edit-brand>
+<!--
+<modal-change-workspace #modalChangeWorkspace></modal-change-workspace> -->
+
+<!--Notification-->
+<app-sidenav-notifications [empty]="empty"></app-sidenav-notifications>
+
+<!--Footer-->
+<app-interface-footer></app-interface-footer>
+<!--Chnage workspace-->
+<app-modal-change-workspace></app-modal-change-workspace>

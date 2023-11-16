@@ -1,0 +1,66 @@
+//Notifications List
+.notifications-list {
+    @extend .perfect-scrollbar;
+    
+    min-height: 110px;
+    max-height: 65%;
+    max-height: calc(100vh - 200px);
+    
+}
+.notification {
+    
+    border-top: 1px solid #ECE7E7;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        //box-shadow: inset 0 0 0 1px rgba($blue-color, 0.4);
+       // border-color: transparent;
+    }
+    &.unread {
+        //background-color:rgba(#F1F3F5,1);
+        
+        background: rgba(175,181,213,0.15);
+    }
+    .avatar {
+        position: absolute;
+        left: 36px;
+        top: 42px;
+    }
+    .notification-icon {
+        position: absolute;
+        top: 36px;
+        left: 44px;
+    }
+    .notification-content {
+        padding-left: 119px;
+        padding-right: 32px;
+        height: 135px;
+        color: $primary-color;
+        padding-top: 21px;
+        .notification-content-title {
+            display: block;
+            font-size: 12px;
+            line-height: 19px;
+            margin: 0;
+            font-weight: $font-bold;
+            color: $primary-color;
+            //  @extend .text-overflow;
+        }
+        .notification-content-text {
+            display: block;
+            font-size: 12px;
+            letter-spacing: -0.15px;
+            line-height: 20px;
+          //  height: 40px;
+            max-height: 40px;
+            overflow: hidden;
+            margin: 3px 0px 11px 0px;
+            color: $primary-color;
+        }
+        .notification-content-time-elapsed {
+            display: block;
+            color: rgba($primary-color, 0.50);
+            font-size: 10px;
+        }
+    }
+}

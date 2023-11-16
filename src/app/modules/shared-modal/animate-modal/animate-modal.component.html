@@ -1,0 +1,23 @@
+<!--Modal-->
+<div
+[id]="modalId"
+[@modalFadeAnimation]="stateModal" 
+class="animated-modal animated-modal-full-width {{stateModal}} {{modalClass}}">
+  <div class="modal-content">
+    <!--Modal Brand-->
+    <span class="modal-brand-name">
+      <i [inlineSVG]="'assets/img/logo_brainy.svg'" class="icon-svg"></i>
+      Brainy
+    </span>
+
+    <!--Modal Close-->
+    <a href="javascript:void(0)" class="modal-close close-animated-modal" 
+    (click)="closeModal()">
+      <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'" class="icon-svg"></i>
+    </a>
+
+
+    <ng-content></ng-content>
+
+  </div>
+</div>

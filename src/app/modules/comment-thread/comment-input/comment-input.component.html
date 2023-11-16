@@ -1,0 +1,96 @@
+<div class="comment-input-wrapper" [ngClass]="{
+           'focus':isCommentTextFocus, 
+           'text-not-empty':comment.commentText.length > 0,
+           'auto-focus':autoFocus
+           }">
+    
+        <div class="comment-input" appFileDropzone 
+        accept="image/*" (fileDrop)="chooseFile($event)">
+            <!--Mention-->
+            <ng-container *ngIf="commentMention">
+                <app-comment-box-mention [comment]="commentMention"
+                 (mentionOnRemove)="removeMention()" [showClose]="true">
+                </app-comment-box-mention>
+            </ng-container>
+            <ng-container *ngIf="comment.commentLink">
+                <app-comment-box-link
+                [commentLink]="comment.commentLink"
+                [showClose]="true"
+                (linkOnRemove)="linkOnRemove()"
+                ></app-comment-box-link>
+            </ng-container>
+            <!--Comment-->
+            <div #textArea
+                 class="content-editable-default comment-input-textarea" 
+                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                [perfectScrollbar]="{suppressScrollX:true}"
+                [contentEditable]="true"
+                [singleLine]="false"
+                [(contentEditableModel)]="comment.commentText"
+                (contentEditableModelChange)="changeText($event)"
+                placeholder="Escribe un comentario." maxlength="500" (focus)="commnetTextFocus()" (blur)="commnetTextBlur()">
+
+            </div>
+            <!--File Info-->
+            <div class="comment-input-file" *ngIf="hasFile">
+                <div class="comment-input-file-info">
+                    <div class='file-information-content'>
+                        <div class="file-information">
+                            <i class="icon-svg file-ico" 
+                            [inlineSVG]="'assets/img/commons/ico_picture.svg'"></i>
+                            <span class="file-name">{{comment?.commentFile?.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="file-remove 
+                icon ion-ios-close
+                " 
+                appTooltip [tooltipMessage]="'Eliminar imagen'" (click)="removeFile()">
+            </span>
+            </div>
+            <!--Audio-->
+            <div class="comment-audio" *ngIf="comment.commentAudio">
+                <span class="close" (click)="cancelRecord()">
+                    <i class="icon ion-ios-close" appTooltip [tooltipMessage]="'Eliminar audio'"></i>
+                </span>
+                <app-audio-player [audioSrc]="comment.commentAudio" 
+                [durationRecord]="comment.commentAudioDuration">
+                </app-audio-player>
+            </div>
+
+            <!--Suffix-->
+            <div class="comment-input-suffix">
+
+                <a href="javascript:void(0)" 
+                appFilePicker  
+                accept="image/*" 
+                (filePick)="chooseFile($event)"
+                
+                
+                class="comment-input-suffix-btn suffix-file">
+                    <i class="icon-svg ico-attachment" [inlineSVG]="'assets/img/commons/comments/add_file.svg'"></i>
+                </a>
+
+                <a href="javascript:void(0)" class="comment-input-suffix-btn suffix-record" (click)="startRecordAction()">
+                    <i class="icon-svg ico-mic" [inlineSVG]="'assets/img/commons/comments/audio.svg'"></i>
+
+                </a>
+
+            </div>
+            <!--File Drop Overlay-->
+            <div class="comment-input-overlay-file">
+                <div class="comment-input-overlay-file-message">
+                    <span>Arroje sus archivos aquí</span>
+                </div>
+            </div>
+
+            <!--Character count-->
+
+            <div class="comment-character-count">
+                <span>{{comment.commentText.length}}/500</span>
+            </div>
+
+        </div>
+    
+
+</div>

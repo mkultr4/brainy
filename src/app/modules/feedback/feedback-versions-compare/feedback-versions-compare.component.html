@@ -1,0 +1,32 @@
+<div class="compare-version-main" [perfectScrollbar]="{suppressScrollX:true}"
+[ngClass]="{'compare-four-piece':comparedVersions.length > 2}"
+>
+    <div class="compare-box-container">
+        <div class="row no-margin-bottom">
+            <ng-container *ngFor="let compare of (comparedVersions ? comparedVersions.slice(0,2): []) ">
+                <div class="col s12  l6">
+                    <div class="compare-box-wrapper" [style.height.px]="compareBoxHeight" [style.width.px]="compareBoxWidth">
+                        <app-compare-version-box [piece]="compare.piece" [compareBoxHeight]="compareBoxHeight" [compareBoxWidth]="compareBoxWidth" [filterStatuses]="filterStatuses"
+                            [filterParticipantTypes]="filterParticipantTypes">
+                        </app-compare-version-box>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="comparedVersions.length > 2">
+            <div class="row no-margin-bottom with-margin-top">
+                <ng-container *ngFor="let compare of (comparedVersions ? comparedVersions.slice(2,4): []) ">
+                    <div class="col s12  l6">
+                        <div class="compare-box-wrapper" [style.height.px]="compareBoxHeight" [style.width.px]="compareBoxWidth">
+                            <app-compare-version-box 
+                                 [invested]="true"
+                                [piece]="compare.piece" [compareBoxHeight]="compareBoxHeight" [compareBoxWidth]="compareBoxWidth" [filterStatuses]="filterStatuses"
+                                [filterParticipantTypes]="filterParticipantTypes">
+                            </app-compare-version-box>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</div>

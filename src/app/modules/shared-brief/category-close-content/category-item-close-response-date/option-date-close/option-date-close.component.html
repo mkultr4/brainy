@@ -1,0 +1,26 @@
+<!--Option Date-->
+<ng-container *ngIf="option.type === 'date'">
+  <div class="brief-date-input-wrapper" >
+    <div class="input-field" >
+   
+      <!--Input-->
+      <span class="brief-date-input-icon" [inlineSVG]="'assets/img/brief/response-types/date/ico_calendar.svg'"></span>
+      <input [(ngModel)]="option.value" placeholder="DD / MM / AAAA" type="text">
+
+    </div>
+  </div>
+</ng-container>
+<!--Option Time-->
+<ng-container *ngIf="option.type === 'time'">
+  <div class="brief-date-input-wrapper" >
+    <div class="input-field" >
+      
+        <!--Input-->
+      <span class="brief-date-input-icon" [inlineSVG]="'assets/img/brief/response-types/date/ico_small_time.svg'"></span>
+      <input 
+      
+      [(ngModel)]="option.value" placeholder="00 : 00 : 00"
+         type="text" >
+    </div>
+  </div>
+</ng-container>

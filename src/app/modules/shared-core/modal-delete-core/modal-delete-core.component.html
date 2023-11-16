@@ -1,0 +1,37 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-feedback-delete'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="core">
+        <h4 class="title">
+             {{ 'dashboard.modal-delete.title.'+ core.type.key | translate  }}
+            
+        </h4>
+        <h4 class="message" [innerHTML]="'dashboard.delete-message.paper-bin' | translate">
+            
+
+        </h4>
+
+        <div class="modal-content-buttons">
+
+          
+          <button class="btn btn-medium-large  "
+          [ngClass]="{'btn-loading':deleting}" [disabled]="deleting"
+          (click)="delete()">{{
+            deleting ? 'ELIMINANDO' :'ELIMINAR'}}</button>
+
+            <button class="btn btn-medium-large btn-outline-line cancel  modal-close last-button">
+                CANCELAR
+              </button>
+
+
+        </div>
+      </ng-container>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

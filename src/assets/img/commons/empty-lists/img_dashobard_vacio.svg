@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="180px" viewBox="0 0 200 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>img_dashobard_vacio</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="dashboard_vacio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01_dashboard_vacio" transform="translate(-620.000000, -300.000000)">
+            <g id="img_dashobard_vacio" transform="translate(620.000000, 300.000000)">
+                <g id="img_sin_cores" transform="translate(13.000000, 12.000000)">
+                    <g id="Group-2">
+                        <g id="Group-29-Copy-2" transform="translate(91.016861, 22.067219) rotate(-154.000000) translate(-91.016861, -22.067219) translate(67.016861, 9.567219)" stroke="#3E4758" stroke-width="2">
+                            <path d="M0,22.4671999 C21.5511809,29.3244534 36.1714031,22.2281421 43.8606666,1.17826614" id="Path-13"></path>
+                            <path d="M38.1449077,4.75492518 C38.2977766,4.65700435 40.3618337,3.14843979 44.3370788,0.229231508 L47.7596711,6.16156409" id="Path-14"></path>
+                        </g>
+                        <polygon id="Path-2" fill="#EBECF0" points="50.8728814 117.968667 74.7225654 100.075472 95.1883883 117.968667 113.75554 102.833249 131.974576 122.557619 131.974576 133.188679 50.8728814 133.188679"></polygon>
+                        <rect id="Rectangle" stroke="#3E4758" stroke-width="2" x="51.1355932" y="73.1132075" width="81.3135593" height="59.0754717"></rect>
+                        <ellipse id="Oval-6" stroke="#3E4758" fill="#EBECF0" cx="113.911017" cy="86.4622642" rx="6.26694915" ry="6.25471698"></ellipse>
+                        <polyline id="Path-3" stroke="#3E4758" points="50.1355932 118.875356 75.2419284 100.075472 95.9187917 117.517003 114.191511 102.692056 133.449153 122.150943"></polyline>
+                        <polygon id="Path-10" fill="#3E4758" points="146.513699 126.566038 144.508475 117 152.618644 122.144532 147.994133 122.438681"></polygon>
+                        <path d="M164.415254,39.7358491 L164.415254,110.377358" id="Path-15" stroke="#3E4758" stroke-width="2"></path>
+                        <polyline id="Path-20" stroke="#3E4758" stroke-width="2" points="103.220339 66.9622642 103.220339 49.3018868 174 49.3018868"></polyline>
+                        <path d="M137.135593,103.754717 L171.788136,103.754717" id="Path-21" stroke="#3E4758" stroke-width="2"></path>
+                        <polyline id="Path-12" stroke="#3E4758" stroke-width="2" points="46.0666498 100.811321 0 100.811321 0 43.4150943 64.8813559 43.4150943 64.8813559 64.5044989"></polyline>
+                        <rect id="Rectangle-3" fill="#3E4758" x="50.1355932" y="142.754717" width="41.2881356" height="2.20754717"></rect>
+                        <rect id="Rectangle-3-Copy" fill="#3E4758" x="50.1355932" y="153.056604" width="49.3983051" height="2.20754717"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,65 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-task-edit'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close modal-close-btn">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+
+  <div [id]="'popup-add-task'" *ngIf="task">
+    <div class="popup-add-task-wrapper">
+      <form name="editTaskForm" #editTaskForm="ngForm">
+        <!--Responsible-->
+        <app-popup-task-responsible 
+        [task]="task" [workspaceAccess]="workspaceAccess"></app-popup-task-responsible>
+        <!--Time-->
+        <div class="row no-margin-bottom" id="times-row">
+          <!--Date-->
+          <div class="col s6">
+            <div class="input-field input-field-label-medium  input-field-purple-dark input-field-date input-field-medium "
+              [ngClass]="{'input-field-focused-dark': task.responsible?.id  && !task.date}">
+              <input mz-datepicker [label]="'Fecha'" [options]="datePickerOptions" 
+                [(ngModel)]="task.date" id="modalTaskDate"
+                name="modalTaskDate" placeholder="DD/MM/AA" type="text" required>
+              <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+            </div>
+          </div>
+          <!--Time-->
+          <div class="col s6">
+            <div class="input-field input-field-label-medium  input-field-purple-dark input-field-date input-field-medium"
+              [ngClass]="{'input-field-focused-dark': !task.hour && task.date}">
+              <input mz-timepicker id="modalTaskHour" 
+                  name="modalTaskHour" [(ngModel)]="task.hour" [label]="'Hora'" [options]="timePickerOptions"
+                (ngModelChange)="changeHour($event)" placeholder="00:00" type="text" required>
+              <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row no-margin-bottom" id="description-row">
+          <!--Description-->
+          <div class="col s12">
+            <div class="input-field input-field-purple-dark  input-field-editor" [ngClass]="{'input-field-focused-dark': task.hour && !task.description}">
+                <div class="textarea" placeholder="Describe la tarea" name="taskDescription" id="taskDescription" required
+                [sanitizeHTML]="false"
+                contenteditable="true"
+                [singleLine]="false"
+                 maxlength="500" 
+                [(contentEditableModel)]="task.description"
+                ></div>
+              <label class="active">Tarea</label>
+              <span class="character-count">{{task.description.length}}/500</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="row no-margin-bottom" id="buttons-row">
+          <!--Description-->
+          <div class="col s12">
+            <div class="popup-add-task-buttons">
+              <button class="btn btn-outline-line cancel" (click)="cancel()">Cancelar</button>
+              <button class="btn" [disabled]="editTaskForm.invalid || (!task.responsible || !task.responsible.id) || btnDisabled" (click)="updateTask()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</app-mz-modal-brainy>

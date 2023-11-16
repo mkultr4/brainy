@@ -1,0 +1,95 @@
+.switch {
+    line-height: 30px;
+    display: inline-block;
+    width: 100%;
+    float: left;
+    label {
+        display: inline-block;
+        width: 100%;
+        line-height: 30px;
+        float: left;
+        .switch-label {
+            display: inline-block;
+            float: left;
+            text-align: left;
+            width: calc(100% - 50px);
+            font-weight: $font-light;
+            font-size: 12px;
+            color: $primary-color;
+            letter-spacing: 0.25px;
+        }
+        .lever {
+            float: right;
+            margin: 8px 0 0 0;
+            height: 14px;
+            border: 1px solid #CCCCCC;
+            background: #F8F7F7;
+            width: 30px;
+            &::after {
+                height: 12px;
+                top: 0;
+                width: 12px;
+                background-color: #FFFFFF;
+                left: 1px;
+            }
+            &:before {
+                height: 12px;
+                top: 0;
+                width: 12px;
+                background-color: rgba(#3C4FBC, 0.15)
+            }
+        }
+        input[type=checkbox] {
+            &:not(:disabled) {
+                &~ {
+                    .lever {
+                        &::before {
+                            background-color: rgba(#000, .08);
+                        }
+                    }
+                }
+                &.tabbed {
+                    &:focus {
+                        &~ {
+                            .lever {
+                                &::before {
+                                    background-color: rgba(#000, .08);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &:checked {
+                &:not(:disabled) {
+                    &~ {
+                        .lever {
+                            &::before {
+                                background-color: rgba(#3C4FBC, .08);
+                            }
+                        }
+                    }
+                    &.tabbed {
+                        &:focus {
+                            &~ {
+                                .lever {
+                                    &::before {
+                                        background-color: rgba(#3C4FBC, .08);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &+.lever {
+                        background-color: #3C4FBC;
+                        border-color: #3C4FBC;
+                        &::after {
+                            background-color: #fff;
+                            left: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

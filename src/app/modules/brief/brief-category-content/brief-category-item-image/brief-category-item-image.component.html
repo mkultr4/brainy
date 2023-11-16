@@ -1,0 +1,47 @@
+<!--Sortable-->
+<div class="brief-caregory-item-sortable" *ngIf='focusedIn && !enabledCommentsAction '>
+    <div class="brief-caregory-item-sortable-drag-handle">
+        <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_move_brief.svg'"></i>
+    </div>
+</div>
+<!--Image content-->
+<div class="brief-category-item-image-content">
+    <span class="gallery-image-wrapper">
+        <div class="gallery-image-content">
+
+            <a 
+                appTooltip
+                [tooltipMessage]="'Eliminar imagen'"
+                href="javascript:void(0)" *ngIf="editable  && !enabledCommentsAction " class="gallery-image-remove closest-alert" app-alert-dialog
+                [message]="'¿Quieres elminar la imagen?'" [edge]="'right'" [acceptText]="'Si'" [cancelText]="'No'"
+                [alertClass]="'alert-brief-category-item alert-disabled-trigger'" [alertOverlayClass]="'alert-disabled-trigger'"
+                (alertOnAccept)="delete()">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+            </a>
+            <a 
+                appTooltip
+                [tooltipMessage]="'Cambiar imagen'"
+                href="javascript:void(0)" *ngIf="editable  && !enabledCommentsAction " class="gallery-image-change" 
+                appFilePicker accept="image/*"
+                (filePick)="changeImage($event)">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_change_img.svg'"></i>
+                Cambiar
+            </a>
+            <!--Image-->
+            <img class="gallery-image" #imgRef contenteditable="false" 
+            [src]="briefCategoryItem.content.file.url | sanitize:'url'">
+            <!--Comments-->
+            <ng-container *ngFor="let commentThread of commentThreads 
+            | filterCommentThreadStatus:filterStatuses
+            | filterCommentThreadParticipantType: filterParticipantTypes">
+                  <app-comment-thread-image
+                      [commentThread]="commentThread"
+                      [naturalWidth]="briefCategoryItem.content.file.setting.naturalWidth"
+                      [naturalHeight]="briefCategoryItem.content.file.setting.naturalHeight"
+                      [commentThreadStatus]="commentThread.status"
+                      [hidden]="sorting">
+                  </app-comment-thread-image>
+              </ng-container>
+        </div>
+    </span>
+</div>

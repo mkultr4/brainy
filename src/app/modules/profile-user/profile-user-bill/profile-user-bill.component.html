@@ -1,0 +1,120 @@
+<div class="profile-user-billing">
+  <div class="row no-margin-bottom">
+    <!-- Estimate of the invoice -->
+    <div class="col s12">
+      <div id="payment-box-invoice" class="payment-box">
+        <div class="col s3 m3 l3 payment-box-title">
+          <p> Estimado de la factura</p>
+        </div>
+        <!-- Date -->
+        <div class="col s4 m4 l4 next-pay">
+          <p> {{billing.billingDate | date:'dd MMM'}} - {{billing.nextPay | date:'dd MMM'}} </p>
+        </div>
+        <div class="col s6 m6 l6">
+          <div class="col s8 quantity"> ${{billing.outstanding}}<span> /mes</span> </div>
+          <div class="col s7 method-pay">
+            <div class="col s6 m6 l6 logo-pay">
+              <img [src]="'assets/img/pic_mastecard.svg'" class="image-logo">
+            </div>
+            <!-- Number Card -->
+            <div class="col s6 m6 l6 number-card">
+              <div class="col s3 m3 l3 incode">
+                <span>***</span>
+              </div>
+              <div class="col s3 m3 l3 number-card-enabled">
+                {{billing.numberCard}}
+              </div>
+            </div>
+          </div>
+          <!-- pay ahead of time -->
+          <div class="col s5 pay-time ">
+            <button class="btn btn-purple-light">Pagar antes de tiempo</button>
+          </div>
+        </div>
+        <!-- Sub Menu-->
+        <div class="col s12 m6 l6 sub-menu">
+          <div>
+            <ul>
+              <li>
+                <a href="javascript:void(0)" [routerLink]="['../address']" routerLinkActive="active"> Datos de facturación.</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" routerLinkActive="active" [routerLink]="['../payment-method']"> Métodos de pago.</a>
+              </li>
+              <li>
+                <a [routerLink]="" (click)="deletedMembership()">Cancelar membresía </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- pending payments -->
+    <div class="col s12 m6 s6">
+      <div class="payment-box-pending">
+        <div class="col s4 box-pending-title">
+          <p>Pagos pendientes</p>
+        </div>
+        <div class="col s12 m12 l12 pending">
+          <!-- Table -->
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Estatus</th>
+                <th class="thjust">Total</th>
+              </tr>
+            </thead>
+            <!-- content -->
+            <tbody *ngFor="let history of histories">
+              <tr *ngIf="history.status.name === 'Pendiente'">
+                <td class="payment-date">{{history.paymentDate | date:'dd MMM'}} - {{history.account.nextPayment |
+                  date:'dd MMM'}}</td>
+                <td class="status">{{history.status.name}}</td>
+                <td class="total">$ {{history.account.outstandingBalance}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Make payment -->
+        <div class="col s5 m5 l5 make-payment">
+          <button class="btn btn-outline-light">Realizar pago</button>
+        </div>
+      </div>
+    </div>
+    <!-- Payment history -->
+    <div class="col s12 m6 s6">
+      <div class="payment-box-history">
+        <div class="col s6 m6 l6 title">
+          <p>Histórico de pagos</p>
+        </div>
+        <div class="col s12 pending">
+          <!-- Table -->
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Estatus</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+             <!-- content -->
+            <tbody *ngFor="let log of histories | slice:-3">
+              <tr>
+                <td>{{log.paymentDate | date:'dd/MM/yy'}}</td>
+                <td>{{log.status.name}}</td>
+                <td>$ {{log.paidAmount}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- See payment history -->
+        <div class="col s5 m5 l5 history-pay">
+          <a href="javascript:void(0)" routerLinkActive="active" [routerLink]="['../history']">Ver histórico de pagos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-user-billing-deleted-membership #modalUserDeletedMembership></app-modal-user-billing-deleted-membership>

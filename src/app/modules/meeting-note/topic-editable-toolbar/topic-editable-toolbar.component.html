@@ -1,0 +1,52 @@
+<ul 
+  [class.visible]="show"
+  class="topic-editable-toolbar" >
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'bold')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_bold.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'italic')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_italic.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'underline')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_underline.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" 
+    (mousedown)="execute($event,null)"
+    appInterfaceDropdown 
+    dropdownTarget="#{{dropdownColorId}}"
+     >
+    <i class="icon-svg"
+      [inlineSVG]="'assets/img/commons/content-editable/icono_format_color_fill.svg'"></i>
+    </a>
+    <!--Colors-->
+     <app-topic-dropdown-colors [id]="dropdownColorId"></app-topic-dropdown-colors>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'insertUnorderedList')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_unordered_list.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'insertOrderedList')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_ordered_list.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'justifyLeft')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_align_left.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (mousedown)="execute($event,'justifyRight')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/content-editable/icono_align_right.svg'"></i>
+    </a>
+  </li>
+
+</ul>

@@ -1,0 +1,110 @@
+/* Textarea
+-------------------------------------------------------------------------------*/
+
+textarea {
+    resize: none;
+    border: none;
+    border-bottom: solid 1px #dddddd;
+}
+
+textarea:focus:not([readonly]) {
+    //border-bottom: 1px solid $input-focus-border-color;
+}
+
+textarea:hover,
+textarea:focus {
+    outline: none;
+}
+
+/*Sidenav Textarea editable default*/
+
+.textarea-editable {
+    display: block;
+    font-family: $font-family-brand;
+    font-size: 14px;
+    color: $primary-color;
+    letter-spacing: 0.15px;
+    line-height: 110%;
+    min-height: 20px;
+    padding: 0 0 2px 0;
+    height: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    opacity: 1 !important;
+    border-color: $purple-color;
+
+    &:focus {
+        border-color: $purple-color;
+    }
+
+    &.textarea-editable-big {
+        font-size: 24px;
+        height: 36px;
+        min-height: 36px;
+    }
+
+    &.textarea-editable-min {
+        font-size: 12px;
+        height: 19px;
+        min-height: 19px;
+    }
+
+    &.textarea-editable-disabled {
+        color: $primary-color-light;
+    }
+}
+
+.textarea-editable[readonly] {
+    border-bottom-color: transparent;
+    margin-bottom: 0;
+}
+
+.input-field {
+    &.input-field-editor {
+        textarea, .textarea {
+            @extend .content-editable-default;
+            background: #FFFFFF;
+            border: 1px solid rgba(57, 58, 111, 0.3);
+            border-radius: 2px;
+            min-height: 150px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            margin: 7px 0 3px 0;
+            display: inline-block;
+            width: 100%;
+            line-height: 15px;
+
+            &:before {
+                content: attr(placeholder);
+                color: $placeholder-color;
+                z-index: 1 !important;
+                position: absolute;
+                left: 15px !important;
+                top: 12px !important;
+            }
+
+            & + label {
+                font-size: 12px;
+                font-weight: $font-regular;
+
+                &:not(.label-icon) {
+                    font-size: 12px;
+                }
+
+                &.active {
+                    letter-spacing: 0.15px;
+                }
+            }
+        }
+
+        .character-count {
+            font-weight: $font-regular;
+            font-size: 9px;
+            color: rgba($primary-color, 0.4);
+            display: block;
+            line-height: 10px;
+        }
+    }
+}
+
+

@@ -1,0 +1,47 @@
+<div class="profile-user-billing-breadcrumb">
+  <!--Back to billing-->
+  <a class="back-to-billing" routerLinkActive="active" [routerLink]="['../bill']">
+    <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'" class="icon-svg back-icon"></i>
+    <span> Facturación</span>
+  </a>
+</div>
+<!--Payments methods-->
+<div class="profile-user-paymenthod">
+  <div class="row no-margin-bottom">
+    <div class="col s12">
+      <div>
+        <div class="profile-user-paymenthod-title">
+          Métodos de pago
+        </div>
+        <div class="col s5 m5 l5 profile-user-paymenthod-box" *ngFor="let payMethod of payMentMethods">
+          <div class="col s5 m5 l5 paymenthod-box-icon-card">
+            <img [src]="'assets/img/ico_master_card.svg'" class="image-logo">
+          </div>
+          <div class="col s2 m2 l2 paymenthod-box-card-number">
+            <div class="col s3 m3 l3 card-number-secret">
+              <span>***</span>
+            </div>
+            <div class="col s2 m3 l3">
+              <span> {{payMethod.creditCardNumber | slice:-4}} </span>
+            </div>
+          </div>
+          <div class="col s5 m5 l5 paymenthod-box-expiration">
+            <span>Fecha de caducidad: {{payMethod.expiration}}</span>
+          </div>
+          <div class="col s2 m2 l2 paymenthod-box-edit-card">
+            <a [routerLink]="" (click)="edit(payMethod.id)">Editar</a>
+          </div>
+        </div>
+        <a [routerLink]="" (click)="newPayMentMethod()">
+          <div class="col s5 m5 l5 new-payment">
+            <img [src]="'assets/img/plus.svg'" class="image-logo">
+            <p>Añadir método de pago</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal user billing payment method-->
+<app-modal-user-billing-paymenthod #modalUserBillingPayment></app-modal-user-billing-paymenthod>
+<app-modal-user-billing-new-paymenthod #modalUserBillingNewPayment></app-modal-user-billing-new-paymenthod>

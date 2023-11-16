@@ -1,0 +1,33 @@
+<app-mz-modal-brainy #modal [options]="modalOptions"
+[modalId]="'modal-dashbord-archive'"
+ [modalClass]="'modal-vertically-center modal-delete'">
+ <!--Close-->
+ <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <h2 class="title">
+            Archivar&nbsp;<span *ngIf="core">{{'core.type.'+ core.type.key | translate}}</span>
+        </h2>
+        <h4 class="message">
+            Estás a punto de mover el archivo del Dashboard,<br>
+            después ya no sera visible.
+
+        </h4>
+        <div class="modal-content-buttons">
+            <button class="btn btn-medium-large "
+            [appBtnLoading]="filing"
+            [disabled]="filing"
+              (click)="archive()">{{ filing ? 'ARCHIVANDO' :'SI, CONTINUAR'}}</button>
+          <button class="btn btn-medium-large btn-outline-line cancel  last-button  modal-close">
+            NO, CERRAR
+          </button>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

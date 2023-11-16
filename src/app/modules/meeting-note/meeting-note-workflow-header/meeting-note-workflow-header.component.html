@@ -1,0 +1,121 @@
+<!--Project information-->
+<ng-container *ngIf="core && core.id">
+  <div class='workflow-header-nav' id="meeting-note-workflow-header" [class.share-and-approve]="shareAndApprove">
+    <div class='workflow-header-content'>
+      <!--Title-->
+      <div class='workflow-header-title'>
+        <div class="workflow-header-title-wrapper" 
+        [ngClass]="{'editing-title':editingTitle}">
+          <input #workflowTitle elastic-input [ngModel]="core.title" 
+            placeholder="Escriba el título" 
+            (focus)="onTextFocus($event)"
+            [disabled]="!editingTitle && !headerEditable" 
+            (blur)="onBlurTitle($event.target.value)"
+             maxlength="100">
+          <!--Edit-->
+          <a *ngIf="editable && !headerEditable" class="workflow-header-edit-btn" href="javascript:void(0)" (click)="editTitle()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+          </a>
+        </div>
+      </div>
+      <!--Information-->
+      <div class='workflow-header-info'>
+        <!--Meeting note-->
+        <ng-container *ngIf="core.meetingNoteType.key === 'scheduled'">
+          <div class="meeting-note-scheduled-form">
+            <span class="plain-text">{{ core.project.brand.name }}&nbsp;</span>
+            <span class="plain-text">({{core.project.name}})&nbsp;</span>
+            <!--Date-->
+            <div class="input-field input-field-inline"
+            [class.editable]="editable"
+            >
+              <input 
+              #inputDate
+              placeholder="DD/MM/AAA"
+              [disabled]="!headerEditable && !editingDate"
+              mz-datepicker [options]="datePickerOptions"
+              (ngModelChange)="changeDate($event)" 
+              elastic-input name="meeting-note-date" [(ngModel)]="core.date">
+              <!--Edit-->
+              <a *ngIf="editable  && !headerEditabl"  class="input-field-edit" href="javascript:void(0)" 
+                (click)="editDate()">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                </a>
+            </div>
+            <!--Hour-->
+            <div class="input-field input-field-inline"
+            [class.editable]="editable"
+            >
+              <input 
+              #inputHour
+              [disabled]="!headerEditable && !editingHour"
+              mz-timepicker
+              placeholder="00:00"
+              [options]="timePickerOptions"
+              (ngModelChange)="changeHour($event)" 
+              elastic-input name="meeting-note-hour" [(ngModel)]="core.hour">
+              <!--Edit-->
+                <a *ngIf="editable && !headerEditable" class="input-field-edit" href="javascript:void(0)" 
+                  (click)="editHour()">
+                  <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                </a>
+            </div>
+            <!--Place-->
+            <div class="input-field input-field-inline"
+            [class.editable]="editable"
+            >
+              <input elastic-input name="meeting-note-place" 
+              #inputPlace
+              placeholder="Ejemplo: Calle n5  Colonia Santa Cruz"
+              [disabled]="!headerEditable && !editingPlace"
+              [maxLength]="100"
+              [(ngModel)]="core.place"
+              (focus)="onTextFocus($event)"
+              (blur)="onBlurPlace($event.target.value)"
+              >
+              <!--Edit-->
+              <a *ngIf="editable && !headerEditable" class="input-field-edit" href="javascript:void(0)" 
+                (click)="editPlace()">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                </a>
+            </div>
+
+          </div>
+        </ng-container>
+        <ng-container *ngIf="core.meetingNoteType.key === 'fill_now'">
+          {{ core.project.brand.name }}&nbsp;({{core.project.name}})&nbsp;/&nbsp;{{core.modified |
+          momentDate:'DD/MM/YYYY'}}
+        </ng-container>
+      </div>
+      <div class="workflow-header-status">
+        <ng-container *ngIf="canApprove">
+          <a class="sidenav-status-btn {{core.status?.id}}" href="javascript:void(0)" mz-button id="workflow-dropdown-status">
+            <i class="icon-svg status-icon-header {{core.status?.key}}" [inlineSVG]="core?.status?.ico"></i>
+            <span class="status-text">
+              {{'core.status.'+ core.status.key | translate }}
+            </span>
+            <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/icon_estatus_drop.svg'"></i>
+          </a>
+          <!--Dropdown Statuses-->
+          <app-mz-dropdown-brainy [id]="'dropdown-workflow-status'" [dropdownButtonId]="'workflow-dropdown-status'"
+            [constrainWidth]="false" [belowOrigin]="false" [dropdownClass]="'dropdown-status'">
+            <li *ngFor="let status of coreStatuses">
+              <span (click)="setStatus(status)">
+                <i class="{{status.id}}" [inlineSVG]="status.ico"></i>
+                {{'core.status.'+ status.key | translate }}
+              </span>
+            </li>
+          </app-mz-dropdown-brainy>
+        </ng-container>
+        <ng-container *ngIf="!canApprove">
+          <a class="sidenav-status-btn {{core.status?.id}}" href="javascript:void(0)" id="workflow-dropdown-status">
+            <i class="icon-svg status-icon-header {{core.status?.key}}" [inlineSVG]="core?.status?.ico"></i>
+            <span class="status-text">
+              {{'core.status.'+ core.status.key | translate }}
+            </span>
+          </a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>

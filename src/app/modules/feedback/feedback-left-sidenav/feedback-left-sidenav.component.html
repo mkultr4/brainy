@@ -1,0 +1,68 @@
+<div class="feedback-left-sidenav " [ngClass]="{'compressed':compressed}">
+  <div class="feedback-pieces-carousel">
+    <ng-container *ngIf="!isFeedbackVideo">
+      <div #feedbackPieceList class="feedback-pieces-carousel-container" 
+      [perfectScrollbar]="{suppressScrollX:true}">
+        <div
+        class="sortable-container"
+        [sortablejs]="pieces" [sortablejsOptions]="piecesSortableOptions">
+          <!--Item-->
+          <ng-container *ngIf="pieces.length === 1">
+            <ng-container *ngFor="let piece of pieces">
+              <div *ngIf="!piece.empty">
+                <div class="feedback-piece-carousel-item piece-draggable
+                 closest-alert" app-feedback-piece-sidenav [pieceShow]="pieceShow" [piece]="piece" [editable]="editable"
+                  (pieceOnSelect)="selectPiece($event)" (pieceOnDelete)="deletePiece($event)"></div>
+              </div>
+            </ng-container>
+          </ng-container>
+          <!--More than one item-->
+          <ng-container *ngIf="pieces.length > 1">
+            <ng-container *ngFor="let piece of pieces">
+              <div class="feedback-piece-carousel-item piece-draggable closest-alert" app-feedback-piece-sidenav [pieceShow]="pieceShow"
+                [piece]="piece" [editable]="editable" (pieceOnSelect)="selectPiece($event)" (pieceOnDelete)="deletePiece($event)"></div>
+            </ng-container>
+
+          </ng-container>
+        </div>
+        <ng-container *ngIf="editable">
+          <!--Add Item-->
+          <div class="static feedback-piece-carousel-item-add"
+          (click)="addPiece()"
+          appTooltip
+          [tooltipMessage]="'Agregar hoja'"
+          [alignamentTooltip]="'right'"
+          [extraClassTooltip]="'tooltip-add-piece'"
+          >
+            <div class="feedback-piece-carousel-item-content">
+              <i [inlineSVG]="'assets/img/feedback/icono_more.svg'"></i>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isFeedbackVideo">
+        <ng-container *ngIf="pieces.length > 0 && pieces[0] && pieces[0].commentThreads">
+            <div class="feedback-pieces-carousel-container" [perfectScrollbar]="{suppressScrollX:true}">
+              <!--Group by frame and the second element is the list of threads-->
+              <ng-container *ngFor="let frame of pieces[0].commentThreads 
+                              | filterBy:['saved']:true
+                              | orderBy: 'timeStart' 
+                              | groupBy: 'timeStart' 
+                              | pairs  ">
+    
+    
+                <app-feedback-piece-frame [commentThreads]="frame[1]"></app-feedback-piece-frame>
+    
+    
+              </ng-container>
+            </div>
+          </ng-container>
+    </ng-container>
+  </div>
+
+</div>
+
+<a class="btn-back-sidenav left-position" href="javascript:void(0)" (click)="compress()" [ngClass]="{'direction-right':compressed}">
+  <i class="icon-svg icon-arrow" [inlineSVG]="'assets/img/sidenav/ico_arrow.svg'"></i>
+</a>

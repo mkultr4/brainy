@@ -1,0 +1,184 @@
+<ng-container *ngIf="cores">
+  <div class="brand-profile-wrapper projects">
+    <!--List-->
+    <div class="brand-profile-content container">
+      <div class="table-wrapper-search">
+        <div class="table-search" [ngClass]="{'hide':!isShowSearch}">
+          <app-input-field-search-nav [search]="filterName" [searchPlaceholder]="'Busca por nombre de proyecto'"
+            (inputOnClose)="showSearch(false)" (inputOnChangeSearch)="onChangeSearch($event)"></app-input-field-search-nav>
+        </div>
+        <table class="brand-profile-projects-table">
+          <thead>
+            <tr class="navigation-theads" [ngClass]="{'hide-navigation':isShowSearch}">
+              <!--Project-->
+              <th class="project-name filter-thead" [ngClass]="{'filter-active':filterProject.id !== 'all'}">
+
+                <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-projects" gutterMaxHeight="103">
+                  <ng-container *ngIf="filterProject.id === 'all'">
+                    <span>{{ 'dashboard.projects' | translate}}</span>
+                  </ng-container>
+                  <ng-container *ngIf="filterProject.id !== 'all'">
+                    <span>{{ filterProject.name }}</span>
+                    <!--
+                      <span>{{ filterProject.name | ngXtruncate : 15 : "…" }}</span>
+                    -->
+                  </ng-container>
+                  <span [inlineSVG]="'assets/img/commons/ico_caret.svg'" class="caret"></span>
+
+                </a>
+                <app-brand-profile-filter-projects [projects]="projects" [filterProject]="filterProject" [cores]="cores"
+                  (filterOnChangeFilterProject)="onChangeFilterProject($event)"></app-brand-profile-filter-projects>
+
+              </th>
+              <!--Type-->
+              <th class="project-files filter-thead" [ngClass]="{'filter-active':filterType.key !== 'all'}">
+
+                <a href="javascript:void(0) " appInterfaceDropdown dropdownTarget="#dropdown-types" edge="bottom">
+                  <ng-container *ngIf="filterType.key === 'all'">
+                    <span>{{ 'dashboard.types' | translate}}</span>
+                  </ng-container>
+                  <ng-container *ngIf="filterType.key !== 'all'">
+                    {{'core.type.' + filterType.key | translate}}
+                  </ng-container>
+                  <span [inlineSVG]="'assets/img/commons/ico_caret.svg'" class="caret"></span>
+                </a>
+                <app-brand-profile-filter-type [cores]="cores" [coreTypes]="coreTypes" [filterType]="filterType"
+                  (filterOnChangeFilterType)="changeFilterType($event)">
+                </app-brand-profile-filter-type>
+
+              </th>
+              <!--Date-->
+              <th>
+                <span>Fecha de creación</span>
+              </th>
+              <th class="project-workflow"></th>
+
+              <th class="toolbar-thead">
+                <ul class="toolbar-menu">
+                  <li>
+                    <a href="javascript:void(0)" (click)="showSearch(true)">
+                      <i class="icon-svg ico-search" [inlineSVG]="'/assets/img/commons/workflow-header/menu_buscar.svg'"></i>
+                    </a>
+                  </li>
+                </ul>
+              </th>
+            </tr>
+
+          </thead>
+          <!--Projects-->
+          <tbody *ngIf="cores.length > 0">
+            <!--Results filter-->
+
+            <ng-container *ngFor="let core of cores 
+            | filterBy:['title']:filterName
+            | filterCoreByType: filterType
+            | filterCoreByProject: filterProject">
+              <tr class="project-link" [id]="'core-row-'+core.id">
+                <td class="collapse-link project-name" appToggleClass 
+                  [parentActiveId]="'core-row-'+core.id" 
+                  [elementId]="'core-participants-'+core.id">
+                  <a href="javascript:void(0)">
+                    <i class="caret" [inlineSVG]="'assets/img/commons/ico_arrow_down_table.svg'">keyboard_arrow_down</i>
+                    {{core.title}}
+                  </a>
+                </td>
+                <td>
+                  {{'core.type.'+core.type.key | translate}}
+                </td>
+
+                <td>
+                  {{core.created | momentDate:'DD/MM/YYYY HH:mm a'}}
+                </td>
+                <td class="project-workflow" (click)="toggleClass($event)">
+                  <a href="javascript:void(0)">
+                    Workflow
+                  </a>
+                </td>
+                <td class="project-menu">
+                  <a class="btn-burguer-default" href="javascript:void(0)" mz-button [id]="'btn-menu-'+core.id">
+                    <i class="icon-svg" [inlineSVG]="'/assets/img/commons/sidenav/ico_menu.svg'"></i>
+                  </a>
+
+                  <app-mz-dropdown-brainy #menu [id]="'menu-dropdown-'+ core.id" [dropdownButtonId]="'btn-menu-'+core.id"
+                    [constrainWidth]="false" [belowOrigin]="true" [dropdownClass]="'toolbar-project-table'">
+                    <li (click)="editProject(core)">
+                      <a href="javascript:void(0)" class="edit">
+                        <i class="icon-svg" [inlineSVG]="'/assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                        Editar
+                      </a>
+                    </li>
+                    <li (click)="deleteProject(core)">
+                      <a href="javascript:void(0)" class="delete">
+                        <i class="icon-svg" [inlineSVG]="'/assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+                        Eliminar
+                      </a>
+                    </li>
+                    <li (click)="shareProject(core)">
+                      <a href="javascript:void(0)" class="share-users">
+                        <i class="icon-svg" [inlineSVG]="'/assets/img/commons/workflow-header/menu_share_users.svg'"></i>
+                        Agregar participante
+                      </a>
+                    </li>
+
+
+                  </app-mz-dropdown-brainy>
+                </td>
+              </tr>
+              <!--Audtis-->
+              <tr class="cores-participants-row" [id]="'core-participants-'+core.id">
+                <td colspan="5" class="cores-participants-cell">
+                  <app-brand-profile-core-particpants-table 
+                  [core]="core"
+                  [coreKey]="core.type.key"
+                  (onDeleteInvitation)="onDeleteInvitation($event)"
+                  >
+                </app-brand-profile-core-particpants-table>
+                  
+                </td>
+              </tr>
+
+            </ng-container>
+
+            <!--Without results filter-->
+            <ng-container *ngIf="(cores
+             | filterBy:['title']:filterName
+             | filterCoreByProject: filterProject
+             | filterCoreByType: filterType
+             ).length === 0">
+              <tr>
+                <td colspan="5" class="empty-results">
+                  <h5 class="without-results">
+                    {{ 'commons.without-results' | translate }}
+                  </h5>
+                </td>
+              </tr>
+            </ng-container>
+
+          </tbody>
+          <tbody *ngIf="cores.length === 0">
+            <tr>
+              <td colspan="5" class="empty-results">
+                <h5 class="without-results">
+                  Sin proyectos
+                </h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<!--Edit project-->
+<app-modal-edit-core #modalEditProject [workspaceAccess]="workspaceAccess">
+</app-modal-edit-core>
+<!--Modal delete-->
+<app-modal-delete-core #modalDeleteProject (modalOnDelete)="modalOnDelete()"></app-modal-delete-core>
+
+<!--Share-->
+<app-modal-share-participants #modalShare [workspaceAccess]="workspaceAccess" [showShareLink]="true"
+  [invitationLevelId]="'core'" [objectType]="objectType" [objectType]="'core'" [invitationReferenceId]="invitationReferenceId"
+  (onCloseModal)="onCloseModalShare($event)">
+</app-modal-share-participants>

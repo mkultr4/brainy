@@ -1,0 +1,57 @@
+<app-animate-modal #modal [modalId]="'modal-change-workspace'" 
+(modalOnShow)="modalOnShow()" (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <!--Display-->
+    <div class="modal-content-display">
+        <form class="form-change-workspace" #formChangeWorkspace="ngForm">
+          <!--Title-->
+          <div class="form-change-workspace-title">
+            <span>Validar sesión</span>
+          </div>
+          <!--tip-->
+          <div class="form-change-workspace-tip">
+            <span> (Para cambiar de workspace debes de validar con tu contraseña.) </span>
+          </div>
+          <!--Usser logged-->
+          <div class="participant-list-block-wrapper ">
+            <div class="participant-list-block" *ngIf="currentUser">
+              <a class="participant-information" href="javascript:void(0)">
+                <div class="avatar profile-image-medium-1" app-avatar [user]="currentUser" [showStatus]="false"></div>
+                <div class="participant-user-information">
+                  <span class="name">{{currentUser.name + ' ' + currentUser.lastName}}</span>
+                  <span class="rol">{{currentUser.email}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!--Email-->
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div class="input-field input-field-medium input-field-password">
+                <!---->
+                <input mz-input [label]="'Contraseña'"
+                [(ngModel)]="password"
+                 type="password" name="password" 
+                 #inputPassword 
+                 [minlength]="8" 
+                 required
+                 >
+              </div>
+              <div class="help-block help-block-password right-align">
+                  <a href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+          </div>
+          <!--Button-->
+          <div class="form-change-workspace-button ">
+            <button class="btn btn-medium-large" type="button"
+            [ngClass]="{'btn-loading':btnDisabled}"
+            (click)="changeWorkspace()"
+            [appBtnLoading]="btnDisabled"
+             [disabled]="!formChangeWorkspace.valid || btnDisabled">
+             {{ btnDisabled ? 'CARGANDO':'CONTINUAR'}}</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</app-animate-modal>

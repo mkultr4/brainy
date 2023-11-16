@@ -1,0 +1,9 @@
+<div 
+#commentThreadPoint
+class="comment-thread-point {{commentThread.status.key}}" 
+[id]="'thread-'+ commentThread.id"
+(click)="showCommentSidebarThread($event)"
+[ngStyle]="{'left':commentThread.left + 'px','top':commentThread.top+ 'px'}"
+>
+<span>{{commentThread.number}}</span>
+</div>

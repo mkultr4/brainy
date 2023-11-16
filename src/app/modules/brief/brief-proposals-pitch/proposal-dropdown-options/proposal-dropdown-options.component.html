@@ -1,0 +1,28 @@
+<div class="modal-floating proposal-dropdown-options modal-prevent-close " 
+app-modal-floating
+[modalFloatingBtnId]="'#modal-floating-trigger-proposal-'+proposal.id"
+[modalFloatingEdge]="'bottom'"
+[modalFloatingAlign]="'center'"
+[modalWithArrow]="true"
+[modalAutoFixPosition]="true"
+[modalFloatingGutter]="16"
+>
+  <span class="arrow"></span>
+  <div class="proposal-dropdown-options-container">
+    <textarea  
+      [(ngModel)]="proposalMessage.message"
+      placeholder="Escriba un mensaje"></textarea>
+    <div class="button-container">
+      <ng-container *ngIf="proposal.status === 'pre-finalist' || proposal.status === 'finalist'">
+        <button class="btn btn-outline-line hover-color  left" (click)="setStatus('declined')">Declinar</button>
+      </ng-container>
+      <ng-container *ngIf="proposal.status === 'declined'">
+          <button class="btn btn-outline-line hover-color  left" (click)="setStatus('pre-finalist')">Prefinalista</button>
+        </ng-container>
+      <button class="btn btn-outline-line hover-color  right" (click)="setStatus('finalist')">Ganadora</button>
+    </div>
+
+  </div>
+
+
+</div>

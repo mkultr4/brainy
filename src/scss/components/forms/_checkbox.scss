@@ -1,0 +1,821 @@
+/* Checkbox
+-----------------------------------------------------------------------------*/
+.checkbox-block {
+    margin: 0 0 27px 0;
+    position: relative;
+}
+
+[type="checkbox"] {
+    //Default
+    & + label {
+        &:before {
+            border: 1px solid $purple-color-dark2;
+        }
+
+        &:after {}
+    }
+
+    &.filled-in {
+        & + label {
+            line-height: 20px;
+            min-height: 20px;
+            height: auto;
+            color: $primary-color;
+        }
+
+        &:checked {
+            & + label {
+                &:before {
+                    //border-right: 2px solid $purple-color-dark2;
+                    //border-bottom: 2px solid $purple-color-dark2;
+                    border: solid $purple-color-dark2;
+                    border-width: 0 2px 2px 0;
+                }
+
+                &:after {
+                    background-color: transparent;
+                    border-radius: 0;
+                    border: 1px solid $purple-color-dark2;
+                }
+            }
+        }
+
+        &:not(:checked) {
+            & + label {
+                &:before {}
+
+                &:after {
+                    border-radius: 0;
+                    border: 1px solid $purple-color-dark2;
+                }
+            }
+        }
+
+        &.tabbed:focus {
+            &:checked {
+                & + label {
+                    &:after {
+                        border: 1px solid $purple-color-dark2;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+
+        &.invested {
+            & + label {
+                padding-left: 0px;
+                padding-right: 35px;
+
+                &:before {
+                    left: auto;
+                    right: 10px;
+                }
+
+                &:after {
+                    left: auto;
+                    right: 0px;
+                }
+            }
+        }
+
+        &.shined {
+            &:checked {
+                & + label {
+                    &:before {
+                        border-right: 2px solid #fff;
+                        border-bottom: 2px solid #fff;
+                    }
+
+                    &:after {
+                        background-color: $purple-color-light;
+                        border-radius: 0;
+                        border: 1px solid $purple-color-light;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        border-radius: 0;
+                        border: 1px solid rgba($primary-color,0.6);
+                    }
+                }
+            }
+        }
+
+        &.lighted {
+            &:checked {
+                & + label {
+                    &:before {
+                        border-right: 2px solid #AFB5D5;
+                        border-bottom: 2px solid #AFB5D5;
+                    }
+
+                    &:after {
+                        background-color: #F3F3F8;
+                        border: 1px solid #AFB5D5;
+                        border-radius: 1px;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        background-color: #F3F3F8;
+                        border: 1px solid #AFB5D5;
+                        border-radius: 1px;
+                    }
+                }
+            }
+        }
+
+        &.darkness {
+            &:checked {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        border: 1px solid $purple-color-dark2;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        border: 1px solid rgba($primary-color, 0.6);
+                    }
+                }
+            }
+        }
+
+        &.gray {
+            &:checked {
+                & + label {
+                    &:before {
+                        border-right: 2px solid #fff;
+                        border-bottom: 2px solid #fff;
+                    }
+
+                    &:after {
+                        background-color: $purple-color-light;
+                        border: 1px solid $purple-color-light;
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        background-color: #fff;
+                        border: 1px solid rgba($primary-color, 0.29);
+                        border-radius: 1px;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+
+        &.gray-lighten {
+            &:checked {
+                & + label {
+                    &:before {
+                        border-right: 2px solid rgba($primary-color, 0.29);
+                        border-bottom: 2px solid rgba($primary-color, 0.29);
+                    }
+
+                    &:after {
+                        background-color: #F4F3F3;
+                        border: 1px solid rgba($primary-color, 0.29);
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        background-color: #fff;
+                        border: 1px solid rgba($primary-color, 0.29);
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            &:focus {
+                & + label {
+                    color: rgba($primary-color, 0.4);
+                }
+            }
+
+            & + label {
+                color: rgba($primary-color, 0.4);
+            }
+        }
+
+        &.gray-darken {
+            &:checked {
+                & + label {
+                    &:before {
+                        border-right: 2px solid #fff;
+                        border-bottom: 2px solid #fff;
+
+                    }
+
+                    &:after {
+                        background-color: $purple-color-light;
+                        border: 1px solid $purple-color-light;
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        background-color: #fff;
+                        border: 1px solid $primary-color;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+        &.checked-unchecked {
+            &:checked {
+                & + label {
+                    color:  rgba($primary-color,0.59);
+                    &:before {
+                        border-right: 2px solid #fff;
+                        border-bottom: 2px solid #fff;
+
+                    }
+
+                    &:after {
+                        background-color: $purple-color-light;
+                        border: 1px solid $purple-color-light;
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            &:not(:checked) {
+                & + label {
+                    color:  rgba($primary-color,0.59);
+                    &:before {
+                        /* border-right: 2px solid #fff;
+                        border-bottom: 2px solid #fff;
+                        border-width: 0 2px 2px 0;*/
+                    }
+                    &:after {
+                        background: #fff;
+                        border: 1px solid rgb(220, 222, 225);
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+
+        &.border-radius-2 {
+            &:not(:checked) {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            &:checked {
+                & + label {
+                    &:before {}
+
+                    &:after {
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+
+        &.small {
+            height: 10px;
+            & + label {
+                line-height: 11px;
+                font-weight: $font-light;
+                font-size: 10px;
+                color: $primary-color;
+                letter-spacing: 0.12px;
+                min-height: 11px;
+                padding-left: 12px;
+                height: auto;
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {
+                        top: 1;
+                        left: 1px;
+                    }
+
+                    &:after {
+                        top: 1.5px;
+                        width: 8px;
+                        height: 8px;
+                        border-width: 1px;
+                        border-style: solid;
+                      //  border-color:inherit;
+                    }
+                }
+            }
+
+            &:checked {
+                & + label {
+                    &:before {
+                        top: 1px;
+                        left: -1px;
+                        width: 5px;
+                        height: 7px;
+
+                    }
+
+                    &:after {
+                        top: 1.5px;
+                        width: 8px;
+                        height: 8px;
+                        border-width: 1px;
+                        border-style: solid;
+                      //  border-color:inherit;
+                    }
+                }
+            }
+
+            //Invested
+            &.invested {
+                & + label {
+                    padding-left: 0px;
+                    padding-right: 23px;
+                }
+
+                &:not(:checked) {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 6px;
+                        }
+
+                        &:after {}
+                    }
+                }
+
+                &:checked {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 6px;
+                        }
+
+                        &:after {}
+                    }
+                }
+            }
+        }
+
+        &.medium {
+            height: 12px;
+            & + label {
+                line-height: 12px;
+                font-weight: $font-light;
+                font-size: 12px;
+                letter-spacing: 0.12px;
+                min-height: 12px;
+                padding-left: 23px;
+                height: auto;
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {
+                        top: 1px;
+                        left: 1px;
+                    }
+
+                    &:after {
+                        width: 12px;
+                        height: 12px;
+                        border-width: 1px;
+                        border-style: solid;
+                       // border-color:inherit;
+                    }
+                }
+            }
+
+            &:checked {
+                & + label {
+                    &:before {
+                        top: 1px;
+                        left: 1px;
+                        width: 5px;
+                        height: 7px;
+                        // border-right: 2px solid ;
+                       // border-bottom: 2px solid;
+                    }
+
+                    &:after {
+                        width: 12px;
+                        height: 12px;
+                        border-width: 1px;
+                        border-style: solid;
+                        // border-color:inherit;
+                    }
+                }
+            }
+
+            //Invested
+            &.invested {
+                & + label {
+                    padding-left: 0px;
+                    padding-right: 23px;
+                }
+
+                &:not(:checked) {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 6px;
+                        }
+
+                        &:after {}
+                    }
+                }
+
+                &:checked {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 6px;
+                        }
+
+                        &:after {}
+                    }
+                }
+            }
+        }
+
+        &.medium-2 {
+            height: 14px;
+            & + label {
+                line-height: 14px;
+                font-weight: $font-light;
+                font-size: 12px;
+                letter-spacing: 0.12px;
+                min-height: 14px;
+                padding-left: 23px;
+                height: 14px;
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {
+                        top: 1px;
+                        left: 1px;
+                    }
+
+                    &:after {
+                        width: 14px;
+                        height: 14px;
+                        border-width: 1px;
+                        border-style: solid;
+                        // border-color:inherit;
+                    }
+                }
+            }
+
+            &:checked {
+                & + label {
+                    &:before {
+                      top: 1px;
+                        left: 3px;
+                        width: 6px;
+                        height: 8px;
+
+                      // border-right: 2px solid ;
+                      //  border-bottom: 2px solid;
+                    }
+
+                    &:after {
+                        width: 14px;
+                        height: 14px;
+                        border-width: 1px;
+                        border-style: solid;
+                        // border-color:inherit;
+                    }
+                }
+            }
+
+            //Invested
+            &.invested {
+                & + label {
+                    padding-left: 0px;
+                    padding-right: 23px;
+                }
+
+                &:not(:checked) {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 7px;
+                        }
+
+                        &:after {}
+                    }
+                }
+
+                &:checked {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 7px;
+                        }
+
+                        &:after {}
+                    }
+                }
+            }
+        }
+        &.medium-3 {
+            height: 15px;
+            & + label {
+                line-height: 15px;
+                font-weight: $font-light;
+                font-size: 14px;
+                letter-spacing: 0.12px;
+                min-height: 15px;
+                padding-left: 31px;
+                height: 15px;
+            }
+
+            &:not(:checked) {
+                & + label {
+                    &:before {
+                        top: 1px;
+                        left: 1px;
+                    }
+
+                    &:after {
+                        width: 15px;
+                        height: 15px;
+                        border-width: 1px;
+                        border-style: solid;
+                        // border-color:inherit;
+                    }
+                
+                }
+            }
+
+            &:checked {
+                & + label {
+                    &:before {
+                         top: 1px;
+                        left: 1px;
+                        width: 6px;
+                        height: 8px;
+
+                      // border-right: 2px solid ;
+                      //  border-bottom: 2px solid;
+                    }
+
+                    &:after {
+                        width: 15px;
+                        height: 15px;
+                        border-width: 1px;
+                        border-style: solid;
+                        // border-color:inherit;
+                    }
+                }
+            }
+
+            //Invested
+            &.invested {
+                & + label {
+                    padding-left: 0px;
+                    padding-right: 23px;
+                }
+
+                &:not(:checked) {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 7px;
+                        }
+
+                        &:after {}
+                    }
+                }
+
+                &:checked {
+                    & + label {
+                        &:before {
+                            left: auto;
+                            right: 7px;
+                        }
+
+                        &:after {}
+                    }
+                }
+            }
+            &.checked-unchecked{
+                & + label {
+                    &:before {
+                        left: 2px;
+                    }
+                }
+                &:not(:checked) {
+                    & + label {
+                        &:before {
+                            left: 2px;
+                            width: 6px;
+                            height: 8px;
+                        }
+                    
+                    }
+                }
+            }
+        }
+    }
+
+    &:checked {
+        & + label {
+            &:before {
+               // border-top: 2px solid transparent;
+               // border-left: 2px solid transparent;
+                border-right: 2px solid $purple-color;
+                border-bottom: 2px solid $purple-color;
+            }
+        }
+    }
+
+    //Rounded
+    &.checkbox-rounded {
+        & + label {
+            height: 15px;
+            line-height: 15px;
+            padding-left: 30px;
+            font-weight: $font-regular;
+            font-size: 14px;
+            color: $primary-color;
+            letter-spacing: 0.18px;
+
+            &:before {
+                width: 15px;
+                height: 15px;
+                border-radius: 15px;
+                border: 1px solid $purple-color;
+                margin: 0;
+                top: 0;
+                left: 0;
+            }
+
+            &:after {
+                width: 9px;
+                height: 9px;
+                border-radius: 9px;
+                left: 3px;
+                top: 3px;
+                transform: scale(0);
+                background-color: $purple-color;
+            }
+        }
+
+        &:checked {
+            & + label {
+                &:before {
+                    transform: none;
+
+                    //background-color: $purple-color;
+
+                }
+
+                &:after {
+                    transform: scale(1);
+                    margin: 0;
+                }
+            }
+        }
+
+        &.invested {
+            & + label {
+                padding: 0 30px 0 0;
+
+                &:before {
+                    left: auto;
+                    right: 0;
+                }
+
+                &:after {
+                    left: auto;
+                    right: 3px;
+                }
+            }
+        }
+
+        &.medium {
+            & + label {
+                font-size: 12px;
+                line-height: 14px;
+                height: 14px;
+                padding-left: 24px;
+
+                &:before {
+                    top: 1px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 12px;
+                }
+
+                &:after {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 8px;
+                    left: 2px;
+                    top: 3px;
+                }
+            }
+
+            &.invested {
+                & + label {
+                    padding: 0 20px 0 0;
+
+                    &:after {
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 6px;
+                        left: auto;
+                        right: 2px;
+                        top: 2px;
+                    }
+                }
+            }
+        }
+
+        &.small {
+            & + label {
+                font-size: 10px;
+                line-height: 10px;
+                height: 10px;
+                padding-left: 20px;
+
+                &:before {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 10px;
+                }
+
+                &:after {
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 6px;
+                    left: 2px;
+                    top: 2px;
+                }
+            }
+
+            &.invested {
+                & + label {
+                    padding: 0 20px 0 0;
+
+                    &:after {
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 6px;
+                        left: auto;
+                        right: 2px;
+                        top: 2px;
+                    }
+                }
+            }
+        }
+    }
+
+    //Label Full width
+    &.full-width {
+        & + label {
+            width: 100%;
+        }
+    }
+}

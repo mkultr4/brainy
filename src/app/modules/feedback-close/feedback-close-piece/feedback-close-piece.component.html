@@ -1,0 +1,13 @@
+<div class="feedback-piece-close-name">
+  <span class="feedback-piece-name ">
+    {{_piece.name}}
+  </span>
+</div>
+<div class="feedback-piece-close-container">
+    <img class="piece-feedback" [src]="_piece.url  | sanitize:'url'" 
+    [style.width.px]="calculatedWidth"
+    [style.height.px]="calculatedHeight "
+    >
+    <!--[style.width.px]="calculatedWidth"
+    [style.height.px]="calculatedHeight"-->
+</div>

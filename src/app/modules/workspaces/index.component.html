@@ -1,0 +1,368 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h1>INDEX</h1>
+      <ol>
+        <li>
+          Workspaces
+
+          <ol>
+            <li>
+              <a [routerLink]="['/workspaces']">Tus workspaces</a>
+            </li>
+            <li>
+              <a [routerLink]="['/workspaces']" [queryParams]="{ messageInformative: true }">Tus workspaces / Mensaje informativo</a>
+            </li>
+            <li>
+              <a [routerLink]="['/workspaces']" [queryParams]="{ alertInvitation: true }">Tus workspaces / Alerta de invitacion</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Tablero
+          <ol>
+            <li>
+              Equipo
+              <ol>
+
+
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'super-admin' }">Tablero Super Administrador</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' }">Tablero Administrador</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'co-admin' }">Tablero Co-admin</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'manager' }">Tablero Manager</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'team' }">Tablero Team</a>
+                </li>
+              </ol>
+
+            </li>
+            <li>
+              Mensajes de bienvenida
+              <ol>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , emptyMessage:'true'}">Dashboard vacio</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , tour:'true'}">Mensajes 1ra vez registro gratis</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin' , dailyMessage:'true'}">Mensajes Diarios</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Minuta
+          <ol>
+            <li>
+              <a [routerLink]="['/dashboard']" [queryParams]="{rol:'admin'}">Crear minuta</a>
+            </li>
+            <li>
+              <a [routerLink]="['/draft','9']" [queryParams]="{rol:'admin'}">Llenado de minuta</a>
+            </li>
+            <li>
+              <a [routerLink]="['/draft','10']" [queryParams]="{scheduled:'true' ,rol:'admin'}">Llenado de minuta / Programada</a>
+            </li>
+            <li>
+              <a [routerLink]="['/draft','9']" [queryParams]="{autoFillDraft:'true',rol:'admin'}">Comentar minuta</a>
+            </li>
+            <li>
+              <a [routerLink]="['/draft/close']" [queryParams]="{brainyObjectId:'9',rol:'admin'}">Visual Cierre de Minuta</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Brief
+          <ol>
+            <li>
+              Crear
+              <ol>
+                <li>
+                  <a [routerLink]="['/dashboard']">Administrador</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'co-admin' }">Co-Administrador</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'guest' }">Invitado</a>
+                </li>
+              </ol>
+            </li>
+            <li>
+              Templates
+              <ol>
+                <li>
+                  <a [routerLink]="['/brief/template']" [queryParams]="{ rol: 'super-admin' }">Templates link directo</a>
+                </li>
+              </ol>
+            </li>
+            <li>
+              Tutorial
+              <ol>
+                <li>
+                  <a [routerLink]="['/brief/template/categories']" [queryParams]="{tour:'true',rol:'super-admin'}">Link directo</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/brief/template/libraries']" [queryParams]="{tour:'true',rol:'co-admin'}">Link directo (Editor/Co-admin)</a>
+                </li>
+
+
+              </ol>
+            </li>
+
+            <li>
+              Edicion
+              <ol>
+                <li>
+                  <a href="javascript:void(0)" [routerLink]="['/brief','1']" [queryParams]="{ rol: 'admin' }">Edicion / Comentar (Admin)</a>
+                </li>
+              </ol>
+
+            </li>
+            <li>
+              Comentar
+              <ol>
+                <li>
+                  <a href="javascript:void(0)" [routerLink]="['/brief','1']" [queryParams]="{rol:'team'}">Team/Guest</a>
+                </li>
+              </ol>
+
+            </li>
+            <li>
+              <a href="javascript:void(0)" [routerLink]="['/brief/close','1']" [queryParams]="{ rol: 'admin' }">Visual Aprobado</a>
+            </li>
+            <li>
+              Presentacion
+              <ol>
+                <li>
+                  <a href="javascript:void(0)" [routerLink]="['/brief/presentation']" [queryParams]="{ rol: 'admin',briefId:'5' }">Crear</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" [routerLink]="['/brief/presentation','15']" [queryParams]="{ rol: 'admin' }">Editar</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Feedback
+          <ol>
+            <li>
+              <a [routerLink]="['/feedback']" [queryParams]="{ rol: 'admin' }">Crear</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin' ,create:'true',showModalWarning:'true'}">
+                Modal advertencia de formato
+              </a>
+            </li>
+            <!--Feedback created-->
+            <li>
+              Marcar existente
+              <ol>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin' }"> [Super admin, Admin, Co-admin, Manager]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'team' }">[Team, Guest]</a>
+                </li>
+                <li>
+                  Special member
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'special-member' }">Marcar</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'special-member',showModalAlertApprove:true }">
+                        Modal hubo cambios desea aprobar
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'member' }">[Member]</a>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin', forceError:true }"> Forzar error</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{unreadMessages:'true' }">Pines animacion</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin' ,tour:'true' }">Tutorial</a>
+            </li>
+            <li>
+              <a [routerLink]="['/feedback/1']" [queryParams]="{ rol: 'admin',create:'true' ,tour:'true' }">Tutorial / Vacio</a>
+            </li>
+            <li>
+              Re-abrir feedback
+              <ol>
+                <li>
+                  Solicitud Modificacion
+                  <ol>
+                    <li>
+                      <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'manager'}">
+                        Solictud de modificacion [Admin, co-admin, manager]
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li>
+                  Solicitud Permisos
+                  <ol>
+                    <!--Member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'member','soliciteModificationFeedback':true}">
+                        Respuesta member edidor [member]
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'member','solicitePermissionAcceptedFeedback':true}">
+                        Respuesta member edidor solicitud de permisos aceptada [member]
+                      </a>
+                    </li>
+                    <!--Special member-->
+                    <li>
+                      <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'special-member','solicitePermissionFeedback':true}">
+                        Respuesta special member [special-member]
+                      </a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/feedback',1]" [queryParams]="{ rol: 'special-member','simulateEdition':true}">
+                        Respuesta special member <b>alerta fue editado</b> [special-member]
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+                
+              </ol>
+            </li>
+            <!--Feedback Approbed-->
+            <li>
+              Visual Aprobado
+              <ol>
+                <li>
+                  <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'admin' }"> [Super admin, Admin, Co-admin, Manager]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'team' }">[Team, Guest]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'special-member' }">[Special member]</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/feedback/close/1']" [queryParams]="{ rol: 'member' }">[Member]</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Registro
+          <ol>
+            <li>
+              <a [routerLink]="['/public/register']">Registarse</a>
+            </li>
+            <li>
+              <a [routerLink]="['/public/thanks']">Registro mensaje</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Sing Up
+          <ol>
+            <li>
+              <a [routerLink]="['/public/login']">Inicio de Sesión</a>
+            </li>
+            <li>
+              <a [routerLink]="['/public/login/recover-password-confirm/abcs-esas-as']">Recuperar contraseña confirmación</a>
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          Equipos
+          <ol>
+            <li>
+              <a [routerLink]="['/team']" [queryParams]="{ rol: 'admin' }">Equipos</a>
+            </li>
+            <li>
+              <a [routerLink]="['/team']" [queryParams]="{ rol: 'admin',tour:true }">Equipos tutorial</a>
+            </li>
+            <li>
+              <a [routerLink]="['/team']" [queryParams]="{ rol: 'admin',empty:true }">Equipos vacios</a>
+            </li>
+            <li>
+              <a [routerLink]="['/team/group']" [queryParams]="{ rol: 'admin',empty:true }">Grupos vacios</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Marcas
+          <ol>
+            <li>
+              <a [routerLink]="['/brands']" [queryParams]="{ rol: 'admin' }">Marcas</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brands']" [queryParams]="{ rol: 'admin',empty:true }">Marcas vacias</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Notificaciones
+          <ol>
+            <li>
+              <a [routerLink]="['/notifications']" [queryParams]="{ rol: 'admin' }">Notificaciones</a>
+            </li>
+            <li>
+              <a [routerLink]="['/notifications']" [queryParams]="{ rol: 'admin',empty:'true'}">Notificaciones vacias</a>
+            </li>
+            <li>
+              <a [routerLink]="['/dashboard']" [queryParams]="{ rol: 'admin',notificationsEmpty:'true'}">Notificaciones vacias sidenav</a>
+            </li>
+
+          </ol>
+        </li>
+        <li>
+          Papelera
+          <ol>
+            <li>
+              <a [routerLink]="['/paper-bin']" [queryParams]="{ rol: 'admin',empty:'true'}">Papelera vacía</a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Errores
+          <ol>
+            <li>
+              <a [routerLink]="['/error/service-unavailable']">Servicio no disponible</a>
+            </li>
+            <li>
+              <a [routerLink]="['/error/confirmation-expired']">Confirmacion expirada</a>
+            </li>
+            <li>
+              <a [routerLink]="['/error/register-unavailable']">Registro no disponible</a>
+            </li>
+          </ol>
+        </li>
+
+
+      </ol>
+
+    </div>
+
+
+  </div>
+
+</div>

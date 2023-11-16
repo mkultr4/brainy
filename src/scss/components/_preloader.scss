@@ -1,0 +1,61 @@
+//Spiner
+.spinner-gray-only {
+    border-color: $primary-color;
+}
+
+
+.preloader-full-screen{
+    position: fixed;
+    z-index: 99999;
+    background: #F7F7FA;
+    width: 100%;
+    height: 100%;
+    .preloader-brand-name {
+        position: absolute;
+        top: 47px;
+        left: 73px;
+        padding-left: 43px;
+        display: inline-block;
+        font-size: 24px;
+        font-family: $font-family-brand;
+        font-weight: $font-brand-light;
+        line-height: 32px;
+        color: $gray-color-2;
+        .icon-svg {
+            position: absolute;
+            left: 0;
+            top: -2px;
+            >svg {
+                height: 32px;
+                path {
+                    fill: $gray-color-2;
+                }
+            }
+        }
+        
+    } 
+    .preloader-table{
+        display: table;
+        width: 100%;
+        height: 100%;
+        .preloader-table-cell{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            .preloader-content{
+                max-width: 107px;
+                margin: 0 auto;
+                text-align: center;
+                img{
+                    margin-bottom: 18px;
+                }
+                .progress{
+                    background: #F0F0F3;
+                    .indeterminate{
+                        background: #7D7EF5;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" 
+  [modalId]="'modal-alert-can-upload-proposal'" 
+  [modalClass]="'modal-vertically-center modal-alert'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <h4 class="title">
+          Sube tus propuestas
+        </h4>
+
+        <h4 class="message">
+          Se ha iniciado el periodo para que puedas<br>
+           adjuntar tus archivos tienes hasta el día:
+        </h4>
+        <!--Date-->
+        <p class="upload-proposal-to">
+          {{ dateOfProposals | momentDate:'DD/MM/YYYY'}}&nbsp;&nbsp;&nbsp;&nbsp;21:00 hs
+        </p>
+        <!--Button-->
+        <div class="modal-content-buttons">
+          <button class="btn btn-medium-large"(click)="uploadProposals()">
+            SUBIR PROPUESTAS
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

@@ -1,0 +1,26 @@
+.profile-user-billing-breadcrumb {
+    height: 38px;
+    display: block;
+    position: relative;
+    .back-to-billing {
+        position: absolute;
+        left: 0px;
+        font-weight: $font-regular;
+        font-size: 12px;
+        color: $primary-color;
+        padding-top: 20px;
+        >i {
+            font-size: 12px;
+            margin-right: 10px;
+            float: left;
+            >svg {
+                polygon {
+                    fill: $primary-color;
+                }
+            }
+        }
+        span:hover {
+            opacity: 0.8;
+        }
+    }
+}

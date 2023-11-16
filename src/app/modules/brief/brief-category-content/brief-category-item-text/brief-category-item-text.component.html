@@ -1,0 +1,50 @@
+<!--Sortable-->
+<div class="brief-caregory-item-sortable" *ngIf='focusedIn && !enabledCommentsAction && !refillable'>
+  <div class="brief-caregory-item-sortable-drag-handle">
+    <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_move_brief.svg'"></i>
+  </div>
+</div>
+
+<!--Editable Menu-->
+<app-content-editable-menu [show]="focusText" [unorderedList]="false" [align]="true"></app-content-editable-menu>
+<!--Text content-->
+<div class="brief-category-item-text-content">
+
+  <div #mainText 
+    class="brief-text-editable"
+    placeholder="Escribe un texto"
+    [(contentEditableModel)]="briefCategoryItem.description" 
+    (contentEditableModelChange)="onChangeText()"
+    [sanitizeHTML]="false"
+    [singleLine]="false"
+    [maxLength]="500" 
+    [contentEditable]="editable && !enabledCommentsAction"
+    (focus)="onFocusText(true)"
+    (blur)="onFocusText(false)"
+    ><br></div>
+</div>
+
+<!--Toolbar Bottom-->
+<div class="brief-category-item-toolbar-bottom" *ngIf="focusedIn && !enabledCommentsAction && !refillable">
+  <ul class="brief-category-item-options">
+    <li>
+      <a 
+        appTooltip
+        [tooltipMessage]="'Copiar texto'"
+        href="javascript:void(0)" (click)="copy()" class="disable-brief-comment">
+        <i [inlineSVG]="'assets/img/brief/ico_duplicar.svg'" class="icon-svg ico-copy"></i>
+      </a>
+    </li>
+    <li>
+      <a 
+      appTooltip
+      [tooltipMessage]="'Eliminar texto'"
+        href="javascript:void(0)" class="closest-alert disable-brief-comment" app-alert-dialog [message]="'¿Quieres elminar el texto?'"
+        [edge]="'right'" [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-category-item alert-disabled-trigger'"
+        [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="delete()">
+        <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+      </a>
+    </li>
+  </ul>
+
+</div>

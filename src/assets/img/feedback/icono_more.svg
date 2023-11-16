@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Crear_feedback" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.4">
+        <g id="feedback_imagen" transform="translate(-106.000000, -279.000000)" fill="#4F5C69" fill-rule="nonzero">
+            <g id="Group-11" transform="translate(56.000000, 249.000000)">
+                <path d="M68.6688312,38.7012987 L61.3311688,38.7012987 L61.3311688,31.3311688 C61.3311688,30.5844156 60.7467532,30 60,30 C59.2532468,30 58.6688312,30.5844156 58.6688312,31.3311688 L58.6688312,38.6688312 L51.3311688,38.6688312 C50.5844156,38.6688312 50,39.2532468 50,40 C50,40.7467532 50.5844156,41.3311688 51.3311688,41.3311688 L58.6688312,41.3311688 L58.6688312,48.6688312 C58.6688312,49.4155844 59.2532468,50 60,50 C60.7467532,50 61.3311688,49.4155844 61.3311688,48.6688312 L61.3311688,41.3311688 L68.6688312,41.3311688 C69.4155844,41.3311688 70,40.7467532 70,40 C70,39.2532468 69.4155844,38.7012987 68.6688312,38.7012987 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

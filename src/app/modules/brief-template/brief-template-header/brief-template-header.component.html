@@ -1,0 +1,23 @@
+<div class="brief-template-header-wrapper">
+  <div class="brief-templates-header-content">
+    <div class="container">
+      <div class="brief-primary-title">
+        <a href="javascript:void(0)" class="back-to" [routerLink]="['/dashboard']" [queryParams]="{'createProject':true}">
+          <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'" class="icon-svg back-icon"></i>
+          volver
+        </a>
+        <h4>Mis templates</h4>
+        <ng-container *ngIf="isAdmin">
+          <a href="javascript:void(0)" class="assign-permission" (click)="assignPermission()">
+            <i [inlineSVG]="'assets/img/brief-template/ico_lock_templates.svg'" class="icon-lock"></i>
+            <span>Asignar permisos</span>
+            <i [inlineSVG]="'assets/img/brief-template/ico_arrow_templates.svg'" class="icon-arrow"></i>
+          </a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-modal-assign-permission #modalAssignPermission></app-modal-assign-permission>

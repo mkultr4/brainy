@@ -1,0 +1,13 @@
+<a [href]="topicLineItem.content.file.url | sanitize:'url'" 
+    [download]="!enableComments"
+    [class.editable]="editable">
+  <i class="icon-attachment" [inlineSVG]="'assets/img/commons/ico_adjuntar.svg'"></i>
+  <span class="attachment-content" 
+      [innerHTML]="topicLineItem.content.file.name | sanitize:'html'"
+      contenteditable="false"
+      >
+  </span>
+  <i class="icon-delete icon-svg" 
+  *ngIf="editable"
+      (click)="remove($event)" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+</a>

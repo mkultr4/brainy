@@ -1,0 +1,95 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-approve-topics-pending'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close modal-close-btn">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <div class="modal-header-content">
+          <!--Title-->
+          <h4 class="title">Tienes temas pendientes</h4>
+          <!--Message-->
+          <p class="message">Agendalos para otra reunión</p>
+        </div>
+        <!--Topic Pending-->
+        <div class="topic-list-modal">
+          <ng-container *ngFor="let topic of topicsPending">
+            <div class="topic-block">
+                <span class="title-content">{{topic.order}}.&nbsp;{{topic.title.length === 0 ? 'Tema sin titulo' :topic.title }}</span>
+              <i class="topic-pending-ico" [inlineSVG]="'/assets/img/meeting-note/icono_tema_pendiente_activo.svg'"></i>
+            </div>
+          </ng-container>
+        </div>
+
+        <!--Scheculed next meeting-->
+        <ng-container *ngIf="scheduled">
+          <!--Location & Time-->
+          <div id="location-and-time">
+            <form name="programMeetingNote" #programMeetingNoteForm="ngForm">
+              <div class="row no-margin-bottom">
+                <!--Date-->
+                <div class="col s4">
+                  <div class="input-field input-field-label-medium  input-field-date input-field-medium " [ngClass]="{'input-field-focused-dark': !nextMeeting.date}">
+                    <input mz-datepicker [label]="'Fecha'" [options]="datePickerOptions" [(ngModel)]="nextMeeting.date"
+                      id="meetingNoteDate" name="meetingNoteDate" placeholder="DD/MM/AA" type="text" required>
+                    <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <!--Time-->
+                <div class="col s4">
+                  <div class="input-field input-field-label-medium  input-field-date input-field-medium" [ngClass]="{'input-field-focused-dark': !nextMeeting.hour && nextMeeting.date}">
+                    <input mz-timepicker id="nextMeetingHour" name="nextMeetingHour" [(ngModel)]="nextMeeting.hour"
+                      [label]="'Hora'" [options]="timePickerOptions" placeholder="00:00" type="text" required>
+                    <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <!--Hour-->
+                <div class="col s4 ">
+                  <div app-mz-select-container-brainy class="input-field input-field-medium input-field-label-medium "
+                    [ngClass]="{'input-field-focused-dark': nextMeeting.hour && !nextMeeting.duration}">
+                    <select mz-select placeholder="00:00" name="nextMeetingDuration" id="nextMeetingtDuration"
+                      data-auto-focus="true" data-container="body" [label]="'Duración'" [(ngModel)]="nextMeeting.duration"
+                      required>
+                      <option value="" selected>Seleccione una hora</option>
+                      <option *ngFor="let t of durationTimes" [value]="t">{{ t }}</option>
+                    </select>
+                  </div>
+                </div>
+                <!--Place-->
+                <div class="col s12" id="localtion-input-container">
+                  <div class="input-field   input-field-purple-dark input-field-medium input-field-place"
+                    [ngClass]="{'input-field-focused-dark': nextMeeting.duration && !nextMeeting.place}">
+                    <input name="nextMeetingPlace" [(ngModel)]="nextMeeting.place" type="text" placeholder="Ejemplo: Calle n5  Colonia Santa Cruz"
+                      [ngClass]="{'input-field-focused-dark': nextMeeting.duration && !nextMeeting.place}" required>
+                    <label class="active">Lugar</label>
+                    <i class="icon-place" [inlineSVG]="'assets/img/commons/inputs/ico_lugar.svg'"></i>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </ng-container>
+        <div class="modal-content-buttons">
+          <button class="btn btn-medium-large btn-outline-line btn-pending cancel" (click)="approve()" [appBtnLoading]="approving"
+            [disabled]="approving">
+            {{ approving? 'APROBANDO': 'NO, DEJAR PENDIENTES' }}
+          </button>
+          <ng-container *ngIf="!scheduled">
+            <button class="btn btn-medium-large btn-outline last-button" (click)="showSchedule()" [disabled]="approving">
+              SI, AGENDAR
+            </button>
+          </ng-container>
+          <ng-container *ngIf="scheduled">
+            <button class="btn btn-medium-large btn-outline last-button" (click)="scheduledNextMeeting()" 
+            [disabled]="approving ||  ( programMeetingNoteForm  &&  programMeetingNoteForm.invalid )|| scheduling">
+              CONTINUAR
+            </button>
+          </ng-container>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

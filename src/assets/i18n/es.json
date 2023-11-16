@@ -1,0 +1,292 @@
+{
+    "commons": {
+        "without-results": "Sin resultados",
+        "without-participants": "Sin participantes",
+        "name": "Nombre",
+        "last-name": "Apellido",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "language": "Idioma",
+        "save": "Guardar",
+        "profile": "Perfil",
+        "my-profile": "Mi perfil",
+        "miliseconds": "milisegundos",
+        "seconds": "segundos",
+        "minutes": "minutos",
+        "hours": "horas",
+        "days": "días",
+        "order": "Orden"
+    },
+    "user": {
+        "statuses": {
+            "online": "Online",
+            "offline": "Desconectado",
+            "absent": "Ausente",
+            "bussy": "Ocupado",
+            "suspended": "Suspendido",
+            "eliminated": "Eliminado"
+        }
+    },
+    "workspaceAccess": {
+        "rol": {
+            "super-admin": "Super Admin",
+            "admin": "Administrador",
+            "co-admin": "Co-administrador",
+            "manager": "Manager",
+            "team": "Team",
+            "guest": "Invitado",
+            "editor": "Editor",
+            "approver": "Aprobador"
+        },
+        "status": {
+            "all": "Todos",
+            "active": "Activos",
+            "suspended": "Suspendidos",
+            "eliminated": "Eliminados"
+        },
+        "status-singular": {
+            "active": "Activo",
+            "suspended": "Suspendido",
+            "eliminated": "Eliminado"
+        }
+    },
+    "dates": {
+        "today": "Hoy {{hour}}",
+        "yesterday": "Ayer {{hour}}",
+        "before-yesterday": "Antes de ayer {{hour}}",
+        "just_now": "Hace un momento",
+        "1_minute_ago": "Hace 1 minuto",
+        "minutes_ago": "Hace {{minutes}} minutos",
+        "1_hour_ago": "Hace 1 hora",
+        "hours_ago": "Hace {{hours}} horas",
+        "days_ago": "Hace {{days}} días",
+        "weeks_ago": "Hace {{weeks}} semana(s)"
+    },
+    "dashboard": {
+        "brands": "Marcas",
+        "projects": "Proyectos",
+        "types": "Tipos",
+        "status": "Estatus",
+        "order": "Ordenar",
+        "delete-message": {
+            "feedback": "¿Estas seguro que quiere eliminar el feedback?",
+            "brief": "¿Estas seguro que quiere eliminar el brief?",
+            "brief-pitch": "¿Estas seguro que quiere eliminar el pitch?",
+            "brief-presentation": "¿Estas seguro que quiere eliminar la presentación?",
+            "meeting-note": "¿Estas seguro que quiere eliminar la minuta?",
+            "paper-bin": "Todas las imágenes y comentarios se eliminarán <br>y se guardarán en la papelera por 90 días."
+        },
+        "cancel-message": {
+            "feedback": "Estas seguro de cancelar este feebdack",
+            "brief": "Estas seguro de cancelar este brief",
+            "brief-pitch": "Estas seguro de cancelar este pitch",
+            "brief-presentation": "Estas seguro de cancelar esta presentación",
+            "meeting-note": "Estas seguro de cancelar esta minuta",
+            "not-approved": ", este archivo <br>no ha sido aprobado por el <span class='font-weight-medium'>Aprobador</span>."
+        },
+        "what-do-you-want-to-create": "¿Qué quieres crear hoy?",
+        "brief-create-text": "Crea un archivo colaborativo.",
+        "meeting-note-create-text": "Anota tus acuerdos en las reuniones de trabajo.",
+        "feedback-create-text": "Comparte archivos y recibe respuestas.",
+        "modal-delete": {
+            "title": {
+                "feedback": "Se eliminará el feedback",
+                "brief": "Se eliminará el brief",
+                "brief-pitch": "Se eliminará el pitch",
+                "brief-presentation": "Se eliminará la presentación",
+                "brief-template": "Se eliminará el template",
+                "meeting-note": "Se eliminará la minuta"
+            }
+        },
+        "modal-approve": {
+            "title": {
+                "feedback": "Se aprobara el feedback",
+                "brief": "Se aprobara el brief",
+                "brief-pitch": "Se aprobara el pitch",
+                "brief-presentation": "Se aprobara la presentación",
+                "brief-template": "Se aprobara el template",
+                "meeting-note": "Se aprobara la minuta"
+            },
+            "message": {
+                "feedback": "¿Estas seguro de aprobar el <span class='font-weight-medium'>Feedback</span>?<br> Después ya no podrás editarlo ni comentar.",
+                "brief": "¿Estas seguro de aprobar el <span class='font-weight-medium'>Brief</span>?<br> Después ya no podrás editarlo ni comentar.",
+                "brief-pitch": "¿Estas seguro de aprobar el <span class='font-weight-medium'>pitch</span>?<br> Después ya no podrás editarlo ni comentar.",
+                "brief-presentation": "¿Estas seguro de aprobar la <span class='font-weight-medium'>Presentación</span>?<br> Después ya no podrás editarla ni comentarla.",
+                "brief-template": "¿Estas seguro de aprobar el <span class='font-weight-medium'>Template</span>?<br> Después ya no podrás editarlo ni comentarlo.",
+                "meeting-note": "¿Estas seguro de aprobar la <span class='font-weight-medium'>Minuta</span>?<br> Después ya no podrás editarla ni comentarla."
+            }
+        },
+        "modal-disapprove": {
+            "title": {
+                "feedback": "Se desprobará el feedback",
+                "brief": "Se desprobará el brief",
+                "brief-pitch": "Se desprobará el pitch",
+                "brief-presentation": "Se desprobará la presentación",
+                "brief-template": "Se desprobará el template",
+                "meeting-note": "Se desprobará la minuta"
+            }
+        },
+        "modal-cancel": {
+            "title": {
+                "feedback": "Se cancelará  el feedback",
+                "brief": "Se cancelará  el brief",
+                "brief-pitch": "Se cancelará  el pitch",
+                "brief-presentation": "Se cancelará la presentación",
+                "brief-template": "Se cancelará el template",
+                "meeting-note": "Se cancelará la minuta"
+            },
+            "not-approved": {
+                "feedback": "Aún no ha sido aprobado.",
+                "brief": "Aún no ha sido aprobado.",
+                "brief-pitch": "Aún no ha sido aprobado.",
+                "brief-presentation": "Aún no ha sido aprobada.",
+                "brief-template": "Aún no ha sido aprobado.",
+                "meeting-note": "Aún no ha sido aprobada."
+            }
+        },
+        "modal-download":{
+            "message":{
+                "feedback": "Se generará un PDF del feedback ",
+                "brief": "Se generará un PDF del brief ",
+                "brief-pitch": "Se generará un PDF del pitch ",
+                "brief-presentation": "Se generará un PDF del la presentación",
+                "brief-template": "Se generará un PDF del template",
+                "meeting-note": "Se generará un PDF del la minuta",
+                "note":"Se generará un PDF de tu nota",
+                "default":"Se generará un PDF del Proyecto"
+            }
+        }
+    },
+    "core": {
+        "type": {
+            "feedback": "Feedback",
+            "brief": "Brief",
+            "brief-pitch": "Pitch",
+            "brief-presentation": "Presentación",
+            "brief-template": "Template",
+            "meeting-note": "Minuta",
+            "note": "Nota"
+        },
+        "status": {
+            "all": "Todos",
+            "edit": "En edición",
+            "process": "En proceso",
+            "to-be-approved": "Por aprobar",
+            "canceled": "Cancelada",
+            "disapproved": "Desaprobada",
+            "approved": "Aprobado",
+            "archived": "Archivados",
+            "archive": "Archivado"
+        },
+        "invitations": {
+            "dropdown-delete": {
+                "feedback": "Eliminar del feedback",
+                "brief": "Eliminar del brief",
+                "brief-pitch": "Eliminar del pitch",
+                "brief-presentation": "Eliminar de la presentación",
+                "brief-template": "Eliminar del template",
+                "meeting-note": "Eliminar de la minuta",
+                "share":"Eliminar invitación"
+            }
+        }
+    },
+    "feedback": {
+        "replace-piece": {
+            "title": {
+                "video": "Remplazar video",
+                "image": "Remplazar imagen"
+            },
+            "upload-message": {
+                "video": "Suelte el video para adjuntar<br><span class='font-weight-medium'>o explorar</span>",
+                "image": "Suelte la imagen para adjuntar<br><span class='font-weight-medium'>o explorar</span>"
+            },
+            "mantain-comments": {
+                "video": "Mantener los comentarios del video",
+                "image": "Mantener los comentarios de la imagen"
+            }
+        }
+    },
+    "meeting-note": {
+        "type": {
+            "fill_now": "LLenar ahora",
+            "scheduled": "Programa reunión"
+        }
+    },
+    "brief": {
+        "response-type": {
+            "text": "Respuesta corta",
+            "text-large": "Respuesta larga",
+            "checkbox": "Casillas",
+            "radio": "Selección",
+            "select": "Desplegable",
+            "list": "Listas",
+            "yes-no": "Si/No",
+            "ascendent": "Ascendente",
+            "table": "Tabla",
+            "date": "Fecha y hora",
+            "quantity": "Cantidad",
+            "time": "Hora",
+            "percentage": "Porcentaje",
+            "assessment": "Valoración"
+        },
+        "response-type-contextual": {
+            "text": "Cortas",
+            "text-large": "Largas",
+            "checkbox": "Casillas",
+            "radio": "Selección",
+            "select": "Desplegable",
+            "list": "Listas",
+            "yes-no": "Si/No",
+            "ascendent": "Ascendente",
+            "table": "Tabla",
+            "date": "Fecha y hora",
+            "quantity": "Cantidad",
+            "time": "Hora",
+            "percentage": "Porcentaje",
+            "assessment": "Valoración"
+        },
+        "cell-type": {
+            "text": "Texto",
+            "percentage": "Porcentaje",
+            "date": "Fecha",
+            "quantity": "Cantidad",
+            "select": "Desplegable"
+        },
+        "proposal": {
+            "status": {
+                "finalist": "Ganadora",
+                "declined": "Declinada"
+            }
+        }
+    },
+    "brands": {
+        "without-projects": "Proyectos",
+        "projects-singular": "{{count}} Proyecto",
+        "projects-plural": "{{count}} Proyectos"
+    },
+    "profile": {
+        "you-account": "Tu cuenta",
+        "activity": "Actividad",
+        "you-plan": "Tu plan",
+        "billing": "Facturación",
+        "benefits": "Beneficios",
+        "your-permissions": "Tus permisos"
+    },
+    "comment": {
+        "status": {
+            "all": "Todos",
+            "in-process": "En proceso",
+            "resolved": "Resuelto",
+            "disapproved": "Desaprobado",
+            "urgent": "Urgente respuesta"
+        }
+    },
+    "participant": {
+        "type": {
+            "all": "Todos",
+            "team": "Mi equipo",
+            "private": "Privados",
+            "just-me": "Solo yo"
+        }
+    }
+}

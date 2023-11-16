@@ -1,0 +1,175 @@
+<!--Sortable-->
+<div class="brief-caregory-item-sortable" *ngIf='focusedIn && !enabledCommentsAction'>
+  <div class="brief-caregory-item-sortable-drag-handle">
+    <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_move_brief.svg'"></i>
+  </div>
+</div>
+<!--Content-->
+<div class="brief-category-item-content-question" [class.focusedIn]="focusQuestion && !enabledCommentsAction"
+  [class.focusedInResponse]="!focusQuestion && focusResponse" [class.withoutResponse]="!briefCategoryItem.responseType">
+  <!--Question-->
+  <div class="brief-category-item-question-text">
+    <div #mainText class="brief-text-area-title-text  main-text" placeholder="Escribe una pregunta"
+      [(contentEditableModel)]="briefCategoryItem.title" (contentEditableModelChange)="onChangeQuestion()"
+      [sanitizeHTML]="false" [singleLine]="true" [maxLength]="200" [contentEditable]="editable" (focus)="onQuestionFocus($event)"><br></div>
+  </div>
+  <!--Description-->
+  <div class="brief-category-item-description" [ngClass]="{'description-no-visible':briefCategoryItem.description.length === 0}">
+    <div class="brief-text-area-description-text" placeholder="Descripción" [(contentEditableModel)]="briefCategoryItem.description"
+      (contentEditableModelChange)="onChangeQuestion()" [sanitizeHTML]="false" [singleLine]="false" [maxLength]="405"
+      [contentEditable]="editable" (focus)="onQuestionFocus($event)"><br></div>
+  </div>
+  <!--Toolbar Bottom-->
+  <div *ngIf="focusQuestion && !enabledCommentsAction" class="brief-category-item-toolbar-bottom">
+    <!--Options-->
+    <ul class="brief-category-item-options">
+      <li>
+        <a 
+        appTooltip
+        [tooltipMessage]="'Copiar pregunta'"
+          href="javascript:void(0)" (click)="copy()" class="disable-brief-comment">
+          <i [inlineSVG]="'assets/img/brief/ico_duplicar.svg'" class="icon-svg ico-copy"></i>
+        </a>
+      </li>
+      <li>
+        <a 
+          appTooltip
+          [tooltipMessage]="'Eliminar pregunta'"
+          href="javascript:void(0)" class="closest-alert disable-brief-comment" app-alert-dialog [message]="'¿Quieres elminar la pregunta?'"
+          [edge]="'right'" [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-category-item alert-disabled-trigger'"
+          [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="delete()">
+          <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--Response Empty-->
+<ng-container *ngIf="!briefCategoryItem.responseType">
+  <div #responseContent class="brief-category-item-question-response" *ngIf="focusResponse && !enabledCommentsAction"
+    [class.focusedIn]="focusResponse">
+    <div class="brief-category-item-question-response-container ">
+      <div class="brief-category-item-toolbar-bottom">
+        <span class="select-response-text">selecciona un formato de respuesta </span>
+        <!--Response Type-->
+        <app-brief-category-item-response-type (onChangeResponseType)="onChangeResponseType($event)"
+          [briefCategoryItem]="briefCategoryItem" [tableCellTypes]="tableCellTypes" [responseTypes]="responseTypes"></app-brief-category-item-response-type>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<!--Response not empty-->
+<ng-container *ngIf="briefCategoryItem.responseType">
+  <div #responseContent class="brief-category-item-question-response not-empty" [class.focusedIn]="focusResponse && !enabledCommentsAction">
+    <!--Toolbar-->
+    <div class="brief-category-item-toolbar-top" *ngIf="focusResponse && !enabledCommentsAction && !refillable">
+      <ul class="toolbar">
+        <li>
+          <a href="javascript:void(0)" class="modal-floating-trigger" [id]="'contextual-btn-brief-response-'+briefCategoryItem.id">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'">
+            </i>
+          </a>
+        </li>
+      </ul>
+      <!--Contextual response-->
+      <app-contextual-brief-response [responseSettings]="briefCategoryItem.responseSettings" [briefCategoryItemId]="briefCategoryItem.id"
+        (onAccept)="onChangeAcceptFiles($event)"></app-contextual-brief-response>
+    </div>
+
+    <!--Response container-->
+    <div class="brief-category-item-question-response-container ">
+      <ng-container *ngIf="(focusResponse && !enabledCommentsAction)">
+        <p class="reply-title" >
+          <a  class="reply-title-text"  
+            [class.active]="enabledTemporalyRefill"
+            [id]="'question-reply-title-'+briefCategoryItem.id" (click)="enabledFill()">
+            Responder
+            <span class="pulse-tour" [id]="'pulse-target-question-title-'+briefCategoryItem.id"></span>
+          </a>
+        </p>
+      </ng-container>
+      <!--Response type-->
+      <div app-brief-response-type class="brief-response-type-container" [class.focusedIn]="focusResponse"
+        [briefCategoryItem]="briefCategoryItem" [tableCellTypes]="tableCellTypes" [focusResponse]="focusResponse  && !enabledCommentsAction"
+        [refillable]="refillable || (editable && canRefill) || enabledTemporalyRefill" [editable]="editable" (onResponseContentChange)="onResponseContentChange($event)"
+        (onResponseSettingsChange)="onResponseSettingsChange($event)" (onResponseFocus)="onResponseFocus()">
+        <!--Givebacks-->
+        <div class="brief-toolbar-returns" 
+          [class.show]="briefCategoryItem.giveback.id" >
+          <a href="javascript:void(0)" (click)="showGivebacks($event)" appTooltip [tooltipMessage]="'Ver devoluciones'">
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_devoluciones_brief.svg'"></i>
+          </a>
+        </div>
+      </div>
+      <!--Question sub menu-->
+      <div class="brief-category-item-response-sub-menu">
+        <div class="row no-margin-bottom">
+          <!--Question child-->
+          <div class="col s12 m4 l4">
+            <ng-container *ngIf="focusResponse && !enabledCommentsAction">
+              <div class="brief-response-child" *ngIf="(( briefCategoryItem.responseType.key === 'checkbox' ||
+               briefCategoryItem.responseType.key === 'radio' ||
+               briefCategoryItem.responseType.key === 'select' ||
+               briefCategoryItem.responseType.key === 'yes-no') 
+               && briefCategoryItem.responseSettings.options.length > 0)">
+                <input type="checkbox" class="filled-in shined medium" [(ngModel)]="briefCategoryItem.hasQuestionChild"
+                  [id]="'has-child-' + briefCategoryItem.id" (ngModelChange)="onChangeResponseChild($event)">
+                <label [for]="'has-child-' + briefCategoryItem.id" class="font-weight-regular">
+                  Anidar respuesta
+                </label>
+              </div>
+            </ng-container>
+          </div>
+          <!--Files-->
+          <div class="col s12 m8 l8">
+            <app-brief-category-item-files 
+              [briefCategoryItemId]="briefCategoryItem.id" 
+              [responseSettings]="briefCategoryItem.responseSettings"
+              [responseContent]="briefCategoryItem.responseContent" (onUpdateContent)="onResponseContentChange($event)"></app-brief-category-item-files>
+          </div>
+        </div>
+      </div>
+      <!--Question Childs-->
+      <app-brief-category-item-question-child-container 
+        [briefCategoryItemParent]="briefCategoryItem" 
+        [childs]="briefCategoryItem.childs"
+        [options]="briefCategoryItem.responseSettings.options" 
+        [optionsChecked]="briefCategoryItem.responseContent.options" 
+        [editable]="editable" [enabledCommentsAction]="enabledCommentsAction"
+        [canRefill]="canRefill" [refillable]="refillable" [focusQuestion]="focusQuestion" [focusResponse]="focusResponse"
+        [sorting]="sorting" [responseTypes]="responseTypes"></app-brief-category-item-question-child-container>
+      <!--Files content-->
+      <app-brief-category-item-files-content [responseContent]="briefCategoryItem.responseContent"></app-brief-category-item-files-content>
+      <!--Toolbar Bottom-->
+      <div *ngIf="focusResponse && !enabledCommentsAction" class="brief-category-item-toolbar-bottom {{briefCategoryItem?.responseType?.key}}">
+        <!--Options-->
+        <ul class="brief-category-item-options">
+          <li>
+            <a 
+              appTooltip
+              [tooltipMessage]="'Copiar respuesta'"
+              href="javascript:void(0)" 
+              (click)="copy()" class="disable-brief-comment">
+              <i [inlineSVG]="'assets/img/brief/ico_duplicar.svg'" class="icon-svg ico-copy"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              appTooltip
+              [tooltipMessage]="'Eliminar respuesta'"
+               href="javascript:void(0)" class="closest-alert disable-brief-comment" app-alert-dialog [message]="'¿Quieres elminar la respuesta?'"
+              [edge]="'right'" [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-category-item alert-disabled-trigger'"
+              [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="deleteResponse()">
+              <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+            </a>
+          </li>
+        </ul>
+        <!--Response Type-->
+        <app-brief-category-item-response-type (onChangeResponseType)="onChangeResponseType($event)" [tableCellTypes]="tableCellTypes"
+          [briefCategoryItem]="briefCategoryItem" [responseTypes]="responseTypes"></app-brief-category-item-response-type>
+
+      </div>
+    </div>
+  </div>
+</ng-container>

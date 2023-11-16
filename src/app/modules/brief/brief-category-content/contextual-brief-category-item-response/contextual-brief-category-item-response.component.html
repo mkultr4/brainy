@@ -1,0 +1,32 @@
+<div [id]="'contextual-brief-category-item-response-'+briefCategoryItem.id" 
+    app-modal-floating
+    [modalFloatingEdge]="'right'"
+    [modalFloatingAlign]="'top'"
+    [modalFloatingBtnId]="'#contextual-brief-category-item-btn-response-'+briefCategoryItem.id"
+    (modalOnShow)="onShowModal(true)"
+    (modalOnHide)="onShowModal(false)"
+    class="modal-prevent-close contextual-brief-category-item-response category-item-floating-menu" >
+    <h3 class="response-type-title">Cambiar respuesta</h3>
+    <div class="response-type-list" [perfectScrollbar]="{supressScrollX:true}">
+    <div *ngFor="let type of responseTypes" 
+        class="response-type {{type.key}}" 
+            [ngClass]="{
+                        'active' : briefCategoryItem.responseType && type.key === briefCategoryItem.responseType.key,
+                        'disabled': !type.enabled
+        
+                        }"
+         (click)="changeResponseType($event,type)"
+         >
+        <div class="response-type-wrapper">
+            <div class="response-type-content">
+                <div class="response-type-icon-wrapper">
+                    <i  [inlineSVG]="type.icon"></i>
+                </div>
+                <span class="response-type-name" >
+                    {{ 'brief.response-type-contextual.' + type.key | translate}}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

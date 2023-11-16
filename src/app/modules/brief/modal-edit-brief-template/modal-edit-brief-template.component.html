@@ -1,0 +1,23 @@
+<app-mz-modal-brainy #modal 
+  [options]="modalOptions"
+   [modalId]="'modal-new-brief-template'" 
+   [modalClass]="'modal-vertically-center'">
+  <a (click)="goBack()" href="javascript:void(0)" class="modal-close-btn" >
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content">
+    <app-edit-brief-template
+      [briefTemplateCopy]="briefTemplate"
+      (onSave)="closeModal()">
+  </app-edit-brief-template>
+
+  </div>
+  <div class="modal-content-display-back">
+    <a class="back-button" href="javascript:void(0)" (click)="goBack()">
+
+      <i [inlineSVG]="'assets/img/participants/ico_arrow_left.svg'" class="icon-svg back-icon"></i>
+      volver
+    </a>
+  </div>
+
+</app-mz-modal-brainy>

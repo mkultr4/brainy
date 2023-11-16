@@ -1,0 +1,128 @@
+<div [id]="'comment-'+ comment.id" class="comment-box" [ngClass]="{
+             'comment-own':comment.workspaceAccess.id === workspaceAccess.id,
+             'comment-editing':commentEditing,
+             'comment-new':comment.isNewMessage,
+             'comment-focused':focused,
+             'comment-box-primary': !first
+            }">
+    <div class="comment-content {{comment.type}}" [ngClass]="{
+        'deleted':comment.deleted,
+        'disabled':disabledEdition}
+        ">
+        <!--Menu-->
+        <ng-container *ngIf="comment.workspaceAccess.id === workspaceAccess.id && 
+                            !comment.deleted && 
+                            !commentEditing && 
+                            !disabledEdition">
+            <ul class="menu-comment">
+                <li *ngIf="comment.type === 'file-text' || 
+                           comment.type === 'audio-text' ||
+                           comment.type === 'text'
+                        ">
+                    <span (click)='editTextMessage()'>
+                        <i class="edit" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                    </span>
+                </li>
+                <li>
+                    <span class="closest-alert" app-alert-dialog [alertClass]="'alert-dialog-sidenav-comments-thread'"
+                        [message]="'¿Estas seguro de eliminar el comentario?'" [acceptText]="'Si'" [cancelText]="'No'"
+                        [edge]="'center'" (alertOnAccept)="deleteComment(true)" (alertOnCancel)="deleteComment(false)">
+                        <i class="delete" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"> </i>
+                    </span>
+                </li>
+            </ul>
+        </ng-container>
+        <!--Header-->
+        <div class="comment-header">
+            <!--Avatar-->
+            <div app-avatar class="avatar profile-image-small" [user]="comment?.workspaceAccess?.user" [showStatus]="true"></div>
+            <div class="user-information">
+                <span class="name">{{comment?.workspaceAccess?.user?.name + ' ' +
+                    comment?.workspaceAccess?.user?.lastName}}</span>
+                <span class="rol">{{comment?.workspaceAccess?.rol?.name}}</span>
+            </div>
+        </div>
+        <!--Comment Wrapper-->
+        <div class="comment-content-wrapper">
+            <ng-container *ngIf="comment.commentThreadMention && !comment.deleted && !commentEditing">
+                <app-comment-box-mention [comment]="comment.commentThreadMention" [enabledHover]="true"
+                    (mentionOnScrollToComment)="scollComment($event)">
+
+                </app-comment-box-mention>
+            </ng-container>
+            <!--Link-->
+            <ng-container *ngIf="comment.commentLink && !comment.deleted && !commentEditing">
+                <app-comment-box-link [commentLink]="comment.commentLink" [showClose]="false"></app-comment-box-link>
+            </ng-container>
+            <!--Text-->
+            <ng-container *ngIf="!comment.deleted">
+                <div class="comment-message" [ngClass]="{'editing':commentEditing}">
+
+                    <!--Text-->
+                    <ng-container *ngIf="comment.type === 'text' || comment.type === 'file-text'  || comment.type === 'audio-text' ">
+                        <div class='comment-message-text-editor-wrapper'>
+                            <div class='comment-message-text-editor'>
+                                <!--Comment Text-->
+                                <p [innerHTML]="comment.commentText | linky:{stripPrefix:false,newWindow: true}" class="comment-text floating-note-watch"
+                                    *ngIf="!commentEditing"></p>
+                                <!--Comment-->
+                                <div #commentTextTextArea class="content-editable-default comment-text"
+                                    [perfectScrollbar]="{suppressScrollX:true}" [contentEditable]="true" [singleLine]="false"
+                                    [perfectScrollbar]="{suppressScrollX:true}" placeholder="Escriba aquí"
+                                    [(contentEditableModel)]="comment.commentText" *ngIf="commentEditing" maxlength="500">
+                                </div>
+                                <div class="comment-editing-toolbar">
+                                    <a class="comment-toolbar-btn save" href="javascript:void(0)" (mousedown)="saveTextMessage($event)">Guardar</a>
+                                    <a class="comment-toolbar-btn cancel" href="javascript:void(0)" (mousedown)='cancelTextMessage($event)'>Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!--File-->
+                    <ng-container *ngIf="comment.type === 'file' || comment.type === 'file-text' ">
+                        <ng-container *ngIf="comment.mimeType === 'image'">
+                            <div class="comment-image-wrapper">
+                                <a appMagnificPopup class="comment-image-wrapper-content " [href]="comment.commentFileUrl | sanitize:'url'">
+                                    <img [src]="comment.commentFileUrl | sanitize:'url'">
+                                    <div class="image-overlay"></div>
+                                </a>
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <!--Audio-->
+                    <ng-container *ngIf="comment.type === 'audio' || comment.type === 'audio-text' ">
+                        <div class="comment-audio-wrapper">
+                            <app-audio-player [audioSrc]="comment.commentAudio"></app-audio-player>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <!--Status-->
+            <div class="comment-status" *ngIf="!commentEditing">
+                <div class="comment-status-wrapper">
+                    <!--Edited Message-->
+                    <p class="comment-message-status edited" *ngIf="!commentEditing && comment.edited && !comment.deleted">
+                        <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>Comentario
+                        editado
+                    </p>
+                    <!--Delete Message-->
+                    <p class="comment-message-status draft" *ngIf="comment.deleted">
+                        <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg"> </i>
+                        Comentario eliminado
+                    </p>
+                    <!--Date-->
+                    <div class="comment-datatime" [hidden]="commentEditing">
+                        {{comment.timestamp| date:'HH:mm'}}
+                    </div>
+                    <div class="comment-reply" *ngIf="!comment.deleted" (click)="createReply($event)">
+                        <i class="inline-svg" [inlineSVG]="'assets/img/commons/comments/icono_respuesta.svg'">
+                        </i>
+                        <span>Responder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

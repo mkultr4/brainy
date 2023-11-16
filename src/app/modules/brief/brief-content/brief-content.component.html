@@ -1,0 +1,91 @@
+<!--Layout Meeting note-->
+<section class="layout-workflow-compress layout-brief">
+  <!--Left Navigation-->
+  <app-brief-left-sidenav [brief]="brief" [briefCategories]="briefCategories" [givebacks]="givebacks"
+    [briefCategoryShow]="briefCategoryShow" [editable]="editable && brief.status && brief.status.key === 'edit'"
+    [hasRepliesNews]="hasRepliesNews" [compressed]="leftSidenavCompressed" [view]="view" (onShowBriefCategory)="showBriefCategory($event)"
+    (removeSubCategory)="removeBriefCategoryItem($event)" (updateSuCategory)="updateBriefCategoryItem($event)"
+    (updateMainContent)="updateMainContent($event)" (onChangeView)="onChangeView($event)"></app-brief-left-sidenav>
+  <!--Main-->
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <ng-container *ngIf="brief && brief.id">
+        <!--Header-->
+        <header app-brief-header class="interface-header workflow-header" id="brief-header" [ngClass]="{'sidenav-left-compress':leftSidenavCompressed }"
+          [brief]="brief" [workspaceAccess]="workspaceAccess" [coreStatuses]="coreStatuses" [commentThreadStatuses]="commentThreadStatuses"
+          [commentThreadTypes]="commentThreadTypes" [isAdmin]="isAdmin" [editable]="editable && brief.status.key !== 'disapproved'"
+          [canShare]="canShare" [canApprove]="canApprove" [isApprover]="isApprover" (headerOnApprove)="onApprove()"
+          (headerOnChangeStatus)="onChangeStatus($event)">
+        </header>
+      </ng-container>
+      <!--Screen view-->
+      <div class="screen-view meeting-note-screen-view" [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,
+        'sidenav-left-compress':leftSidenavCompressed}">
+        <ng-container *ngIf="brief && brief.id">
+          <!--Brief category-->
+          <ng-container *ngIf="view === 'category'">
+            <app-brief-category-content [workspaceAccess]="workspaceAccess" [briefCategories]="briefCategories"
+              [briefCategoryShow]="briefCategoryShow" [commentThreadStatuses]="commentThreadStatuses"
+              [participantTypes]="participantTypes" [editable]="editable && brief.status.key === 'edit'" [canRefill]="canRefill"
+              [refillable]="refillable && brief.status.key === 'process'" [canAddGiveBack]="canAddGiveBack"
+              [enableComments]="brief.status.key !== 'disapproved'" [responseTypes]="responseTypes"
+               [tableCellTypes]="tableCellTypes"
+              [isShowSidenavGiveback]="isShowSidenavGiveback" (onNextCategory)="onNextCategory($event)"
+              (onShowGiveBack)="onShowGiveBack($event)"></app-brief-category-content>
+          </ng-container>
+          <!--Givebacks-->
+          <ng-container *ngIf="view === 'givebacks'">
+            <app-brief-givebacks [givebacks]="givebacks" [workspaceAccess]="workspaceAccess" [commentThreadStatuses]="commentThreadStatuses"
+              [participantTypes]="participantTypes" (givebackEdit)="onShowGiveBack($event)" (givebackDelete)="onGivebackDelete($event)"
+              (givebackReply)="onReplyGiveback($event)" (onReadReplies)="onReadReplies()"></app-brief-givebacks>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </main>
+</section>
+<!--Floating Note-->
+<app-floating-note [core]="brief"></app-floating-note>
+<ng-container *ngIf="brief && brief.id">
+  <!--Left Navigation-->
+  <app-sidenav-participants [coreKey]="'brief'" [emptySidenav]="false" [compressed]="rightSidenavCompressed" [owner]="brief.owner"
+    [workspace]="brief.workspace" [showPendingInvitations]="showPendingInvitations">
+  </app-sidenav-participants>
+  <!-- Meeting note Associated-->
+  <app-meeting-note-list-associated [core]="brief"></app-meeting-note-list-associated>
+  <!--Meeting Note associated view-->
+  <app-meeting-note-associated></app-meeting-note-associated>
+  <!--Feedback associated-->
+  <app-feedback-list-associated [core]="brief"></app-feedback-list-associated>
+  <!--Feedback associated view-->
+  <app-feedback-associated></app-feedback-associated>
+  <!--Modal Comment pendings-->
+  <app-modal-comments-pending #modalCommentsPending [core]="brief" (modalOnApprove)="onApproveAccept()"></app-modal-comments-pending>
+  <!--Modal approve core-->
+  <app-modal-approve-core #modalApprove [core]="brief" (modalOnApprove)="onApproveAccept()"></app-modal-approve-core>
+  <!--Modal alert approve-->
+  <app-modal-alert-approve-core #modalAlertApprove [core]="brief" (modalOnApprove)="onApproveAccept()">
+  </app-modal-alert-approve-core>
+  <!--Comments-->
+  <!--Popup comment thread-->
+  <app-comment-thread-popup [workspaceAccess]="workspaceAccess" [coreType]="'brief'" [coreId]="brief.id" [forceError]="forceError"
+    [roles]="roles" [categories]="categories" [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"
+    (popupOnAccept)="onAddCommentThread($event)" (popupOnCancel)="onCancelCommentThread($event)">
+  </app-comment-thread-popup>
+  <!--Popup User-->
+  <app-comment-thread-point-popup-user></app-comment-thread-point-popup-user>
+  <!--Comment thread-->
+  <app-comment-thread-sidenav [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"
+    [workspaceAccess]="workspaceAccess">
+  </app-comment-thread-sidenav>
+  <!--Give backs sidenav-->
+  <app-brief-givebacks-sidenav #briefGivebackSidenav [workspaceAccess]="workspaceAccess" (onShowSidenavGiveback)="onShowSidenavGiveback($event)"
+    (onUpdateGiveback)="onUpdateGivebackSidenav($event)"></app-brief-givebacks-sidenav>
+  <!--Modal has changed-->
+  <app-modal-brief-audit #modalAudit></app-modal-brief-audit>
+  <!--Modal brief incomplete-->
+  <app-modal-brief-incomplete #modalBriefIncomplete></app-modal-brief-incomplete>
+</ng-container>
+<!--Sidenav permission-->
+<app-sidenav-permissions></app-sidenav-permissions>

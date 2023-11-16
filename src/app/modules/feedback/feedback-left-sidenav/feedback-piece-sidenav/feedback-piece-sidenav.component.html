@@ -1,0 +1,41 @@
+<a class="feeback-piece-carousel-drag-handler" href="javascript:void(0)" *ngIf="editable">
+  <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_ordenar_feedback.svg'"></i>
+
+</a>
+<!--Not Empty-->
+<ng-container *ngIf="!piece.empty">
+  <div class="feedback-piece-carousel-item-content" [ngStyle]="{ backgroundImage:'url(' + piece.url + ')'}" [ngClass]="{'active':pieceShow.id === piece.id
+              || pieceShow.parentId === piece.id}" (click)="select()">
+
+    <!--Delete-->
+    <ng-container *ngIf="editable">
+      <a href="javascript:void(0)" class="feedback-piece-carousel-remove"
+        (click)="mouseDownDelete($event)"
+        app-alert-dialog [edge]="'right'"
+        [message]="'¿Estas seguro de eliminar la imagen?'"
+        [acceptText]="'Si'" [cancelText]="'No'"
+        [alertClass]="'alert-feedback-piece-sidenav'"
+        (alertOnAccept)="delete()">
+        <i class="icon-svg" [inlineSVG]="'assets/img/feedback/ico_remove_piece.svg'"></i>
+      </a>
+    </ng-container>
+  </div>
+</ng-container>
+<!--Empty-->
+<ng-container *ngIf="piece.empty">
+  <div class="feedback-piece-carousel-item-content empty" (click)="select()" [ngClass]="{'active':pieceShow.id === piece.id }">
+    <ng-container  *ngIf="editable">
+      <a href="javascript:void(0)" class="feedback-piece-carousel-remove"
+      (click)="mouseDownDelete($event)"
+        app-alert-dialog [edge]="'right'"
+        [message]="'¿Estas seguro de eliminar la imagen?'"
+        [acceptText]="'Si'" [cancelText]="'No'"
+        [alertClass]="'alert-feedback-piece-sidenav'"
+        (alertOnAccept)="delete()"
+      >
+        <i class="icon-svg" [inlineSVG]="'assets/img/feedback/ico_remove_piece.svg'"></i>
+      </a>
+    </ng-container>
+  </div>
+</ng-container>
+<span class="order">{{piece.order}}</span>

@@ -1,0 +1,71 @@
+.layout-visual-closing-feedback {
+    background: #f7f7fa;
+
+    .visual-closing-brand {
+        .visual-closing-brand-link {
+            @include mq($until: desktop) {
+                .visual-closing-logo-text {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    main {
+        height: calc(100vh - 54px);
+        #main-content {
+            .screen-view {
+                height: 100%;
+                padding-right: 487px;
+                padding-left: 240px;
+
+                &.sidenav-right-compress {
+                    padding-right: 20px;
+                }
+                &.sidenav-left-compress {
+                    padding-left:  54px;
+                }
+            }
+
+            @include mq($until: desktop) {
+                .screen-view {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+        @include mq($until: desktop) {
+            max-width: calc(100vw - 60%);
+        }
+    }
+}
+
+.feedback-close-content {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+
+    @include mq($until: desktop) {}
+
+
+    .feedback-piece-close-name {
+        padding-top: 46px;
+        padding-bottom: 11px;
+        .feedback-piece-name {
+            font-weight: $font-regular;
+            font-size: 12px;
+            color:rgba($primary-color,0.7);
+            letter-spacing: 0.15px;
+        }
+    }
+
+    .feedback-piece-close-container {
+        overflow: auto;
+        max-width: 100%;
+        max-height: calc(100% - 100px);
+    }
+    .pagination-container{
+        margin-right: auto;
+        text-align: right;
+    }
+}

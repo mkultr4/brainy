@@ -1,0 +1,244 @@
+
+  <!--Main container giveback-->
+  <div class="brief-giveback-main-container">
+    <div class="brief-giveback-block-header">
+      <div class="row no-margin-bottom">
+        <!--Information-->
+        <div class="brief-giveback-header-information">
+          <!--User-->
+          <div class="col s12 m12 l7">
+            <div class="participant-list-block" *ngIf="giveback.createdBy">
+              <div class="participant-information without-permissions">
+
+                <!--If has brand-->
+                <ng-container *ngIf="giveback.createdBy.brandCurrentCore">
+                  <div app-brand-logo class="avatar profile-image-small-1" [brand]="giveback.createdBy.brandCurrentCore"></div>
+                </ng-container>
+                <!--If not has brand-->
+                <ng-container *ngIf="!giveback.createdBy.brandCurrentCore">
+                  <div class="avatar profile-image-small-1" app-avatar [user]="giveback.createdBy.user" [showStatus]="false"></div>
+                </ng-container>
+
+                <div class="participant-user-information">
+                  <span class="name">
+                    <ng-container *ngIf="giveback.createdBy.brandCurrentCore">
+                      <!--Brand-->
+                      <span class="brand-name">
+                        {{ giveback.createdBy.brandCurrentCore.name}}&nbsp;|
+                      </span>
+                    </ng-container>
+                    <!--User-->
+                    {{ giveback.createdBy.user.name + ' ' + giveback.createdBy.user.lastName}}
+                    &nbsp;|&nbsp;{{'workspaceAccess.rol.'+giveback.createdBy.rol.key | translate}}
+                    <!--Group reference-->
+                    <ng-container *ngIf="giveback.createdBy.groupReference === 'editor' || giveback.createdBy.groupReference === 'approver'">
+                      |&nbsp;{{'workspaceAccess.rol.'+ giveback.createdBy.groupReference | translate}}</ng-container>
+
+                  </span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m12 l5">
+            <span class="giveback-date">
+              Realizada el&nbsp;&nbsp;{{ giveback.createdAt | momentDate:'DD / MM / YYYY'}}
+              <i class="icon-svg" [inlineSVG]="'assets/img/participants/ico_arrow_right.svg'"></i>
+            </span>
+          </div>
+        </div>
+
+        <!--Header-->
+        <div class="col s12 ">
+          <div class="brief-giveback-block-category">
+            <span class="category-title">
+              <i [inlineSVG]="'assets/img/brief/ico_subcategory.svg'" class="ico-subcategory"></i>
+              {{ !giveback.categoryTitle ? 'Sin título' : giveback.categoryTitle }}
+            </span>
+            <ng-container *ngIf="giveback.subCategoryTitle">
+              <span class="sub-category-title">|&nbsp;
+                {{ giveback.subCategoryTitle }}
+              </span>
+            </ng-container>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <!--Content-->
+    <div class="brief-giveback-block-content" (click)="goToQuestion()">
+      <span class="brief-category-item-title">
+        {{ giveback.briefCategoryItemTitle}}
+      </span>
+      <div class="brief-giveback-message" [innerHTML]="giveback.message"></div>
+      <span class="brief-giveback-edited" *ngIf="giveback.edited">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+        Comentario editado
+      </span>
+    </div>
+    <!--Toolbar If no has reply-->
+    <ng-container *ngIf="!giveback.reply && !giveback.answeredBy">
+      <div class="brief-giveback-block-toolbar">
+        <div class="row no-margin-bottom">
+          <div class="col s6 m6 l6">
+            <ng-container *ngIf="workspaceAccess.groupReference !== 'approver'">
+              <span class="reply-pending">Respuesta pendiente</span>
+            </ng-container>
+            <ng-container *ngIf="workspaceAccess.groupReference === 'approver'">
+              <a (click)="replyGiveback()" href="javascript:void(0)" class="reply-link">Responder</a>
+            </ng-container>
+          </div>
+          <div class="col s6 m6 l6">
+            <ng-container *ngIf="giveback.createdBy.id === workspaceAccess.id">
+              <ul class="brief-giveback-options">
+                <li>
+                  <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Editar'" (click)="edit()">
+                    <i class="icon-svg ico-edit" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Eliminar'" class="closest-alert disable-brief-comment"
+                    app-alert-dialog [message]="'¿Esta seguro de eliminar la devolución?'" [edge]="'center'"
+                    [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-giveback-item'"
+                    [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="delete()">
+                    <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+                  </a>
+                </li>
+              </ul>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!--Toolbar If has reply-->
+    <ng-container *ngIf="giveback.reply && giveback.answeredBy">
+      <div class="brief-giveback-block-toolbar">
+        <div class="row no-margin-bottom">
+          <div class="col s6 m6 l6">
+            <ng-container *ngIf="giveback.answeredBy.id === workspaceAccess.id">
+              <span class="reply">Respuesta</span>
+            </ng-container>
+            <ng-container *ngIf="giveback.answeredBy.id !== workspaceAccess.id">
+              <span class="reply">Respuesta Aprobador</span>
+            </ng-container>
+
+          </div>
+          <div class="col s6 m6 l6">
+            <!--Options-->
+            <ng-container *ngIf="giveback.createdBy.id === workspaceAccess.id">
+              <ul class="brief-giveback-options">
+                <li>
+                  <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Editar'" (click)="edit()">
+                    <i class="icon-svg ico-edit" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Eliminar'" class="closest-alert disable-brief-comment"
+                    app-alert-dialog [message]="'¿Esta seguro de eliminar la devolución?'" [edge]="'center'"
+                    [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-giveback-item'"
+                    [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="delete()">
+                    <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+                  </a>
+                </li>
+              </ul>
+            </ng-container>
+            <!--If answered by is current workspace access-->
+            <ng-container *ngIf="giveback.answeredBy && giveback.answeredBy.id === workspaceAccess.id">
+              <span class="answered-at">
+                Realizada el&nbsp;&nbsp;{{ giveback.answeredAt | momentDate:'DD / MM / YYYY'}}
+              </span>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!--Main container giveback reply-->
+  <div class="brief-giveback-reply-main-container">
+    <ng-container *ngIf="giveback.answeredBy && giveback.answeredBy.id !== workspaceAccess.id">
+      <!-- Reply Header-->
+      <div class="brief-giveback-header-reply">
+        <div class="row no-margin-bottom">
+          <div class="col s12 m12 l7">
+            <!--User-->
+            <div class="participant-list-block-without-line" *ngIf="giveback.answeredBy">
+              <div class="participant-information without-permissions">
+                <!--Has brand-->
+                <ng-container *ngIf="giveback.answeredBy.brandCurrentCore">
+                  <div app-brand-logo class="avatar profile-image-medium-1" [brand]="giveback.answeredBy.brandCurrentCore"></div>
+                </ng-container>
+                <!--Not has brand-->
+                <ng-container *ngIf="!giveback.answeredBy.brandCurrentCore">
+                  <div class="avatar profile-image-medium-1" app-avatar [user]="giveback.answeredBy.user" [showStatus]="false"></div>
+                </ng-container>
+                <!--User information-->
+                <div class="participant-user-information">
+                  <span class="name">
+                    <!--If has brand-->
+                    <ng-container *ngIf="giveback.answeredBy.brandCurrentCore">
+                      <span class="brand-name">
+                        {{ giveback.answeredBy.brandCurrentCore.name}}&nbsp;|
+                      </span>
+                    </ng-container>
+                    {{ giveback.answeredBy.user.name + ' ' + giveback.answeredBy.user.lastName}}
+                    &nbsp;<ng-container *ngIf="giveback.answeredBy.groupReference === 'editor' || giveback.answeredBy.groupReference === 'approver'">|&nbsp;{{'workspaceAccess.rol.'+
+                      giveback.answeredBy.groupReference | translate}}</ng-container>
+                  </span>
+                  <span class="rol">
+                    {{'workspaceAccess.rol.'+giveback.answeredBy.rol.key | translate}}
+                  </span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m12 l5">
+            <span class="giveback-reply-date">
+              Realizada el&nbsp;&nbsp;{{ giveback.answeredAt | momentDate:'DD / MM / YYYY'}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!--If has reply-->
+    <ng-container *ngIf="giveback.answeredBy">
+      <!--Reply content-->
+      <div class="brief-giveback-reply-container">
+        <div class="giveback-reply-message" [innerHTML]="giveback.reply"></div>
+        <span class="brief-giveback-edited" *ngIf="giveback.editedReply">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+          Comentario editado
+        </span>
+      </div>
+      <div class="brief-giveback-block-toolbar">
+        <div class="row no-margin-bottom">
+          <div class="col s6 m6 l6">
+          </div>
+          <div class="col s6 m6 l6">
+            <!--Options-->
+            <ng-container *ngIf="giveback.answeredBy.id === workspaceAccess.id">
+              <ul class="brief-giveback-options">
+                <li>
+                  <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Editar respuesta'" (click)="editReply()">
+                    <i class="icon-svg ico-edit" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Eliminar respuesta'" class="closest-alert disable-brief-comment"
+                    app-alert-dialog [message]="'¿Esta seguro de eliminar la respuesta?'" [edge]="'center'"
+                    [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-brief-giveback-item'"
+                    [alertOverlayClass]="'alert-disabled-trigger'" (alertOnAccept)="deleteReply()">
+                    <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+                  </a>
+                </li>
+              </ul>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>

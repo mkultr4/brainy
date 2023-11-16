@@ -1,0 +1,20 @@
+<div class='brief-category-header'>
+  <div class='brief-header'>
+    <div class="brief-header-content" *ngIf="briefCategory && briefCategory.id">
+      <div class="brief-category-text-wrapper">
+        <input type="text" class="brief-category-text" id='brief-category-text-actual' [readonly]="!editable"
+          [(ngModel)]="briefCategory.title"
+          autocomplete="off"
+           elastic-input placeholder="Nombre de la categoría" (focus)="onFocusCategoryName()"
+          (blur)="onBlurCategoryName()" [ngClass]="{'focused':focusCategoryName}" maxlength="100">
+      </div>
+      <!--Menu-->
+    <ng-container *ngIf="showCategoryMenu">
+        <div class="workflow-primary-header">
+          <app-brief-category-menu [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"></app-brief-category-menu>
+        </div>
+      </ng-container>
+    </div>
+    
+  </div>
+</div>

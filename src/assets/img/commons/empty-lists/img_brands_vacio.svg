@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="152px" height="150px" viewBox="0 0 152 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>img_brands_vacio</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="51.8644634%" y1="96.6266741%" x2="51.8644631%" y2="1.31975446%" id="linearGradient-1">
+            <stop stop-color="#D3D4D6" offset="0%"></stop>
+            <stop stop-color="#EEEFF3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="dashboard_vacio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="05_dashboard_vacio" transform="translate(-645.000000, -242.000000)">
+            <g id="img_brands_vacio" transform="translate(645.000000, 242.000000)">
+                <g id="ilustracion" transform="translate(27.000000, 13.000000)">
+                    <g id="Group-29-Copy-2" opacity="0.4" transform="translate(97.000000, 28.500000) rotate(-131.000000) translate(-97.000000, -28.500000) translate(71.000000, 15.000000)" stroke="#3E4758" stroke-width="2">
+                        <path d="M0,24.2462769 C23.3842698,31.6465255 39.2480511,23.9882891 47.591344,1.27156775" id="Path-13"></path>
+                        <path d="M41.3894171,5.13144641 C41.5552887,5.02577166 43.7949092,3.39775064 48.1082786,0.247383324 L51.8219879,6.64947075" id="Path-14"></path>
+                    </g>
+                    <g id="Group-3" transform="translate(0.000000, 25.430000)">
+                        <g id="Group-2-Copy-2" transform="translate(32.078740, 32.806239)">
+                            <path d="M41.1223688,25.3587646 L1.02966168,25.3587646 C0.222219234,25.3587646 -0.270039023,24.4824154 0.157904364,23.8068092 L10.4380857,7.5772 C10.8407264,6.94153885 11.7789595,6.94153885 12.1816003,7.5772 L16.0746608,13.7232827 L24.8410175,0.460243547 C25.2466221,-0.153414516 26.1575715,-0.153414516 26.5631761,0.460243547 L41.983448,23.7903068 C42.4294085,24.4650223 41.9387457,25.3587646 41.1223688,25.3587646 Z" id="Path-Copy" fill="#3E4758"></path>
+                            <polygon id="Path-Copy-2" fill="url(#linearGradient-1)" points="10.8553646 9.37321101 2.29133858 23.3864044 19.4193907 23.3864044"></polygon>
+                            <polygon id="Path-Copy-3" fill="url(#linearGradient-1)" points="21.7674486 23.8969712 39.1130582 23.8969712 25.3680346 2.34330275 16.8031496 15.7739601"></polygon>
+                        </g>
+                        <g id="icono_feedback-copy-6" fill-rule="nonzero" stroke="#3E4758" stroke-width="3">
+                            <g id="Group">
+                                <g id="Shape">
+                                    <path d="M4.04166667,0 L28.9652778,0 C30.2374219,0 31.4353247,0.610512162 32.1986111,1.64787097 L37.8569444,9.33793548 C38.6202308,10.3752943 39.8181337,10.9858065 41.0902778,10.9858065 L92.9583333,10.9858065 C95.1904841,10.9858065 97,12.8302489 97,15.1054839 L97,81.0203226 C97,83.2955575 95.1904841,85.14 92.9583333,85.14 L4.04166667,85.14 C1.80951587,85.14 0,83.2955575 0,81.0203226 L0,4.11967742 C0,1.84444247 1.80951587,0 4.04166667,0 Z"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

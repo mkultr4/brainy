@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_assessment</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="PICHT_v1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2">
+        <g id="07_pitch-" transform="translate(-73.000000, -444.000000)" fill="#4F5C69">
+            <g id="ic_assessment" transform="translate(79.500000, 450.500000) rotate(90.000000) translate(-79.500000, -450.500000) translate(73.000000, 444.000000)">
+                <path d="M11.5555556,0 L1.44444444,0 C0.65,0 0,0.65 0,1.44444444 L0,11.5555556 C0,12.35 0.65,13 1.44444444,13 L11.5555556,13 C12.35,13 13,12.35 13,11.5555556 L13,1.44444444 C13,0.65 12.35,0 11.5555556,0 L11.5555556,0 Z M4.33333333,10.1111111 L2.88888889,10.1111111 L2.88888889,5.05555556 L4.33333333,5.05555556 L4.33333333,10.1111111 L4.33333333,10.1111111 Z M7.22222222,10.1111111 L5.77777778,10.1111111 L5.77777778,2.88888889 L7.22222222,2.88888889 L7.22222222,10.1111111 L7.22222222,10.1111111 Z M10.1111111,10.1111111 L8.66666667,10.1111111 L8.66666667,7.22222222 L10.1111111,7.22222222 L10.1111111,10.1111111 L10.1111111,10.1111111 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

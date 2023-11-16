@@ -1,0 +1,146 @@
+<!--Tutorial-->
+<app-brief-tutorial-response (tutorialResponseOnEnd)="tutorialResponseOnEnd()" (tutorialResponseOnEnd)="tutorialResponseOnDontShowAgain()"></app-brief-tutorial-response>
+<!--Category-->
+<div class='brief-category-wrapper closest-comment-thread-container' [ngClass]="{'enabled-edition':editable}">
+    <app-brief-category-header [briefCategory]="briefCategory" [editable]="editable" [commentThreadStatuses]="commentThreadStatuses"
+        [participantTypes]="participantTypes" [showCategoryMenu]="showCategoryMenu"></app-brief-category-header>
+    <!--Category content-->
+    <div #briefCategoryContent 
+        class="brief-category-content closest-comment-thread-container"
+         id="scroll-category-content"
+        [perfectScrollbar]="{supressScrollX:true}" 
+        (click)="briefContentClick($event)">
+        <div #briefCategoryInner class="brief-category-inner" 
+            [sortablejs]="briefCategoryItems" [sortablejsOptions]="{
+            forceFallback: true,
+            fallbackClass: 'brief-category-item-fallback',
+            ghostClass: 'brief-category-item--ghost',
+            disabled: !editable ||  enabledCommentsAction,
+            scroll: briefCategoryContent,
+            preventOnFilter:false,
+            handle: '.brief-caregory-item-sortable',
+            onStart: onSortStart.bind(this),
+            onEnd: onSortEnd.bind(this)
+        }">
+            <ng-container *ngFor="let briefCategoryItem of briefCategoryItems">
+                <ng-container [ngSwitch]="briefCategoryItem.type">
+                    <!--Question-->
+                    <div *ngSwitchCase="'QUESTION'" #briefCategoryItems app-brief-category-item-question class="brief-category-item brief-category-item-question"
+                        [id]="briefCategoryItem.id" [attr.data-id-parent]="briefCategoryItem.idParent"
+                        [briefCategoryItem]="briefCategoryItem" [editable]="editable && !enabledCommentsAction"
+                        [enabledCommentsAction]="enabledCommentsAction" [responseTypes]="responseTypes" [canRefill]="canRefill && !enabledCommentsAction"
+                        [refillable]="refillable && !enabledCommentsAction" [sorting]="sorting" [tableCellTypes]="tableCellTypes"
+                        (onFocus)="onFocusBriefCategoryItem($event)" (onCopy)="onCopyBriefCategoryItem($event)"
+                        (onDelete)="removeBriefCategoryItem($event)" (onHover)="onHoverBriefCategoryItem($event)"
+                        (onShowGivebacks)="onShowGivebackFn($event)" (onChangeResponseTypeEvent)="onChangeResponseTypeEvent($event)">
+                    </div>
+                    <!--Sub category-->
+                    <div *ngSwitchCase="'SUB_CATEGORY'" #briefCategoryItems app-brief-category-item-sub-category class="brief-category-item brief-category-item-sub-category"
+                        [id]="briefCategoryItem.id" [attr.data-id-parent]="briefCategoryItem.idParent"
+                        [briefCategoryItem]="briefCategoryItem" [editable]="editable && !enabledCommentsAction"
+                        [enabledCommentsAction]="enabledCommentsAction" [canRefill]="canRefil && !enabledCommentsActionl"
+                        [refillable]="refillable && !enabledCommentsAction" [sorting]="sorting" (onFocus)="onFocusBriefCategoryItem($event)"
+                        (onCopy)="onCopyBriefCategoryItem($event)" (onDelete)="removeBriefCategoryItem($event)"
+                        (onHover)="onHoverBriefCategoryItem($event)">
+                    </div>
+                    <!--Text-->
+                    <div *ngSwitchCase="'TEXT'" #briefCategoryItems app-brief-category-item-text class="brief-category-item brief-category-item-text"
+                        [id]="briefCategoryItem.id" [attr.data-id-parent]="briefCategoryItem.idParent"
+                        [briefCategoryItem]="briefCategoryItem" [editable]="editable" [enabledCommentsAction]="enabledCommentsAction"
+                        [canRefill]="canRefill && !enabledCommentsAction" [refillable]="refillable && !enabledCommentsAction"
+                        [sorting]="sorting" (onFocus)="onFocusBriefCategoryItem($event)" (onCopy)="onCopyBriefCategoryItem($event)"
+                        (onDelete)="removeBriefCategoryItem($event)" (onHover)="onHoverBriefCategoryItem($event)">
+                    </div>
+                    <!--Image-->
+                    <div *ngSwitchCase="'IMAGE'" #briefCategoryItems app-brief-category-item-image class="brief-category-item brief-category-item-image"
+                        [id]="briefCategoryItem.id" [attr.data-id-parent]="briefCategoryItem.idParent"
+                        [briefCategoryItem]="briefCategoryItem" [editable]="editable && !enabledCommentsAction"
+                        [enabledCommentsAction]="enabledCommentsAction" [canRefill]="canRefill && !enabledCommentsAction"
+                        [refillable]="refillable && !enabledCommentsAction" [sorting]="sorting" [filterStatuses]="filterStatuses"
+                        [filterParticipantTypes]="filterParticipantTypes" [commentThreads]="briefCategory.commentThreads 
+                        | filterBy:['objectReference']:'IMAGE'
+                        | filterBy:['objectReferenceId']:briefCategoryItem.id"
+                        (onFocus)="onFocusBriefCategoryItem($event)" (onDelete)="removeBriefCategoryItem($event)"
+                        (onChangeImage)="onChangeImage($event)" (onHover)="onHoverBriefCategoryItem($event)">
+                    </div>
+                    <!--Video-->
+                    <div *ngSwitchCase="'VIDEO'" #briefCategoryItems 
+                        app-brief-category-item-video 
+                        class="brief-category-item brief-category-item-video"
+                        [id]="briefCategoryItem.id" 
+                        [attr.data-id-parent]="briefCategoryItem.idParent"
+                        [briefCategoryItem]="briefCategoryItem"
+                        [editable]="editable && !enabledCommentsAction"
+                        [enabledCommentsAction]="enabledCommentsAction" 
+                        [canRefill]="canRefill" 
+                        [refillable]="refillable"
+                        [sorting]="sorting" 
+                        [filterStatuses]="filterStatuses"
+                        [filterParticipantTypes]="filterParticipantTypes"
+                        [commentThreads]="briefCategory.commentThreads 
+                        | filterBy:['objectReference']:'VIDEO'
+                        | filterBy:['objectReferenceId']:briefCategoryItem.id"
+                        (onFocus)="onFocusBriefCategoryItem($event)" (onDelete)="removeBriefCategoryItem($event)"
+                        (onChangeVideo)="onChangeVideo($event)" (onHover)="onHoverBriefCategoryItem($event)">
+                    </div>
+                    <!--Dynamic content-->
+                    <div 
+                        *ngSwitchCase="'DYNAMIC_CONTENT'"
+                         #briefCategoryItems 
+                         app-brief-category-item-dynamic-content
+                        class="brief-category-item brief-category-item-dynamic-content"
+                        [id]="briefCategoryItem.id" 
+                        [attr.data-id-parent]="briefCategoryItem.idParent"
+                        [briefCategoryItem]="briefCategoryItem"
+                        [editable]="editable"
+                        [enabledCommentsAction]="enabledCommentsAction"
+                        [canRefill]="canRefill && !enabledCommentsAction"
+                        [refillable]="refillable && !enabledCommentsAction"
+                        [sorting]="sorting" 
+                        (onFocus)="onFocusBriefCategoryItem($event)" 
+                        (onCopy)="onCopyBriefCategoryItem($event)"
+                        (onDelete)="removeBriefCategoryItem($event)" 
+                        (onHover)="onHoverBriefCategoryItem($event)">
+                </div>
+                </ng-container>
+            </ng-container>
+
+
+            <!--Toolbar-->
+            <app-brief-toolbar-menu-actions #briefToolbarActions [editable]="editable && !enabledCommentsAction"
+                [forceShow]="briefCategoryItems.length === 0 || !focusCategory" 
+                [enableComments]="enabledCommentsAction" [template]="template"
+                (toolbarOnAction)="toolbarOnAction($event)"></app-brief-toolbar-menu-actions>
+            <!--Toolbar Comments-->
+            <app-brief-toolbar-comments [top]="toolbarCommentsTop" [enabledCommentsAction]="enabledCommentsAction"
+                [show]="isShowToolbarComments || enabledCommentsAction || forceShowToolbarComments"
+                (toolbarOnActivateComments)="onActivateComments($event)">
+            </app-brief-toolbar-comments>
+            <!--Returns-->
+            <app-brief-toolbar-givebacks [top]="toolbarCommentsTop + 49" [show]="isShowToolbarGiveback && isOverQuestion && canAddGiveBack && !isShowSidenavGiveback"
+                (toolbarOnAddGiveBack)="addGiveBack()">
+            </app-brief-toolbar-givebacks>
+            <!--Customer buttons-->
+            <div class="brief-category-customer" *ngIf="refillable">
+                <button *ngIf="!last" class="btn btn-medium right" (click)="nextCategory()">SIGUIENTE</button>
+                <button *ngIf="last" class="btn btn-medium right" (click)="send()">ENVIAR</button>
+            </div>
+
+        </div>
+        <!--Comments-->
+        <ng-container *ngFor="let commentThread of briefCategory.commentThreads 
+            | filterCommentThreadCategory
+            | filterCommentThreadStatus:filterStatuses
+            | filterCommentThreadParticipantType: filterParticipantTypes">
+            <app-comment-thread-brief [commentThread]="commentThread" [commentThreadStatus]="commentThread.status"
+                [hidden]="sorting"></app-comment-thread-brief>
+        </ng-container>
+
+        <!--Edition Log-->
+        <ng-container *ngFor="let categoryEditionLog of categoryEditionLogs">
+            <app-brief-category-log [categoryEditionLog]="categoryEditionLog"></app-brief-category-log>
+        </ng-container>
+
+
+    </div>
+</div>

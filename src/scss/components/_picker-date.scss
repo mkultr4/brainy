@@ -1,0 +1,75 @@
+.picker__date-display {
+    background: $purple-color-dark2;
+}
+
+.picker__container__wrapper {
+    .picker__calendar-container {
+        .picker__table {}
+    }
+}
+
+.picker__day.picker__day--today {
+    color: $purple-color-dark2;
+}
+
+.picker__day{
+    padding: 16px 0;
+}
+.picker--focused .picker__day--selected {
+    border-radius: 50%;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    background-color: $purple-color-dark2;
+    color: #ffffff;
+    padding: 16px 0;
+}
+
+.picker__footer {}
+
+.picker__close,
+.picker__today,
+.picker__clear {
+    font-size: 14px;
+
+    &:focus {
+        background-color: transparent;
+    }
+}
+
+.picker__close,
+.picker__today {
+    color: $primary-color;
+
+    &:hover {
+        color: $purple-color-dark2;
+    }
+}
+
+.picker__clear {
+    color: $primary-color;
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+.clockpicker-plate{
+    background-color: rgba($primary-color,0.5);
+}
+.clockpicker-canvas {
+    line {
+        stroke: $purple-color-dark2;
+    }
+
+    .clockpicker-canvas-bg,
+    .clockpicker-canvas-bearing {
+        fill: $purple-color-dark2;
+    }
+}
+
+.clockpicker-tick {
+    color: #fff;
+    &:hover {
+        background-color: rgba($purple-color-dark2, 0.25);
+    }
+}

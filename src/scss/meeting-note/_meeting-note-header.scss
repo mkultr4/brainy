@@ -1,0 +1,74 @@
+#draft-header {
+    .navbar-default {
+        .interface-nav {
+            padding-left: 70px;
+        }
+    }
+}
+
+#meeting-note-workflow-header {
+    .workflow-header-content {
+        .workflow-header-info {
+            margin-bottom: 7px;
+            .meeting-note-scheduled-form {
+                .plain-text {
+                    display: inline-block;
+                }
+                .input-field-inline {
+                    display: inline-block;
+                    padding-right: 14px;
+                    input {
+                        transition: none;
+                        padding: 0 0 1px;
+                        font-size: 10px;
+                        height: 11px;
+                        line-height: 11px;
+                        color: rgba($primary-color, 0.8);
+                        letter-spacing: -0.23px;
+                        margin: 0;
+                        width: auto;
+                        &:disabled {
+                            border-bottom: 1px solid transparent;
+                            color: rgba($primary-color, 0.8);
+                            opacity: 1;
+                            -webkit-text-fill-color: rgba($primary-color, 0.8);
+                        }
+                        &:focus,&.picker__input--active{
+                            border-bottom: 1px solid $primary-color;
+                        }
+                    }
+                    .input-field-edit {
+                        display: none;
+                        position: absolute;
+                        width: 14px;
+                        height: 14px;
+                        border-radius: 14px;
+                        line-height: 14px;
+                        text-align: center;
+                        right:  0;top:-1px;
+                        >i {
+                            height: 12px;
+                            line-height: 12px;
+                            font-size: 12px;
+                            svg {
+                                width: 12px;
+                                height: 12px;
+                            }
+                        }
+                        &:hover {
+                            background-color: $hover-close-modal-color
+                        }
+                    }
+                    &.editable {
+                        &:hover {
+                            cursor: pointer;
+                            .input-field-edit {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

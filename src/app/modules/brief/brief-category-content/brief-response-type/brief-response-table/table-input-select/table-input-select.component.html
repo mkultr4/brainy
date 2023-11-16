@@ -1,0 +1,30 @@
+<div class="brief-table-input-select" 
+     [id]="'brief-table-input-select-'+cell.id"
+     [ngClass]="{'enabled-editing':editable}" >
+    <div class='brief-table-input-select-menu-trigger'></div>
+    <!--Contextutal-->
+    <app-contextual-response-table-select  *ngIf="editable"
+    [cell]="cell"
+    (onOptionsChange)="onOptionsChange()"
+    ></app-contextual-response-table-select>
+    <!--Contextutal trigger-->
+    <a href="javascript:void(0)" [id]="'contextual-btn-select-cell-'+cell.id"
+    *ngIf="editable" class="brief-table-input-select-menu modal-floating-trigger"></a>
+    <div app-mz-select-container-brainy class=" input-field brief-response-select-wrapper">
+        <select 
+            mz-select 
+            data-container="body" 
+            placeholder="Selecciona" 
+            data-auto-focus="true"
+            [disabled]="!refillable"
+            [(ngModel)]="cell.value" 
+            (ngModelChange)="onChangeValue()"
+            >
+          <option value="" disabled>Selecciona</option>
+           <option *ngFor="let option of cell.options" 
+           value="{{option.id}}">{{option.label}}</option>
+        </select>
+      </div>
+    
+  
+</div>

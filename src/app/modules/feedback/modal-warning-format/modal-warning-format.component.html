@@ -1,0 +1,24 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-warning-format'" [modalClass]="'modal-vertically-center modal-alert'">
+    <a href="javascript:void(0)" class="modal-close-btn modal-close">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+    </a>
+    <div class="modal-content-table">
+      <div class="modal-content-cell">
+        <div class="modal-content-cell-container">
+          <h2 class="title">
+            {{ title }}
+          </h2>
+          <img class="image" [src]="'assets/img/feedback/ilustracion_mensaje_upload.png'">
+          <p class="description" [innerHTML]="description">
+              Solo puedes subir archivos JPG, SVG, PNG y TIFF juntos.<br>
+              Los formatos de video y PDF se suben de manera individual.
+              {{ title }}
+          </p>
+          <button class="btn btn-medium-large" (click)="closeModal()">
+            SUBIR ARCHIVOS
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </app-mz-modal-brainy>

@@ -1,0 +1,64 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-brief-pitch-dates'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content">
+    <!--Overlay-->
+    <div class="pitch-dates-overlay">
+      <h2>Programar fechas</h2>
+      <img [src]="'assets/img/brief/ico_calendar_pitch.svg'">
+      <p>
+        Para dar orden a tu brief agenda las fechas<br>
+        de cada etapa del pitch.
+      </p>
+    </div>
+    <!--Content-->
+    <div class="pitch-dates-content">
+      <div id="form-pitch-dates-container">
+        <form name="formPitchDates" #formPitchDates="ngForm">
+          <div class="row no-margin-bottom">
+            <!--Date givebacks-->
+            <div class="col s12">
+              <div class="input-field input-field-date input-field-medium ">
+                <input mz-datepicker [label]="'Fecha limite devoluciones:'"
+                   [options]="datePickerOptionsGivebacks"
+                  [(ngModel)]="dateOfGivebacks" id="briefGiveBackdate" name="briefGiveBackdate" placeholder="DD/MM/AA"
+                  type="text" required>
+                <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+              </div>
+            </div>
+            <!--Date proposals-->
+            <div class="col s12">
+              <div class="input-field  input-field-date input-field-medium ">
+                <input mz-datepicker [label]="'Fecha de propuestas:'" [options]="datePickerOptionsProposals"
+                  [(ngModel)]="dateOfProposals" id="briefProposalsDate" name="briefProposalsDate" placeholder="DD/MM/AA"
+                  type="text" required>
+                <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+              </div>
+            </div>
+            <!--Date results-->
+            <div class="col s12">
+              <div class="input-field  input-field-date input-field-medium ">
+                <input mz-datepicker [label]="'Fecha de resultados:'" [options]="datePickerOptionsResults" [(ngModel)]="dateOfResults"
+                  id="briefResultsDate" name="briefResultsDate" placeholder="DD/MM/AA" type="text" required>
+                <i class="caret-forward" [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+              </div>
+            </div>
+            <!--Button-->
+            <div class="col s12">
+              <div class="button-container">
+                <button class="btn btn-medium-large " 
+                [disabled]="formPitchDates.invalid || btnDisabled"
+                (click)="updateDates()"
+                >CONTINUAR</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</app-mz-modal-brainy>

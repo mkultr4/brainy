@@ -1,0 +1,29 @@
+<div class="topic-line-video-wrapper" contenteditable="false">
+  <a href="javascript:void(0)" class="video-remove" (click)="remove($event)">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+  </a>
+  <!--Focus element-->
+  <a class="link-focusable" href="javascript:void(0)"></a>
+  <!--Video-->
+  <iframe #iframeVideo class="topic-line-video-iframe" type="text/html" allowfullscreen width="100%" height="419"
+          frameborder="0">
+   </iframe>
+   <!--Comments-->
+   <div  #commentsWrapper class="topic-line-video-comments" 
+   [style.width.px]="calculatedWidth"
+   [style.height.px]="calculatedHeight"
+   >
+   <ng-container 
+   *ngFor="let commentThread of commentThreads 
+        | filterCommentThreadStatus:filterStatuses
+        | filterCommentThreadParticipantType: filterParticipantTypes">
+         <app-comment-thread-image
+             [commentThread]="commentThread"
+             [naturalWidth]="this.topicLineItem.content.video.sizes.width"
+             [naturalHeight]="this.topicLineItem.content.video.sizes.height"
+             [commentThreadStatus]="commentThread.status"
+             [hidden]="sorting">
+         </app-comment-thread-image>
+     </ng-container>
+   </div>
+</div>

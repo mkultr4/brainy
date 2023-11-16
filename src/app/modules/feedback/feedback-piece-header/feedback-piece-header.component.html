@@ -1,0 +1,57 @@
+<!--Piece Header-->
+<div class="piece-header" *ngIf="piece" [class.piece-empty]="piece.empty">
+  <div class="piece-header-container" [style.maxWidth]="maxWidth">
+    <div *ngIf="!piece.empty" class="piece-feedback-name" #feedbackPieceName>
+      <span *ngIf="!piece.latest" class="version">{{piece.versionNumber}}. versión</span>
+      <span [ngClass]="{'latest':piece.latest}" class="name">{{piece?.name}}</span>
+      <span *ngIf="piece.latest && piece.edited" class="edited">
+        (&nbsp;<i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>&nbsp;Contenido
+        editado)
+      </span>
+    </div>
+
+  </div>
+  <ul class="workflow-primary-header-menu">
+    <ng-container *ngIf="piece && editable">
+      <li *ngIf="!piece.empty">
+        <a href="javascript:void(0)" (click)="changePiece()" appTooltip [tooltipMessage]="'Remplazar'" [edgeTooltip]="'bottom'">
+          <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icono_remplazar_img.svg'"></i>
+        </a>
+      </li>
+    </ng-container>
+    <li>
+      <a href="javascript:void(0)" class="modal-floating-trigger" id="trigger-filter-comments" appTooltip
+        [tooltipMessage]="'Filtros'" [edgeTooltip]="'bottom'">
+        <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icono_filtros.svg'"></i>
+      </a>
+      <!--Filter-->
+      <app-modal-comment-thread-filter
+      [commentThreadStatuses]="commentThreadStatuses"
+    [participantTypes]="participantTypes"
+      ></app-modal-comment-thread-filter>
+    </li>
+    <li>
+      <a href="javascript:void(0)" (click)="showListMeetingNote()"
+       appTooltip [tooltipMessage]="'Minutas del proyecto'"
+        [edgeTooltip]="'bottom'" [ngClass]="{'active':isShowMeetingNote}">
+        <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_minuta_anidado.svg'"></i>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" 
+        (click)="showListBrief()" 
+        [ngClass]="{'active':isShowBrief}" 
+        appTooltip
+        [tooltipMessage]="'Briefs del proyecto'" [edgeTooltip]="'bottom'">
+        <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_brief_anidado.svg'"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Modal change piece -->
+<app-modal-change-feedback-piece #modalChange [piece]="piece" 
+(modalOnChangeImage)="onChangeImage($event)"
+[forceError]="forceError"
+(replacePieceWarningFormat)="showModalWarning($event)"
+> </app-modal-change-feedback-piece>

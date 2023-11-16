@@ -1,0 +1,35 @@
+  <!--Description-->
+  <div class="topic-description-editable-container">
+    <div #editor class="topic-description-editor" 
+        tabindex="2"
+         placeholder="Escribe una descripción del tema."
+        [class.editable]="editable" 
+        [class.focused-in]="focusEditor" 
+        [contentEditable]="editable"
+        (focus)="editorOnFocus($event)"
+        (blur)="editorOnBlur($event)"
+        (input)="editorRead($event)"
+        (keydown)="editorKeyDown($event)" 
+        (keypress)="editorKeyPress($event)" 
+        (keyup)="editorKeyUp($event)" 
+        (click)="editorClick($event)" 
+        [sortablejs]="topicLineItems" 
+        [sortablejsOptions]="{
+            forceFallback: true,
+            fallbackClass: 'topic-line-fallback',
+            ghostClass: 'topic-line-ghost',
+            disabled: !this.editable,
+            scroll: scrollDescription,
+            filter: '.static',
+            handle: '.task-drag-handler',
+            onStart: onSortStart.bind(this),
+            onEnd: onSortEnd.bind(this),
+            onUpdate: onSortUpdate.bind(this)
+        }"
+        ></div>
+
+</div>
+
+    <!--Toolbar-->
+    <app-topic-editor-toolbar #topicEditorToolbar [editable]="editable && !sorting" [enableComments]="enableComments"
+        (toolbarOnAction)="toolbarOnAction($event)"></app-topic-editor-toolbar>

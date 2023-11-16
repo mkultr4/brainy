@@ -1,0 +1,25 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" 
+  [modalId]="'modal-alter-pitch-pre-finalist'" 
+  [modalClass]="'modal-vertically-center modal-alert'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <img class="caption" [src]="'assets/img/brief/ilustra_mensaje_finalista.svg'">
+        <h4 class="title">
+          Eres prefinalista
+        </h4>
+
+        <h4 class="message">
+          Tu propuesta ha sido seleccionada como<br>
+          prefinalista, así que pasará a la siguiente etapa.
+        </h4>
+
+
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

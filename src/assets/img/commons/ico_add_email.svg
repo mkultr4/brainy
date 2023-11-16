@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>icono_agregar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icono_agregar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-5" transform="translate(3.000000, 3.000000)">
+            <path d="M5,10 C7.76142375,10 10,7.76142375 10,5 C10,3.44505737 9.2902024,2.05589684 8.17693936,1.13885058 C7.31315776,0.42731372 6.20648112,0 5,0 C2.23857625,0 0,2.23857625 0,5 C0,7.76142375 2.23857625,10 5,10 Z" id="Oval-3-Copy" stroke="#b9bec3"></path>
+            <polygon id="+-copy-2" fill="#b9bec3" points="5.37274549 4.60377358 7 4.60377358 7 5.26415094 5.37274549 5.26415094 5.37274549 7 4.62725451 7 4.62725451 5.26415094 3 5.26415094 3 4.60377358 4.62725451 4.60377358 4.62725451 3 5.37274549 3"></polygon>
+        </g>
+    </g>
+</svg>

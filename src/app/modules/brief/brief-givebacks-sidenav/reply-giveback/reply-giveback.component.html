@@ -1,0 +1,118 @@
+<div class="giveback-approver-view">
+  <!--Title-->
+  <div class="giveback-title">
+    Tienes una observación de:
+  </div>
+  <!--User-->
+  <div class="participant-list-block-without-line" *ngIf="giveback.createdBy">
+    <div class="participant-information without-permissions">
+      <!--BRAND-->
+      <ng-container *ngIf="giveback.createdBy.brandCurrentCore">
+          <div app-brand-logo class="avatar profile-image-medium-1"
+          [brand]="giveback.createdBy.brandCurrentCore"></div>
+      </ng-container>
+      <ng-container *ngIf="!giveback.createdBy.brandCurrentCore">
+          <div class="avatar profile-image-medium-1" app-avatar [user]="giveback.createdBy.user"
+            [showStatus]="false" ></div>
+        </ng-container>
+        <!--/END BRAND-->
+      <div class="participant-user-information">
+        <span class="name">
+            <!--If has brand-->
+            <ng-container *ngIf="giveback.createdBy.brandCurrentCore">
+                <span class="brand-name">
+                  {{ giveback.createdBy.brandCurrentCore.name}}&nbsp;|
+                </span>
+              </ng-container>
+          {{ giveback.createdBy.user.name + ' ' +
+          giveback.createdBy.user.lastName}}
+          &nbsp;<ng-container *ngIf="giveback.createdBy.groupReference === 'editor' 
+            || giveback.createdBy.groupReference === 'approver'">|&nbsp;{{'workspaceAccess.rol.'+
+            giveback.createdBy.groupReference | translate}}</ng-container>
+        </span>
+        <span class="rol">{{ 'workspaceAccess.rol.' + giveback?.createdBy?.rol?.key
+          | translate}}</span>
+      </div>
+    </div>
+  </div>
+  <!--Giveback-->
+  <div class="giveback-sidenav-block">
+    <!--Created at-->
+    <div class="giveback-created-at">
+      <span>Realizada el&nbsp;&nbsp;{{ giveback.createdAt | momentDate:'DD/ MM/ YYYY'}}</span>
+    </div>
+    <!--Category-->
+    <div class="giveback-category">
+      <span class="category-title">
+        <i [inlineSVG]="'assets/img/brief/ico_subcategory.svg'" class="ico-subcategory"></i>
+        {{ !categoryTitle ? 'Sin título' : categoryTitle }}
+      </span>
+      <ng-container *ngIf="subcategoryTitle">
+        <span class="sub-category-title">|&nbsp;
+          {{ subcategoryTitle }}
+        </span>
+      </ng-container>
+    </div>
+    <!--Question-->
+    <div class="giveback-item-title">
+      <span *ngIf="briefCategoryItem.title">
+        {{ briefCategoryItem.title }}
+      </span>
+      <span *ngIf="!briefCategoryItem.title">
+        Sin pregunta
+      </span>
+    </div>
+    <!--Giveback message-->
+    <div class="giveback-message" [innerHTML]="giveback.message"></div>
+  </div>
+  <div class="giveback-editor-container">
+    <div class="giveback-editor-title">
+      <span>Tu devolución</span>
+    </div>
+    <!--Editor-->
+    <div class="content-editable-message-container">
+      <app-content-editable-menu [show]="showMenu"></app-content-editable-menu>
+      <div class="content-editable-message" contenteditable="true" placeholder="Escriba un mensaje"
+        [(contentEditableModel)]="reply" [singleLine]="false" [maxLength]="500" (focus)="showMenu = true;" (blur)="showMenu = false;">
+        <br>
+      </div>
+      <ng-container *ngIf="giveback.answeredBy && workspaceAccess.id === giveback.answeredBy.id">
+        <ul class="content-editable-menu-options">
+          <li>
+            <a class="save" href="javascript:void(0)" (click)="updateReply()">Guardar</a>
+          </li>
+          <li>
+            <a class="cancel" href="javascript:void(0)" (click)="closeSidenav()">Cancelar</a>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+    <div class="giveback-content-buttons">
+      <div class="row no-margin-bottom">
+        <div class="col s12 m8 l8">
+
+          <div class="checkbox-block">
+            <input type="checkbox" class="filled-in checked-unchecked  medium-3" name="add-giveback-to-brief"
+              [(ngModel)]="giveback.addToBrief" [id]="'add-giveback-to-brief'">
+            <label [for]="'add-giveback-to-brief'" class="font-weight-regular">
+              <ng-container *ngIf="!giveback.addToBrief">
+                Agregar tu devolución al brief
+              </ng-container>
+              <ng-container *ngIf="giveback.addToBrief">
+                Devolución agregada
+              </ng-container>
+
+            </label>
+          </div>
+        </div>
+        <div class="col s12 m4 l4">
+          <ng-container *ngIf="!giveback.answeredBy">
+            <button class="btn btn-light right" [disabled]="reply.length === 0 || btnDisabled" (click)="replyGiveback()">Enviar
+            </button>
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

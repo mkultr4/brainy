@@ -1,0 +1,36 @@
+<app-preloader [show]="true"></app-preloader>
+<div class="layout-interface layout-with-footer"
+id="layout-brands-profile">
+
+  <section class="layout-interface-content">
+    <!--Header-->
+    <ng-container *ngIf="brand">
+    <header  class="subsections-header scrolled-down" id='profile-customer-header'>
+      <!--Header-->
+      <app-header-default
+      [currentUser]="currentUser"
+      [workspaceAccess]="workspaceAccess"
+      [breadcrumb]="brand.name">
+      <!--Summary-->
+      <app-brand-profile-summary [brand]="brand" [view]="view"></app-brand-profile-summary>
+    </app-header-default>
+      
+    </header>
+    </ng-container>
+    <!--MAIN CONTENT-->
+    <main>
+      <!--Wrapper-->
+      <div class="interface-content" id="brand-profile-main-content">
+            <router-outlet></router-outlet>
+      </div>
+    </main>
+  </section>
+</div>
+<!--Notification-->
+<app-sidenav-notifications ></app-sidenav-notifications>
+<!--Change workspace-->
+<app-interface-footer [extraClass]="view === 'projects'?'invested':''"></app-interface-footer>
+<!--Sidenav permission-->
+<app-sidenav-permissions></app-sidenav-permissions>
+<!--Chnage workspace-->
+<app-modal-change-workspace></app-modal-change-workspace>

@@ -1,0 +1,92 @@
+<div #commentThreadShape 
+  [className]="'comment-thread comment-thread-shape'" 
+  [id]="'shape-'+commentThread.id"
+   appResizable
+  [resizableContainment]="'.closest-comment-thread-container'" 
+  [resizableContainmentScroll]="'.piece-workflow-container'"
+  [resizableEnabled]="enabled" 
+  (resizeOnStop)="onResizeStop($event)"
+  (resizeOnResizing)="onResizing($event)" 
+  appDraggable 
+  [draggableContainmentScroll]="'.piece-workflow-container'"
+  [draggableContainment]="'.closest-comment-thread-container'"
+  [draggableHandle]="'.drag-handle'" 
+  [draggableEnabled]="enabled" 
+  (draggableOnStop)="onDragStop($event)" 
+  (draggableonDragging)="onDragging($event)" 
+  [style.width.px]="commentThread.width" 
+  [style.height.px]="commentThread.height" 
+  [style.left]="'calc('+ ((commentThread.originalLeft * 100 ) /  piece.setting.naturalWidth ) + '%'+ ' - 0px)'"
+  [style.top]="'calc('+ ((commentThread.originalTop * 100 ) /  piece.setting.naturalHeight ) + '%'+ ' - 0px)'"
+  [attr.data-x]="commentThread.left"
+  [attr.data-y]="commentThread.top"
+  [ngClass]="{
+              'focused':focused ,
+              'comment-thread-shape-circle':commentThread.type === 'circle',
+              'comment-thread-shape-rectangle':commentThread.type === 'rectangle'
+              }" (click)="focus()"
+              [hidden]="!show"
+              >
+  <!--pin-->
+  <div *ngIf="commentThread.saved" 
+  [ngClass]="['comment-thread comment-thread-point-feedback comment-thread-point ' + commentThread.status.key,
+               commentThread.unreadMessages? 'unread-messages' : '']" 
+               #commentThreadPoint 
+               [id]="'thread-'+ commentThread.id" 
+               (click)="showCommentSidebarThread($event)" 
+                (mouseover)="mouseover()"
+                (mouseout)="mouseout()">
+    <span>{{commentThread.number}}</span>
+    <span *ngIf="commentThread.saved" class="comment-thread-point-participant">
+      <!--Team-->
+      <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'team'" [inlineSVG]="'assets/img/commons/comments/ico_pin_team.svg'"></i>
+      <!--Private-->
+      <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'private'" [inlineSVG]="'assets/img/commons/comments/ico_pin_private.svg'"></i>
+      <!--Just me-->
+      <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'just-me'" [inlineSVG]="'assets/img/commons/comments/ico_pin_just_me.svg'"></i>
+    </span>
+  </div>
+  <ng-container *ngIf="commentThread.type === 'rectangle'">
+    <svg  width="100%" height="100%" >
+      <rect 
+        #shapeSVG
+        [attr.height.px]="commentThread.height" 
+          [attr.width.px]="commentThread.width" 
+        [style.fill]="commentThread.backgroundColor" [style.strokeWidth.px]="commentThread.borderWidth"
+        [style.stroke]="commentThread.borderColor" />
+    </svg>
+  </ng-container>
+  <ng-container *ngIf="commentThread.type === 'circle'">
+    <svg  width="100%" height="100%" 
+    [style.overflow]="'visible'"
+    >
+        <ellipse 
+          #shapeSVG
+          [attr.height.px]="commentThread.height" 
+          [attr.width.px]="commentThread.width" 
+          [attr.cx]="commentThread.width / 2"
+          [attr.cy]="commentThread.height / 2" 
+          [attr.rx]="commentThread.width / 2" 
+          [attr.ry]="commentThread.height / 2" 
+          [style.fill]="commentThread.backgroundColor"
+          [style.strokeWidth.px]="commentThread.borderWidth"
+           [style.stroke]="commentThread.borderColor" />
+    </svg>
+  </ng-container>
+  <!--<div class="drag-handle drag-center"></div>-->
+  <!--Resizable-->
+  <div class="resizable-handle r-bottom resizable-bottom" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-top  resizable-top" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-left resizable-left" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-right resizable-right" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-bottom r-right resizable-bottom-right" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-top r-left resizable-top-left" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-bottom r-left resizable-bottom-left" [style.border-color]="commentThread.borderColor"></div>
+  <div class="resizable-handle r-top r-right resizable-top-right" [style.border-color]="commentThread.borderColor"></div>
+
+  <!--Drag Handle-->
+  <div class="drag-handle drag-top"></div>
+  <div class="drag-handle drag-bottom"></div>
+  <div class="drag-handle drag-left"></div>
+  <div class="drag-handle drag-right"></div> 
+</div>

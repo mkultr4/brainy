@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Marcado_rectangulo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01_bar_tools" transform="translate(-744.000000, -969.000000)" fill="#FFFFFF">
+            <path d="M750,981 C746.686292,981 744,978.313708 744,975 C744,971.686292 746.686292,969 750,969 C753.313708,969 756,971.686292 756,975 C756,978.313708 753.313708,981 750,981 Z M746,975 L746,976 L754,976 L754,975 L746,975 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<div #popup class="tour-popup {{edge}} {{tourPopupClass}}" [ngClass]="{show:show}" [style.top.px]="top" [style.left.px]="left">
+  <!--close-->
+  <a href="javascript:void(0)" (click)="endTour()" class="tour-popup-close ">
+    <i [inlineSVG]="'assets/img/tour/ico_close_box.svg'"></i>
+  </a>
+  <p *ngIf="message" class="tour-popup-message" [innerHTML]="message | sanitize:'html'">
+  </p>
+  <div class="tour-popup-button">
+    <button  *ngIf="currentStep > 0" class="btn btn-flat {{popupBtnClass}} previous-button" 
+      (click)="prevStep($event)"
+      >
+      Anterior
+    </button>
+    <button id="next-step" class="btn {{popupBtnClass}} next-button" (click)="nextStep($event)">{{btnText}}</button>
+  </div>
+  <ng-container *ngIf="popupArrow">
+    <div class="tour-popup-arrow" [style.top.px]="arrowTop"></div>
+  </ng-container>
+</div>

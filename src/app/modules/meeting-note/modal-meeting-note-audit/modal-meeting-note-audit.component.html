@@ -1,0 +1,24 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" 
+[modalId]="'modal-meeting-note-audit'" [modalClass]="'modal-alert-audit modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close modal-close-btn">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content">
+    <h4 class="title">
+      Se han realizado cambios en la minuta<br>
+      ¿Quieres aprobarlos?
+
+    </h4>
+    <ul class="core-audit-modal-list">
+      <li *ngFor="let audit of audits">
+        <i class="icon-svg" [inlineSVG]="'/assets/img/commons/icon_check_box.svg'"></i>
+        <span [innerHTML]="audit.text | sanitize:'html'"></span>
+      </li>
+    </ul>
+    <div class="modal-content-button">
+      <button class="btn btn-large modal-close">
+          CONTINUAR
+      </button>
+    </div>
+  </div>
+</app-mz-modal-brainy>

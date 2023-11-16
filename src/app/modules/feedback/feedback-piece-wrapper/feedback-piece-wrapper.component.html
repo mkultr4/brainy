@@ -1,0 +1,63 @@
+<ng-container *ngIf="_pieceShow && piece">
+
+  <!--Header-->
+  <app-feedback-piece-header #pieceHeader [zoom]="zoom" [editable]="editable" [piece]="piece" [leftSidenavCompressed]="leftSidenavCompressed"
+    [rightSidenavCompressed]="rightSidenavCompressed" [forceError]="forceError"
+    [commentThreadStatuses]="commentThreadStatuses"
+    [participantTypes]="participantTypes"
+    (headerWarningFormat)="showModalWarning($event)"
+    >
+  </app-feedback-piece-header>
+
+  <!--Not empty-->
+  <ng-container *ngIf="!piece.empty">
+    <ng-container *ngIf="piece.type === 'image'">
+      <app-feedback-piece [piece]="piece" [hasTour]="hasTour" [filterStatuses]="filterStatuses"
+        [filterParticipantTypes]="filterParticipantTypes" [leftSidenavCompressed]="leftSidenavCompressed"
+        [rightSidenavCompressed]="rightSidenavCompressed" [zoom]="zoom" [feedbackAction]="feedbackAction"
+        [workspaceAccess]="workspaceAccess" [enableComments]="enableComments"
+        [commentThreadStatuses]="commentThreadStatuses"
+        [participantTypes]="participantTypes"
+        [popupInformation]="popupInformation"
+        (pieceOnWorkingPoint)="pieceOnWorkingPoint($event)"
+        >
+      </app-feedback-piece>
+    </ng-container>
+    <ng-container *ngIf="piece.type === 'video'">
+      <app-feedback-piece-video [piece]="piece" [hasTour]="hasTour" [filterStatuses]="filterStatuses"
+        [filterParticipantTypes]="filterParticipantTypes" [leftSidenavCompressed]="leftSidenavCompressed"
+        [rightSidenavCompressed]="rightSidenavCompressed" [feedbackAction]="feedbackAction" [workspaceAccess]="workspaceAccess"
+        [enableComments]="enableComments"
+        [commentThreadStatuses]="commentThreadStatuses"
+        [participantTypes]="participantTypes"
+        [popupInformation]="popupInformation"
+        (pieceOnWorkingPoint)="pieceOnWorkingPoint($event)"
+        >
+      </app-feedback-piece-video>
+    </ng-container>
+  </ng-container>
+  <!--Empty-->
+  <ng-container *ngIf="piece.empty">
+    <app-new-feedback-piece [piece]="piece" [canAddVideo]="canAddVideo" [leftSidenavCompressed]="leftSidenavCompressed"
+      (newPieceOnUpload)="onUpload($event)" 
+      (newPieceWarningFormat)="showModalWarning($event)">
+    </app-new-feedback-piece>
+  </ng-container>
+
+  <!--Toolbar-->
+  <ng-container *ngIf="!piece.empty">
+    <app-feedback-piece-toolbar [feedbackAction]="feedbackAction" [zoom]="zoom" [pieceType]="piece?.type"
+      [leftSidenavCompressed]="leftSidenavCompressed" [rightSidenavCompressed]="rightSidenavCompressed"
+      [popupInformation]="popupInformation"
+      (toolbarOnChangeAction)="onChangeFeedbackAction($event)"
+      
+      >
+    </app-feedback-piece-toolbar>
+  </ng-container>
+
+  <app-feedback-tutorial  (tutorialOnEnd)="onTutorialEnd()" (tutorialOnDontShowAgain)="onDontShowAgain()"></app-feedback-tutorial>
+
+</ng-container>
+
+<!--Modal Warning format-->
+<app-modal-warning-format #modalWarning></app-modal-warning-format>

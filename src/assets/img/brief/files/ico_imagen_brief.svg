@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>ico_imagen_brief</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="ico_imagen_brief" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icono_imagen" fill="#4F5C69">
+            <g id="Group-14">
+                <g id="img" transform="translate(0.000000, 2.000000)">
+                    <path d="M0,13 L15,13 L15,0 L0,0 L0,13 Z M1,12 L14,12 L14,1 L1,1 L1,12 Z" id="Fill-1"></path>
+                    <polygon id="Fill-2" points="9.70751953 5.91723633 8.06246182 7.26052934 6.37507636 5 3 9 12.734375 9"></polygon>
+                    <path d="M5,3.50006817 C5,3.77614179 4.77614179,4 4.50006817,4 C4.22385821,4 4,3.77614179 4,3.50006817 C4,3.22385821 4.22385821,3 4.50006817,3 C4.77614179,3 5,3.22385821 5,3.50006817" id="Fill-3"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

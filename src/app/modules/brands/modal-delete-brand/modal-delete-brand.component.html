@@ -1,0 +1,41 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-eliminate-brand'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'/assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="!firstConfirm">
+          <h4 class="title">Eliminar Marca</h4>
+          <p class="message">
+            Todo el contenido de la marca se eliminará,
+            <br>proyectos, imágenes y comentarios.
+          </p>
+        </ng-container>
+        <ng-container *ngIf="firstConfirm">
+          <h4 class="title text-error">Archivos en papelera</h4>
+          <p class="message">
+            Tus archivos se pasarán a la papelera tienes 90
+            <br> días si necesitas recuperarlos.
+          </p>
+        </ng-container>
+        <div class="modal-content-buttons">
+            <button class="btn btn-medium-large" 
+            [ngClass]="{'btn-loading':btnDisabled}" [disabled]="btnDisabled"
+              (click)="eliminate()">
+              <ng-container *ngIf="!firstConfirm">
+                ELIMINAR
+              </ng-container>
+              <ng-container *ngIf="firstConfirm">
+                {{btnDisabled ?'ELIMINANDO': 'CONTINUAR'}}
+              </ng-container>
+            </button>
+          <button class="btn btn-medium-large btn-outline-line cancel  modal-close last-button" [disabled]="btnDisabled">CANCELAR</button>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

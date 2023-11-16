@@ -1,0 +1,71 @@
+<!--Piece Container-->
+<div #pieceContainer class="workflow-primary-content piece-container">
+  <!--Toolbar Shape-->
+  <app-feedback-toolbar-shape 
+    [piece]="piece"
+    [calculatedHeight]="calculatedHeight  * (_zoom /100)" 
+    [calculatedWidth]="calculatedWidth  * (_zoom /100)"
+    [containerWidth]="containerWidth" [containerHeight]="containerHeight">
+  </app-feedback-toolbar-shape>
+
+  
+  <!--Workflow-->
+  <div  class="piece-workflow-container" #scroll 
+  [perfectScrollbar]="{suppressScrollX:false}"
+  [ngClass]="{'zooming':zooming}"
+  >
+    <div class="piece-workflow-wrapper" 
+    [style.width.px]="(calculatedWidth * (_zoom /100))  +  40" 
+    [style.height.px]="(calculatedHeight * (_zoom /100)) +  40">
+      <div class="piece-workflow" #pieceWorkflow 
+      [style.width.px]="(calculatedWidth * (_zoom /100))" 
+      [style.height.px]="(calculatedHeight * (_zoom /100))"
+        [id]="'feedback-piece-'+piece.id">
+        <!--Piece image-->
+        <div class="piece-feedback" [ngStyle]="{ backgroundImage:'url(' + piece.url + ')',backgroundSize: 'cover'}"
+          [style.width.px]="(calculatedWidth * (_zoom /100) )" [style.height.px]="(calculatedHeight * (_zoom /100))"></div>
+        <!--Piece workflow overlay-->
+        <div class="piece-workflow-overlay closest-comment-thread-container" 
+        
+          
+          (click)="pieceActionClick($event)" 
+          [ngClass]="{'adding-comment-thread':addingCommentThread}">
+          <ng-container *ngFor="let commentThread of piece.commentThreads
+                                                              | filterCommentThreadStatus:filterStatuses
+                                                              | filterCommentThreadParticipantType: filterParticipantTypes">
+            <!--Point thread-->
+            <ng-container *ngIf="commentThread.type === 'pin'">
+              <app-comment-thread-feedback-point [piece]="piece" [pieceSize]='{
+                  calculatedHeight: calculatedHeight * (_zoom /100),
+                  calculatedWidth: calculatedWidth * (_zoom /100)
+                }' 
+                [enabled]="piece.latest"
+                [commentThread]="commentThread"
+                 [commentThreadStatus]="commentThread.status"
+                  (onWorkingPoint)="onWorkingPoint($event)">
+              </app-comment-thread-feedback-point>
+            </ng-container>
+            <!--Shape-->
+            <ng-container *ngIf="commentThread.type === 'circle' || commentThread.type === 'rectangle'">
+              <app-comment-thread-feedback-shape 
+              [commentThread]="commentThread" 
+              [enabled]="piece.latest"
+              [piece]="piece" 
+                [commentThreadStatus]="commentThread.status"
+                [pieceSize]='{
+                calculatedHeight: calculatedHeight * (_zoom /100),
+                calculatedWidth: calculatedWidth * (_zoom /100)
+              }' 
+              (onWorkingShape)="onWorkingPoint($event)">
+              </app-comment-thread-feedback-shape> 
+            </ng-container>
+          </ng-container>
+
+        </div>
+        <!--If has tour-->
+        <span  *ngIf="hasTour" id="pulse-target-0" style="right: 21px; top: 17px;" class="tour-active pulse"></span>
+      </div>
+    </div>
+  </div>
+
+</div>

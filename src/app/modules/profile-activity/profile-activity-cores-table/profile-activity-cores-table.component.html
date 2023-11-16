@@ -1,0 +1,157 @@
+  <ng-container>
+
+  <div class="table-wrapper-search">
+    <div class="table-search" [ngClass]="{'hide':!isShowSearch}">
+      <app-input-field-search-nav [search]="filterTitle" [searchPlaceholder]="'Busca nombres de marcas, proyectos, piezas, brief, minutas'"
+        (inputOnClose)="showSearch(false)" (inputOnChangeSearch)="onChangeSearch($event)">
+      </app-input-field-search-nav>
+    </div>
+
+    <table class="profile-projects-table" *ngIf="cores">
+      <thead>
+        <tr class="navigation-theads" [ngClass]="{'hide-navigation':isShowSearch}">
+          <!--Brand-->
+          <th class="project-name filter-thead" [ngClass]="{'filter-active':filterBrand.id !== 'all'}">
+
+            <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-filter-brands">
+              <ng-container *ngIf="filterBrand.id === 'all'">
+                <span>{{ 'dashboard.brands' | translate}}</span>
+              </ng-container>
+              <ng-container *ngIf="filterBrand.id !== 'all'">
+                <span>{{ filterBrand.name }}</span>
+              </ng-container>
+              <span [inlineSVG]="'assets/img/commons/ico_caret.svg'" class="caret"></span>
+              
+            </a>
+            <app-activity-filter-brand [brands]="brands" [filterBrand]="filterBrand" [cores]="cores"
+              (filterOnChangeFilterBrand)="onChangeFilterBrand($event)" (filterOnChangeFilterProject)="onChangeFilterProject($event)"></app-activity-filter-brand>
+
+          </th>
+          <!--Project-->
+          <th class="project-name filter-thead" [ngClass]="{'filter-active':filterProject.id !== 'all'}">
+
+            <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-projects" gutterMaxHeight="103">
+              <ng-container *ngIf="filterProject.id === 'all'">
+                <span>{{ 'dashboard.projects' | translate}}</span>
+              </ng-container>
+              <ng-container *ngIf="filterProject.id !== 'all'">
+                <span>{{ filterProject.name }}</span>
+              </ng-container>
+              <span [inlineSVG]="'assets/img/commons/ico_caret.svg'" class="caret"></span>
+
+            </a>
+            <app-activity-filter-project [projects]="projects" [filterProject]="filterProject" [cores]="cores"
+              (filterOnChangeFilterProject)="onChangeFilterProject($event)"></app-activity-filter-project>
+
+          </th>
+          <!--Type-->
+          <th class="project-files filter-thead" [ngClass]="{'filter-active':filterType.key !== 'all'}">
+
+            <a href="javascript:void(0) " appInterfaceDropdown dropdownTarget="#dropdown-types" edge="bottom">
+              <ng-container *ngIf="filterType.key === 'all'">
+                <span>{{ 'dashboard.types' | translate}}</span>
+              </ng-container>
+              <ng-container *ngIf="filterType.key !== 'all'">
+                {{'core.type.' + filterType.key | translate}}
+              </ng-container>
+              <span [inlineSVG]="'assets/img/commons/ico_caret.svg'" class="caret"></span>
+            </a>
+            <app-activity-filter-type [cores]="cores" [coreTypes]="coreTypes" [filterType]="filterType"
+              (filterOnChangeFilterType)="onChangeFilterType($event)">
+            </app-activity-filter-type>
+
+          </th>
+          <!--Date-->
+          <th>
+            <span>Fecha de creación</span>
+          </th>
+          <th class="project-workflow"></th>
+
+          <th class="toolbar-thead">
+            <ul class="toolbar-menu">
+              <li>
+                <a href="javascript:void(0)" (click)="showSearch(true)">
+                  <i class="icon-svg ico-search" [inlineSVG]="'/assets/img/commons/workflow-header/menu_buscar.svg'"></i>
+                </a>
+              </li>
+            </ul>
+          </th>
+        </tr>
+
+      </thead>
+      <!--Projects-->
+      <tbody *ngIf="cores.length > 0">
+        <!--Results filter-->
+        <ng-container *ngFor="let core of cores
+        | filterBy:['title','project.name','brand.name']: filterTitle
+          | filterCoreByBrand: filterBrand
+          | filterCoreByType: filterType
+          | filterCoreByProject: filterProject">
+          <tr [id]="'core-row-'+core.id" class="core-row">
+            <td class="collapse-link brand" appToggleClass [parentActiveId]="'core-row-'+core.id" [elementId]="'core-audit-'+core.id">
+              <div app-brand-logo class="avatar brand-logo" [brand]="core.project.brand"></div>
+              <a href="javascript:void(0)">
+                {{core.project.brand.name}}
+              </a>
+            </td>
+            <td class="project-name">
+              {{ core.project.name}}
+            </td>
+
+            <td>
+             {{ 'core.type.'+ core.type.key | translate }}
+            </td>
+
+            <td>
+              {{core.fechaReg | momentDate:'DD/MM/YYYY HH:mm a'}}
+            </td>
+            <td class="project-workflow" (click)="toggleClass($event)">
+              <a href="javascript:void(0)">
+                Workflow
+              </a>
+            </td>
+            <td class="table-action">
+                <a *ngIf="showRemove" class="btn-action-table delete" href="javascript:void(0)" 
+                 (click)="removeCore(core)">
+                  <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+                </a>
+              </td>
+          </tr>
+          <!--Audtis-->
+          <tr class="cores-activity-row" [id]="'core-audit-'+core.id">
+            <td colspan="6" class="cores-activity-cell">
+               <app-profile-activity-table [audits]="workspaceAccess.audits | filterBy:['core.id']:core.id ">
+              </app-profile-activity-table> 
+            </td>
+          </tr>
+        </ng-container>
+
+        <!--Without results-->
+        <ng-container *ngIf="(cores
+        | filterBy:['title','project.name','brand.name']: filterTitle
+        | filterCoreByBrand: filterBrand
+        | filterCoreByType: filterType
+        | filterCoreByProject: filterProject).length === 0
+        ">
+        <tr>
+            <td colspan="6" class="empty-results">
+              <h5 class="without-results">
+                {{ 'commons.without-results' | translate }}
+              </h5>
+            </td>
+          </tr>
+        </ng-container>
+
+      </tbody>
+      <tbody *ngIf="cores.length === 0">
+        <tr>
+          <td colspan="6" class="empty-results">
+            <h5 class="without-results">
+              Sin marcas asignadas
+            </h5>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>

@@ -1,0 +1,15 @@
+<div class="brief-category-item-dynamic-content-wrapper">
+  <ng-container *ngFor="let dynamic of item.content.dynamicContent | orderBy:'order'">
+    <ng-container [ngSwitch]="dynamic.type">
+      <!--Icon-->
+      <app-dynamic-content-close-icon *ngSwitchCase="'ICON'" 
+        [class.one-child]="item.content.dynamicContent.length === 1"
+        [icon]="dynamic.content"></app-dynamic-content-close-icon>
+      <!--Text-->
+      <app-dynamic-content-close-text *ngSwitchCase="'TEXT'" 
+      [class.one-child]="item.content.dynamicContent.length === 1"
+      [text]="dynamic.content"
+      ></app-dynamic-content-close-text>
+    </ng-container>
+  </ng-container>
+</div>

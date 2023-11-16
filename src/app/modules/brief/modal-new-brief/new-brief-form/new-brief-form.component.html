@@ -1,0 +1,111 @@
+<div class="modal-header">
+  <!--Title-->
+  <h5 class="modal-header-title">
+      Comenzar
+    </h5>
+  <h5 class="modal-header-sub-title">
+      Categoría&nbsp;{{briefTemplate?.title  | lowercase}}
+  </h5>
+</div>
+<div class="modal-content-display">
+  <form name="FormNewFeed" class="form-default" id="new-feed-form" #newCoreForm="ngForm">
+    <div class="modal-content-display-inner">
+      <div class="row no-margin-bottom">
+        <!---Title-->
+        <div class="col s12">
+          <div class="input-field input-field-big input-field-center input-field-active input-field-purple-dark ">
+            <input type="text" class="placeholder-light" #inputTitle name="briefTitle" [(ngModel)]="brief.title"
+              tabindex="1" placeholder="Escribe el título" autocomplete="off" maxlength="100" required (ngModelChange)="onChangeTitle($event)">
+            <label class="active">Título</label>
+          </div>
+        </div>
+      </div>
+      <!--Compressed-->
+      <div class="compressed">
+        <!--Brand-->
+        <div id="brand-content">
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field input-field-medium-big  input-field-purple-dark input-field-label-medium "
+                [ngClass]="{'input-field-focused-dark': titleChange && !brand.id}">
+                <select mz-select data-container="body" placeholder="Selecciona" id="coreBrandId" name="coreBrandId"
+                  [label]="'Marca'" [(ngModel)]="brand.id" (ngModelChange)="onChangeBrand($event)" required [disabled]="!titleChange"
+                  tabindex="2">
+                  <option value="" selected>Seleccione una marca</option>
+                  <option [value]="'newBrand'">Nueva Marca</option>
+                  <option *ngFor="let b of brands" [value]="b.id">{{ b.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!--New Brand Configuration-->
+          <div id="new-brand-conf" *ngIf="brand.id === 'newBrand'">
+            <div class="row no-margin-bottom">
+              <div class="col s12">
+                <div class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                  [ngClass]="{'input-field-focused-dark': brand.id ==='newBrand' && !newBrand.name}">
+                  <input mz-input [label]="'Nombre de la marca'" tabindex="3" [(ngModel)]="newBrand.name" type="text"
+                    name="newBrandName" required autocomplete="off" />
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                  [ngClass]="{'input-field-focused-dark': newBrand.name  && !newProject.name }">
+                  <input mz-input tabindex="4" [label]="'Nombre del proyecto'" [(ngModel)]="newProject.name" type="text"
+                    name="newProjectName" [disabled]="!newBrand.name" autocomplete="off" required />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Project-->
+        <div id="project-content" *ngIf="brand && brand.id !== 'newBrand'">
+          <ng-container *ngIf="projects">
+            <div class="row no-margin-bottom">
+              <div class="col s12">
+                <div app-mz-select-container-brainy class="input-field input-field-medium-big input-field-purple-dark input-field-label-medium "
+                  [ngClass]="{'input-field-focused-dark': brand.id && !project.id}">
+                  <select mz-select placeholder="Selecciona" id="coreProjectId" name="coreProjectId" [label]="'Proyecto'"
+                    [(ngModel)]="project.id" data-container="body" (ngModelChange)="onChangeProject($event)" [disabled]="!brand.id || brand.id === 'newBrand'"
+                    required tabindex="5">
+                    <option value="" selected>Seleccione un proyecto</option>
+                    <option [value]="'newProject'">Nuevo Proyecto</option>
+                    <option *ngFor="let p of  projects | filterBy:['brand.id']:brand.id" [value]="p.id">{{ p.name
+                      }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!---New Project Configuration-->
+          <div id="new-project-conf" *ngIf="project.id === 'newProject'" required>
+            <div class="row no-margin-bottom">
+              <div class="col s12">
+                <div class="input-field input-field-medium-big
+              input-field-purple-dark input-field-label-medium  "
+                  [ngClass]="{'input-field-focused-dark': project.id === 'newProject' && !newProject.name}">
+                  <input mz-input [label]="'Nombre del proyecto'" name="newProjectName" tabindex="6" [(ngModel)]="newProject.name"
+                    type="text" autocomplete="off" required />
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-content-display-btn">
+  <div class="modal-content-display-inner">
+    <div class="compressed">
+      <!--Buttons-->
+      <div class="center upload-button" id="upload-feed-btn">
+        <button class="btn btn-large" [ngClass]="{'btn-loading':btnDisabled}" [disabled]="btnDisabled || !newCoreForm.valid"
+          (click)="create()">
+          {{btnDisabled ? 'CREANDO' : 'CONTINUAR'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div id="brief-givebacks-container" class="brief-sections-container">
+  <!--Category header-->
+  <div class='brief-sections-header'>
+    <div class='brief-header'>
+      <div class='brief-header-content'>
+        <!--Menu-->
+        <div class="workflow-primary-header" *ngIf="workflowMenu">
+          <app-brief-category-menu [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"></app-brief-category-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="brief-sections-content">
+    <!--Givebacks wrapper-->
+    <div class="brief-sections-wrapper">
+      <div class="brief-sections-title-wrapper">
+        <div class="brief-sections-title-content">
+          <div class="brief-sections-title">
+            <span class="title">
+              <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_propuesta_title.svg'"></i>
+              Propuestas
+            </span>
+            <!--Date-->
+            <span class="date-limit" [class.with-date]="dateOfProposals" [class.editable]="canEditDate">
+              <ng-container *ngIf="isTemplate">
+                fecha limite: DD/MM/ AAAA
+              </ng-container>
+              <ng-container *ngIf="!isTemplate">
+                <span class="date-limit-input-wrapper input-field">
+                  <span class="label-date">fecha limite:</span>
+                  <input mz-datepicker type="text" placeholder="DD/MM/ AAAA" [options]="datePickerOptionsProposals"
+                    [(ngModel)]="dateOfProposals" (ngModelChange)="onChangeDate($event)" id="briefProposalsDate" name="briefProposalsDate"
+                    placeholder="DD/MM/AA" [disabled]="!canEditDate" [class.with-date]="dateOfProposals">
+                  <i class="icon-svg ico-drop" [inlineSVG]="'assets/img/brief/ico_flecha_drop.svg'"></i>
+                </span>
+              </ng-container>
+
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="brief-sections-primary-container" [perfectScrollbar]="{}">
+        <div class="brief-sections-primary-container-wrapper">
+          <ng-container *ngIf="!canUploadProposal">
+            <ng-container *ngIf="proposals.length === 0">
+              <h4 class="without-results">Aún no tienes propuestas </h4>
+            </ng-container>
+            <ng-container *ngIf="proposals.length > 0">
+              <!--Proposals-->
+              <div class="brief-proposal-list">
+                <ng-container *ngFor="let proposal of proposals | orderBy:'-created'">
+                  <app-proposal-block [proposal]="proposal" 
+                  [canEdit]="canEditProposals"
+                  [declined]="proposal.status === 'declined'"
+                  (onUpdateProposal)="onUpdateProposal($event)"></app-proposal-block>
+                </ng-container>
+              </div>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="canUploadProposal">
+            <app-proposal-upload [proposal]="proposalOfGuest"></app-proposal-upload>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

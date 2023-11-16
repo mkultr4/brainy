@@ -1,0 +1,28 @@
+<div class="response-yes-no" >
+    <div class="response-yes-no-content">
+        <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options | orderByImpure:['order'];let index = index">
+          <app-option-yes-no 
+            [option]="option"
+            [editable]="editable"
+            [refillable]="refillable"
+            [focusResponse]="focusResponse"
+            [checked]="briefCategoryItem.responseContent.options.indexOf(option) >= 0"
+            [yesNoDefault]="index < 2"
+            (onToggleSelection)="toggleSelection($event)"
+            (onDelete)="deleteOption($event)"
+            (onChange)="onChangeSettings()"
+          ></app-option-yes-no>
+
+        </ng-container>
+        <!--Add Option-->
+        <ng-container *ngIf="briefCategoryItem.responseSettings.options.length <= 2 && focusResponse">
+        <div class="brief-yes-no-option add-option"  (click)="addOption($event)">
+            <span class="add-option-text">Agregar&nbsp;otros&nbsp;+</span>
+        </div>
+        </ng-container>
+    </div>
+  
+
+
+
+</div>

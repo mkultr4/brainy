@@ -1,0 +1,125 @@
+<nav class="interface-nav interface-filter-nav bg-white">
+  <div class="container">
+    <div class="nav-wrapper">
+      <!--Filter-->
+      <ul id="nav-dashboard-filter" [ngClass]="{'hide':isShowSearch}">
+        <!--Search-->
+        <li class="search">
+          <a href="javascript:void(0)" (click)="toggleSearch()">
+            <i [inlineSVG]="'assets/img/commons/ico_search.svg'" class="icon-svg ng-scope" id="ico-nav-search"></i>
+          </a>
+        </li>
+
+        <!--FILTER BRANDS-->
+        <li class="first-nav-item with-dropdown-menu" [ngClass]="{'filter-active':filterBrand.id !== 'all'}">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-filter-brands">
+            <ng-container *ngIf="filterBrand.id === 'all'">
+              <span>{{ 'dashboard.brands' | translate}}</span>
+            </ng-container>
+            <ng-container *ngIf="filterBrand.id !== 'all'">
+              <span>{{ filterBrand.name | ngXtruncate : 15 : "…" }}</span>
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <!--Dropdown Brands-->
+          <app-dashboard-filter-brands [cores]="cores" [filterBrand]="filterBrand"
+             [brands]="brands"
+             (filterOnChangeFilterProject)="changeFilterProject($event)"
+            (filterOnChangeFilterBrand)="changeFilterBrand($event)"></app-dashboard-filter-brands>
+        </li>
+        <!--FILTER PROJECTS-->
+        <li class="with-dropdown-menu" [ngClass]="{'filter-active':filterProject.id !== 'all'}">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-projects" gutterMaxHeight="103">
+            <ng-container *ngIf="filterProject.id === 'all'">
+              <span>{{ 'dashboard.projects' | translate}}</span>
+            </ng-container>
+            <ng-container *ngIf="filterProject.id !== 'all'">
+              <span>{{ filterProject.name | ngXtruncate : 15 : "…" }}</span>
+            </ng-container>
+
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons  caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <!--DROPDOWN PROJECTS-->
+
+          <app-dashboard-filter-projects [brands]="brands" [projects]="projects" [filterProject]="filterProject" [filterBrand]="filterBrand"
+            [cores]="cores" (filterOnChangeFilterProject)="changeFilterProject($event)"></app-dashboard-filter-projects>
+        </li>
+        <!--FILTER TYPES-->
+        <li class="with-dropdown-menu" [ngClass]="{'filter-active':filterType.key !== 'all'}">
+          <a href="javascript:void(0)" 
+          appInterfaceDropdown dropdownTarget="#dropdown-types" edge="bottom">
+            <ng-container *ngIf="filterType.key === 'all'">
+              <span>{{ 'dashboard.types' | translate}}</span>
+            </ng-container>
+            <ng-container *ngIf="filterType.key !== 'all'">
+                <span>{{'core.type.' + filterType.key | translate}}</span>
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <!--Dropdown Types-->
+          <app-dashboard-filter-types [cores]="cores" [coreTypes]="coreTypes" [filterType]="filterType" (filterOnChangeFilterType)="changeFilterType($event)"></app-dashboard-filter-types>
+        </li>
+        <!--FILTER STATUSES-->
+        <li class="with-dropdown-menu " [ngClass]="{'filter-active':filterStatus.key !== 'all'}">
+          <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-statuses" edge="bottom">
+
+            <ng-container *ngIf="filterStatus.key === 'all'">
+              <span>{{ 'dashboard.status' | translate}}</span>
+            </ng-container>
+            <ng-container *ngIf="filterStatus.key !== 'all'">
+              {{'core.status.'+ filterStatus.key | translate }}
+
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <!--Dropdown Statuses-->
+          <app-dashboard-filter-statuses [cores]="cores" [coreStatuses]="coreStatuses" [filterStatus]="filterStatus" (filterOnChangeFilterStatus)="changeFilterStatus($event)"></app-dashboard-filter-statuses>
+        </li>
+        <!--Filter ORDER-->
+        <li class="with-dropdown-menu filter-order"
+          [ngClass]="{'filter-active':filterOrderChange}">
+          <a href="javascript:void(0)"
+          appInterfaceDropdown dropdownTarget="#dropdown-order">
+            <ng-container *ngIf="!filterOrderChange">
+              <span>{{ 'dashboard.order' | translate}}</span>
+            </ng-container>
+            <ng-container *ngIf="filterOrderChange">
+              <i class="order-direction"
+              [ngClass]="{'invested':filterOrderDirection === -1}"
+              [inlineSVG]="'assets/img/commons/icono_arrow_up.svg'"></i>
+              <ng-container *ngIf="filterOrderColumn === 'title'">
+                <span>Ordenar</span>
+              </ng-container>
+              <ng-container *ngIf="filterOrderColumn === 'modified'">
+                <span>Actividad</span>
+              </ng-container>
+            </ng-container>
+            <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+            <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+          </a>
+          <!--Dropdown Order-->
+          <app-dropdown-order [orderAlph]="'title'"
+            [empty]="cores.length === 0"
+            [emptyText]="'Sin proyectos'"
+            [filterOrderColumn]="filterOrderColumn"
+            [filterOrderDirection]="filterOrderDirection"
+            (filterOnChangeFilterOrder)="changeFilterOrder($event)"></app-dropdown-order>
+
+        </li>
+      </ul>
+
+
+      <!--Search Field-->
+      <ng-container *ngIf="isShowSearch">
+        <app-input-field-search-nav [search]="mainSearch" [searchPlaceholder]="'Busca nombres de marcas, proyectos, piezas, brief, minutas'"
+          (inputOnClose)="toggleSearch()" (inputOnChangeSearch)="changeMainSearch($event)">
+        </app-input-field-search-nav>
+      </ng-container>
+    </div>
+
+  </div>
+</nav>

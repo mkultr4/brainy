@@ -1,0 +1,113 @@
+<!--Breadcrumb-->
+<div class="profile-user-billing-breadcrumb">
+  <!--Back to billing-->
+  <a class="back-to-billing" routerLinkActive="active" [routerLink]="['../bill']">
+    <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'" class="icon-svg back-icon"></i>
+    <span> Facturación</span>
+  </a>
+</div>
+<!--Billing address form-->
+<form #formUserBilling="ngForm" id="profile-user-billing-address-form" *ngIf="account">
+
+  <div class="user-billing-address-title">
+    <span>Datos de facturación</span>
+  </div>
+  <div class="row no-margin-bottom row-primary ">
+    <div class="col s12 m6 l6 col-primary">
+      <div class="input-field input-field-medium">
+        <input mz-input tabindex="1" autocomplete="off" [label]="'Razón Social'" type="text" name="businessName"
+          [(ngModel)]="account.billingInformation.businessName" required>
+      </div>
+    </div>
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium">
+        <input mz-input tabindex="1" autocomplete="off" [label]="'Identificación tributaria'" type="text" name="taxIdentification"
+          [(ngModel)]="account.billingInformation.taxIdentification" required>
+      </div>
+    </div>
+    <!--Street-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium">
+        <input mz-input tabindex="1" autocomplete="off" [label]="'Domicilio Fiscal /Calle'" type="text" name="addressStreet"
+          [(ngModel)]="account.billingInformation.addressStreet" required>
+      </div>
+    </div>
+    <!--Address number-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="row no-margin-bottom">
+        <div class="col s12 m6 l6">
+          <div class="input-field input-field-medium">
+            <input mz-input tabindex="1" autocomplete="off" [label]="'Nº Exterior'" type="text" name="addressNumber"
+              [(ngModel)]="account.billingInformation.addressNumber" required>
+          </div>
+        </div>
+        <div class="col s12 m6 l6">
+          <div class="input-field input-field-medium">
+            <input mz-input tabindex="1" autocomplete="off" [label]="'Nº Interior (opcional)'" type="text" name="addressInsideNumber"
+              [(ngModel)]="account.billingInformation.addressInsideNumber">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Country-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium" app-mz-select-container-brainy>
+        <!--data-extra-class="center-align"-->
+        <select mz-select tabindex="2" placeholder="Selecciona" id="country" name="country" [label]="'País'"
+          [(ngModel)]="account.billingInformation.country" data-extra-class="select-dropdown-normal" required>
+          <option value="" disabled>Seleccione un País</option>
+          <option *ngFor="let country of countries" [ngValue]="country">{{ country.name }}</option>
+        </select>
+      </div>
+
+    </div>
+    <!--City-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium" app-mz-select-container-brainy>
+        <select mz-select tabindex="2" placeholder="Selecciona" id="city" name="city" [label]="'Ciudad'" [(ngModel)]="account.billingInformation.city"
+          data-extra-class="select-dropdown-normal" required>
+          <option value="" disabled>Seleccione un País</option>
+          <option *ngFor="let city of cities" [ngValue]="city">{{ city.name }}</option>
+        </select>
+      </div>
+    </div>
+    <!--Location-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium" app-mz-select-container-brainy>
+        <select mz-select tabindex="2" placeholder="Selecciona" id="locality" name="locality" [label]="'Municipio'"
+          data-extra-class="select-dropdown-normal" [(ngModel)]="account.billingInformation.locality" required>
+          <option value="" disabled>Seleccione una localidad</option>
+          <option *ngFor="let locality of localities" [ngValue]="locality">{{ locality.name }}</option>
+        </select>
+      </div>
+    </div>
+    <!--Zip-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium">
+        <input mz-input tabindex="1" autocomplete="off" [label]="'Código Postal'" type="text" name="zip" [(ngModel)]="account.billingInformation.zip"
+          required>
+      </div>
+    </div>
+    <!--Email-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium">
+        <input mz-input tabindex="1" autocomplete="off" [label]="'Correo electrónico'" type="text" name="email"
+          [(ngModel)]="account.billingInformation.email" required>
+      </div>
+    </div>
+    <!--Email Optional-->
+    <div class="col s12 m6 l6  col-primary">
+      <div class="input-field input-field-medium">
+        <input mz-input tabindex="1" autocomplete="off" [label]="'Correo electrónico 2 (opcional)'" type="text" name="email2"
+          [(ngModel)]="account.billingInformation.email2">
+      </div>
+    </div>
+    <div class="col s12">
+
+      <div class="button-section">
+        <button class="btn btn-semi-medium  btn-outline-light" (click)="save()" [disabled]="!formUserBilling.valid">Guardar</button>
+      </div>
+    </div>
+
+  </div>
+</form>

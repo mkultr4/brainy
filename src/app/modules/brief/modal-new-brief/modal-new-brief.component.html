@@ -1,0 +1,27 @@
+<app-mz-modal-brainy #modal 
+  [options]="modalOptions"
+   [modalId]="'modal-new-workflow-feedback'" 
+   [modalClass]="'modal-vertically-center'">
+  <a (click)="goBack()" href="javascript:void(0)" class="modal-close-btn" >
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+  <div class="modal-content">
+
+    <app-new-brief-form 
+      [workspaceAccess]="workspaceAccess" 
+      [currentUser]="currentUser" 
+      [briefTemplate]="briefTemplate"
+      (onSave)="closeModal()">
+    </app-new-brief-form>
+
+
+  </div>
+  <div class="modal-content-display-back">
+    <a class="back-button" href="javascript:void(0)" (click)="goBack()">
+
+      <i [inlineSVG]="'assets/img/participants/ico_arrow_left.svg'" class="icon-svg back-icon"></i>
+      volver
+    </a>
+  </div>
+
+</app-mz-modal-brainy>

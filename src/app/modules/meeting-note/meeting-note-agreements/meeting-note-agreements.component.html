@@ -1,0 +1,60 @@
+<div id="meeting-note-agreements" [perfectScrollbar]="{}">
+  <div class="meeting-note-inner-wrapper">
+    <div class="meeting-note-inner-content">
+      <h3 class="title">
+        <i [inlineSVG]="'assets/img/meeting-note/icon_acuerdos_indice.svg'"></i>
+        Acuerdos
+      </h3>
+    </div>
+  </div>
+  <!--Agreements-->
+  <ng-container *ngFor="let topic of topics | filterTopicWithAgreement | orderBy:['order']">
+    <div class="meeting-note-inner-wrapper">
+      <div class="meeting-note-inner-content">
+        <div class="topic-agreement-view">
+          <h3 class="topic-title">{{topic.title}}</h3>
+          <p class="agreement-content">
+            <ng-container *ngFor="let topicLine of topic.agreementItems | orderBy:['order']">
+              <ng-container [ngSwitch]="topicLine.type">
+                <!--Text-->
+                <div *ngSwitchCase="'text'" app-topic-line-text [id]="topicLine.id" class="topic-line topic-line-text" [id]="topicLine.id"
+                [innerHTML]="topicLine.content.text | sanitize:'html'"  
+                >
+                </div>
+                <!--Subtopic-->
+                <div *ngSwitchCase="'sub-topic'" app-topic-line-sub-topic [id]="topicLine.id" class="topic-line topic-line-sub-topic" [id]="topicLine.id"
+                [innerHTML]="topicLine.content.text | sanitize:'html'"  
+                  >
+                  
+                </div>
+                <!--Gallery-->
+                <div *ngSwitchCase="'gallery'" app-topic-line-image-gallery [id]="topicLine.id" class="topic-line topic-line-gallery" [id]="topicLine.id"
+                  [topicLineItem]="topicLine"></div>
+                <!--Link-->
+                <div *ngSwitchCase="'link'" app-topic-line-link [id]="topicLine.id" class="topic-line topic-line-link" [id]="topicLine.id"
+                  [topicLineItem]="topicLine"></div>
+                <!--Attachment-->
+                <div *ngSwitchCase="'attachment'" app-topic-line-attachment [id]="topicLine.id" class="topic-line topic-line-attachment"
+                  [id]="topicLine.id" [topicLineItem]="topicLine"></div>
+                <!--Video-->
+                <div *ngSwitchCase="'video'" app-topic-line-video [id]="topicLine.id" class="topic-line topic-line-video" [id]="topicLine.id"
+                  [topicLineItem]="topicLine"></div>
+                <!--Task-->
+                <div *ngSwitchCase="'task'" app-topic-line-task [id]="topicLine.id" class="topic-line topic-line-task"
+                  [withTitle]="false"
+                  [topicLineItem]="topicLine"></div>
+                <!--Defaul text-->
+                <div *ngSwitchDefault class="topic-line topic-line-text" app-topic-line-text [id]="topicLine.id"
+                  >
+                </div>
+              </ng-container>
+            </ng-container>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+
+</div>

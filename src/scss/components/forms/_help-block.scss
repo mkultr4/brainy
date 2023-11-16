@@ -1,0 +1,29 @@
+.help-block {
+    font-weight: $font-regular;
+    font-size: 12px;
+    display: block;
+    text-align: left;
+    &.danger,
+    &.error {
+        color: #FF3466;
+    }
+    &.info {
+        color: $purple-color-light;
+    }
+    &+.help-block {
+        margin-top: 5px;
+    }
+    &.help-block-password {
+        margin-top: 7px;
+        line-height: 14px;
+        >a {
+            font-family: $font-regular;
+            font-size: 12px;
+            color: rgba($primary-color, 0.40);
+            letter-spacing: 0.25px;
+            &:hover {
+                color: $purple-color-light;
+            }
+        }
+    }
+}

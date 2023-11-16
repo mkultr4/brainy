@@ -1,0 +1,48 @@
+<div class="feedback-versions-compare-chooser-main" [ngClass]="{'sidenav-left-compress':leftSidenavCompressed}" [perfectScrollbar]="{supressScrollX:true}">
+  <div class="feedback-version-compare-chooser-wrapper">
+    <div class="feedback-versions-compare-chooser-container">
+      <div class="row no-margin-bottom">
+        <ng-container *ngFor="let compare of (comparedVersions ? comparedVersions.slice(0,2): []) ">
+          <div class="col s12  l6">
+            <div app-feedback-version-compare-chooser class="feedback-version-compare-chooser"
+              [compare]="compare" 
+              [style.height.px]="boxHeight"
+              [style.width.px]="boxWidth"
+               [boxHeight]="boxHeight" 
+               [boxWidth]="boxWidth" 
+               [filterStatuses]="filterStatuses"
+              [filterParticipantTypes]="filterParticipantTypes" (onDropPiece)="onDropPiece($event)" (onRemoveCompare)="onRemoveCompare($event)">
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+      <div class="row no-margin-bottom">
+        <ng-container *ngFor="let compare of (comparedVersions ? comparedVersions.slice(2,4): []) ">
+          <div class="col s12  l6">
+            <div app-feedback-version-compare-chooser 
+              class="feedback-version-compare-chooser invested" 
+              [compare]="compare" 
+              [style.height.px]="boxHeight"
+              [style.width.px]="boxWidth" 
+              [boxHeight]="boxHeight" 
+              [boxWidth]="boxWidth" 
+              [filterStatuses]="filterStatuses"
+              [filterParticipantTypes]="filterParticipantTypes" 
+              (onDropPiece)="onDropPiece($event)" 
+              (onRemoveCompare)="onRemoveCompare($event)">
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="row no-margin-bottom">
+        <div class="col s12">
+          <div class="feedback-versions-compare-chooser-btn">
+            <button class="btn right" [disabled]="(comparedVersions |filterBy:['empty']:false).length <= 1" (click)="compare()">Comparar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

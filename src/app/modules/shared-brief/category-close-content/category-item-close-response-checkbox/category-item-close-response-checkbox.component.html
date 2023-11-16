@@ -1,0 +1,10 @@
+<div class="response-checkbox">
+  <div class="brief-checkbox-list" >
+    <ng-container *ngFor="let option of item.responseSettings.options |  orderByImpure:['order']">
+      <app-option-checkbox-close
+        [option]="option"
+        [checked]="item.responseContent.options.indexOf(option) >= 0"
+      ></app-option-checkbox-close>
+    </ng-container>
+
+</div>

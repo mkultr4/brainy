@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <defs>
+        <path d="M0.602222222,2.87466667 C0.602222222,1.28746667 1.94777778,0 3.6,0 C5.25666667,0 6.59888889,1.29706667 6.59888889,2.87466667 L6.59888889,6.45333333 C6.59888889,8.04053333 5.25333333,9.328 3.6,9.328 C1.94444444,9.328 0.602222222,8.03093333 0.602222222,6.45333333 L0.602222222,2.87466667 Z" id="path-1"></path>
+        <path d="M0.0666666667,3.96474593 L0.0666666667,0.872060559 L9.42333333,0.656 L9.42333333,3.34186667 C9.42333333,5.01013333 8.01666667,6.50453333 6.32,6.67733333 C5.78333333,6.73173333 3.63888889,6.73173333 3.10333333,6.67733333 C1.60940006,6.52582933 0.362662349,5.36920959 0.0666666667,3.96474593 L0.0666666667,3.96474593 Z" id="path-3"></path>
+    </defs>
+    <g id="symbol-audio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="audio_inactivo_burger">
+            <g id="ico-audio" transform="translate(5.000000, 2.000000)">
+                <g id="Group-3" transform="translate(1.111111, 0.000000)">
+                    <mask id="mic-mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M0.602222222,2.87466667 C0.602222222,1.28746667 1.94777778,0 3.6,0 C5.25666667,0 6.59888889,1.29706667 6.59888889,2.87466667 L6.59888889,6.45333333 C6.59888889,8.04053333 5.25333333,9.328 3.6,9.328 C1.94444444,9.328 0.602222222,8.03093333 0.602222222,6.45333333 L0.602222222,2.87466667 Z" id="mic" stroke="#4F5C69" mask="url(#mic-mask-2)"></path>
+                </g>
+                <g id="Group-6" transform="translate(0.000000, 4.266667)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-5"></g>
+                    <path d="M9.42333333,0.656 L9.42333333,3.34186667 C9.42333333,5.01013333 8.01666667,6.50453333 6.32,6.67733333 C5.78333333,6.73173333 3.63888889,6.73173333 3.10333333,6.67733333 C1.38888889,6.50346667 0,5.00586667 0,3.32906667 L0,0.8736" id="Stroke-4" stroke="#4F5C69" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-4)" class="mic-form"
+
+                        ></path>
+                </g>
+                <g id="Group-10" transform="translate(1.111111, 10.666667)" stroke="#4F5C69" stroke-linecap="round"
+                        class="mic-form"
+                    >
+                    <path d="M3.84,0.410666667 L3.84,3.52221201" id="Stroke-7" stroke-width="0.6"></path>
+                    <path d="M0,4 L6.73333333,4" id="Stroke-9" stroke-width="0.5" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

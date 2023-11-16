@@ -1,0 +1,120 @@
+<div class="profile-account-content" *ngIf="invitation">
+    <!--User-->
+    <div class="profile-user-information">
+      <div class="profile-user-information-name ">
+        <span>{{invitation.email}} </span>
+      </div>
+      <div class="avatar profile-user-information-avatar profile-image-immense" app-avatar 
+      [user]="invitation" [showStatus]="false"></div>
+      <div class="profile-user-information-rol ">
+        <span>{{invitation.rol.name}} </span>
+      </div>
+      <div class="profile-user-information-status ">
+          Pendiente
+      </div>
+    </div>
+    <!--Information-->
+    <div class="profile-account-information">
+      <!--Toolbar-->
+      <div class="profile-account-toolbar-content ">
+        <ul class="profile-account-toolbar">
+          <li class="disabled">
+            <a href="javascript:void(0)" id="popup-profile-information-session-btn" 
+              class="modal-floating-trigger">
+              
+              <i class="icon-svg session" [inlineSVG]="'assets/img/profile/ico_info_session.svg'"></i>
+            </a>          
+          </li>
+          <li class="disabled">
+            <a href="javascript:void(0)" >
+              <i class="icon-svg reset" [inlineSVG]="'assets/img/profile/ico_reset_password.svg'"></i>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" mz-button  [id]="'profile-account-btn'">
+              <i class="icon-svg burguer" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+            </a>
+            <!--Dropdown-->
+            <app-mz-dropdown-brainy #menu [id]="'profile-account-dropdown'"
+             [dropdownButtonId]="'profile-account-btn'" [constrainWidth]="false"
+              [belowOrigin]="false" [dropdownClass]="'toolbar-box-team'" [stopPropagation]="true">
+              <li class="disabled">
+                <a href="javascript:void(0)">
+                  Activo
+                </a>
+              </li>
+              <li class="disabled">
+                <a href="javascript:void(0)">
+                  Suspender
+                </a>
+              </li>
+              <li (click)="eliminate()">
+                <a href="javascript:void(0)">
+                  Eliminar
+                </a>
+              </li>
+            </app-mz-dropdown-brainy>
+          </li>
+        </ul>
+      </div>
+      <!--Permission-->
+      <div class="profile-account-primary-information" *ngIf="invitation">
+        <div class="row no-margin-bottom">
+          <!--Rol-->
+          <div class="col s12">
+            <div class="input-field input-field-medium" app-mz-select-container-brainy>
+              <a href="javascript:void(0)" class="input-help" tabindex="3"
+              appSidenavButton 
+                  [sidenavId]="'right-permissions-nav'" 
+                  appTooltip
+                  [tooltipMessage]="'Ver privilegios'"
+                  [extraClassTooltip]="'tooltip-permissions'"
+                  [alignamentTooltip]="'left'"
+              >
+                <i [inlineSVG]="'assets/img/commons/ico_info.svg'" class="icon-svg"></i>
+              </a>
+              <select mz-select tabindex="2" placeholder="Selecciona" name="userRol" 
+              [label]="'Privilegios'" [(ngModel)]="invitation.rol" required
+                data-extra-class="center-align" [disabled]="invitation.rol.key === 'admin'">
+                <option value="" disabled>Seleccione un rol</option>
+                <option *ngFor="let rol of roles" [ngValue]="rol" [disabled]="rol.key === 'admin' || rol.key === 'super-admin'">{{ rol.name }}</option>
+              </select>
+            </div>
+          </div>
+          <!--Permission List-->
+          <div class="profile-account-permissions">
+            <div class="col s12">
+              <h4 class="profile-account-permissions-title">
+                Permisos ({{invitation.rol.name}})
+              </h4>
+            </div>
+            <div class="col s12">
+              <div class="profile-account-permissions-list">
+                <!-- Switch -->
+               <div class="switch" *ngFor="let permission of invitation.permissions">
+                  <label [for]="'role-'+permission.key">
+                    <span class="switch-label">{{permission.text}}</span>
+                    <input type="checkbox" [name]="'role-'+permission.key" 
+                    [id]="'role-'+permission.key" [(ngModel)]="permission.permitted">
+                    <span class="lever"></span>
+                  </label>
+                </div>
+              </div>
+  
+            </div>
+  
+          </div>
+          <!--Button save-->
+          <div class="col s12"> 
+            <div class="profile-account-button">
+              <button class="btn btn-semi-medium  btn-outline-light" (click)="save()">Guardar</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
+  </div> 
+<!--Modal delete-->
+  <app-modal-team-eliminate-invitation #modaEliminate (modalOnEliminate)="modalOnEliminate($event)"></app-modal-team-eliminate-invitation>

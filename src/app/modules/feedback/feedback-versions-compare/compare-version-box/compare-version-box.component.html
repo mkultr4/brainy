@@ -1,0 +1,28 @@
+<div class="compare-version-box" [ngClass]="{'invested':invested}">
+    <div class="compare-version-box-header">
+        <ng-container *ngIf="piece.latest">
+            <span class="version">Versión actual</span>
+        </ng-container>
+        <ng-container *ngIf="!piece.latest">
+            <span class="version">
+                {{piece.versionNumber}}.&nbsp;versión
+            </span>
+        </ng-container>
+        <span class="name">
+            {{piece.name}}
+        </span>
+    </div>
+    <div class="compare-version-box-wrapper" 
+    [style.width.px]="compareBoxWidth" [style.height.px]="compareBoxHeight">
+        
+            <app-feedback-version-compare-preview 
+                
+                [piece]="piece" [filterStatuses]="filterStatuses" 
+                [filterParticipantTypes]="filterParticipantTypes"
+                [size]="{boxWidthPreview:compareBoxWidth,
+                         boxHeightPreview:compareBoxHeight}">
+            </app-feedback-version-compare-preview>
+
+        
+    </div>
+</div>

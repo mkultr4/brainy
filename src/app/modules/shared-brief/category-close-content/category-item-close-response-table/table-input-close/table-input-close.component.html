@@ -1,0 +1,32 @@
+<!--Table Input-->
+
+<div [id]="'cell-' + cell.id" class="brief-table-input"
+[ngClass]="{'input-percentage': cell.type.key === 'percentage'}">
+  <!--Type cell-->
+  <ng-container [ngSwitch]="cell.type.key">
+    
+    <!--Text-->
+    <ng-container *ngSwitchCase="'text'">
+      <app-table-input-text-close [cell]="cell"></app-table-input-text-close>
+    </ng-container>
+    <!--Percentage-->
+    <ng-container *ngSwitchCase="'percentage'">
+        <app-table-input-percentage-close [cell]="cell"></app-table-input-percentage-close>
+    </ng-container>
+    <!--Date-->
+    <ng-container *ngSwitchCase="'date'">
+        <app-table-input-date-close [cell]="cell"></app-table-input-date-close>
+    </ng-container>
+    <!--Quantity-->
+    <ng-container *ngSwitchCase="'quantity'">
+        <app-table-input-quantity-close [cell]="cell"></app-table-input-quantity-close>
+    </ng-container>
+    <!--Select-->
+    <ng-container *ngSwitchCase="'select'">
+        <app-table-input-select-close [cell]="cell"></app-table-input-select-close>
+    </ng-container>
+  </ng-container>
+
+
+
+</div>

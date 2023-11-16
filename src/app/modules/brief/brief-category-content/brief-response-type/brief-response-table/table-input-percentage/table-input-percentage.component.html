@@ -1,0 +1,14 @@
+<div class='brief-table-input-percentage'>
+    <input
+        (focus)="onFocusFn(true)" 
+        (blur)="onFocusFn(false)"
+        type="text" 
+        maxlength="3"
+        [disabled]="!refillable"
+        placeholder="000" 
+        [(ngModel)]="cell.value"
+        mask='000'
+        (ngModelChange)="onChangeValue()"
+        >
+    <i class="brief-table-input-percentage-icon" [inlineSVG]="'assets/img/brief/response-types/table/ico_percentage_table.svg'"></i>
+</div>

@@ -1,0 +1,14 @@
+<div class='brief-table-input-quantity'>
+  <i class="brief-table-input-quantity-icon" 
+     [inlineSVG]="'assets/img/brief/response-types/table/ico_quantity_big_table.svg'"></i>
+  <input
+    (focus)="onFocusFn(true)" 
+    (blur)="onFocusFn(false)"
+    type="text" 
+    mask='0*.00'
+    placeholder="0000.00" 
+    [(ngModel)]="cell.value"
+    (ngModelChange)="onChangeValue()"
+    >
+  
+</div>

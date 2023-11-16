@@ -1,0 +1,16 @@
+<div class="comment-thread-point-popup-user {{edge}}"
+[style.left.px]="left"
+[style.top.px]="top"
+[ngClass]="{show:show}"
+#popup>
+<ng-container *ngIf="commentThread && commentThread.workspaceAccess">
+<div app-avatar class="avatar profile-image-medium-small"
+ [user]="commentThread.workspaceAccess.user" [showStatus]="false"></div>
+    <div class="comment-thread-point-popup-user-container" >
+            <span class="user-name">{{commentThread?.workspaceAccess?.user?.name + ' '+ commentThread?.workspaceAccess?.user?.lastName }}</span>
+            <span class="user-rol">{{commentThread?.workspaceAccess?.rol?.name }}</span>
+            <span class="participant-type">{{commentThread?.participantType.name}}</span>
+    </div>
+    </ng-container>
+    <span class="arrow"></span>
+</div>

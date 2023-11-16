@@ -1,0 +1,67 @@
+<div class="response-assessment" 
+[ngClass]="{'enabled-editing':editable}">
+  <!--List numeric-->
+  <ng-container *ngIf="briefCategoryItem.responseSettings.assessment.type === 'number'">
+    <div class="brief-assessment-list-numeric" [ngClass]="{'enabled-editing':editable}">
+      <!--Options numerics-->
+      <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options; let index = index">
+        <app-option-assessment-number [option]="option" [editable]="editable" [refillable]="refillable" [focusResponse]="focusResponse"
+          [checked]="briefCategoryItem.responseContent.options.indexOf(option) >= 0" 
+          [number]="index + 1 "
+          (onToggleSelection)="toggleSelection($event)"
+          (onDelete)="deleteOption($event)"></app-option-assessment-number>
+      </ng-container>
+      <ng-container *ngIf="focusResponse">
+        <div class="brief-assessment-number brief-assessment-add" (click)="addOption($event)" *ngIf="briefCategoryItem.responseSettings.options.length < 10">
+          <span class="brief-assessment-add-text">+</span>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <!--List Text-->
+  <ng-container *ngIf="briefCategoryItem.responseSettings.assessment.type === 'text'">
+    <div class="brief-assessment-list-text" [ngClass]="{'enabled-editing':editable}">
+      <!--Options text-->
+      <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options | orderByImpure:['order']">
+        <app-option-assessment-text [option]="option" [editable]="editable" [refillable]="refillable" [focusResponse]="focusResponse"
+          [checked]="briefCategoryItem.responseContent.options.indexOf(option) >= 0" (onToggleSelection)="toggleSelection($event)"
+          (onDelete)="deleteOption($event)" (onChange)="onChangeSettings()"></app-option-assessment-text>
+      </ng-container>
+
+      <!--ADD-->
+      <ng-container *ngIf="focusResponse">
+        <div class="brief-assessment-text brief-assessment-add editable" (click)="addOption($event)" *ngIf="briefCategoryItem.responseSettings.options.length < 4">
+          <div class="brief-assessment-text-wrapper">
+            <div class="brief-assessment-text-content">
+              <!--Select icon-->
+              <div class="brief-assessment-selector without-icon">
+                <i class="brief-assessment-selector-posisionated" [inlineSVG]="'assets/img/brief/response-types/assessment/ico_add_icons_small.svg'"></i>
+
+              </div>
+              <!--Input Label-->
+              <span class="brief-assessment-add-text">Agregar +</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <!--Configuration-->
+  <ng-container *ngIf="focusResponse">
+    <ul class="brief-response-assessment-configuration">
+      <li><a href="javascript:void(0)" [ngClass]="{'active':briefCategoryItem.responseSettings.assessment.type === 'text'}"
+          (click)="changeType('text')">
+          <i  [inlineSVG]="'assets/img/brief/response-types/assessment/ico_assess.svg'"></i>
+          Valorar
+        </a>
+      </li>
+      <li><a href="javascript:void(0)" [ngClass]="{'active':briefCategoryItem.responseSettings.assessment.type === 'number'}"
+          (click)="changeType('number')">
+          <i [inlineSVG]="'assets/img/brief/response-types/assessment/ico_qualify.svg'"></i>
+          Calificar
+        </a>
+      </li>
+
+    </ul>
+  </ng-container>
+</div>

@@ -1,0 +1,13 @@
+<div class='brief-table-input-text'>
+    <input [ngClass]="{'new':cell.isNew}"
+            [id]="cell.id"
+           (focus)="onFocusFn(true)" 
+            (blur)="onFocusFn(false)"
+            type="text" 
+            [disabled]='!refillable'
+            placeholder="{{cell.isNew?'Edite':'Escriba aquí'}}" 
+            [(ngModel)]="cell.value"
+            (ngModelChange)="onChangeValue()"
+            >
+  </div>
+  

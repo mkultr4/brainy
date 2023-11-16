@@ -1,0 +1,215 @@
+//New Draft
+#modal-new-meeting-note {
+    @extend .modal-new-brainy-object;
+    .modal-content-display {
+        .modal-content-display-inner {
+            #input-field-title {
+                margin-bottom: 16px;
+            }
+            #location-and-time {
+                .row {
+                    margin-left: -6px;
+                    margin-right: -6px;
+                    .col {
+                        padding-left: 6px;
+                        padding-right: 6px;
+                        .input-field {
+                            margin-bottom: 17px;
+                        }
+                    }
+                }
+            }
+            .sync-option-container {
+                padding-top: 22px;
+                padding-bottom: 24px;
+            }
+        }
+    }
+}
+
+#modal-meeting-note-cancel {
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                max-width: 480px;
+                .input-field-medium {
+                    label {
+                        font-size: 14px;
+                        &.active {
+                            transform: translateY(-14px);
+                        }
+                    }
+                }
+                .modal-content-buttons {
+                    .btn {
+                        width: 160px;
+                    }
+                }
+                #title-program {
+                    margin-bottom: 46px;
+                }
+                #location-and-time {
+                    .location-button-container {
+                        display: inline-block;
+                        width: 100%;
+                        padding-top: 46px;
+                        .btn {
+                            width: 140px;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#modal-task-edit {
+    width: 370px;
+    max-height: 90%;
+    #popup-add-task {
+        display: block;
+        transform: none;
+        position: relative;
+        margin: 0;
+        z-index: 1;
+    }
+}
+
+.topic-list-modal {
+    max-width: 320px;
+    margin: 0 auto 50px auto;
+    .topic-list-resume {
+        display: block;
+        text-align: center;
+        opacity: 0.6;
+        font-weight: $font-medium;
+        font-size: 14px;
+        color: $primary-color;
+        text-align: center;
+        margin: 15px 0 15px 0;
+    }
+    .topic-block {
+        border: 1px solid rgba(79, 92, 105, 0.1);
+        line-height: 38px;
+        padding: 0 50px 0 17px;
+        text-align: left;
+        font-size: 14px;
+        position: relative;
+        >span.title {
+            @extend .text-overflow;
+            display: block;
+        }
+        .topic-pending-ico {
+            position: absolute;
+            right: 18px;
+            height: auto;
+            line-height: 15px;
+            top: 50%;
+            margin-top: -(15px / 2);
+        }
+        &+.topic-block {
+            margin-top: 5px;
+        }
+    }
+}
+
+.modal-meeting-note-options {
+    max-width: 320px;
+    margin: 0 auto 50px auto;
+    .checkbox-block {
+        margin: 0;
+        border: 1px solid rgba(79, 92, 105, 0.1);
+        line-height: 38px;
+        padding: 0 14px;
+        text-align: left;
+        position: relative;
+        line-height: 38px;
+        [type="checkbox"].filled-in.medium+label {
+            font-size: 14px;
+            font-weight: $font-regular;
+            padding-left: 25px;
+        }
+        &+.checkbox-block {
+            margin-top: 5px;
+        }
+    }
+}
+
+// Approve
+.modal-approve-topic {
+    @extend .modal-alert;
+    height: auto;
+    max-height: 90%;
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                .modal-header-content {
+                    padding-top: 50px;
+                    display: inline-block;
+                    width: 100%;
+                    .title {
+                        line-height: 25px;
+                        margin-bottom: 12px;
+                        font-weight: $font-medium;
+                    }
+                    .message {
+                        padding-bottom: 55px;
+                    }
+                    @include mq($from:large-screen) {
+                        padding-top: 74px;
+                    }
+                }
+                #location-and-time {
+                    max-width: 320px;
+                    margin: 0 auto 40px auto;
+                    #localtion-input-container {
+                        margin-top: 10px;
+                    }
+                }
+                .modal-content-buttons {
+                    padding-bottom: 50px;
+                    .btn-pending {
+                        width: 200px;
+                    }
+                    @include mq($from:large-screen) {
+                        padding-bottom: 109px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#modal-approve-topics-pending {
+    @extend .modal-approve-topic;
+}
+
+#modal-approve-topics-wihout-agreements {
+    @extend .modal-approve-topic;
+}
+
+#modal-approve-topics-two-cases {
+    @extend .modal-approve-topic;
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                .modal-header-content {
+                    .modal-header-resume {
+                        margin-bottom: 27px;
+                        .modal-header-resume-wrapper {
+                            display: inline-block;
+                            .title {
+                                text-align: left;
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+

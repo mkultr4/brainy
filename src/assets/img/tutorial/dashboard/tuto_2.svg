@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="350px" height="250px" viewBox="0 0 350 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="51.8644634%" y1="96.6266741%" x2="51.8644631%" y2="1.31975446%" id="linearGradient-1">
+            <stop stop-color="#D3D4D6" offset="0%"></stop>
+            <stop stop-color="#EEEFF3" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="12" y="0" width="304" height="210"></rect>
+        <rect id="path-3" x="26" y="15" width="274" height="189"></rect>
+        <linearGradient x1="51.8644634%" y1="96.6266741%" x2="51.8644632%" y2="43.8181007%" id="linearGradient-4">
+            <stop stop-color="#D3D4D6" offset="0%"></stop>
+            <stop stop-color="#EEEFF3" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-5" x="0" y="197" width="327" height="14"></rect>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <rect id="Rectangle" x="0" y="0" width="350" height="250"></rect>
+            <g id="Group-Copy" transform="translate(12.000000, 20.000000)">
+                <g id="Rectangle-7-Copy-9">
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#000000" stroke-width="2" x="13" y="1" width="302" height="208"></rect>
+                </g>
+                <g id="Rectangle-7-Copy-10">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <rect stroke="#716F6F" stroke-width="2" x="27" y="16" width="272" height="187"></rect>
+                </g>
+                <g id="Rectangle-7-Copy-11">
+                    <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    <rect stroke="#000000" stroke-width="2" x="1" y="198" width="325" height="12"></rect>
+                </g>
+                <g id="Group-30-Copy-2" transform="translate(80.000000, 63.000000)">
+                    <polygon id="Path-4-Copy-8" fill="#EBECF0" points="0 50.4302846 11.7789472 41 23.8276627 49.9642956 36.770005 41 46 51.2146699 46 88 0 88"></polygon>
+                    <circle id="Oval-8-Copy" stroke="#3E4758" fill="#EBECF0" cx="34" cy="14" r="5"></circle>
+                    <rect id="Rectangle-20-Copy" stroke="#3E4758" x="0.5" y="0.5" width="46" height="87"></rect>
+                    <polyline id="Path-9-Copy" stroke="#3E4758" points="0 52 12.0662814 40 23.5989665 50.7301228 36.9013395 40 46 52"></polyline>
+                </g>
+                <g id="Group-31-Copy" transform="translate(136.000000, 63.000000)">
+                    <rect id="Rectangle-24" fill="#3E4758" x="8" y="30" width="21" height="2"></rect>
+                    <rect id="Rectangle-24-Copy" fill="#3E4758" x="8" y="35" width="29" height="2"></rect>
+                    <g id="Group-30-Copy" stroke="#3E4758">
+                        <rect id="Rectangle-20-Copy" x="0.5" y="0.5" width="46" height="86"></rect>
+                    </g>
+                </g>
+                <g id="Group-31-Copy-2" transform="translate(194.000000, 63.000000)">
+                    <rect id="Rectangle-24" fill="#3E4758" x="18" y="44" width="21" height="2"></rect>
+                    <rect id="Rectangle-2" stroke="#4F5C69" x="8.5" y="42.5" width="4" height="3"></rect>
+                    <rect id="Rectangle-2-Copy" stroke="#4F5C69" x="8.5" y="51.5" width="4" height="3"></rect>
+                    <rect id="Rectangle-24-Copy-2" fill="#3E4758" x="18" y="53" width="21" height="2"></rect>
+                    <g id="Group-30-Copy" stroke="#3E4758">
+                        <rect id="Rectangle-20-Copy" x="0.5" y="0.5" width="46" height="85"></rect>
+                    </g>
+                </g>
+                <g id="Group-4" transform="translate(235.000000, 45.000000)">
+                    <circle id="Oval-7-Copy-3" stroke="#3E4758" stroke-width="2" fill="#EEEFF3" cx="13.5" cy="13.5" r="13.5"></circle>
+                    <path d="M14.1875,12.8125 L19,12.8125 L19,14.1875 L14.1875,14.1875 L14.1875,19 L12.8125,19 L12.8125,14.1875 L8,14.1875 L8,12.8125 L12.8125,12.8125 L12.8125,8 L14.1875,8 L14.1875,12.8125 Z" id="Combined-Shape-Copy-3" fill="#3E4758"></path>
+                </g>
+                <g id="Group-3" transform="translate(201.000000, 74.000000)">
+                    <polygon id="Path-2-Copy-4" fill="#EBECF0" points="0 18.0247358 9.41028284 11 17.485408 18.0247358 24.8113812 12.0826828 32 19.8263244 32 24 0 24"></polygon>
+                    <rect id="Rectangle-Copy-11" stroke="#3E4758" x="0.5" y="0.5" width="32" height="23"></rect>
+                    <circle id="Oval-6-Copy-4" stroke="#3E4758" fill="#EBECF0" cx="25.5" cy="5.5" r="2.5"></circle>
+                    <polyline id="Path-3-Copy-4" stroke="#3E4758" points="1.03955078 18.1107783 9.94446843 11 18.1344497 18.1107783 25.3721639 12.0667614 32.4643555 18.6645682"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

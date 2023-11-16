@@ -1,0 +1,82 @@
+<!--Modal-->
+<div id="modal-new-project" *ngIf="visible" [@modalAnimation] class="animated-modal animated-modal-full-width">
+    <div class="modal-content">
+        <!--Modal Brand-->
+        <span class="modal-brand-name">
+            <i [inlineSVG]="'assets/img/logo_brainy.svg'" class="icon-svg"></i>
+            Brainy
+        </span>
+        <!--Modal Close-->
+        <a href="javascript:void(0)" class="modal-close close-animated-modal" (click)="closeModal()" reveal-animation="isOpenModalNewProject"
+            reveal-in="fadeIn" reveal-out="fadeOut" delay-in="0">
+            <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'" class="icon-svg"></i>
+        </a>
+        <!--Chooser Project-->
+        <div class="modal-content-inner"
+         id="modal-inner-project-chooser" 
+         [@chooserProjectAnimation]="stateModal">
+
+            <div class="modal-header">
+                <!--Title-->
+                <h5 class="modal-header-title">
+                    {{ 'dashboard.what-do-you-want-to-create' | translate}}
+                </h5>
+            </div>
+            <div class="modal-content-display modal-content-display-project-chooser"
+            
+            >
+                <div class="row">
+                    <!--Brief-->
+                    <div class="col s12 m4 l4 xl4">
+
+                        <div id="chooser-new-brief" 
+                        (mouseenter)="mouseOverBrief = true" (mouseleave)="mouseOverBrief = false"
+                        class="chooser-project transition-default" (click)="createBrief()">
+                            <img [ngClass]="{hide: !mouseOverBrief}" src="assets/img/projects/ico_brief_purple.svg" class="icon-svg ico-new-brief">
+                            <img [ngClass]="{hide: mouseOverBrief}" src="assets/img/projects/ico_brief_gray.svg" class="icon-svg ico-new-brief">
+                            <!--Chooser Option-->
+                            <div class="chooser-project-title ">BRIEF</div>
+                            <div class="chooser-project-explain">
+                                {{'dashboard.brief-create-text'  | translate }}
+                            </div>
+                            <a  class="chooser-project-btn">NUEVO</a>
+                        </div>
+                    </div>
+                    <!--Draft-->
+                    <div class="col s12 m4 l4 xl4">
+                        <div id="chooser-new-draft" 
+                        (mouseenter)="mouseOverDraft = true" (mouseleave)="mouseOverDraft = false"
+                        class="chooser-project transition-default" (click)="createMettingNote()">
+                            <img [ngClass]="{hide: !mouseOverDraft}" src="assets/img/projects/ico_draft_purple.svg" class="icon-svg ico-new-draft ico-new-draft-color">
+                            <img [ngClass]="{hide: mouseOverDraft}" src="assets/img/projects/ico_draft_gray.svg" class="icon-svg ico-new-draft">
+                            <!--Chooser Option-->
+                            <div class="chooser-project-title">MINUTA</div>
+                            <div class="chooser-project-explain">
+                                    {{'dashboard.meeting-note-create-text'  | translate}}
+                            </div>
+                            <a href="javascript:void(0)" class="chooser-project-btn"
+                            >NUEVO</a>
+                        </div>
+                    </div>
+                    <!--Feedback-->
+                    <div class="col s12 m4 l4 xl4">
+                        <div id="chooser-new-feedback" 
+                        (mouseenter)="mouseOverFeed = true" (mouseleave)="mouseOverFeed = false"
+                        class="chooser-project transition-default" (click)="createFeedback()">
+                            <img [ngClass]="{hide: !mouseOverFeed}" src="assets/img/projects/ico_feedback_purple.svg" class="icon-svg ico-new-feed">
+                            <img [ngClass]="{hide: mouseOverFeed}" src="assets/img/projects/ico_feedback_gray.svg" class="icon-svg ico-new-feed">
+                            <!--Chooser Option-->
+                            <div class="chooser-project-title">FEEDBACK</div>
+                            <div class="chooser-project-explain">
+                                    {{'dashboard.feedback-create-text' | translate}}
+                             </div>
+                            <a href="javascript:void(0)" class="chooser-project-btn" >NUEVO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        
+    </div>
+</div>

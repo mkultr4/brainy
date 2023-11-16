@@ -1,0 +1,27 @@
+<div class="brief-radio" 
+(click)="toggleSelection($event)"
+  [ngClass]="{'editable':focusResponse,
+              'selected':selected}">
+  <!--Delete radio-->
+  <a class="brief-radio-remove" href="javascript:void(0)" 
+    *ngIf="focusResponse" 
+    (click)="deleteOption($event, option)">
+    <i class="icon ion-md-close"></i>
+  </a>
+  <!--Checkbox Option-->
+  <div class="brief-radio-option">
+    <div class="brief-radio-option-content">
+      <!--Indicator-->
+      <span class="radio-indicator">
+        <img src="assets/img/brief/ico_resp_check.svg" class="active-indicator-icon">
+      </span>
+      <!--Label-->
+      <div class="radio-label" 
+      [maxLength]="10" 
+        placeholder="Escriba aquí" 
+      [(contentEditableModel)]="option.label"
+      (contentEditableModelChange)="labelChange()" 
+      [contentEditable]="editable"></div>
+    </div>
+  </div>
+</div>

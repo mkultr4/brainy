@@ -1,0 +1,51 @@
+<app-aside-nav #briefGivebacksSidenav id="brief-giveback-sidebar-main" class="tertiary" [disableScroll]="true"
+  (asideOnHide)="onHide()" (asideOnShow)="onShow()">
+  <div app-sidenav id="brief-left-givebacks" class="side-nav  rightside-navigation animated">
+    <ng-container *ngIf="briefCategoryItem && briefCategoryItem.id">
+      <!--Header Sidenav-->
+      <div class="header-big">
+        <h5 class="header-title">
+          Devoluciones
+        </h5>
+        <!--Close big-->
+        <a class="sidenav-close-medium invested" href="javascript:void(0);" (click)="briefGivebacksSidenav.hideSidenav()">
+          <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'" class="icon-svg"></i>
+        </a>
+      </div>
+      <!--Giveback-->
+      <div class="givebacks-primary-container" [perfectScrollbar]="{suppressScrollX:false}">
+        <!--If not approver-->
+        <ng-container *ngIf="_workspaceAccess.groupReference !== 'approver'">
+          <app-create-giveback
+          [workspaceAccess]="_workspaceAccess"
+          [briefCategoryItem]="briefCategoryItem"
+          [giveback]="giveback"
+          [categoryTitle]="categoryTitle"
+          [subcategoryTitle]="subcategoryTitle"
+          [message]="message"
+          [editable]="editable"
+          (onAddGiveback)="givebackUpdate($event)"
+          (onUpdateGiveback)="givebackUpdate($event)"
+          (onCloseSidenav)="closeSidenav()"
+          >
+          </app-create-giveback>
+        </ng-container>
+        <!--If approver-->
+        <ng-container *ngIf="_workspaceAccess.groupReference === 'approver'">
+            <app-reply-giveback
+            [workspaceAccess]="_workspaceAccess"
+            [briefCategoryItem]="briefCategoryItem"
+            [giveback]="giveback"
+            [categoryTitle]="categoryTitle"
+            [subcategoryTitle]="subcategoryTitle"
+            [reply]="reply"
+            (onAddReplyGiveback)="givebackUpdate($event)"
+            (onUpdateReplyGiveback)="givebackUpdate($event)"
+            (onCloseSidenav)="closeSidenav()"
+            >
+            </app-reply-giveback>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</app-aside-nav>

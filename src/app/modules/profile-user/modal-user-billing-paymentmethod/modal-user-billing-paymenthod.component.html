@@ -1,0 +1,61 @@
+<app-animate-modal #modal [modalId]="'modal-share-guests'" (modalOnShow)="modalOnShow()" (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <!--Modal header-->
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Editar método de pago
+      </h5>
+    </div>
+    <!--Display-->
+    <div class="modal-content-display">
+      <ng-container *ngIf="paymentMethod">
+        <div id="modal-user-billing-wrapper" class="modal-user-billing-wrapper">
+          <div class="row">
+            <!-- Number Card-->
+            <div class="col s6 m6 l6 modal-user-biling-box">
+              <img [src]="'assets/img/pic_mastecard.svg'" class="image-logo">
+              <div class="col s6 m6 l6 modal-user-biling-box-secure-number">
+                <p>**** **** ****</p>
+              </div>
+              <div class="col s1 m1  modal-user-biling-box-card-number">
+                <p>{{paymentMethod.creditCardNumber | slice:-4}}</p>
+              </div>
+            </div>
+            <div class="col s5 m5 l5 modal-user-billing-content-form">
+              <div class="col s12 m12 l12 modal-user-billing-form">
+                <form #updatePaymenthod="ngForm">
+                  <!-- Date Expiration -->
+                  <div class="input-field input-field-medium">
+                    <input tabindex="1" mz-input type="text" autocomplete="off" [label]="'Fecha de vencimiento'"
+                      requiredspecialCharacters="[ '[' ,']' , '\' ]" mask="00/00" placeholder="MM/AA" type="text" name="expirationDate"
+                      [(ngModel)]="newPaymentMethod.expiration" required>
+                  </div>
+                  <!-- Source Code -->
+                  <div class="input-field input-field-medium modal-user-billing-form-number-security">
+                    <input mz-input tabindex="1" autocom plete="off" [label]="'Número de seguridad'" [(ngModel)]="newPaymentMethod.secureCode"
+                      placeholder="3 - 4 digitos" type="password" required name="secureCode" maxlength="4">
+                  </div>
+                  <div class="col s3 m3 l3 modal-user-billing-form-icon-card">
+                    <img [src]="'assets/img/icon_tarjeta_digitos.svg'" class="image-logo">
+                  </div>
+                  <!-- Save -->
+                  <div class="billing-content-form-save">
+                    <button (click)="upPaymenthod()" [disabled]="!updatePaymenthod.valid">GUARDAR</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Delated Card -->
+          <div class="col s3 m3 l3 delate-payMentMethod">
+            <a href="javascript:void(0)" class="participant-remove" app-alert-dialog [message]="'¿Quieres eliminar el metodo de pago?'"
+              [acceptText]="'Si'" a [cancelText]="'No'" [alertClass]="'alert-participants-sidenav'" (alertOnAccept)="deletemethod()">
+              Eliminar tarjeta
+            </a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</app-animate-modal>

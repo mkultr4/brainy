@@ -1,0 +1,24 @@
+<div class="input-field-search-nav-wrapper" >
+  <div class="input-field-search-nav">
+    <div class="input-field-search-content">
+      <input class="filter-search-input"
+        [(ngModel)]="search"
+        (ngModelChange)="changeSearch()"
+        (focus)="fnMainSearchFocus(true)"
+        (blur)="fnMainSearchFocus(false)">
+      <!--Placeholder-->
+      <span [ngClass]="{'hide':search.length > 0 || searchFocus}" class="filter-search-input-placeholder">
+        <span>
+          <i class="icon-search" [inlineSVG]="'assets/img/commons/ico_search.svg'"></i>
+          {{searchPlaceholder}}
+        </span>
+      </span>
+      <!--Close-->
+      <a 
+      *ngIf="closBtn"
+      class="btn-close" href="javascript:void(0)" (click)="closeSearch()">
+        <i class="material-icons">close</i>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="floating-note-popup" *ngIf="open" [ngClass]="{'full-size':maximize}">
+  <!--Close-->
+  <a class="floating-note-popup-close" href="javascript:void(0)" (click)="closePopup()" *ngIf="view === 'list'">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_small.svg'"></i>
+  </a>
+  <!--back-->
+  <a class="floating-note-popup-back" href="javascript:void(0)" (click)="back()" *ngIf="view  !== 'list'">
+    <i class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_arrow_back.svg'"></i>
+  </a>
+  <!--List-->
+  <ng-container *ngIf="view === 'list'">
+    <app-floating-note-popup-list 
+      [core]="core" 
+      [notes]="notes"
+      (onNewNote)="onNewNote()" 
+      (onEdit)="onEdit($event)"
+      (onShareWithParticipants)="onShareWithParticipants($event)"
+      (onShareWithEmails)="onShareWithEmails($event)"
+      >
+    </app-floating-note-popup-list>
+  </ng-container>
+  <!--Add Note-->
+  <ng-container *ngIf="view  === 'add'">
+    <app-floating-note-popup-add 
+    [coreTypes]="coreTypes"
+    (onAdd)="onAdd($event)"></app-floating-note-popup-add>
+  </ng-container>
+  <!--Edit Note-->
+  <ng-container *ngIf="view  === 'edit'">
+    <app-floating-note-popup-edit [note]="noteEdit" [maximize]="maximize" [workspaceAccess]="workspaceAccess"
+      [currentUser]="currentUser" (onShare)="onShare($event)" (onDeleteNoteEdit)="onDeleteNoteEdit()"
+      (onCreateReminder)="onCreateReminder($event)"
+      (onShareWithParticipants)="onShareWithParticipants($event)"
+      (onShareWithEmails)="onShareWithEmails($event)"
+      (onExport)="onExport($event)"
+      ></app-floating-note-popup-edit>
+  </ng-container>
+  <!--Reminder create edit-->
+  <ng-container *ngIf="view === 'reminder-create'">
+    <app-floating-note-popup-reminder 
+      [noteReminder]="noteReminderEdit" 
+      [currentUser]="currentUser" [note]="noteEdit"
+      (onUpdate)="onUpdateReminder($event)">
+    </app-floating-note-popup-reminder>
+  </ng-container>
+  <!--Reminder List-->
+  <ng-container *ngIf="view === 'reminder-list'">
+    <app-floating-note-popup-reminder-list 
+    [currentUser]="currentUser"
+    [note]="noteEdit"
+    (onRemindersEmpty)="onEdit($event)"
+    (onEditNoteReminder)="onEditNoteReminder($event)"
+    ></app-floating-note-popup-reminder-list>
+  </ng-container>
+  <!--Share note-->
+  <ng-container *ngIf="view ==='share-list' || view === 'share-edit'">
+
+  </ng-container>
+  <!--Expand-->
+  <div class="floating-note-popup-expand">
+    <a href="javascript:void(0)" (click)="maximizePopup()">
+      <i *ngIf="!maximize" class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_full.svg'"></i>
+      <i *ngIf="maximize" class="icon-svg" [inlineSVG]="'assets/img/floating-note/ico_minimize.svg'"></i>
+    </a>
+  </div>
+
+</div>
+
+  <!--Share-->
+  <app-modal-share-participants
+      #modalShare 
+      [workspaceAccess]="workspaceAccess" 
+      [showShareLink]="true" 
+      [invitationLevelId]="'core'"
+      [objectType]="'note'" 
+      [invitationReferenceId]="noteToShare.id" 
+      [candAddParticipants]="false"
+      [canAssignPermission]="false"
+      (modalOnClose)="onCloseModalShare($event)">
+  </app-modal-share-participants>
+  <!--Share by email-->
+  <app-modal-share-by-email #modalShareByEmail [core]="noteToShare"></app-modal-share-by-email>
+  

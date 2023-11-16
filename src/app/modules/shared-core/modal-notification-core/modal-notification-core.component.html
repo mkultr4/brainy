@@ -1,0 +1,40 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-notification-core'" [modalClass]="'modal-vertically-center'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content">
+    <ng-container *ngIf="notification">
+      <h4 class="modal-title">
+        <ng-container [ngSwitch]="notification.type.key">
+          <ng-container *ngSwitchCase="'modal-request-modification'">
+            Te han enviado una modificación de:
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            Notificación
+          </ng-container>
+        </ng-container>
+      </h4>
+      <div class="participant-list-block">
+        <div class="participant-information without-permissions">
+          <div class="avatar profile-image-medium-1" app-avatar [user]="notification.originUser" [showStatus]="false"
+            [specialRol]="notification.originUserGroupReference"></div>
+          <div class="participant-user-information">
+
+            <span class="name">
+              {{notification.originUser.name + ' ' + notification.originUser.lastName}}<ng-container *ngIf="notification.originUserGroupReference === 'editor' ||  notification.originUserGroupReference === 'approver'">&nbsp;|&nbsp;{{
+                'workspaceAccess.rol.'+ notification.originUserGroupReference | translate}}</ng-container>
+            </span>
+            <span class="rol">{{ 'workspaceAccess.rol.' + notification.originUserRol.key | translate}}</span>
+
+          </div>
+        </div>
+      </div>
+      <div class="content-editable-message-container">
+        <div class="content-editable-message" contenteditable="false" [innerHTML]="notification.message">
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</app-mz-modal-brainy>

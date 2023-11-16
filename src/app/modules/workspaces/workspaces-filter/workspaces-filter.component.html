@@ -1,0 +1,73 @@
+<nav class="interface-nav interface-filter-nav bg-white">
+    <div class="container">
+        <div class="nav-wrapper">
+
+            <ul id="nav-dashboard-filter" [ngClass]="{'hide':isShowSearch}">
+                <!--Search-->
+                <li class="search">
+                    <a href="javascript:void(0)" (click)="toggleSearch()">
+                        <i [inlineSVG]="'assets/img/commons/ico_search.svg'" class="icon-svg ng-scope" id="ico-nav-search"></i>
+                    </a>
+                </li>
+                <!--Filter type-->
+                <li class="first-nav-item with-dropdown-menu" [ngClass]="{'filter-active': filterType !== 'all'}">
+                    <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-types" edge="bottom">
+                        <ng-container *ngIf="filterType === 'all'">
+                            <span>Todos</span>
+                        </ng-container>
+                        <ng-container *ngIf="filterType !== 'all'">
+                            <span>
+                                <ng-container *ngIf="filterType === 'my'">Mis workspaces</ng-container>
+                                <ng-container *ngIf="filterType === 'shared'">Compartidos</ng-container>
+                            </span>
+                        </ng-container>
+                        <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+                        <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+                    </a>
+                    <!--Dropdown Order-->
+                    <app-dropdown-filter-types [currentUser]="currentUser" [workspacesAccesses]="workspacesAccesses"
+                        [filterType]="filterType" (onChangeFilterType)="changeFilterType($event)">
+                    </app-dropdown-filter-types>
+
+                </li>
+
+                <!--Filter ORDER-->
+                <li class="with-dropdown-menu filter-order" [ngClass]="{'filter-active':filterOrderChange}">
+                    <a href="javascript:void(0)" appInterfaceDropdown dropdownTarget="#dropdown-order" center="true">
+                        <ng-container *ngIf="!filterOrderChange">
+                            <span>{{ 'dashboard.order' | translate}}</span>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderChange">
+                            <i class="order-direction" [ngClass]="{'invested':filterOrderDirection === -1}" [inlineSVG]="'assets/img/commons/icono_arrow_up.svg'"></i>
+                            <ng-container *ngIf="filterOrderColumn === 'workspace.name'">
+                                <span>Ordenar</span>
+                            </ng-container>
+                            <ng-container *ngIf="filterOrderColumn === 'workspace.modified'">
+                                <span>Actividad</span>
+                            </ng-container>
+                        </ng-container>
+                        <i class="material-icons caret caret-close right">keyboard_arrow_down</i>
+                        <i class="material-icons caret caret-open right">keyboard_arrow_up</i>
+                    </a>
+
+
+                    <!--Dropdown Order-->
+                    <app-dropdown-order [orderAlph]="'workspace.name'" [orderDate]="'workspace.modified'"
+                        [filterOrderDirection]="filterOrderDirection" [filterOrderColumn]="filterOrderColumn"
+                        (filterOnChangeFilterOrder)="changeFilterOrder($event)"></app-dropdown-order>
+
+                </li>
+            </ul>
+
+            <!--Search Field-->
+            <ng-container *ngIf="isShowSearch">
+                <app-input-field-search-nav [search]="mainSearch" 
+                    [searchPlaceholder]="'Busca por nombre de workspace'"
+                    (inputOnClose)="toggleSearch()" 
+                    (inputOnChangeSearch)="changeMainSearch($event)">
+                </app-input-field-search-nav>
+            </ng-container>
+        </div>
+
+    </div>
+</nav>

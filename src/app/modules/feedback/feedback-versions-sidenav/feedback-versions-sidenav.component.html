@@ -1,0 +1,54 @@
+<app-aside-nav #feedbackVersionsSidenav 
+  id="feedback-versions-sidenav" 
+  class="secondary" 
+  [showOverlay]="false"
+  [disableScroll]="true" 
+  (asideOnHide)="onHide()"
+  (asideOnShow)="onShow()">
+  <div app-sidenav id="slide-out-feedback-versions" class="side-nav rightside-navigation animated box-shadow-line">
+    <!--Toolbar menu-->
+    <ul class="menu-toolbar-default">
+      <li>
+        <a class="close" href="javascript:void(0)" (click)="hideSidenav()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+        </a>
+      </li>
+    </ul>
+    <!--Header-->
+    <div class="feedback-versions-header ">
+      <span>Historial de versiones</span>
+    </div>
+    <!--Container-->
+    <div class="versions-container" [perfectScrollbar]="{supressScrollX:true}" *ngIf="isShowSidenav">
+      <ng-container *ngIf="versions.length > 0">
+        
+          <app-feedback-version-box 
+          *ngFor="let version of versions | orderBy: '-versionNumber'" 
+          [compareVersion]="(comparedVersions | filterBy:['piece.id']:version.id).length > 0"
+          [piece]="version"
+          [isCompareVersion]="comparedVersions.length > 0"
+          (boxOnCompareVersion)="onCompareVersion($event)"
+          (boxOnRemoveCompare)="onRemoveCompare($event)"
+          (boxOnShowVersion)="onShowVersion($event)"
+          ></app-feedback-version-box>
+      </ng-container>
+      <ng-container *ngIf="versions.length === 0">
+          <h4 class="center empty-text-color">Sin versiones anteriores</h4>
+      </ng-container>
+    </div>
+  </div>
+</app-aside-nav>
+<!--Feedback Versions View-->
+<app-feedback-versions 
+[view]="view"
+[pieces]="pieces"
+[filterStatuses]="filterStatuses"
+[filterParticipantTypes]="filterParticipantTypes"
+[comparedVersions]="comparedVersions"
+[pieceShow]="pieceShow"
+[leftSidenavCompressed]="leftSidenavCompressed" 
+[isFeedbackVideo]="isFeedbackVideo"
+[commentThreadStatuses]="commentThreadStatuses" 
+[participantTypes]="participantTypes"
+>
+</app-feedback-versions>

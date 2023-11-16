@@ -1,0 +1,169 @@
+<ng-container *ngIf="workspaceAccess">
+  <div class="profile-account-content">
+
+    <!--User-->
+    <div class="profile-user-information">
+      <div class="profile-user-information-name ">
+        <span> {{workspaceAccess.user.name + ' '+ workspaceAccess.user.lastName }} </span>
+      </div>
+      <div class="avatar profile-user-information-avatar profile-image-immense" app-avatar [user]="workspaceAccess?.user"
+        [showStatus]="true" [overlay]="canEditPhoto" [dropdownStatuses]="false" [userConnectionStatuses]="userConnectionStatuses"
+        (avatarOnChangeImage)="onChangeImage($event)" ></div>
+      <div class="profile-user-information-rol ">
+        <span>
+         {{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}}
+        </span>
+      </div>
+      <div class="profile-user-information-email ">
+        <span> {{workspaceAccess.user.email}}</span>
+      </div>
+      <div class="profile-user-information-status ">
+        <span>
+            {{ 'workspaceAccess.status-singular.'+ workspaceAccess.accountStatus.key  | translate}}
+        </span>
+      </div>
+    </div>
+    <!--Information-->
+    <div class="profile-account-information">
+      <!--Toolbar-->
+      <div class="profile-account-toolbar-content ">
+        <ul class="profile-account-toolbar">
+          <li>
+            <a href="javascript:void(0)" id="popup-profile-information-session-btn" class="modal-floating-trigger">
+
+              <i class="icon-svg session" [inlineSVG]="'assets/img/profile/ico_info_session.svg'"></i>
+            </a>
+            <div app-modal-floating [id]="'popup-profile-information-session'" [modalFloatingEdge]="'bottom'"
+              [modalFloatingGutter]="5" [modalFloatingBtnId]="'#popup-profile-information-session-btn'"
+              [modalFloatingAlign]="'center'" class="popup-profile-information modal-prevent-close"
+              [modalAutoFixPosition]="false" [modalWithArrow]="true">
+              <span class="arrow"></span>
+              <div class="popup-profile-information-session-header">
+                <span>Información de sesión</span>
+              </div>
+              <!--container-->
+              <div class="popup-profile-information-session-container">
+                <div class="popup-profile-information-session-row">
+                  <span class="header">Última sesión:</span>
+                  <span class="description">
+                    <!-- 12 de Diciembre 2017 10:30 am -->
+                    <span class="date">{{workspaceAccess.lastSession | momentDate:'DD [de]'}}</span>
+                    <span class="month">{{workspaceAccess.lastSession | momentDate:'MMMM'}}</span>
+                    <span class="year">{{workspaceAccess.lastSession | momentDate:'YYYY'}}</span>
+                    <span class="hour">{{workspaceAccess.lastSession | momentDate:'HH:mm a'}}</span>
+                  </span>
+                </div>
+                <div class="popup-profile-information-session-row">
+                  <span class="header">Activo desde:</span>
+                  <span class="description">
+                    <!--20 de Mayo 2017 2:30 pm-->
+                    <span class="date">{{workspaceAccess.created | momentDate:'DD [de]'}}</span>
+                    <span class="month">{{workspaceAccess.created | momentDate:'MMMM'}}</span>
+                    <span class="year">{{workspaceAccess.created | momentDate:'YYYY'}}</span>
+                    <span class="hour">{{workspaceAccess.created | momentDate:'HH:mm a'}}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+          </li>
+          <li>
+            <a href="javascript:void(0)" appTooltip [tooltipMessage]="'Resetear comtraseña'" [edgeTooltip]="'bottom'"
+              [alignamentTooltip]="'right'" (click)="resetPassword()">
+              <i class="icon-svg reset" [inlineSVG]="'assets/img/profile/ico_reset_password.svg'"></i>
+            </a>
+
+
+          </li>
+          <li>
+            <a href="javascript:void(0)" mz-button [id]="'profile-account-btn'">
+              <i class="icon-svg burguer" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+            </a>
+            <!--Dropdown-->
+            <app-mz-dropdown-brainy #menu [id]="'profile-account-dropdown'" [dropdownButtonId]="'profile-account-btn'"
+              [constrainWidth]="false" [belowOrigin]="false" [dropdownClass]="'toolbar-box-team'" [stopPropagation]="true">
+          <li (click)="activate($event)">
+            <a href="javascript:void(0)">
+              Activo
+            </a>
+          </li>
+          <li (click)="suspend($event)">
+            <a href="javascript:void(0)">
+              Suspender
+            </a>
+          </li>
+          <li (click)="eliminate($event)">
+            <a href="javascript:void(0)">
+              Eliminar
+            </a>
+          </li>
+          </app-mz-dropdown-brainy>
+          </li>
+        </ul>
+      </div>
+      <!--Permission-->
+      <div class="profile-account-primary-information" *ngIf="workspaceAccess">
+        <div class="row no-margin-bottom">
+          <!--Rol-->
+          <div class="col s12">
+            <div app-mz-select-container-brainy class="input-field input-field-medium">
+              <a href="javascript:void(0)" class="input-help" tabindex="3" appSidenavButton [sidenavId]="'right-permissions-nav'"
+                appTooltip [tooltipMessage]="'Ver privilegios'" [extraClassTooltip]="'tooltip-permissions'"
+                [alignamentTooltip]="'left'">
+                <i [inlineSVG]="'assets/img/commons/ico_info.svg'" class="icon-svg"></i>
+              </a>
+              <select mz-select tabindex="2" placeholder="Selecciona" name="userRol" [label]="'Privilegios'"
+                [(ngModel)]="workspaceAccess.rol" required data-extra-class="center-align" [disabled]="workspaceAccess?.rol?.key === 'admin' || workspaceAccess?.rol?.rolKey === 'super-admin'">
+                <option value="" disabled>Seleccione un rol</option>
+                <option *ngFor="let rol of roles" [ngValue]="rol" 
+                [disabled]="rol?.key === 'admin' || rol?.key === 'super-admin'">{{
+                  rol.name }}</option>
+              </select>
+            </div>
+          </div>
+          <!--Permission List-->
+          <div class="profile-account-permissions">
+            <div class="col s12">
+              <h4 class="profile-account-permissions-title">
+                Permisos ({{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}})
+              </h4>
+            </div>
+            <div class="col s12">
+              <div class="profile-account-permissions-list">
+                <!--Switch --> 
+                <div class="switch" *ngFor="let permission of workspaceAccess?.permissions"> 
+                  <label [for]="'role-'+permission.key">
+                    <span class="switch-label">{{permission.text}}</span>
+                    <input type="checkbox" [name]="'role-'+permission.key" [id]="'role-'+permission.key" [(ngModel)]="permission.permitted">
+                    <span class="lever"></span>
+                  </label>
+                </div> 
+              </div>
+
+            </div> 
+            
+          </div>
+          <!--Button save-->
+          <div class="col s12">
+            <div class="profile-account-button">
+              <button class="btn btn-semi-medium  btn-outline-light" 
+              [appBtnLoading]="btnDisabled"
+              [disabled]="btnDisabled"
+              (click)="save()">
+              {{ btnDisabled ?'Guardando' : 'Guardar'}}
+            </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-container>
+
+<!--Modal Suspend-->
+<app-modal-team-suspend-account #modalTeamSuspend (modalOnSuspend)="onSuspend($event)"></app-modal-team-suspend-account>
+<!--Modal Eliminate-->
+<app-modal-team-eliminate-account #modalTeamEliminate (modalOnEliminate)="onEliminate($event)"></app-modal-team-eliminate-account>

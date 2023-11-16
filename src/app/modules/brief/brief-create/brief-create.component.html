@@ -1,0 +1,49 @@
+<!--Modal create-->
+<div class="modal-overlay" style="z-index: 1002; display: block; opacity: 1;    will-change: unset;"></div>
+<app-modal-new-brief #modalNew [briefTemplate]="briefTemplate" [workspaceAccess]="workspaceAccess" [currentUser]="currentUser">
+
+</app-modal-new-brief>
+
+<!--Layout Meeting note-->
+<section class="layout-workflow-compress layout-brief">
+    <!--Left Navigation-->
+    <app-brief-left-sidenav 
+        [brief]="briefTemplate" 
+        [briefCategories]="categories" 
+        [briefCategoryShow]="categoryShow" 
+        [editable]="true"
+        [compressed]="leftSidenavCompressed" 
+        [view]="'category'" 
+        ></app-brief-left-sidenav>
+    <!--Main-->
+    <main>
+        <!--MAIN CONTENT-->
+        <div id="main-content">
+            
+                <!--Header-->
+                <header app-brief-header 
+                    class="interface-header workflow-header" 
+                    id="brief-header" 
+                    [ngClass]="{'sidenav-left-compress':leftSidenavCompressed }"
+                    [workspaceAccess]="workspaceAccess" 
+                    [isAdmin]="true"
+                    [editable]="true" 
+                    [canShare]="canShare" 
+                    [canApprove]="true"  
+                    >
+                </header>
+            
+            <!--Screen view-->
+            <div class="screen-view meeting-note-screen-view" [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,
+              'sidenav-left-compress':leftSidenavCompressed}">
+       
+            </div>
+        </div>
+    </main>
+</section>
+<app-sidenav-participants
+[coreKey]="'brief'"
+[workspace]="workspaceAccess.workspace"
+[compressed]="rightSidenavCompressed" [owner]="workspaceAccess.user"></app-sidenav-participants>
+<!--Floating Note-->
+<app-floating-note></app-floating-note>

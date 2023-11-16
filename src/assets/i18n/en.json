@@ -1,0 +1,73 @@
+{
+    "commons": {
+        "without-results":"Without results",
+        "name":"Name",
+        "last-name":"Last name",
+        "email":"Email",
+        "password":"Password",
+        "language":"Language",
+        "save":"Save",
+        "profile":"Profile",
+        "my-profile":"My profile",
+        "miliseconds":"miliseconds",
+        "seconds":"seconds",
+        "minutes":"minutes",
+        "hours":"hours",
+        "days":"days",
+        "order":"Order"
+
+    },
+    "user":{
+        "statuses":{
+            "online":"Online",
+            "offline":"Desconectado",
+            "absent":"Ausente",
+            "bussy":"Ocupado",
+            "suspended":"Suspendido",
+            "eliminated":"Eliminado"
+        }
+    },
+    "dates":{
+        "today":"Hoy {{hour}}",
+        "yesterday":"Ayer {{hour}}"
+    },
+    "dashboard":{
+        "brands":"Brands",
+        "projects":"Projects",
+        "types":"Types",
+        "status":"Status",
+        "order":"Order"
+    },
+    "workspaceAccess": {
+        "rol": {
+            "super-admin": "Super Admin",
+            "admin": "Administrador",
+            "co-admin": "Co-administrador",
+            "manager": "Manager",
+            "team": "Team",
+            "guest": "Invitado",
+            "editor": "Editor",
+            "approver": "Aprobador"
+        },
+        "status": {
+            "all": "Todos",
+            "active": "Activos",
+            "suspended": "Suspendidos",
+            "eliminated": "Eliminados"
+        },
+        "status-singular": {
+            "active": "Activo",
+            "suspended": "Suspendido",
+            "eliminated": "Eliminado"
+        }
+    },
+    "profile":{
+        "you-account":"You account",
+        "activity":"Activity",
+        "you-plan":"You plan",
+        "billing":"Billing",
+        "benefits":"Benefits",
+        "your-permissions":"Your Permissions"
+        
+    }
+}

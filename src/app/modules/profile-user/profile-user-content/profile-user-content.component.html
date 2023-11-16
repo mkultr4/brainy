@@ -1,0 +1,75 @@
+<div class="layout-interface layout-with-footer" id="layout-profile-user">
+
+    <section class="layout-interface-content">
+        <!--Header-->
+        <header #dashboardHeader class="subsections-header scrolled-down" id='profile-customer-header'>
+            <!--First Header-->
+            <app-header-default [currentUser]="currentUser" 
+            [workspaceAccess]="workspaceAccess"
+             [breadcrumb]="'commons.my-profile' | translate">
+            </app-header-default>
+        </header>
+
+        <!--MAIN CONTENT-->
+        <main>
+            <!--Wrapper-->
+            <div class="interface-content" id="profile-user-main-content">
+                <!--Navigation-->
+                <div class="interface-navigation">
+                    <div class="interface-navigation-content">
+                        <div class="interface-navigation-wrapper container">
+
+                            <ul class="navigation">
+                                <li>
+                                    <a href="javascript:void(0)" [routerLink]="['account']" routerLinkActive="active">
+                                        {{ 'profile.you-account' | translate }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" [routerLink]="['activity']" routerLinkActive="active">
+                                        {{ 'profile.activity' | translate }}
+                                    </a>
+                                </li>
+                                <li *ngIf="isAdmin">
+                                    <a href="javascript:void(0)" [routerLink]="['plan']" routerLinkActive="active">
+                                        {{ 'profile.you-plan' | translate }}
+                                    </a>
+                                </li>
+                                <li *ngIf="isAdmin">
+                                    <a href="javascript:void(0)" [routerLink]="['billing']" routerLinkActive="active">
+                                        {{ 'profile.billing' | translate }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" [routerLink]="['benefits']" routerLinkActive="active">
+                                        {{ 'profile.benefits' | translate }}
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--Content-->
+                <div class="profile-user-wrapper">
+
+                    <div class="profile-user-content container">
+
+                        
+                        <router-outlet></router-outlet>
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</div>
+<!--Notification-->
+<app-sidenav-notifications></app-sidenav-notifications>
+
+<app-interface-footer [extraClass]="'invested'">
+</app-interface-footer>
+
+<!--Chnage workspace-->
+<app-modal-change-workspace></app-modal-change-workspace>

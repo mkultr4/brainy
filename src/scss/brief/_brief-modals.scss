@@ -1,0 +1,150 @@
+#modal-brief-pitch-dates {
+    width: 745px;
+    height: 481px;
+    max-height: 90vh;
+
+    .modal-content {
+        padding: 0;
+        height: 100%;
+
+        .pitch-dates-overlay {
+            background: #F7F7FA;
+            width: calc(100% - 330px);
+            display: inline-block;
+            padding: 95px 75px 0px 75px;
+            height: 100%;
+
+            h2 {
+                font-weight: $font-light;
+                font-size: 24px;
+                color: $primary-color;
+                letter-spacing: 0.09px;
+                text-align: center;
+                margin: 0 0 50px 0;
+            }
+
+            img {
+                margin: 0 auto 51px auto;
+                max-width: 100%;
+                display: block;
+            }
+
+            p {
+                font-weight: $font-light;
+                font-size: 14px;
+                letter-spacing: 0.05px;
+                text-align: center;
+                line-height: 21px;
+                margin: 0;
+            }
+        }
+
+        .pitch-dates-content {
+            width: 330px;
+            background: #fff;
+            display: inline-block;
+            padding: 61px 20px 20px 20px;
+            float: right;
+
+            #form-pitch-dates-container {
+                max-width: 170px;
+                margin: 0 auto;
+
+                .input-field {
+                    margin-top: 33px;
+                    margin-bottom: 37px;
+
+                    label {
+                        font-size: 14px;
+                        color: $primary-color;
+                        font-weight: $font-regular;
+
+                        &.active {
+                            transform: translateY(-33px);
+                        }
+                    }
+
+                    .caret-forward {
+                        right: auto;
+                        left: 90px;
+                    }
+                }
+
+                .button-container {
+                    margin-top: 20px;
+                    text-align: center;
+
+                    .btn {
+                        padding: 0;
+                        width: 140px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-alert-status-pitch {
+    height: 328px;
+
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                .caption {
+                    margin: 0 auto 22px auto;
+                    max-width: 100%;
+                    display: block;
+                }
+
+                .title {
+                    margin-bottom: 14px;
+                }
+
+                .message {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+#modal-alter-pitch-pre-finalist {
+    @extend .modal-alert-status-pitch;
+}
+
+#modal-alter-pitch-finalist {
+    @extend .modal-alert-status-pitch;
+}
+
+#modal-alert-discarded-pitch {
+    @extend .modal-alert-status-pitch;
+}
+
+#modal-alert-can-upload-proposal {
+    height: 328px;
+    .modal-content-table {
+        .modal-content-cell {
+            .modal-content-cell-container {
+                .message {
+                    padding-bottom: 20px;
+                }
+
+                .upload-proposal-to {
+                    font-weight: $font-regular;
+                    margin: 0 0 30px 0;
+                    font-size: 18px;
+                    color: #8586D0;
+                    letter-spacing: 0.07px;
+                    text-align: center;
+                    line-height: 21px;
+                }
+                .modal-content-buttons {
+                    .btn {
+                        padding: 0;
+                        width: 200px;
+                    }
+                }
+            }
+        }
+    }
+}

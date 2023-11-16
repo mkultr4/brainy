@@ -1,0 +1,29 @@
+<!--Notification-->
+<ng-container *ngIf="
+        notification.type.key === 'information' ||
+        notification.type.key === 'error' ||
+        notification.type.key === 'warning' ||
+        notification.type.key === 'modal-info' ||
+        notification.type.key === 'modal-error' ||
+        notification.type.key === 'modal-warning'
+">
+    <ng-container *ngIf="notification.level.key === 'user'">
+        <div app-avatar class="avatar profile-image-gigant" [user]="notification.referenceObject" [showStatus]="false"></div>
+    </ng-container>
+    <ng-container *ngIf="notification.level.key !== 'user'">
+        <img class="notification-icon" [src]="notification.thumbnail">
+    </ng-container>
+</ng-container>
+<!--Request permission-->
+<ng-container *ngIf="notification.type.key === 'modal-request-modification' || notification.type.key === 'modal-request-permission'">
+        <div app-avatar class="avatar profile-image-gigant" [user]="notification.originUser" [showStatus]="false"></div>
+</ng-container>
+
+
+<div class="notification-content">
+    <h5 class='notification-content-title'>{{notification.title}} </h5>
+    <span class='notification-content-text' [innerHTML]="notification.message | sanitize:'html'"></span>
+    <span class='notification-content-time-elapsed'>
+        <app-nice-date [date]="notification.createDate"></app-nice-date>
+    </span>
+</div>

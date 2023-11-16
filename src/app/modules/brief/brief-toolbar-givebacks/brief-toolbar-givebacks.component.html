@@ -1,0 +1,11 @@
+<div class="brief-toolbar-returns" 
+  [class.show]="show"
+  [style.top.px]="top"
+  
+  >
+  <a href="javascript:void(0)" (click)="addReturn()"
+  appTooltip
+  [tooltipMessage]="'Agregar devoluciones'">
+    <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_devoluciones_brief.svg'"></i>
+  </a>
+</div>

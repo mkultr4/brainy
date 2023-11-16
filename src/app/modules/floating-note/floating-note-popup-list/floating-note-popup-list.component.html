@@ -1,0 +1,51 @@
+<div class="floating-note-popup-content closest-alert">
+  <!--Delete-->
+  <div app-alert-dialog [message]="'¿Estas seguro de eliminar la nota?'" [acceptText]="'Si'" [cancelText]="'No'"
+    [alertClass]="'alert-floating-popup'" [edge]="'center'" [show]="isShowDeleteAlert" (alertOnAccept)="acceptDelete()"
+    (alertOnCancel)="cancelDelete()">
+  </div>
+  <div class="floating-note-popup-header-container ">
+    <div class="floating-note-popup-header">
+      <span>Notas ({{notes?.length}})</span>
+      <a href="javascript:void(0)" class="add-note" (click)="newNote()" appTooltip [tooltipMessage]="'Agregar nueva nota'">
+        <i class="" [inlineSVG]="'assets/img/floating-note/ico_add_note.svg'"></i>
+
+      </a>
+    </div>
+  </div>
+  <!--Search-->
+  <div class="search">
+    <div class="search-wrapper" [ngClass]="{'empty':query.length === 0}">
+      <input type="text" [(ngModel)]="query">
+      <span class="placeholder">
+        <i class="search-icon" [inlineSVG]="'assets/img/commons/ico_search.svg'"></i>
+        Buscar
+      </span>
+
+    </div>
+  </div>
+  <!--List-->
+  <ng-container *ngIf="notes.length > 0">
+    <div class="note-box-list" [perfectScrollbar]="{suppressScrollX:true}">
+      <app-floating-note-box *ngFor="let note of notes | filterBy:['title']:query | orderBy:'-modified';let first = first "
+        [note]="note" [first]="first" (onClickEdit)="edit($event)" (onClickDelete)="delete($event)"
+        (onClickShareParticipants)="shareWithParticipants($event)" (onClickShareMails)="shareWithEmails($event)"></app-floating-note-box>
+      <ng-container *ngIf="(notes | filterBy:['title']:query).length === 0">
+        <h6 class="without-results">
+          {{ 'commons.without-results' | translate }}
+        </h6>
+      </ng-container>
+    </div>
+  </ng-container>
+  <!--List empty-->
+  <ng-container *ngIf="notes.length === 0">
+    <div class="note-box-list-empty">
+      <img src="assets/img/floating-note/ico_nota_vacia.svg">
+      <h2>
+        No haz creado notas<br>
+        personales.
+      </h2>
+    </div>
+  </ng-container>
+
+</div>

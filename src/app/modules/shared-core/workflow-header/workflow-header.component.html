@@ -1,0 +1,82 @@
+<!--Project information-->
+<ng-container *ngIf="core && core.id">
+  <div class='workflow-header-nav' [class.share-and-approve]="shareAndApprove">
+    <div class='workflow-header-content'>
+      <!--Title-->
+      <div class='workflow-header-title'>
+        <div class="workflow-header-title-wrapper" [ngClass]="{'editing-title':editingTitle}">
+          <input #workflowTitle elastic-input [ngModel]="core.title" placeholder="Escriba el título" (focus)="onTitleFocus($event)"
+            [disabled]="!editingTitle" (blur)="onBlurTitle($event.target.value)" maxlength="100">
+          <!--Edit-->
+          <a *ngIf="editable" class="workflow-header-edit-btn" href="javascript:void(0)" (click)="editTitle()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+          </a>
+        </div>
+      </div>
+      <!--Information-->
+      <ng-container *ngIf="core.type.key !== 'brief-template'">
+        <div class='workflow-header-info'>
+        <!--Feedback-->
+        <ng-container *ngIf="core.type.key === 'feedback'">
+          {{ core.project.brand.name }}&nbsp;({{core.project.name}})&nbsp;/&nbsp;{{core.modified |
+          momentDate:'DD/MM/YYYY'}}
+        </ng-container>
+        <!--Meeting note-->
+        <ng-container *ngIf="core.type.key === 'meeting-note'">
+          <ng-container *ngIf="core.meetingNoteType.key === 'scheduled'">
+            {{ core.project.brand.name }}&nbsp;({{core.project.name}})&nbsp;{{core.date + ' ' + core.hour |
+            momentDate:'DD/MM/YYYY HH:mm a'}}&nbsp;&nbsp;{{core.place}}
+          </ng-container>
+          <ng-container *ngIf="core.meetingNoteType.key === 'fill_now'">
+            {{ core.project.brand.name }}&nbsp;({{core.project.name}})&nbsp;/&nbsp;{{core.modified |
+            momentDate:'DD/MM/YYYY'}}
+          </ng-container>
+        </ng-container>
+        <!--Brief-->
+        <ng-container *ngIf="core.type.key === 'brief'">
+          {{ core.project.brand.name }}&nbsp;({{core.project.name}})&nbsp;/&nbsp;{{ core?.template?.title}}
+        </ng-container>
+        <!--Brief-->
+        <ng-container *ngIf="core.type.key === 'brief-presentation'">
+            {{ core.project.brand.name }}&nbsp;({{core.project.name}})&nbsp;/&nbsp;{{core.modified |
+              momentDate:'DD/MM/YYYY'}}
+          </ng-container>
+        </div>
+      </ng-container> 
+      <ng-container *ngIf="core.type.key === 'brief-template'">
+         <div class='workflow-header-info'>
+           <span>Categoría&nbsp;{{ core?.category?.name }}</span>
+         </div>
+      </ng-container>
+      <div class="workflow-header-status">
+        <ng-container *ngIf="canApprove">
+          <a class="sidenav-status-btn {{core.status?.id}}" href="javascript:void(0)" mz-button id="workflow-dropdown-status">
+            <i class="icon-svg status-icon-header {{core.status?.key}}" [inlineSVG]="core?.status?.ico"></i>
+            <span class="status-text">
+              {{'core.status.'+ core.status.key | translate }}
+            </span>
+            <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/icon_estatus_drop.svg'"></i>
+          </a>
+          <!--Dropdown Statuses-->
+          <app-mz-dropdown-brainy [id]="'dropdown-workflow-status'" [dropdownButtonId]="'workflow-dropdown-status'"
+            [constrainWidth]="false" [belowOrigin]="false" [dropdownClass]="'dropdown-status'">
+            <li *ngFor="let status of coreStatuses">
+              <span (click)="setStatus(status)">
+                <i class="{{status.id}}" [inlineSVG]="status.ico"></i>
+                {{'core.status.'+ status.key | translate }}
+              </span>
+            </li>
+          </app-mz-dropdown-brainy>
+        </ng-container>
+        <ng-container *ngIf="!canApprove">
+          <a class="sidenav-status-btn {{core.status?.id}}" href="javascript:void(0)" id="workflow-dropdown-status">
+            <i class="icon-svg status-icon-header {{core.status?.key}}" [inlineSVG]="core?.status?.ico"></i>
+            <span class="status-text">
+              {{'core.status.'+ core.status.key | translate }}
+            </span>
+          </a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>

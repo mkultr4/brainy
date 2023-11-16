@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="8px" viewBox="0 0 12 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>check_respuesta_brief</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="2.50259339e-16 5.75927833 2.50259339e-16 -3.52094351e-05 10.2938375 -3.52094351e-05 10.2938375 5.75927833 0 5.75927833"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="check_respuesta_brief">
+            <g id="Group-7-Copy-4" transform="translate(1.000000, 1.000000)">
+                <g id="Page-1">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M9.31479089,0.000315126051 C9.06837267,0.00591736695 8.83425259,0.0850490196 8.66253416,0.221253501 L3.72733747,4.01537115 L1.63073292,2.40367647 C1.45172671,2.26221989 1.20621946,2.18238796 0.949780538,2.1827381 C0.0984761905,2.18343838 -0.321026915,2.97860644 0.288869565,3.43483894 L3.02178882,5.53567927 C3.2053499,5.6827381 3.46133333,5.76362045 3.7264265,5.75906863 C3.99243064,5.76397059 4.24886957,5.6827381 4.4337971,5.53567927 L10.0043975,1.25241597 C10.6247702,0.788830532 10.1797598,-0.0192927171 9.31479089,0.000315126051" id="Fill-1" fill="#595A9C" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

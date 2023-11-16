@@ -1,0 +1,109 @@
+<div class="profile-plans-content">
+  <div class="profile-plans-type">
+    <ul class="plans-type-menu">
+      <li>
+        <a href="javascript:void(0)" class="btn btn-light" 
+        [ngClass]="{'disabled':recurly !== 'monthly'}" (click)="selectType('monthly')">Mensual</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" class="btn btn-light"
+         [ngClass]="{'disabled':recurly !== 'annual'}" 
+         (click)="selectType('annual')">Anual</a>
+      </li>
+    </ul>
+  </div>
+  <!--Plans-->
+  <div class="plans-box-profile-wrapper">
+    <div class="plans-box-list">
+      <div class="plan-box-content" *ngFor="let plan of plans" 
+      [ngClass]="{'active':account.subscription.plan.id === plan.id}">
+        <!--Plan name-->
+        <div class="plan-name">
+          {{plan.name}}
+        </div>
+        <div class="plan-box-wrapper">
+          <div class="plan-box">
+            <!--Description-->
+            <div class="plan-box-description">
+              <span>{{plan.description}}</span>
+            </div>
+            <!--Price-->
+            <div class="plan-box-price">
+              <span class="currency">$</span>
+              <span class="price">
+                <span *ngIf="recurly === 'annual'">{{plan.priceAnnual}}</span>
+                <span *ngIf="recurly === 'monthly'">{{plan.priceMonthly}}</span>
+              </span>
+              <span class="recurrence">
+                <span *ngIf="recurly === 'annual'">/año</span>
+                <span *ngIf="recurly === 'monthly'">/mes</span>
+              </span>
+            </div>
+            <!--characteristics-->
+            <div class="plan-box-items">
+              <div class="plan-box-items-users">
+                {{plan.users}} usuarios
+              </div>
+              <ul class="plan-box-items-list">
+                <li>
+                  <span>
+                    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+                    <span *ngIf="plan.projects === 0;then plansUnlimited;else plansDefault"></span>
+                    <ng-template #plansUnlimited>Proyectos ilimitados</ng-template>
+                    <ng-template #plansDefault>{{plan.projects}} proyectos</ng-template>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+                    <span *ngIf="plan.guests === 0;then guestsUnlimited;else guestsDefault"></span>
+                    <ng-template #guestsUnlimited>Invitados ilimitados</ng-template>
+                    <ng-template #guestsDefault>{{plan.guests}} invitados</ng-template>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_simple.svg '"></i>
+                    <span *ngIf="plan.storage === 0;then storageUnlimited;else storageDefault"></span>
+                    <ng-template #storageUnlimited>Almacenamiento ilimitado</ng-template>
+                    <ng-template #storageDefault>Almacenamiento {{plan.storage}} GB</ng-template>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <!--Active-->
+            <div class="plan-box-active" *ngIf="account.subscription.plan.id === plan.id">
+              <div class="plan-box-active-label">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_green.svg'"></i>
+                <span>Plan Activo</span>
+              </div>
+              <div class="plan-box-active-from">Inicio: 08/12/2017</div>
+              <div class="plan-box-active-to">Vencimiento: 08/12/2018</div>
+            </div>
+            <div class="plan-box-get" *ngIf="account.subscription.plan.id !== plan.id">
+              <button class="btn btn-semi-medium ">Contratar</button>
+            </div>
+
+          </div>
+          <!--Popup-->
+          <div class="plan-box-payment-popup arrow-bottom" *ngIf="account.subscription.plan.id === plan.id">
+            <div class="arrow"></div>
+            <div class="plan-box-payment ">
+              <div class="plan-box-payment-title">
+                Método de pago
+              </div>
+              <div class="plan-box-payment-method">
+                <img class="card-logo" [src]="'assets/img/logos/logo_mastercard_full.svg'">
+                <span class="card-number">*** 9953</span>
+              </div>
+              <div class="plan-box-payment-options">
+                <a href="javascript:void(0)">Actualizar información de pago</a>
+                <a href="javascript:void(0)">Cancelar membresía</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

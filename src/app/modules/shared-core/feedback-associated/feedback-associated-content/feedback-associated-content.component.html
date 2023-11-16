@@ -1,0 +1,94 @@
+<!--Minimize-->
+<a class="minimize-close" href="javascript:void(0)" (click)="onClose()">
+  <i class="icon-svg" [inlineSVG]="'assets/img/feedback/associated/ico_closed_vista.svg'"></i>
+</a>
+<a class="minimize-restore" href="javascript:void(0)" (click)="restoreMinimize()">
+  <i class="icon-svg" [inlineSVG]="'assets/img/feedback/associated/ico_maximixar_vista.svg'"></i>
+</a>
+<ng-container *ngIf="!minimize">
+  <section class="layout-workflow-sidenav layout-feedback">
+    <!--Left navigation-->
+    <app-feedback-associated-left-sidenav [pieces]="pieces" [pieceShow]="pieceShow" [paginationConfig]="paginationConfig"
+      [compressed]="leftSidenavCompressed" (onSelectPiece)="onSelectPiece($event)">
+    </app-feedback-associated-left-sidenav>
+
+    <!--Main-->
+    <main>
+      <!--MAIN CONTENT-->
+      <div id="main-content">
+        <ng-container *ngIf="feedback && feedback.id">
+          <!--Header-->
+          <header app-feedback-associated-header class="interface-header  workflow-feedback-header" [feedback]="feedback"
+            (headerOnMinimze)="onMinimizeHeader()" (headerOnClose)="onClose()">
+          </header>
+        </ng-container>
+
+        <!--Screen view-->
+        <div class="screen-view" [ngClass]="{
+        'sidenav-right-compress':rightSidenavCompressed,
+        'sidenav-left-compress':leftSidenavCompressed
+        }">
+
+          <div class="feedback-close-content ">
+            <!--Piece-->
+            <ng-container *ngFor="let piece of pieces | paginate: paginationConfig">
+              <app-feedback-associated-piece #pieceShowEl [compress]="{
+                                  leftSidenavCompressed:leftSidenavCompressed,
+                                  rightSidenavCompressed:rightSidenavCompressed
+                                  }"
+                [piece]="piece" (onChangeRatio)="onChangeRatio($event)">
+              </app-feedback-associated-piece>
+            </ng-container>
+            <!--Pagination-->
+            <pagination-template #p="paginationApi" [id]="paginationConfig.id" (pageChange)="onPageChange($event)">
+              <div class="pagination-container" [class.hide]="!leftSidenavCompressed" [style.maxWidth]="paginationMaxWidth">
+                <ul class="pagination">
+                  <li class="navigation" [class.disabled]="p.isFirstPage()">
+                    <a *ngIf="!p.isFirstPage()" href="javascript:void(0)" (click)="p.previous()">
+                      <i class="icon ion-ios-arrow-back"></i>
+                    </a>
+                    <a *ngIf="p.isFirstPage()" href="javascript:void(0)">
+                      <i class="icon ion-ios-arrow-back"></i>
+                    </a>
+                  </li>
+                  <li class="summary">
+                    <a>
+                      {{p.getCurrent()}}/{{ p.pages.length}}
+                    </a>
+                  </li>
+
+                  <li class="navigation" [class.disabled]="p.isLastPage()">
+                    <a *ngIf="!p.isLastPage()" href="javascript:void(0)" (click)="p.next()">
+                      <i class="icon ion-ios-arrow-forward"></i>
+                    </a>
+                    <a *ngIf="p.isLastPage()" href="javascript:void(0)">
+                      <i class="icon ion-ios-arrow-forward"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+            </pagination-template>
+            <div class="piece-go-to-feedback" [style.maxWidth]="paginationMaxWidth">
+              <a class="btn btn-medium " href="javascript:void(0)" (click)="goToFeedback()">
+                Ir al feedback
+              </a>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </main>
+  </section>
+</ng-container>
+<ng-container *ngIf="minimize">
+  <div class="feedback-associated-minimized">
+    <div class="feedback-associated-minimized-piece" [ngStyle]="{backgroundImage :'url(' + pieces[paginationConfig.currentPage - 1].url + ')'}">
+
+    </div>
+
+  </div>
+</ng-container>

@@ -1,0 +1,85 @@
+<div class="feedback-versions" 
+[style.right.px]="view === 'compare' ? 0 : versionRight" [hidden]="comparedVersions.length === 0"
+[ngClass]="{'compare-versions':view === 'compare'}"
+>
+  <div class="feedback-versions-container">
+    <div class="feedback-version-header">
+      <!--Back-->
+      <div class="feedback-version-header-back">
+        <a href="javascript:void(0)" (click)="closeVersions()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/participants/ico_arrow_left.svg'"></i>
+          Salir
+        </a>
+      </div>
+      <div class="feedback-version-header-title">
+        <h2>Comparar imágenes</h2>
+      </div>
+    </div>
+
+    <!--Left-->
+    <app-feedback-versions-left [compressed]="_leftSidenavCompressed" [pieces]="pieces"
+     [comparedVersions]="comparedVersions" [isFeedbackVideo]="isFeedbackVideo"
+      [pieceShow]="pieceShow"></app-feedback-versions-left>
+    <!--Display-->
+    <div class="feedback-versions-display-content">
+      <div class="feedback-versions-display-container">
+        <!--Header-->
+        <div class="workflow-primary-header" 
+          [ngClass]="{
+            'sidenav-left-compress':_leftSidenavCompressed || view === 'compare' ,
+            'padding-right':  (comparedVersions | filterBy:['empty']:false).length > 2 && view === 'compare' 
+          }">
+          <ul class="workflow-primary-header-menu">
+            <li>
+              <a href="javascript:void(0)" class="modal-floating-trigger" id="trigger-filter-versions-comments" appTooltip [tooltipMessage]="'Filtros'"
+                [edgeTooltip]="'bottom'">
+                <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icono_filtros.svg'"></i>
+              </a>
+              <!--Filter-->
+              <app-modal-comment-thread-filter 
+              [modalId]="'main-modal-floating-version-filter'" 
+              [commentThreadStatuses]="commentThreadStatuses" 
+              [participantTypes]="participantTypes"
+              [modalBtnId]="'#trigger-filter-versions-comments'"></app-modal-comment-thread-filter>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="showListMeetingNote()" appTooltip [tooltipMessage]="'Minutas del proyecto'"
+               [edgeTooltip]="'bottom'"
+                [ngClass]="{'active':isShowMeetingNote}">
+                <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_minuta_anidado.svg'"></i>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="showListBrief()" [ngClass]="{'active':isShowBrief}" 
+                appTooltip [tooltipMessage]="'Briefs del proyecto'"
+                [edgeTooltip]="'bottom'">
+                <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_brief_anidado.svg'"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!--Chooser container-->
+        <ng-container *ngIf="view === 'chooser'">
+          <app-feedback-versions-compare-chooser-main 
+            [boxHeight]="boxHeight" 
+            [boxWidth]="boxWidth" 
+            
+            [filterStatuses]="filterStatuses" [filterParticipantTypes]="filterParticipantTypes"
+            [comparedVersions]="comparedVersions" [leftSidenavCompressed]="_leftSidenavCompressed" (onCompare)="onCompare()">
+          </app-feedback-versions-compare-chooser-main>
+        </ng-container>
+        <!--Compare container-->
+        <ng-container *ngIf="view === 'compare'">
+          <app-feedback-versions-compare
+          [comparedVersions]="comparedVersions | filterBy:['empty']:false"
+          [compareBoxHeight]="compareBoxHeight"
+          [compareBoxWidth]="compareBoxWidth"
+          [filterStatuses]="filterStatuses" [filterParticipantTypes]="filterParticipantTypes"
+          >
+          </app-feedback-versions-compare> 
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

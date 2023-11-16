@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icono_image_barwriting</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icono_image_barwriting" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_img_inactive" transform="translate(0.000000, 1.000000)" fill="#4F5C69">
+            <g id="Page-1">
+                <path d="M0,11.904761 L14.5625185,11.904761 L14.5625185,2.92682927e-05 L0,2.92682927e-05 L0,11.904761 Z M1.03703704,11.0570049 L13.5254815,11.0570049 L13.5254815,0.847785366 L1.03703704,0.847785366 L1.03703704,11.0570049 Z" id="Fill-1"></path>
+                <polygon id="Fill-2" points="9.18613333 5.63486341 8.01694815 6.7931561 6.38005926 4.63710732 3.10598519 8.45222927 11.8366519 8.45222927"></polygon>
+                <path d="M4.43244444,3.64153171 C4.43244444,3.93787317 4.18918519,4.17816585 3.88918519,4.17816585 C3.58903704,4.17816585 3.34577778,3.93787317 3.34577778,3.64153171 C3.34577778,3.3450439 3.58903704,3.10475122 3.88918519,3.10475122 C4.18918519,3.10475122 4.43244444,3.3450439 4.43244444,3.64153171" id="Fill-3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,88 @@
+<ng-container *ngIf="core.type.key === 'feedback'">
+  <div *ngIf="core.type.key === 'feedback'" class='object-preview'>
+      <div *ngIf="core.coverImage" class='piece-preview'
+        [ngStyle]="{backgroundImage :'url(' + core.coverImage + ')'}"></div>
+      <div *ngIf="!core.coverImage " class='piece-preview not-found'  [ngStyle]="{backgroundImage :'url(' + imageNotFound + ')'}"></div>
+   
+  </div>
+  <!--Overlay-->
+  <div class="item-box-overlay item-box-ovelay-preview">
+    <!--Overlay Message content-->
+    <div class="in-overlay-item options-message-content" [ngClass]="{'hide':showDelete}">
+      <div class="options-message-content-view">
+        <a href="javascript:void(0)" [routerLink]="['/feedback', core.id]">ver pieza</a>
+      </div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="core.type.key === 'meeting-note'">
+  <!--Draft-->
+  <div class='object-preview draft-preview'>
+    <img class="object-preview-icon object-preview-icon-draft"
+    src="assets/img/dashboard/ico_fill_draft_now_purple.svg">
+  </div>
+  <!--Overlay-->
+  <div class="item-box-overlay item-box-ovelay-preview">
+    <!--Overlay Message content-->
+    <div class="in-overlay-item options-message-content" [ngClass]="{'hide':showDelete}">
+      <!--Link Behind
+      <a class="link-behind" ></a>-->
+      <!--Message-->
+      <div class="options-message-content-view">
+        <a href="javascript:void(0)"  [routerLink]="['/meeting-note', core.id]">ver minuta</a>
+      </div>
+
+      <ng-content></ng-content>
+
+
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="core.type.key === 'brief'">
+  <!--Brief-->
+  <div class='object-preview'>
+    <img class="object-preview-icon object-preview-icon-brief" [src]="'assets/img/dashboard/ico_ilus_brief.svg'" >
+  </div>
+  <!--Overlay-->
+  <div class="item-box-overlay item-box-ovelay-preview">
+    <!--Overlay Message content-->
+    <div class="in-overlay-item options-message-content" [ngClass]="{'hide':showDelete}">
+      <!--Link Behind
+      <a class="link-behind" [routerLink]="['/brief',core.id]"></a>-->
+      <!--Message-->
+      <div class="options-message-content-view">
+        <a href="javascript:void(0)" 
+        [routerLink]="['/brief/project',core.id]">ver brief</a>
+      </div>
+
+
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="core.type.key === 'brief-presentation'">
+
+
+  <div class='object-preview'>
+    <img class="object-preview-icon object-preview-icon-brief-presentation"
+    src="assets/img/dashboard/ico_ilus_presentation.svg">
+  </div>
+
+  <!--Overlay-->
+  <div class="item-box-overlay item-box-ovelay-preview">
+    <!--Overlay Message content-->
+    <div class="in-overlay-item options-message-content" [ngClass]="{'hide':showDelete}">
+
+      <!--Message-->
+      <div class="options-message-content-view">
+
+        <a href="javascript:void(0)" 
+        [routerLink]="['/brief/presentation',core.id]"
+        >ver presentación</a>
+
+      </div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-container>

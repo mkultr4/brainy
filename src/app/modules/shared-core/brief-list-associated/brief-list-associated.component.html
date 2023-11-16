@@ -1,0 +1,56 @@
+<app-aside-nav #briefListSidenav id="brief-list-associated-sidenav" class="tertiary" [disableScroll]="true"
+  (asideOnHide)="onHide()" (asideOnShow)="onShow()">
+  <div app-sidenav id="slide-out-associated-brief-list" class="side-nav rightside-navigation  animated box-shadow-line">
+    <!--Header Sidenav-->
+    <div class="header-big">
+      <h5 class="header-title">
+        Brief
+        <ng-container *ngIf="briefs">
+          <span *ngIf="briefs.length > 0">({{briefs.length}})</span>
+        </ng-container>
+        <!--Menu Tollbar-->
+        <ul class="menu-toolbar-header">
+
+          <li>
+            <a class="close close-sidenav" href="javascript:void(0);">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+            </a>
+
+          </li>
+        </ul>
+      </h5>
+    </div>
+    <!--Draft List-->
+    <div class="core-list draft-list" [perfectScrollbar]="{supressScrollX:true}">
+      <ng-container *ngIf="briefs">
+        <div class="brief-associated-block " (click)="viewBrief(brief)" *ngFor="let brief of briefs; let last = last"
+          [ngClass]="{ 'last': last }">
+          <img class="core-associated-ico" src="assets/img/commons/icono_brief.svg">
+          <div class="core-associated-block-table">
+            <div class="core-associated-block-table-cell">
+              <div class="core-associated-block-content">
+                <div class="core-title">
+                  <span>{{brief.title}}</span>
+                </div>
+                <div class="core-template" *ngIf="brief.template">
+                  <span>{{ brief.template.name }}</span>
+                </div>
+                <div class="core-date">
+                  <span>
+                    {{ brief.created | momentDate:'DD/MM/YYYY HH:mm' }}
+                  </span>
+                </div>
+                <div class="core-project">
+                  <span>{{brief.project.brand.name}} ( {{brief.project.name}} )</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="without-results" *ngIf="briefs.length === 0">
+          {{ 'commons.without-results' | translate }}
+        </h3>
+      </ng-container>
+    </div>
+  </div>
+</app-aside-nav>

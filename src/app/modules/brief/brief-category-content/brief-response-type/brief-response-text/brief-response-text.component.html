@@ -1,0 +1,25 @@
+<div class="response-text" [ngClass]="{'text-large':briefCategoryItem.responseType.key === 'text-large'}"
+    [class.focusedIn]="focusResponse">
+    <div class="text-area-container" [class.focused]="focused">
+        <div class="text-editor-brief refillable-content" placeholder="Escriba aquí" [contentEditable]="refillable"
+            [maxLength]="briefCategoryItem.responseSettings.maxLength" [(contentEditableModel)]="briefCategoryItem.responseContent.text"
+            (contentEditableModelChange)="changeContent()" [singleLine]="false" 
+            (focus)="onTextFocus()"
+            (blur)="onTextBlur()"
+            >
+        </div>
+        <!--Giveback-->
+        <ng-container *ngIf="briefCategoryItem.giveback.addToBrief && briefCategoryItem.giveback.reply && briefCategoryItem.giveback.reply.length > 0">
+            <div class="giveback-message-container-response wiht-line">
+                <div class="giveback-message" [innerHTML]="briefCategoryItem.giveback.reply"></div>
+            </div>
+        </ng-container>
+
+    </div>
+    <!--Count character-->
+    <ng-container *ngIf="briefCategoryItem.responseType.key === 'text-large'">
+        <span class="character-count">{{briefCategoryItem.responseContent.text.length|| 0
+            }}/{{briefCategoryItem.responseSettings.maxLength}}</span>
+    </ng-container>
+
+</div>

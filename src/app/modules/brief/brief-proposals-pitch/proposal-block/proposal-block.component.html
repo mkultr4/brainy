@@ -1,0 +1,84 @@
+<div class="brief-proposal-block-header">
+  <!--Information-->
+  <div class="brief-proposal-block-header-information">
+
+    <!--User-->
+    <div class="proposal-user-information">
+      <div class="participant-list-block participant-list-block-without-line" *ngIf="proposal.createdBy">
+        <div class="participant-information without-permissions">
+          <!--If has brand-->
+          <ng-container *ngIf="proposal.createdBy.brandCurrentCore">
+            <div app-brand-logo class="avatar profile-image-small-1" [brand]="proposal.createdBy.brandCurrentCore"></div>
+          </ng-container>
+          <!--If not has brand-->
+          <ng-container *ngIf="!proposal.createdBy.brandCurrentCore">
+            <div class="avatar profile-image-small-1" app-avatar [user]="proposal.createdBy.user" [showStatus]="false"></div>
+          </ng-container>
+
+          <div class="participant-user-information">
+            <span class="name">
+              <!--User-->
+              {{ proposal.createdBy.user.name + ' ' + proposal.createdBy.user.lastName}}
+              &nbsp;|&nbsp;{{'workspaceAccess.rol.'+proposal.createdBy.rol.key | translate}}
+              <ng-container *ngIf="proposal.createdBy.brandCurrentCore">
+                <!--Brand-->
+                <span class="brand-name">
+                  {{ proposal.createdBy.brandCurrentCore.name}}
+                </span>
+              </ng-container>
+
+            </span>
+
+          </div>
+
+        </div>
+      </div>
+      <!--Proposal status-->
+      <ng-container *ngIf="proposal.status !== 'pre-finalist'">
+        <span class="proposal-status">
+          {{ 'brief.proposal.status.'+ proposal.status | translate}}
+        </span>
+      </ng-container>
+    </div>
+    <!--Toolbar-->
+    <div class="proposal-header-toolbar">
+      <span class="date-created">
+        {{ proposal.created | momentDate:'DD / MM / YYYY hh:mm a'}}
+      </span>
+      <ng-container *ngIf="canEdit">
+        <span class="proposal-header-toolbar-btn-container">
+          <a class="modal-floating-trigger proposal-header-toolbar-btn" 
+          href="javascript:void(0)" 
+          [id]="'modal-floating-trigger-proposal-'+proposal.id">
+            <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_more_propuestas_brief.svg'"></i>
+          </a>
+          <app-proposal-dropdown-options 
+             [proposal]="proposal"
+            [proposalMessage]="proposalMessage" (onSetStauts)="setStatus($event)"></app-proposal-dropdown-options>
+        </span>
+      </ng-container>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="proposal-files-previews" *ngIf="proposal.files.length > 0">
+  <div class="proposal-files-wrapper">
+    <div class="proposal-files-col" *ngFor="let file of proposal.files | orderByImpure:'-created'">
+      <div class="proposal-image-item">
+
+        <div class="proposal-image-item-preview" [ngStyle]="{ backgroundImage:'url(' + file.url + ')'}"></div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="proposal.message">
+  <div class="proposal-block-message">
+    <span class="proposal-block-message-label">Comentario </span>
+    <p class="proposal-message" [innerHTML]="proposal.message"></p>
+  </div>
+</ng-container>

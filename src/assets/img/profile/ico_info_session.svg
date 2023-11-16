@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>icono_info_sesion</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icono_info_sesion" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M7.5,15 C3.35714286,15 0,11.6428571 0,7.5 C0,3.35714286 3.35714286,0 7.5,0 C11.6428571,0 15,3.35714286 15,7.5 C15,11.6428571 11.6428571,15 7.5,15 Z M7.5,0.714285714 C3.75,0.714285714 0.714285714,3.75 0.714285714,7.5 C0.714285714,11.25 3.75,14.2857143 7.5,14.2857143 C11.25,14.2857143 14.2857143,11.25 14.2857143,7.5 C14.2857143,3.75 11.25,0.714285714 7.5,0.714285714 Z" id="Shape" fill="#4F5C69" fill-rule="nonzero"></path>
+        <path d="M7.5,5 C7.22385763,5 7,4.77614237 7,4.5 C7,4.22385763 7.22385763,4 7.5,4 C7.77614237,4 8,4.22385763 8,4.5 C8,4.77614237 7.77614237,5 7.5,5 Z M7.5,6 C7.77614237,6 8,6.22385763 8,6.5 L8,10.5 C8,10.7761424 7.77614237,11 7.5,11 C7.22385763,11 7,10.7761424 7,10.5 L7,6.5 C7,6.22385763 7.22385763,6 7.5,6 Z" id="Combined-Shape" fill="#4F5C69"></path>
+    </g>
+</svg>

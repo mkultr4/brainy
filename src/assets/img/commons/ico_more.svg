@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter x="-16.9%" y="-10.8%" width="133.8%" height="133.8%" 
+        filterUnits="objectBoundingBox" id="filter-ico-more">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1">
+            </feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1"
+             result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.122424139 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g  stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g  transform="translate(-1333.000000, -132.000000)" fill="#FFFFFF">
+            <g filter="url(#filter-ico-more)" transform="translate(1316.000000, 113.000000)">
+                <polygon id="+" points="33.4616965 31.509268 43.8961039 31.509268 43.8961039 33.47526 33.4616965 33.47526 33.4616965 43.8326809 31.4902186 43.8326809 31.4902186 33.47526 21.1038961 33.47526 21.1038961 31.509268 31.4902186 31.509268 31.4902186 21.1038961 33.4616965 21.1038961"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

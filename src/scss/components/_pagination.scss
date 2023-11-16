@@ -1,0 +1,29 @@
+.pagination {
+    li {
+        a {
+            font-size: 16px;
+            >i {
+                font-size: 16px;
+            }
+        }
+        &.active {
+            background-color: transparent;
+            >a {
+                color: $purple-color-light;
+                font-weight: $font-medium;
+            }
+        }
+        &.summary {
+            a {
+                padding: 0;
+            }
+        }
+        &:not(.disabled) {
+            &:not(.summary) {
+                :hover {
+                    opacity: 0.4;
+                }
+            }
+        }
+    }
+}

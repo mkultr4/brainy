@@ -1,0 +1,110 @@
+<div class="layout-visual-closing-wrapper">
+  <div class="visual-brief-sidenav ">
+    <!--Nav-->
+    <div class="workflow-toolbar-nav-sidenav">
+      <ul class="workflow-toolbar-menu">
+        <li>
+          <a href="javascript:void(0)" class="btn-burguer" mz-button id="btn-toolbar-main">
+            <i [inlineSVG]="'assets/img/commons/icono_menu.svg'"></i>
+          </a>
+
+          <app-core-close-toolbar-main [canShare]="canShare" [canRequestModification]="canRequestModification"
+            [canRequestOpen]="canRequestOpen" [canRequestOpenDirect]="canRequestOpenDirect" (onShare)="onShare()"
+            (onDownload)="onDownload()" (onSendByEmail)="onSendByEmail()" (onSearchComments)="onSearchComments()"
+            (onRequestModification)="onRequestModification()" (onRequestOpen)="onRequestOpen()"></app-core-close-toolbar-main>
+        </li>
+        <li>
+          <a href="javascript:void(0)" class="btn-close" [routerLink]="['/dashboard']">
+            <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--Visual-->
+    <div class="visual-brainy-object-container" [perfectScrollbar]="{suppressScrollX:true}">
+      <!--Header-->
+      <div class="visual-brainy-object-header">
+        <div class="brainy-object-title">
+          <span>{{brief?.title}}</span>
+        </div>
+        <div class="brainy-object-project">
+          <span>{{brief?.project?.brand?.name}}&nbsp;({{brief?.project?.name}})</span>
+        </div>
+        <div class="brainy-object-date">
+          <span>Aprobado&nbsp;</span>
+          <span class="day">{{brief?.approvedDate | momentDate:'dddd' | capitalize}}&nbsp;</span>
+          <span class="date">{{brief?.approvedDate | momentDate:'DD/MM/YYYY'}}&nbsp;&nbsp;</span>
+          <span class="hour">{{brief?.approvedDate | momentDate:'hh:mm a'}}</span>
+
+        </div>
+        <div class="brainy-object-status">
+          <span>
+            <i [inlineSVG]="'assets/img/commons/status/status_aprobar.svg'" class="status-icon"></i>
+            <span>Aprobada</span>
+          </span>
+        </div>
+
+      </div>
+      <!--Participants-->
+      <app-core-close-participants [core]="brief" [invitations]="invitations" [showBrand]="showBrand"></app-core-close-participants>
+      <!--Content-->
+      <!--Visual Brief-->
+      <div class="visual-brief">
+        <!--For categores-->
+        <ng-container *ngFor="let category of categories">
+          <!--Category-->
+          <div class="brief-category-close-content" app-category-close-content [category]="category"></div>
+        </ng-container>
+        <ng-container *ngIf="brief.template.typeTemplate.key === 'pitch'">
+          <!--Givebacks-->
+          <div class="brief-subsection-container">
+            <h3 class="brief-subsection-header">
+              <i [inlineSVG]="'assets/img/brief/ico_devoluciones_title.svg'"></i>
+              Devoluciones
+            </h3>
+            <ng-container *ngIf="givebacks.length > 0">
+              <ng-container *ngFor="let giveback of givebacks">
+                <app-brief-giveback-close-block [giveback]="giveback"> </app-brief-giveback-close-block>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="givebacks.length === 0">
+              <h5 class="without-results left-align">Sin devoluciones</h5>
+            </ng-container>
+          </div>
+          <!--Finalists-->
+          <div class="brief-subsection-container">
+            <h3 class="brief-subsection-header">
+              <i [inlineSVG]="'assets/img/brief/ico_propuesta_title.svg'"></i>
+              Propuesta ganadora
+            </h3>
+            <ng-container *ngIf="finalists.length > 0">
+              <ng-container *ngFor="let proposal of finalists">
+                <app-brief-proposal-close-block [proposal]="proposal"></app-brief-proposal-close-block>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="finalists.length === 0">
+              <h5 class="without-results left-align">Sin ganadores</h5>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="brief && brief.id">
+  <!--Modal download-->
+  <app-modal-download-project #modalDownload></app-modal-download-project>
+  <!--Search comments-->
+  <app-comment-thread-sidenav-search #sidenavSearchComments [workspaceAccess]="workspaceAccess"></app-comment-thread-sidenav-search>
+  <!--Request modification-->
+  <app-modal-request-modification #modalRequestModification></app-modal-request-modification>
+
+  <!--Request permission-->
+  <app-modal-request-permission #modalRequestPermission></app-modal-request-permission>
+
+  <!--Share-->
+  <app-modal-share-participants #modalShare [workspaceAccess]="workspaceAccess" [objectType]="'brief'"
+    [invitationLevelId]="'core'" [invitationReferenceId]="brief.id"></app-modal-share-participants>
+  <app-modal-share-by-email #modalShareByEmail [core]="brief"></app-modal-share-by-email>
+</ng-container>

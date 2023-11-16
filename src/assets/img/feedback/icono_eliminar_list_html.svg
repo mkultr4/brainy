@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2 Copy 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="interface_html" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.3">
+        <g id="interface_feedback_vacio_03" transform="translate(-789.000000, -274.000000)">
+            <g id="Group-2-Copy-8" transform="translate(790.000000, 275.000000)">
+                <circle id="Oval-3" stroke="#4F5C69" cx="7.5" cy="7.5" r="7.5"></circle>
+                <g id="ic_close_24px-copy-3" transform="translate(3.000000, 3.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" points="0 0 9.375 0 9.375 9.375 0 9.375"></polygon>
+                        <polygon id="Shape" fill="#4F5C69" points="7.421875 2.50390625 6.87109375 1.953125 4.6875 4.13671875 2.50390625 1.953125 1.953125 2.50390625 4.13671875 4.6875 1.953125 6.87109375 2.50390625 7.421875 4.6875 5.23828125 6.87109375 7.421875 7.421875 6.87109375 5.23828125 4.6875"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

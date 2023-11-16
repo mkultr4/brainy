@@ -1,0 +1,11 @@
+<div class="toolbar-floating-note" 
+  (mouseup)="createFloatingNote($event)" 
+  [style.top.px]="event.top" 
+  [style.left.px]="event.left"
+  [hidden]="!event.visible" 
+  [ngClass]="{'creating':event.creatingNote}">
+  <a class="toolbar-option" href="javascript:void(0)">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_convert_note.svg'"></i>
+  </a>
+  <span class="creating-note-message">Creaste una nota</span>
+</div>

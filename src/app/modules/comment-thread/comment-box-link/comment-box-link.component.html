@@ -1,0 +1,26 @@
+<div class="comment-box-link">
+  <div class="comment-link-content " [class.without-thumbnail]="!commentLink.thumbnailUrl">
+    <!--Thumbnail-->
+    <ng-container *ngIf="commentLink.thumbnailUrl">
+      <div class="comment-content-image " [ngStyle]="{ backgroundImage:'url(' + commentLink.thumbnailUrl + ')'}"></div>
+    </ng-container>
+    <!--Content-->
+    <div class="comment-content-wrapper ">
+      <div class="comment-content-table">
+        <div class="comment-content-table-cell">
+          <span class="title">{{ commentLink.title }}</span>
+          <ng-container *ngIf="commentLink.description">
+            <span class="description">{{ commentLink.description }}</span>
+          </ng-container>
+          <div class="url-container" [innerHTML]="commentLink.url | linky:{newWindow: true}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Remove-->
+    <a *ngIf="showClose" href="javascript:void(0)" class="comment-link-close" (click)="remove($event)">
+      <i [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+    </a>
+  </div>
+
+</div>

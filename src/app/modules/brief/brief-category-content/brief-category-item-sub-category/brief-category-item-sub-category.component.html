@@ -1,0 +1,48 @@
+<!--Sortable-->
+<div class="brief-caregory-item-sortable" *ngIf='focusedIn && !enabledCommentsAction'>
+  <div class="brief-caregory-item-sortable-drag-handle">
+    <i class="icon-svg" [inlineSVG]="'assets/img/brief/ico_move_brief.svg'"></i>
+  </div>
+</div>
+<!--Subcategory-->
+<div class="brief-category-item-sub-category-content ">
+  <img src="assets/img/brief/ico_subcategory.svg" class="ico-subcategory">
+  <div class="brief-category-item-sub-category-title brief-input-default-editable main-text"
+     #mainText
+    [(contentEditableModel)]="briefCategoryItem.title" 
+    (contentEditableModelChange)="changeSubTopic()" 
+    [sanitizeHTML]="false"
+    [singleLine]="true" 
+    [maxLength]="100" 
+    [contentEditable]="editable"
+    (focus)="onFocusEdittable()"
+    placeholder="Título de la subcategoría"><br></div>
+</div>
+
+<!--Toolbar Bottom-->
+<div class="brief-category-item-toolbar-bottom" *ngIf="focusedIn && !enabledCommentsAction">
+  <ul class="brief-category-item-options">
+    <li>
+      <a 
+        appTooltip
+        [tooltipMessage]="'Copiar subcategoría'"
+        href="javascript:void(0)" (click)="copy()" class="disable-brief-comment">
+        <i [inlineSVG]="'assets/img/brief/ico_duplicar.svg'" class="icon-svg ico-copy"></i>
+      </a>
+    </li>
+    <li>
+        <a 
+        appTooltip
+        [tooltipMessage]="'Eliminar subcategoría'"
+          href="javascript:void(0)" class="closest-alert disable-brief-comment" app-alert-dialog 
+          [message]="'¿Quieres elminar la subcategoría?'"
+          [edge]="'right'" [acceptText]="'Si'" [cancelText]="'No'" 
+          [alertClass]="'alert-brief-category-item alert-disabled-trigger'"
+          [alertOverlayClass]="'alert-disabled-trigger'" 
+          (alertOnAccept)="delete()">
+          <i [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'" class="icon-svg ico-delete"></i>
+        </a>
+      </li>
+  </ul>
+
+</div>

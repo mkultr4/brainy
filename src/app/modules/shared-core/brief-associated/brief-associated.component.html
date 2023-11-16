@@ -1,0 +1,65 @@
+<app-aside-nav #briefSidenav id="brief-associated-sidenav" class="tertiary" [disableScroll]="true" (onHide)="onHide()"
+  (asideOnShow)="onShow()">
+  <div app-sidenav id="slide-out-brief-associated"
+    class="side-nav visual-brief-sidenav  rightside-navigation animated box-shadow-line">
+
+    <!--Visual-->
+    <div class="visual-brainy-object-container" [perfectScrollbar]="{suppressScrollX:true}">
+      <ng-container *ngIf="brief">
+        <!--Toolbar menu-->
+        <ul class="menu-toolbar-default">
+          <li>
+            <a class="close close-sidenav" href="javascript:void(0)" (click)="hideSidenav()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+            </a>
+          </li>
+        </ul>
+        <!--Header-->
+        <div class="visual-brainy-object-header">
+          <div class="brainy-object-title">
+            <span>{{brief.title}}</span>
+          </div>
+          <div class="brainy-object-project">
+            <span>{{brief.project.brand.name}} ( {{brief.project.name}} ) / {{brief.template.title}} </span>
+          </div>
+          <ng-container *ngIf="brief.status.key === 'approved'">
+            <div class="brainy-object-date">
+              <span>
+                {{ brief.approvedDate | momentDate:'DD/MM/YYYY HH:mm a'}}
+              </span>
+            </div>
+
+          </ng-container>
+          <ng-container *ngIf="brief.status.key !== 'approved'">
+            <div class="brainy-object-date">
+              <span>
+                {{ brief.created | momentDate:'DD/MM/YYYY HH:mm a'}}
+              </span>
+            </div>
+
+          </ng-container>
+          <div class="brainy-object-status">
+            <span>
+              <i [inlineSVG]="brief.status.ico" class="status-icon"></i>
+              <span>
+                {{'core.status.'+ brief.status.key | translate }}
+              </span>
+            </span>
+          </div>
+        </div>
+        <!--Participants-->
+        <app-core-close-participants [core]="brief" [invitations]="invitations" [showBrand]="false">
+        </app-core-close-participants>
+        <!--Brief-->
+        <div class="visual-brief">
+          <!--For categores-->
+          <ng-container *ngFor="let category of categories">
+            <!--Category-->
+            <div class="brief-category-close-content" app-category-close-content
+             [category]="category"></div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</app-aside-nav>

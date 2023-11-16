@@ -1,0 +1,277 @@
+.feedback-left-sidenav {
+    position: fixed;
+    transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    top: 90px;
+    left: 0;
+    width: 240px;
+    height: calc(100vh - 200px);
+    min-height: 340px;
+    padding-top: 70px;
+    z-index: $z-index-sidenav;
+
+    &.compressed {
+        transform: translateX(-100%);
+    }
+
+    @include mq($until: desktop) {
+        background: #fff;
+        height: calc(100vh - 90px);
+        border-right: 1px solid #EDEDF3;
+    }
+}
+
+.feedback-pieces-carousel {
+    width: 240px;
+    padding: 0 44px 23px 44px;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+
+    .feedback-pieces-carousel-container {
+        @extend .perfect-scrollbar;
+        padding-top: 0px;        
+        display: inline-block;
+        max-height: 100%;
+        height: 100%;
+
+        &.sorting {
+            .feedback-piece-carousel-item {
+                .order {
+                    display: none;
+                }
+            }
+        }
+        
+    }
+
+    .feedback-carousel-down {
+        position: absolute;
+        bottom: 0;
+        left: 44px;
+        right: 44px;
+        text-align: center;
+
+        > a {
+            color: $primary-color;
+
+            > i {
+                color: $primary-color;
+            }
+        }
+    }
+
+    @include mq($until: desktop) {
+        padding-bottom: 145px;
+    }
+}
+
+.feedback-piece-carousel-item {
+    padding: 0 12px;
+    position: relative;
+    margin-bottom: 10px;
+
+    .feeback-piece-carousel-drag-handler {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -(14px / 2);
+        width: 8px;
+        height: 14px;
+        display: none;
+
+        &:hover {
+            cursor: move;
+        }
+    }
+
+    .feedback-piece-carousel-item-content {
+        width: 120px;
+        height: 80px; //  background-color: $purple-color;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: center;
+        background-position-x: center;
+        margin: 0 auto;
+        outline: 1px solid transparent;
+        position: relative;
+
+        .feedback-piece-carousel-remove {
+            display: none;
+            background: #FFFFFF;
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            position: absolute;
+            right: -6px;
+            top: 0px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+            text-align: center;
+            line-height: 15px;
+
+            &:hover {
+                background-color: $purple-color-light;
+
+                > i {
+                    svg {
+                        path {
+                            fill: #fff;
+                        }
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            .feedback-piece-carousel-remove {
+                display: block;
+            }
+        }
+
+        &.active {
+            border: 1px solid $purple-color-light;
+        }
+
+        &.empty {
+            background-color: #fff;
+        }
+    }
+
+    .order {
+        position: absolute;
+        bottom: 1px;
+        left: 4px;
+        font-weight: $font-regular;
+        font-size: 8px;
+        color: $primary-color;
+        letter-spacing: 0.08px;
+    }
+
+    &.sortable-ghost {
+        opacity: 0.5;
+
+        .order {
+            display: none;
+        }
+    }
+
+    &:hover {
+        .feeback-piece-carousel-drag-handler {
+            display: block;
+        }
+    }
+
+    &.sortable-fallback {}
+}
+
+.feedback-piece-carousel-item-add {
+    @extend .feedback-piece-carousel-item;
+
+    .feedback-piece-carousel-item-content {
+        border: 1px dashed rgba($primary-color, 0.4);
+        line-height: 78px;
+        text-align: center;
+
+        > i {
+            font-size: 30px;
+            vertical-align: middle;
+        }
+
+        &:hover {
+            background: rgba($primary-color, 0.14);
+
+            > i {
+                svg {
+                    #Crear_feedback {
+                        //   opacity: 1;
+                   
+                    }
+                }
+            }
+        }
+    }
+}
+
+.feedback-left-versions {
+    @extend .feedback-left-sidenav;
+
+    .feedback-piece-carousel-item {
+        .feedback-piece-carousel-item-content {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
+        }
+        &.compare-active{
+            .compare-selected-btn{
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+
+    @include mq($until: desktop) {
+        // background: transparent;
+        // height: calc(100vh - 90px);
+        //  border: none;
+    }
+}
+
+.frame-video-container {
+    padding: 0 12px;
+    position: relative;
+    margin-bottom: 10px;
+
+    .frame-video-content {
+        width: 120px; //  height: 80px;
+        margin: 0 auto;
+
+        .frame-video-table {
+            display: table;
+            width: 100%;
+            height: 100%;
+            table-layout: fixed;
+
+            .frame-video-table-cell {
+                display: table-cell;
+                vertical-align: middle;
+
+                .frame-image {
+                    position: relative;
+                    margin: 0 auto;
+                    .comment-thread {
+                        transform-origin: 0 0;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#slide-out-feedback-versions {
+    max-width: 50%;
+
+    .feedback-versions-header {
+        line-height: 119px;
+        font-weight: $font-regular;
+        font-size: 14px;
+        color: $primary-color;
+        letter-spacing: 0.15px;
+        border-bottom: 1px solid #EDEDF3;
+        text-align: center;
+    }
+
+    .versions-container {
+        height: calc(100vh - 119px);
+        @extend .perfect-scrollbar;
+    }
+}
+
+
+
+.tooltip-add-piece {
+    transform: translate(35px, 38px);
+}

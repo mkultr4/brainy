@@ -1,0 +1,42 @@
+<div class="response-table" >
+  <div class="brief-table-container">
+      <!--Table-->
+      <table #mainTable class="brief-table brief-main-table">
+          <!--Head-->
+          <thead>
+              <tr>
+                  <!--data-resizable-column-id="column.id"-->
+                  <th *ngFor="let column of item.responseSettings.table.columns;let i = index" class="brief-table-column column-closest">
+                      <div class="brief-table-column-wrapper" *ngIf="i > 0">
+                          <input type="text" placeholder="Escriba aquí" 
+                          [(ngModel)]="column.label" 
+                          [disabled]='true'>
+                      </div>
+                  </th>
+              </tr>
+          </thead>
+          <!--Body-->
+          <tbody>
+              <tr *ngFor="let row of item.responseSettings.table.rows;let  i = index">
+                  <td class="brief-row-title row-closest">
+                      <input type="text"
+                          [(ngModel)]="row.label"
+                           class="brief-row-input-label"
+                          [disabled]='true'>
+                  </td>
+                  <td *ngFor="let cell of row.cells">
+                      <app-table-input-close 
+                        [cell]="cell" 
+                        ></app-table-input-close>
+
+                  </td>
+              </tr>
+
+          </tbody>
+
+      </table>
+
+  </div>
+
+
+</div>

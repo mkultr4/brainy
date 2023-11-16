@@ -1,0 +1,168 @@
+<div class="layout-visual-closing-wrapper">
+  <div class="visual-meeting-note-sidenav ">
+    <!--Toolbar menu-->
+    <div class="workflow-toolbar-nav-sidenav">
+         <ul class="workflow-toolbar-menu">
+            <li>
+              <a href="javascript:void(0)" class="btn-burguer" mz-button id="btn-toolbar-main">
+                <i [inlineSVG]="'assets/img/commons/icono_menu.svg'"></i>
+              </a>
+              <app-core-close-toolbar-main [canShare]="canShare" [canRequestModification]="canRequestModification"
+                [canRequestOpen]="canRequestOpen" [canRequestOpenDirect]="canRequestOpenDirect" (onShare)="onShare()"
+                (onDownload)="onDownload()" (onSendByEmail)="onSendByEmail()" (onSearchComments)="onSearchComments()"
+                (onRequestModification)="onRequestModification()" (onRequestOpen)="onRequestOpen()"></app-core-close-toolbar-main>
+            </li>
+            <li>
+              <a href="javascript:void(0)" class="btn-close" [routerLink]="['/dashboard']">
+                <i [inlineSVG]="'assets/img/commons/icono_closed_big.svg'"></i>
+              </a>
+            </li>
+          </ul>
+    </div>
+    <!--Visual-->
+    <div class="visual-brainy-object-container" [perfectScrollbar]="{suppressScrollX:true}">
+   
+      <!--Header-->
+      <div class="visual-brainy-object-header">
+        <div class="brainy-object-title">
+          <span>{{meetingNote?.title}}</span>
+        </div>
+        <div class="brainy-object-project">
+          <span>{{meetingNote?.project?.brand?.name}}&nbsp;({{meetingNote?.project?.name}})</span>
+        </div>
+        <div class="brainy-object-date">
+          <span>Aprobado&nbsp;</span>
+          <span class="day">{{meetingNote?.approvedDate | momentDate:'dddd' | capitalize}}&nbsp;</span>
+          <span class="date">{{meetingNote?.approvedDate | momentDate:'DD/MM/YYYY'}}&nbsp;&nbsp;</span>
+          <span class="hour">{{meetingNote?.approvedDate | momentDate:'hh:mm a'}}</span>
+
+        </div>
+        <div class="brainy-object-status">
+          <span>
+            <i [inlineSVG]="'assets/img/commons/status/status_aprobar.svg'" class="status-icon"></i>
+            <span>Aprobada</span>
+          </span>
+        </div>
+
+      </div>
+      <!--Participants-->
+      <app-core-close-participants [core]="meetingNote" [invitations]="invitations"></app-core-close-participants>
+      <!--Content-->
+      <!--Visual Draft-->
+      <div class="visual-meeting-note">
+        <!--Agreements-->
+        <ng-container *ngIf="topics.length > 0">
+          <div class="meeting-note-block">
+            <h4 class="meeting-note-block-header" id="agreements-title">
+              <i class="meeting-note-block-header-icon" [inlineSVG]="'assets/img/meeting-note/icon_acuerdos_indice.svg'"></i>
+              <span>Acuerdos</span>
+            </h4>
+            <ng-container *ngFor="let topic of topics  | orderBy:['order']">
+              <div class="agreements-block">
+                <h3 class="topic-title">{{topic.title}}</h3>
+                <p class="agreements-content">
+                  <ng-container *ngFor="let topicLine of topic.agreementItems | orderBy:['order']">
+
+                    <ng-container [ngSwitch]="topicLine.type">
+                      <!--Text-->
+                      <div *ngSwitchCase="'text'" app-topic-line-text [id]="topicLine.id" class="topic-line topic-line-text"
+                        [id]="topicLine.id" [innerHTML]="topicLine.content.text | sanitize:'html'">
+                      </div>
+                      <!--Subtopic-->
+                      <div *ngSwitchCase="'sub-topic'" app-topic-line-sub-topic [id]="topicLine.id" class="topic-line topic-line-sub-topic"
+                        [id]="topicLine.id" [innerHTML]="topicLine.content.text | sanitize:'html'">
+
+                      </div>
+                      <!--Gallery-->
+                      <div *ngSwitchCase="'gallery'" app-topic-line-image-gallery [id]="topicLine.id" class="topic-line topic-line-gallery"
+                        [id]="topicLine.id" [topicLineItem]="topicLine"></div>
+                      <!--Link-->
+                      <div *ngSwitchCase="'link'" app-topic-line-link [id]="topicLine.id" class="topic-line topic-line-link"
+                        [id]="topicLine.id" [topicLineItem]="topicLine"></div>
+                      <!--Attachment-->
+                      <div *ngSwitchCase="'attachment'" app-topic-line-attachment [id]="topicLine.id" class="topic-line topic-line-attachment"
+                        [id]="topicLine.id" [topicLineItem]="topicLine"></div>
+                      <!--Video-->
+                      <div *ngSwitchCase="'video'" app-topic-line-video [id]="topicLine.id" class="topic-line topic-line-video"
+                        [id]="topicLine.id" [topicLineItem]="topicLine"></div>
+                      <!--Task-->
+                      <div *ngSwitchCase="'task'" app-topic-line-task [id]="topicLine.id" class="topic-line topic-line-task"
+                        [withTitle]="false" [topicLineItem]="topicLine"></div>
+                      <!--Defaul text-->
+                      <div *ngSwitchDefault class="topic-line topic-line-text" app-topic-line-text [id]="topicLine.id">
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </p>
+              </div>
+            </ng-container>
+
+          </div>
+        </ng-container>
+        <!--Tasks-->
+        <ng-container *ngIf="tasks.length > 0">
+          <div class="meeting-note-block meeting-note-tasks">
+            <h4 class="meeting-note-block-header" id="task-title">
+              <i class="meeting-note-block-header-icon" [inlineSVG]="'assets/img/meeting-note/icono_tarea_indice.svg'"></i>
+              <span>Tareas asignadas</span>
+            </h4>
+            <!--Task-->
+            <ng-container *ngFor="let task of tasks">
+              <div class="topic-line topic-line-task">
+                <div class="task-block-wrapper" [id]="'task-'+ task.id" [class.editable]="false" app-task-block [task]="task"
+                  [withTitle]="false" [editable]="false" [draggable]="false">
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+        <!--Meeting-->
+        <ng-container *ngIf="meetingNote.nextMeeting">
+          <div class="meeting-note-block meeting">
+            <h4 class="meeting-note-block-header" id="next-meeting-title">
+              <div class="row no-margin-bottom">
+                <div class="col s6">
+                  <i class="meeting-note-block-header-icon" [inlineSVG]="'assets/img/meeting-note/ico_tema_pendiente_acuerdos.svg'"></i>
+                  Próxima reunión
+                </div>
+                <div class="col s6">
+                  <span class="next-meeting-date">
+                    {{meetingNote.nextMeeting.date | momentDate:'dddd' |
+                    capitalize}}&nbsp;{{meetingNote.nextMeeting.date + ' ' + meetingNote.nextMeeting.hour |
+                    momentDate:'D/MM/YYYY[&nbsp;&nbsp;]HH:mma'}}
+                  </span>
+                </div>
+              </div>
+
+            </h4>
+            <!--Next meeting see-->
+            <div class="next-meeting-see">
+              <a href="javascript:void(0)">ver próxima reunión
+                <i [inlineSVG]="'assets/img/participants/ico_arrow_right.svg'"></i>
+              </a>
+
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="meetingNote && meetingNote.id">
+  <!--Modal download-->
+  <app-modal-download-project #modalDownload></app-modal-download-project>
+  <!--Search comments-->
+  <app-comment-thread-sidenav-search #sidenavSearchComments [workspaceAccess]="workspaceAccess"></app-comment-thread-sidenav-search>
+  <!--Request modification-->
+  <app-modal-request-modification #modalRequestModification></app-modal-request-modification>
+
+  <!--Request permission-->
+  <app-modal-request-permission #modalRequestPermission></app-modal-request-permission>
+
+  <!--Share-->
+  <app-modal-share-participants #modalShare [workspaceAccess]="workspaceAccess" [objectType]="'meeting-note'"
+    [invitationLevelId]="'core'" [invitationReferenceId]="meetingNote.id"></app-modal-share-participants>
+  <app-modal-share-by-email #modalShareByEmail [core]="meetingNote"></app-modal-share-by-email>
+</ng-container>

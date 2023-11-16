@@ -1,0 +1,24 @@
+#feedback-close-right-sidenav {
+    top: 0;
+    height: 100vh;
+    width: 487px;
+    
+    &.compressed{
+        transform: translateX(100%);
+    }
+
+    @include mq($until: desktop) {
+        max-width: 60%;
+    }
+}
+.feedback-close-left-sidenav{
+    @extend .feedback-left-sidenav;
+    top: 64px;
+    padding-top: 60px;
+    
+    @include mq($until: desktop) {
+        background: #f7f7fa;
+        height: calc(100vh - 55px);
+        border-right: 1px solid #EDEDF3;
+    }
+}

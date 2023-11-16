@@ -1,0 +1,17 @@
+<div class="participants-list-wrapper-container">
+    <div #participantsScroll class="participants-list-wrapper perfect-scrollbar perfect-scrollbar-always-visible" [perfectScrollbar]="{supressScrollX:true}">
+        <ul class="participants-list">
+            <!--Invitations-->
+            <ng-container *ngFor="let invitation of invitations">
+                <li class="participant-list-block-invitation
+                     closest-alert remove-inner" 
+                     app-invitation-block 
+                    [avatarClass]="''" 
+                    [invitation]="invitation"
+                     [permissionButton]="false"
+                    (invitationOnDelete)="deleteInvitation($event)" 
+                    (invitationSetPermissionInvitation)="setPermissionInvitation($event)"></li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

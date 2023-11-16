@@ -1,0 +1,66 @@
+<!--Activity-->
+<table class="core-participants-table">
+  <ng-container *ngIf="core.invitations && core.invitations.length > 0">
+    <!--Guests-->
+    <tr>
+      <td class="line-time"></td>
+      <td colspan="3" class="participant-cell">
+        <div class="participant-table-box">
+          <!--Label-->
+          <div class="participant-label">
+            Invitados ({{(core.invitations  | filterInvitationPending:showPendingInvitations | filterInvitationGuest).length}})
+          </div>
+          <!--Invitation-->
+          <div class="participants-block">
+            <div class="participants-block-line" *ngFor="let invitation of core.invitations  | filterInvitationPending:showPendingInvitations | filterInvitationGuest">
+              <app-invitation-wrapper 
+              [coreKey]="coreKey"
+              [gutter]="8"
+              [edge]="'right'"
+              [invitation]="invitation" [profileClass]="'.profile-image-small-1'" [showStatus]="false"
+                (invitationOnRemoveInvitation)="removeInvitation($event)" (invitationOnEditPermission)="editPermissionInvitation($event)">
+              </app-invitation-wrapper>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <!--Team-->
+    <tr>
+      <td class="line-time"></td>
+      <td colspan="3" class="participant-cell">
+        <div class="participant-table-box">
+          <!--Label-->
+          <div class="participant-label">
+            Mi equipo ({{ (core.invitations  | filterInvitationPending:showPendingInvitations | filterInvitationMyTeam ).length}})
+          </div>
+          <!--Invitations-->
+          <div class="participants-block">
+            <div class="participants-block-line" *ngFor="let invitation of core.invitations  | filterInvitationPending:showPendingInvitations | filterInvitationMyTeam ">
+              <!--Invitation team-->
+              <app-invitation-wrapper 
+                [coreKey]="coreKey"
+                [gutter]="8"
+                [edge]="'right'"
+                [invitation]="invitation" [profileClass]="'.profile-image-small-1'" [showStatus]="false"
+                (invitationOnRemoveInvitation)="removeInvitation($event)" (invitationOnEditPermission)="editPermissionInvitation($event)">
+              </app-invitation-wrapper>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+
+  </ng-container>
+  <!--Without Activity-->
+  <ng-container *ngIf="!core.invitations || core.invitations.length === 0">
+    <tr class="activities">
+      <td>
+        <h5 class="without-results">
+          Sin invitaciones
+        </h5>
+      </td>
+    </tr>
+  </ng-container>
+</table>

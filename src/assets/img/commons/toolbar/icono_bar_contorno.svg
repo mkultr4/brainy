@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icono/contorno</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icono/contorno" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="shape">
+            <g transform="translate(1.000000, 1.000000)">
+                <g id="Group">
+                    <polygon id="Shape" points="0 0 18 0 18 18 0 18"></polygon>
+                    <path d="M17.25,5.25 L17.25,0.75 L12.75,0.75 L12.75,2.25 L5.25,2.25 L5.25,0.75 L0.75,0.75 L0.75,5.25 L2.25,5.25 L2.25,12.75 L0.75,12.75 L0.75,17.25 L5.25,17.25 L5.25,15.75 L12.75,15.75 L12.75,17.25 L17.25,17.25 L17.25,12.75 L15.75,12.75 L15.75,5.25 L17.25,5.25 L17.25,5.25 Z M2.25,2.25 L3.75,2.25 L3.75,3.75 L2.25,3.75 L2.25,2.25 L2.25,2.25 Z M3.75,15.75 L2.25,15.75 L2.25,14.25 L3.75,14.25 L3.75,15.75 L3.75,15.75 Z M12.75,14.25 L5.25,14.25 L5.25,12.75 L3.75,12.75 L3.75,5.25 L5.25,5.25 L5.25,3.75 L12.75,3.75 L12.75,5.25 L14.25,5.25 L14.25,12.75 L12.75,12.75 L12.75,14.25 L12.75,14.25 Z M15.75,15.75 L14.25,15.75 L14.25,14.25 L15.75,14.25 L15.75,15.75 L15.75,15.75 Z M14.25,3.75 L14.25,2.25 L15.75,2.25 L15.75,3.75 L14.25,3.75 L14.25,3.75 Z" id="Shape" fill="#4F5C69"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

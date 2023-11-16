@@ -1,0 +1,68 @@
+<div class="feedback-version-box" 
+[dndDraggable]="piece" 
+[dndType]="'feedback-piece'" 
+[ngClass]="{
+    'compare-active':compareVersion,
+    'is-compare-versions':isCompareVersion
+  }" (click)="compareClickBox($event)">
+  <div class="feedback-version-box-container">
+    <!--Compare-->
+    <a href="javascript:void(0)" (click)="compare($event)" *ngIf="piece.type === 'image'" class="btn-compare" appTooltip
+      [tooltipMessage]="'Comparar'" [alignamentTooltip]="'right'">
+      <img [src]="'assets/img/commons/icono_comparar.svg'">
+    </a>
+    <!--Preview-->
+    <ng-container *ngIf="piece.type === 'image'">
+      <div class="feedback-version-preview" [style.backgroundImage]="'url('+ piece.url +')' | sanitize:'style'">
+        <a class="compare-selected-btn">
+          <i class="compare-select-icon icon-svg" [inlineSVG]="'assets/img/commons/check.svg'"></i>
+        </a>
+
+        <div class="overlay" (click)="showVersion()">
+          <a href="javascript:void(0)">
+            <i  [inlineSVG]="'assets/img/commons/ico_zoom.svg'"></i>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="piece.type === 'video'">
+      <div class="feedback-version-preview" [style.backgroundImage]="'url('+ piece.poster +')' | sanitize:'style'">
+        <a class="compare-selected-btn">
+          <i class="compare-select-icon icon-svg" [inlineSVG]="'assets/img/commons/check.svg'"></i>
+        </a>
+
+        <div class="overlay" (click)="showVersion()">
+          <a href="javascript:void(0)">
+            <i class="material-icons">zoom_in</i>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+    <!--Information-->
+    <div class="feedback-version-box-information">
+      <div class="feedback-version-box-information-table">
+        <div class="feedback-version-box-information-table-cell">
+          <ng-container *ngIf="!piece.latest">
+            <span class="version-name">
+              {{piece.versionNumber}}.&nbsp;versión
+            </span>
+          </ng-container>
+          <ng-container *ngIf="piece.latest">
+            <span class="version-name current">
+              Version actual
+            </span>
+          </ng-container>
+          <!--Date-->
+          <span class="date">
+            {{ (piece.created | niceDateFormatPipe:'DD/MM/YYYY HH:ss a') | translate:{hour:(piece.created | momentDate:'HH:ss
+            a')} }}
+          </span>
+          <span class="piece-name">
+            {{piece.name}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

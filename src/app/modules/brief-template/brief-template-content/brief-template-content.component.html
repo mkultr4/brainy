@@ -1,0 +1,89 @@
+<!--Tutorial-->
+<app-brief-template-tutorial #tutorial
+[templates]="templates"
+(tutorialOnMakeLibrary)="onMakeLibrary($event)"
+(tutorialOnDontShowAgain)="tutorialOnDontShowAgain()"
+(tutorialOnEnd)="tutorialOnEnd()"
+></app-brief-template-tutorial>
+<!--Layout-->
+<div class="layout-interface">
+  <section class="layout-interface-content">
+  
+    <!--Header-->
+    <header #dashboardHeader class="subsections-header scrolled-down" id="brief-templates-header">
+      <!--Header-->
+      <app-brief-template-header [isAdmin]="isAdmin"></app-brief-template-header>
+      <div class="navbar-default navbar-fixed navbar-filter" id="navbar-filter-templates"
+         app-brief-template-filter
+        [isAdmin]="isAdmin"
+        [templates]="templates" 
+        [areas]="areas" 
+        [filterOrderDirection]="filterOrderDirection"
+        [filterOrderColumn]="filterOrderColumn" 
+        [filterArea]="filterArea" 
+        (filterOnChangeMainSearch)="onChangeMainSearch($event)"
+        (filterOnChangeFilterOrder)="onChangeFilterOrder($event)" 
+        (filterOnChangeFilterArea)="onChangeFilterArea($event)"
+        >
+      </div>
+    </header>
+    <!--MAIN CONTENT-->
+    <main>
+      <!--Brief templates wrapper-->
+      <div class="brief-templates-wrapper">
+        <div class="brief-templates-content">
+          <div class="brief-templates-list">
+            <!--Templates-->
+            <ng-container *ngIf="templates.length > 0">
+              <div class="brief-template-list-content">
+                <ng-container *ngFor="let item of templates 
+                | filterBy:['title','category.name','text']: mainSearch
+                | filterTemplateByArea: filterArea
+                | filterTemplateByRol: workspaceAccess.rol.key
+                |  orderBy: orderBy; let index =index 
+                ">
+                  <app-brief-template-item 
+                    [canEdit]="isAdmin"
+                    [briefTemplate]="item"
+                    [index]="index"
+                    (onMakeLibrary)="onMakeLibrary($event)"
+                    (onPreviewTemplate)="onPreviewTemplate($event)"
+                    (onEditTemplate)="onEditTemplate($event)"
+                    ></app-brief-template-item>
+
+                </ng-container>
+              </div>
+              <!--Empty-->
+              <h1 class="without-results" *ngIf="(templates 
+              | filterBy:['title','category.name','text']: mainSearch
+              | filterTemplateByArea: filterArea
+              | filterTemplateByRol: workspaceAccess.rol.key
+              ).length === 0">
+                {{ 'commons.without-results' | translate }}
+
+              </h1>
+            </ng-container>
+            <!--Without templates-->
+            <ng-container *ngIf="templates.length === 0">
+              <div class="brainy-empty-message">
+                <img src="assets/img/commons/empty-lists/img_brands_vacio.svg">
+                <h1 class="title">No tienes templates </h1>
+                <p class="message">
+                  Necesitas más información para crear una marca
+                  <a href="javascript:void(0)" target="_blank">centro de ayuda</a>.
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+
+<!--View template-->
+<app-brief-template-sidenav #viewTemplateSidenav></app-brief-template-sidenav>
+<!--Add to library accept-->
+<app-modal-alert-template-library #modalAddToLibrary></app-modal-alert-template-library>
+<!---->
+<app-modal-alert-edit-template #modalAlertEdit></app-modal-alert-edit-template>

@@ -1,0 +1,89 @@
+<div class="layout-workflow-sidenav  layout-visual-closing layout-visual-closing-feedback ">
+  <div class="visual-closing-brand ">
+    <a class="visual-closing-brand-link " [routerLink]="['/']">
+      <i class="icon-svg" [inlineSVG]="'assets/img/logo_brainy.svg'"></i>
+      <span class="visual-closing-logo-text">Feedback</span>
+    </a>
+  </div>
+  <ng-container *ngIf="pieces && pieces.length > 0">
+
+    <app-feedback-close-left-sidenav 
+      [pieces]="pieces" 
+      [compressed]="leftSidenavCompressed" 
+      [pieceShow]="pieceShow"
+      [paginationConfig]="paginationConfig"
+      (onSelectPiece)="onSelectPiece($event)" 
+      
+      ></app-feedback-close-left-sidenav>
+
+  </ng-container>
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <!--Screen view-->
+      <div class="screen-view" [ngClass]="{
+        'sidenav-right-compress':rightSidenavCompressed,
+        'sidenav-left-compress':leftSidenavCompressed
+        }">
+        <div class="feedback-close-content ">
+
+          <ng-container *ngFor="let piece of pieces | paginate: paginationConfig">
+            <app-feedback-close-piece #pieceShowEl [compress]="{leftSidenavCompressed:leftSidenavCompressed,
+                            rightSidenavCompressed:rightSidenavCompressed
+                            }"
+              [piece]="piece" (onChangeRatio)="onChangeRatio($event)">
+            </app-feedback-close-piece>
+          </ng-container>
+
+          <pagination-template #p="paginationApi" [id]="paginationConfig.id" (pageChange)="onPageChange($event)">
+            <div class="pagination-container" [class.hide]="!leftSidenavCompressed" [style.maxWidth]="paginationMaxWidth">
+              <ul class="pagination">
+                <li class="navigation" [class.disabled]="p.isFirstPage()">
+                  <a *ngIf="!p.isFirstPage()" href="javascript:void(0)" (click)="p.previous()">
+                    <i class="icon ion-ios-arrow-back"></i>
+                  </a>
+                  <a *ngIf="p.isFirstPage()" href="javascript:void(0)">
+                    <i class="icon ion-ios-arrow-back"></i>
+                  </a>
+                </li>
+                <li class="summary">
+                  <a>
+                    {{p.getCurrent()}}/{{ p.pages.length}}
+                  </a>
+                </li>
+
+                <li class="navigation" [class.disabled]="p.isLastPage()">
+                  <a *ngIf="!p.isLastPage()" href="javascript:void(0)" (click)="p.next()">
+                    <i class="icon ion-ios-arrow-forward"></i>
+                  </a>
+                  <a *ngIf="p.isLastPage()" href="javascript:void(0)">
+                    <i class="icon ion-ios-arrow-forward"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </pagination-template>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <!--Right-->
+  <app-feedback-close-right-sidenav [feedback]="feedback" 
+  [workspaceAccess]="workspaceAccess" [compressed]="rightSidenavCompressed"
+    [invitations]="invitations" [canShare]="canShare" [canRequestModification]="canRequestModification"
+    [canRequestOpen]="canRequestOpen"
+    [canRequestOpenDirect]="canRequestOpenDirect"
+    [coreStatuses]="coreStatuses"
+    >
+  </app-feedback-close-right-sidenav>
+
+</div>
+<app-floating-note [core]="feedback"></app-floating-note>
+<!--Modal notification-->
+<app-modal-notification-core #modalNotificationCore (modalNotificationOnClose)="modalNotificationOnClose($event)"></app-modal-notification-core>
+<!-- Modal notification request permission accept-->
+<app-modal-request-permission-accept #modalRequestPermissionAccept 
+(modalOnAcceptPermission)="modalOnAcceptPermission()"></app-modal-request-permission-accept>

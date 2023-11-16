@@ -1,0 +1,44 @@
+<!--Title-->
+<div class="agreements-content-header-wrapper">
+  <div class="agreements-content-header">
+    <h3 class="agreements-content-header-title">
+      <i class="agrrement-ico" [inlineSVG]="'assets/img/meeting-note/icono_acuerdos.svg'"></i>
+      <span class="agreement-title-text" >
+        Acuerdos
+        <span class="pulse-tour" id="pulse-target-agreement"></span>
+        <span class="pulse-tour" id="pulse-target-agreement-ghost"></span>
+        <!--Topic title Ghost comment-->
+        <div id="agreement-title-text-ghost-comments">
+          <!--Selection-->
+          <ng-container *ngFor="let commentThread of commentThreads 
+        | filterCommentThreadStatus: filterStatuses
+        | filterCommentThreadParticipantType: filterParticipantTypes">
+
+            <span [ngClass]="[
+                        'comment-thread-selection-' + commentThread.id + ' comment-thread-selection status-' + commentThread.status.key ,
+                        !commentThread.saved ? 'not-saved unprocess active':''
+                    ]">
+
+            </span>
+
+          </ng-container>
+          <!--Comments-->
+          <ng-container *ngFor="let commentThread of commentThreads 
+        | filterCommentThreadStatus: filterStatuses
+        | filterCommentThreadParticipantType: filterParticipantTypes;let index = index">
+            <app-comment-thread-meeting-note-title [commentThread]="commentThread" [commentThreadStatus]="commentThread.status"
+              [left]="20 * index"></app-comment-thread-meeting-note-title>
+          </ng-container>
+        </div>
+      </span>
+    </h3>
+  </div>
+
+  <div class="topic-editor-toolbar-comments" [class.show]="showToolbar">
+    <a href="javascript:void(0)" 
+        (click)="addComment()" 
+        appTooltip [tooltipMessage]="'Agregar comentario'">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_comentarios.svg'"></i>
+    </a>
+  </div>
+</div>

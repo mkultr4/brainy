@@ -1,0 +1,28 @@
+<ul class="workflow-primary-header-menu">
+  
+  <li>
+    <a href="javascript:void(0)" class="modal-floating-trigger" id="trigger-filter-comments" appTooltip
+      [tooltipMessage]="'Filtros'" [edgeTooltip]="'bottom'">
+      <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icono_filtros.svg'"></i>
+    </a>
+    <!--Filter-->
+    <app-modal-comment-thread-filter [commentThreadStatuses]="commentThreadStatuses"
+     [participantTypes]="participantTypes"></app-modal-comment-thread-filter>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="showListFeedback()" 
+    [ngClass]="{'active':isShowFeedback}" appTooltip
+      [tooltipMessage]="'Feedbacks del proyecto'" [edgeTooltip]="'bottom'">
+      <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_feedback_anidado.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="showListMeetingNote()" 
+    appTooltip [tooltipMessage]="'Minutas del proyecto'"
+      [edgeTooltip]="'bottom'" [ngClass]="{'active':isShowMeetingNote}">
+      <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_minuta_anidado.svg'"></i>
+    </a>
+  </li>
+  
+  
+</ul>

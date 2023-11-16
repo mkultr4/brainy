@@ -1,0 +1,66 @@
+<div class="comment-box-search {{comment.type}}" [id]="'comment-'+ comment.id" [ngClass]="{'comment-own':comment.workspaceAccess.id === workspaceAccess.id ,'first':index === 0}">
+  <div class="comment-box-search-container">
+    <!--Header-->
+    <div class="comment-header">
+      <!--Avatar-->
+      <div app-avatar class="avatar profile-image-small" [user]="comment?.workspaceAccess?.user" [showStatus]="true"></div>
+      <div class="user-information">
+        <span class="name">{{comment?.workspaceAccess?.user?.name + ' ' + comment?.workspaceAccess?.user?.lastName}}</span>
+        <span class="rol">{{comment?.workspaceAccess?.rol?.name}}</span>
+      </div>
+    </div>
+    <!--Content-->
+    <div class="comment-content {{comment.type}}">
+      <ng-container *ngIf="comment.type === 'text' || comment.type === 'file-text'  || comment.type === 'audio-text' ">
+
+        <p class="comment-content-text" [innerHTML]="comment.commentText | highlight : filter">
+        </p>
+      </ng-container>
+      <ng-container *ngIf="comment.type === 'audio' || comment.type === 'audio-text'">
+        <app-audio-player [audioSrc]="comment.commentAudio"></app-audio-player>
+      </ng-container>
+      <ng-container *ngIf="comment.type === 'file' || comment.type === 'file-text'">
+        <ng-container *ngIf="comment.mimeType === 'image'">
+          <div class="image-wrapper">
+            <a appMagnificPopup class="image-wrapper-content " [href]="comment.commentFileUrl | sanitize:'url'">
+              <div class="image-overlay"></div>
+              <img data-caption="A picture of some deer and tons of trees" [src]="comment.commentFileUrl">
+            </a>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <!--Status-->
+    <div class="comment-status" *ngIf="dateFormat">
+      <ng-container *ngIf="dateFormat != today && dateFormat != yesterday">
+        <span class="date">{{comment.timestamp | momentDate:'DD [de]'}}</span>
+        <span class="month">{{comment.timestamp | momentDate:'MMMM'}}</span>
+        <span class="year">{{comment.timestamp | momentDate:'YYYY'}}</span>
+        <span class="hour">{{comment.timestamp | momentDate:'HH:mm'}}</span>
+
+      </ng-container>
+      <ng-container *ngIf="dateFormat === yesterday">
+        <span>Ayer</span>
+        <span class="hour">{{comment.timestamp | momentDate:'HH:mm'}}</span>
+
+      </ng-container>
+      <ng-container *ngIf="dateFormat === today">
+        <span>Hoy</span>
+        <span class="hour">{{comment.timestamp | momentDate:'HH:mm'}}</span>
+
+      </ng-container>
+      <span class="status" *ngIf="comment.commentThread">
+        <i class="icon-svg status-icon" [inlineSVG]="comment.commentThread.status.ico"></i>
+      </span>
+    </div>
+    <!--Link-->
+    <div class="comment-link">
+      <span class="comment-link-go">
+        <span class="comment-thread-point disabled-hover {{comment.commentThread?.status?.key}}">
+          <span>{{comment.commentThread?.number}}</span>
+        </span>
+        <a href="javascript:void(0)" (click)="goTomeComment()">Ir a comentario</a>
+      </span>
+    </div>
+  </div>
+</div>

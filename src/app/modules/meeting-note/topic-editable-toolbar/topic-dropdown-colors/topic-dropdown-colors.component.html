@@ -1,0 +1,21 @@
+<div class="dropdown-menu dropdown-menu-colors bottom" 
+[id]="id">
+  <div class="dropdown-content">
+    <div class="color-choser-header">
+      <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title" [ngClass]="{'active':cmd === 'forecolor'}"
+        (mousedown)="changeCmd($event, 'forecolor')">Texto</a>
+      <a href="javascript:void(0)" class="disabled-dropdown-toggle color-choser-header-title" [ngClass]="{'active':cmd === 'backcolor'}"
+        (mousedown)="changeCmd($event, 'backcolor')">
+        Background
+      </a>
+    </div>
+    <div class="color-chooser" *ngFor="let color of colors" [ngStyle]="{'backgroundColor':color}">
+      <a href="javascript:void(0)" (mousedown)="execute($event,cmd,color)"></a>
+    </div>
+    <div class="color-chooser remove-format">
+      <i class="material-icons">format_color_reset</i>
+      <a href="javascript:void(0)" (mousedown)="execute($event,'removeFormat',cmd)">
+      </a>
+    </div>
+  </div>
+</div>

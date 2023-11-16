@@ -1,0 +1,20 @@
+<div class="dynamic-editor-icon-content dynamic-editor-content-default" 
+appResizable [class.focused]="focused">
+  <!--Resizable-->
+  <div class="resizable-handle r-bottom resizable-bottom" ></div>
+  <div class="resizable-handle r-top  resizable-top" ></div>
+  <div class="resizable-handle r-left resizable-left" ></div>
+  <div class="resizable-handle r-right resizable-right" ></div>
+  <div class="resizable-handle r-bottom r-right resizable-bottom-right" ></div>
+  <div class="resizable-handle r-top r-left resizable-top-left" ></div>
+  <div class="resizable-handle r-bottom r-left resizable-bottom-left" ></div>
+  <div class="resizable-handle r-top r-right resizable-top-right" ></div>
+  <!--Drag Handle-->
+  <div class="drag-handle drag-top"></div>
+  <div class="drag-handle drag-bottom"></div>
+  <div class="drag-handle drag-left"></div>
+  <div class="drag-handle drag-right"></div> 
+  <!--Icon-->
+  <i *ngIf="icon.font === 'ionicons'" class="icon {{icon.value}}"></i>
+  <i *ngIf="icon.font === 'material-icons'" class="material-icons">{{icon.value}}</i>
+</div>

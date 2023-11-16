@@ -1,0 +1,19 @@
+<div class="topic-line-gallery-content">
+  <!--Image List-->
+  <ng-container *ngFor="let image of topicLineItem.content.gallery">
+      <span app-topic-line-image
+          class="topic-gallery-item" 
+          [class.editable]="editable"
+          [class.enable-comments]="enableComments"
+          [imageGallery]="image" 
+          [editable]="editable"
+          [sorting]="sorting"
+          [enableComments]="enableComments"
+          [id]="image.id"
+          [filterStatuses]="filterStatuses"
+          [filterParticipantTypes]="filterParticipantTypes"
+          (imageOnRemove)="onRemoveImage($event)"
+          (imageOnChange)="onChangeImage($event)"
+          ></span>
+  </ng-container>
+</div>

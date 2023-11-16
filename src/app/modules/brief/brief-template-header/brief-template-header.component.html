@@ -1,0 +1,49 @@
+<!-- start header nav-->
+<div class="navbar-default navbar-fixed ">
+  <nav class="interface-nav">
+    <div class="nav-wrapper ">
+      <!--Header-->
+      <app-workflow-header 
+        [core]="briefTemplate"
+        [coreStatuses]="coreStatuses" 
+        [editable]="editable" 
+        [canApprove]="canApprove"
+        [shareAndApprove]="canShare && isApprover" 
+        (workflowOnApprove)="workflowOnApprove()" 
+        (workflowOnDisapprove)="workflowOnDisapprove()"
+        (workflowOnChangeStatus)="workflowOnChangeStatus($event)">
+      </app-workflow-header>
+      <!--Menu-->
+      <app-workflow-header-menu 
+      [showWorkflow]="false"
+      [isApprover]="isApprover" [canShare]="canShare" [shareAndApprove]="canShare && isApprover"
+         (workflowOnShare)="share()">
+      </app-workflow-header-menu>
+      <app-brief-toolbar-main 
+        [template]="true"
+        [isAdmin]="isAdmin" [editable]="editable" [workspaceAccess]="workspaceAccess"
+        [dropdownId]="'toolbar-main'" [btnId]="'btn-toolbar-main'" [dropdownClass]="'dropdown-toolbar'" [gutter]="0"
+        [belowOrigin]="true" (toolbarOnEdit)="editTitle()" (toolbarOnDownload)="download()" (toolbarOnDelete)="delete()"
+          (toolbarOnCancel)="cancel()"></app-brief-toolbar-main>
+    </div>
+
+  </nav>
+</div>
+<ng-container *ngIf="briefTemplate && briefTemplate.id">
+      <!--Modal download-->
+      <app-modal-download-project></app-modal-download-project>
+      <!--Modal cancel project-->
+      <app-modal-cancel-core #modalCancel [core]="briefTemplate" (modalOnCancel)="modalOnCancel()"></app-modal-cancel-core>
+      <!--Modal delete-->
+      <app-modal-delete-core #modalDelete [core]="briefTemplate" (modalOnDelete)="modalOnDelete()"></app-modal-delete-core>
+      <!--Modal dissaprove-->
+      <app-modal-disapprove-core #modalDisapprove [core]="briefTemplate" (modalOnDisapprove)="modalOnDisapprove($event)"></app-modal-disapprove-core>
+      <!--Modal Share-->
+      <!--Share-->
+      <app-modal-share-participants #modalShare [workspaceAccess]="workspaceAccess" [showShareLink]="true"
+        [invitationLevelId]="'core'" [objectType]="'brief-template'" 
+        [invitationReferenceId]="briefTemplate.id"
+         (onCloseModal)="onCloseModalShare($event)">
+      </app-modal-share-participants>
+      
+  </ng-container>

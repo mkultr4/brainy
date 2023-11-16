@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_time</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_time" fill="#4F5C69">
+            <g id="Group-2" transform="translate(7.000000, 6.000000)">
+                <path d="M22.3005354,6.91703852 C24.589438,9.26042361 26,12.4654846 26,16 C26,23.1797017 20.1797017,29 13,29 C5.82029825,29 0,23.1797017 0,16 C0,9.15677025 5.28755229,3.5485145 12,3.03788963 L12,1 L14,1 L14,3.03788963 C16.7250217,3.24518568 19.2152094,4.29261172 21.2121268,5.9217316 L22.1058001,5.08088023 L23.1462402,6.12132034 L22.3005354,6.91703852 Z M13,28 C19.627417,28 25,22.627417 25,16 C25,9.372583 19.627417,4 13,4 C6.372583,4 1,9.372583 1,16 C1,22.627417 6.372583,28 13,28 Z M10,0 L16,0 L16,1 L10,1 L10,0 Z M13,9 L14,9 L14,16 L13,16 L13,9 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

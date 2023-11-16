@@ -1,0 +1,10 @@
+<div class="dropdown-menu dropdown-menu-presentation dropdown-menu-font-size bottom" 
+id="dropdown-font-size">
+  <ul class="dropdown-content">
+    <li *ngFor="let f of fontSizes">
+      <a href="javascript:void(0)" 
+      (mousedown)="setFontSize($event,f)">{{f}}</a>
+    </li>
+    
+  </ul>
+</div>

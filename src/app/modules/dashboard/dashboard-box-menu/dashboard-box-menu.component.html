@@ -1,0 +1,60 @@
+<!--Dropdown-->
+<app-mz-dropdown-brainy #menu [id]="'dropdown-box-dashboard-'+ coreId" [dropdownButtonId]="'dropdown-box-dashboard-btn'+ coreId"
+  [constrainWidth]="false" [belowOrigin]="true" [dropdownClass]="'toolbar-box-dashboard'">
+  <li *ngIf="isAdmin">
+    <a href="javascript:void(0)" class="delete" (click)="delete()">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+      Eliminar
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="download" (click)="download()">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_descargar.svg'"></i>
+      Descargar
+    </a>
+  </li>
+
+  <li *ngIf="canCreatePresentation">
+    <a class="presentation" href="javascript:void(0)" [routerLink]="['/brief/presentation']" [queryParams]="{briefId: coreId}">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_presentacion.svg'"></i>
+      Presentación
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin">
+    <ng-container *ngIf="coreTypeKey !=='meeting-note'">
+      <a href="javascript:void(0)" class="cancel" (click)="cancelProject()">
+        <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_cancelar.svg'"></i>
+        Cancelar
+      </a>
+    </ng-container>
+    <ng-container *ngIf="coreTypeKey =='meeting-note'">
+      <ng-container *ngIf="coreStatusKey !=='canceled'">
+        <a href="javascript:void(0)" class="cancel" (click)="cancelProject()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_cancelar.svg'"></i>
+          Cancelar
+        </a>
+      </ng-container>
+      <ng-container *ngIf="coreStatusKey ==='canceled'">
+          <a href="javascript:void(0)" class="resume" (click)="resumeProject()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_renaudar.svg'"></i>
+              Renaudar
+            </a>
+      </ng-container>
+    </ng-container>
+  </li>
+
+  <li *ngIf="canSearch">
+    <a href="javascript:void(0)" class="cancel">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_buscar.svg'"></i>
+      Buscar comentario
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin">
+    <a href="javascript:void(0)" class="arhive" (click)="archive()">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_archivar.svg'"></i>
+      Archivar
+    </a>
+  </li>
+</app-mz-dropdown-brainy>

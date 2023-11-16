@@ -1,0 +1,65 @@
+<app-animate-modal #modal [modalId]="'modal-share-emails'"
+ (modalOnShow)="modalOnShow()" 
+ (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Enviar por mail
+      </h5>
+    </div>
+
+    <!--Display-->
+    <div class="modal-content-display">
+      <div class="form-participants-share">
+        <div class="search-participant search-participant-team">
+          <form #formShare="ngForm" name="FormShare" novalidate>
+            <div class="input-field-search-nav">
+              <div class="input-field input-field-medium typehead-autocomplete-share" [ngClass]="{'input-field-focused':this.formShare.invalid}">
+                <input class="filter-search-input" mz-input [label]="'Correo electrónico'" name="invitationEmail" type="text"
+                  placeholder="{{emails.length > 0 ? 'Agrega otro correo electrónico':'Escibe un correo electrónico'}}"
+                  [(ngModel)]="email" #emailInput="ngModel" (keyup)="onKeyUp($event)" [ngClass]="{'suggestion-invite':suggestionInvite}"
+                  required autocomplete="off" tabindex="1" ngvemail>
+              </div>
+              <!--Add another-->
+              <div class="input-field-search-nav-add" [ngClass]="{'active': (emails.length > 0 || formShare.valid) && !btnDisabled}">
+                <a href="javascript:void(0)" (click)="addOther()">
+                  <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_add_email.svg'"></i>
+                  Añadir otro
+                </a>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <!--Not workflow invitation-->
+        <ng-container *ngIf="emails.length > 0">
+
+          <!--Invitations-->
+          <div class="participants-list-wrapper perfect-scrollbar perfect-scrollbar-always-visible" [perfectScrollbar]="{supressScrollX:true}"
+            [ngClass]="{'active':emails.length > 1}">
+            <ul class="participants-list">
+              <!--Invitations-->
+              <ng-container *ngFor="let email of emails">
+                <li class="participant-list-block-email closest-alert remove-inner
+                  " app-email-block
+                  [email]="email" (emailOnDelete)="deleteEmail($event)"></li>
+              </ng-container>
+            </ul>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="emails.length > 0 || formShare.valid">
+          <div class="participants-button-section" [ngClass]="{'active':emails.length > 0}">
+            <button class="btn btn-medium-large btn-font-medium" (click)="sendEmails()" [disabled]="btnDisabled"
+              [ngClass]="{'btn-loading': btnDisabled}">
+              {{btnDisabled ? 'ENVIANDO' : 'ENVIAR'}}
+            </button>
+
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</app-animate-modal>

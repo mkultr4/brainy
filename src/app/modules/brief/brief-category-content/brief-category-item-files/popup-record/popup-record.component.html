@@ -1,0 +1,18 @@
+<div 
+    [id]="'popup-category-item-record-'+ briefCategoryItemId" 
+    app-modal-floating 
+    [modalFloatingEdge]="'left'" 
+    [modalFloatingGutter]="5"
+    [modalFloatingBtnId]="'#popup-category-item-record-btn-'+briefCategoryItemId" 
+    [modalFloatingAlign]="'center'" 
+    (modalOnHide)="onHide()" 
+    class="popup-category-item popup-category-item-record category-item-floating-menu modal-prevent-close">
+    <span class="popup-thread-arrow"></span>
+
+    <app-comment-input-record 
+    (recordOnCancel)="onCancelRecord()" 
+    (recordOnAccept)="onAcceptRecord($event)">
+  </app-comment-input-record>
+
+
+</div>

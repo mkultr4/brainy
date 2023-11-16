@@ -1,0 +1,66 @@
+<!--Share guests form-->
+<div class="form-guest-wrapper">
+  <form #formGuest="ngForm" name="FormGuests" class="form-participants-share form-guests" novalidate>
+    <div class="row no-margin-bottom">
+      <div class="new-invitation-wrapper">
+
+
+        <!--Rol-->
+        <div class="col s12">
+
+          <div app-mz-select-container-brainy id="selct-input-field-rol"
+           class="input-field input-field-medium input-field-help-label"
+            [ngClass]="{ 'input-field-focused':  rolInput.invalid }">
+
+            <select mz-select tabindex="2" placeholder="Selecciona" #rolInput="ngModel" id="invitedRol" name="invitedRol"
+              [label]="'Privilegios'" [(ngModel)]="invitation.rol" required data-extra-class="center-align"
+              >
+              <option value="" class="disabled" selected>Seleccione un rol</option>
+              <option *ngFor="let rol of roles" [ngValue]="rol">{{ rol.name }}</option>
+            </select>
+             <!--Label help-->
+            <a class="label-help active" href="javascript:void(0)" appSidenavButton [sidenavId]="'right-permissions-nav'"
+              appTooltip [tooltipMessage]="'Ver privilegios'" [alignamentTooltip]="'left'">
+              <i [inlineSVG]="'assets/img/commons/ico_info.svg'" class="icon-svg"></i>
+            </a>
+
+          </div>
+        </div>
+        <!--Category-->
+        <ng-container *ngIf="invitation.rol">
+          <ng-container *ngIf="invitation.rol.key === 'guest'">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field input-field-medium" [ngClass]="{'input-field-focused': rolInput.valid && categoryInput.invalid}">
+
+                <select mz-select tabindex="3" placeholder="Selecciona" id="invitationCategory" name="invitationCategory"
+                  [label]="'Grupos'" [(ngModel)]="invitation.category" (ngModelChange)="categoryChange($event)"
+                  required data-extra-class="center-align" #categoryInput="ngModel">
+                  <option value="" class="disabled" selected>Seleccione una categoria</option>
+                  <option [ngValue]="{id:'newCategory',name:'newCategory'}">Nueva grupo</option>
+                  <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+                </select>
+              </div>
+            </div>
+            <!--New category-->
+            <div class="col s12" *ngIf="invitation.category && invitation.category.id === 'newCategory'">
+              <div class="input-field input-field-medium" [ngClass]="{'input-field-focused': categoryInput.valid && newCategoryInput.invalid}">
+                <input mz-input tabindex="1" autocomplete="off" [label]="'Nombre grupo'" type="text" name="newInvitationCategoryName"
+                  [(ngModel)]="newCategory.name" required #newCategoryInput="ngModel">
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+
+      <!--Invite-->
+      <div class="button-section col s12">
+        <button class="btn btn-semi-medium btn-primary btn-font-medium border-radius-2" type="button" (click)="invite()"
+          [disabled]="formGuest.invalid">
+          AGREGAR
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>

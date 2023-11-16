@@ -1,0 +1,51 @@
+<!--Tutorial-->
+<app-meeting-note-tutorial 
+[workspaceAccess]="workspaceAccess"
+[scheduled]="scheduled"
+(tutorialOnEnd)="tutorialOnEnd()"
+></app-meeting-note-tutorial>
+<!--Topic inner content-->
+<div class="topic-inner-content">
+  <!--Topic-->
+  <div class="topic-content">
+    <!--Topic Editor-->
+    <div #topicEditor class="topic-editor " [ngClass]="{'scheduled':scheduled}">
+        <!--Editable Content-->
+        <app-topic-editor-description #topicDescription 
+          [topic]="topic"
+          [commentThreads]="topic.commentThreads" 
+          [workspaceAccess]="workspaceAccess" 
+          [enableComments]="enableComments" 
+          [editable]="editable" 
+          [commentThreadStatuses]="commentThreadStatuses"
+          [participantTypes]="participantTypes"
+          [filterStatuses]="filterStatuses"
+          [filterParticipantTypes]="filterParticipantTypes"
+          [showTour]="showTour"
+          [topicEditionLogs]="topicEditionLogs | filterBy:['reference']:'TOPIC_DESCRIPTION'"
+          (editorOnChange)="editorOnChange()">
+          
+          >
+        </app-topic-editor-description>
+        <!--Topic agreement-->
+        <app-topic-editor-agreement #topicAgreement *ngIf="!scheduled" 
+          [topic]="topic" 
+          [commentThreads]="topic.commentThreads" 
+          [workspaceAccess]="workspaceAccess"
+          [editable]="editable"
+          [enableComments]="enableComments"
+          [topicTitle]="topic.title"
+          [commentThreadStatuses]="commentThreadStatuses"
+          [participantTypes]="participantTypes"
+          [filterStatuses]="filterStatuses"
+          [filterParticipantTypes]="filterParticipantTypes"
+          [topicEditionLogs]="topicEditionLogs | filterBy:['reference']:'TOPIC_AGREEMENT'"
+          (editorOnChange)="editorOnChange()"
+          >
+        </app-topic-editor-agreement>
+        
+      
+    </div>
+  </div>
+
+</div>

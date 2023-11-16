@@ -1,0 +1,29 @@
+<div class="response-assessment" >
+  <!--List numeric-->
+  <ng-container *ngIf="item.responseSettings.assessment.type === 'number'">
+    <div class="brief-assessment-list-numeric" >
+      <!--Options numerics-->
+      <ng-container *ngFor="let option of item.responseSettings.options; let index = index">
+        <app-option-assessment-number-close 
+          [option]="option" 
+          [checked]="item.responseContent.options.indexOf(option) >= 0" 
+          [number]="index + 1 "
+          ></app-option-assessment-number-close>
+      </ng-container>
+    </div>
+  </ng-container>
+  <!--List Text-->
+  <ng-container *ngIf="item.responseSettings.assessment.type === 'text'">
+    <div class="brief-assessment-list-text">
+      <!--Options text-->
+      <ng-container *ngFor="let option of item.responseSettings.options | orderByImpure:['order']">
+        <app-option-assessment-text-close
+           [option]="option" 
+          [checked]="item.responseContent.options.indexOf(option) >= 0" 
+          ></app-option-assessment-text-close>
+      </ng-container>
+
+    </div>
+  </ng-container>
+ 
+</div>

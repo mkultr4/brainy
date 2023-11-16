@@ -1,0 +1,92 @@
+<app-preloader [show]="false"></app-preloader>
+<div class="layout-interface layout-with-footer">
+
+  <section class="layout-interface-content">
+    <!--Header-->
+    <header #dashboardHeader class="subsections-header  scrolled-down" id='team-header'>
+      <!--First Header-->
+
+      <app-header-default [currentUser]="currentUser" [workspaceAccess]="workspaceAccess" [breadcrumb]="'Equipos'">
+      </app-header-default>
+      <!--Filter-->
+      <div class="navbar-default navbar-fixed navbar-filter" app-team-filter 
+      [view]="view"
+      (filterOnInvite)="invite()"
+      ></div>
+    </header>
+
+    <!--MAIN CONTENT-->
+    <main>
+      <!--Wrapper-->
+      <div class="team-items-wrapper">
+        <!--Navigation-->
+        <div class="interface-navigation">
+          <div class="interface-navigation-content">
+            <div class="interface-navigation-wrapper container">
+              <!--<ng-container *ngIf="view === 'group-inner'">
+                
+
+                  <a class="back-to" routerLink="group">
+                    <i [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'" class="icon-svg back-icon"></i>
+                    {{category?.name}}
+                  </a>
+                
+              </ng-container>-->
+              <ul class="navigation">
+                <li>
+                  <a href="javascript:void(0)"
+                   routerLink="my" 
+                   [queryParams]="{empty:empty}"
+                   routerLinkActive="active" 
+                   [class.active]="isLinkActive('/team/my')"
+                  >
+                    Mi equipo
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" 
+                  [routerLink]="['group']"             
+                  [queryParams]="{empty:empty}"
+                  [class.active]="isLinkActive('/team/group')"
+                  >
+                    Mis Grupos
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--Content-->
+        <div class="team-items-content">
+          <!--List-->
+          <div class="team-items-list">
+
+
+            <router-outlet></router-outlet>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+
+<!--Invite-->
+<app-modal-team-invite [workspaceAccess]="workspaceAccess"></app-modal-team-invite>
+<!--Sidenav permission-->
+<app-sidenav-permissions></app-sidenav-permissions>
+<!--Tutorial-->
+<app-team-tutorial *ngIf="tour"></app-team-tutorial>
+<!--Modal Suspend-->
+<app-modal-team-suspend-account #modalTeamSuspend></app-modal-team-suspend-account>
+<!--Modal Eliminate-->
+<app-modal-team-eliminate-account #modalTeamEliminate></app-modal-team-eliminate-account>
+<!--Modal eliminate invitation-->
+<app-modal-team-eliminate-invitation></app-modal-team-eliminate-invitation>
+
+<!--Notification-->
+<app-sidenav-notifications ></app-sidenav-notifications>
+<app-interface-footer [extraClass]="view === 'projects'?'invested':''"></app-interface-footer>
+<!--Chnage workspace-->
+<app-modal-change-workspace></app-modal-change-workspace>

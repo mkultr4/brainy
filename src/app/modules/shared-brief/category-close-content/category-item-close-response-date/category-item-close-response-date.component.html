@@ -1,0 +1,12 @@
+<div class="response-date " >
+  <div class="brief-date-inputs-container ">
+    
+    <!--Options-->
+    <div class="brief-date-input-field" *ngFor="let option of item.responseSettings.options |  orderByImpure:['order']">
+      <app-option-date-close [option]="option"></app-option-date-close>
+    </div>
+
+
+  </div>
+
+</div>

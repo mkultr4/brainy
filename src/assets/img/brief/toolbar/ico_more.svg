@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="26px" viewBox="0 0 20 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>more</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="more" fill="#FFFFFF">
+            <g id="question" transform="translate(3.000000, 7.000000)">
+                <g id="ico-more">
+                    <path d="M8.35710706,10.3125 L8.35710706,11 L0,11 L0,0 L13,0 L13,5.54046086 L12.3157895,5.55057607 L12.3157895,0.6875 L0.684210526,0.6875 L0.684210526,10.3125 L8.35710706,10.3125 Z" id="Combined-Shape"></path>
+                    <polygon id="Fill-3" points="14 9.58059843 12.4194016 9.58059843 12.4194016 8 11.5805984 8 11.5805984 9.58059843 10 9.58059843 10 10.4192756 11.5805984 10.4192756 11.5805984 12 12.4194016 12 12.4194016 10.4192756 14 10.4192756"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

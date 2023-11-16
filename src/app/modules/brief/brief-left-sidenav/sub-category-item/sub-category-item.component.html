@@ -1,0 +1,43 @@
+<div class="sub-topic-editable-container" [class.editing]="iEditable">
+  <!--Drag Handle-->
+  <a class="sub-topic-drag-handler" href="javascript:void(0)" *ngIf="!iEditable && editable">
+      <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_ordenar_feedback.svg'"></i>
+  </a>
+  <!--Sub topic content-->
+  <span class="sub-topic-content" (click)="gotToSubTopic()">
+      <ng-container *ngIf="item.title === '' || item.title === lineEmpty  ||
+       item.title === lineEmpty2  ; else subtopicNotEmpty">
+          Subcategoría sin titulo
+          <!--Is filled-->
+        <i   *ngIf="item.isFilled" class="icon-svg sub-category-filled" [inlineSVG]="'assets/img/commons/ico_check_simple.svg'"></i>
+      </ng-container>
+      <ng-template #subtopicNotEmpty>
+          <span [innerHTML]="item.title"></span>
+          <!--Is filled-->
+        <i   *ngIf="item.isFilled" class="icon-svg sub-category-filled" [inlineSVG]="'assets/img/commons/ico_check_simple.svg'"></i>
+      </ng-template>
+  </span>
+  <!--Sub topic Editor-->
+  <span class="sub-topic-content-editable">
+      <span class="editor" *ngIf="visible" #editor autocomplete="off" autocorrect="off" autocapitalize="off"
+          spellcheck="false" placeholder="Escribe un subtema" 
+          [contentEditable]="editable" 
+          [(contentEditableModel)]="item.title"
+          [sanitizeHTML]="false"
+         (blur)="blurEditor()"></span>
+  </span>
+  <!--Menu-->
+  <ul *ngIf="editable && !iEditable" class="topic-menu-options-sidenav">
+      <li>
+          <a class="edit" href="javascript:void(0)" (click)="editTitle()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+          </a>
+      </li>
+      <li>
+          <a class="remove" href="javascript:void(0)" app-alert-dialog [message]="'¿Estas seguro de eliminar la subcategoría?'"
+              [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-meeting-note-sidenav'" (alertOnAccept)="removeSubCategory()">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+          </a>
+      </li>
+  </ul>
+</div>

@@ -1,0 +1,66 @@
+<app-animate-modal #modal [modalId]="'modal-share-guests'" (modalOnShow)="modalOnShow()" (modalOnHide)="modalOnHide()">
+  <div class="modal-content-inner">
+    <!--Modal header-->
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Añadir método de pago
+      </h5>
+    </div>
+    <!--Display-->
+    <div class="modal-content-display">
+      <div class="modal-content-new-paymenthod">
+        <div class="row">
+          <div class="col s12">
+            <p class="modal-content-new-paymenthod-title">Añadir tarjeta de crédito o débito</p>
+          </div>
+        </div>
+        <form #newPaymenthod="ngForm">
+          <!-- Number Card -->
+        <div class="row">
+          <div class="col s12 col-primary">
+            <div class="input-field input-field-medium">
+              <input mz-input tabindex="1" autocomplete="off" [label]="'Número de tarjeta'" type="text" name="cardNumber"
+                required maxlength="19" requiredspecialCharacters="[ '[' ,']' , '\' ]" mask="0000 0000 0000 0000" [(ngModel)]="paymentMethod.creditCardNumber" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 modal-content-icon-paymenthod">
+              <img [src]="'assets/img/logo_visa.svg'" class="image-logo">
+              <img [src]="'assets/img/logo_mastecard.svg'" class="image-logo">
+              <img [src]="'assets/img/logo_american_express.svg'" class="image-logo">
+            </div>
+          </div>
+        </div>
+        <!-- Expiration -->
+        <div class="row row-payment" >
+          <div class="col s12 m6 l6 col-primary">
+            <div class="input-field input-field-medium">
+              <input tabindex="1" mz-input type="text" autocomplete="off"  [(ngModel)]="paymentMethod.expiration" [label]="'Fecha de vencimiento'" placeholder="MM/AA" name="expiration" requiredspecialCharacters="[ '[' ,']' , '\' ]" mask="00/00">
+            </div>
+          </div>
+          <div class="col s12 m6 l6  col-primary">
+            <div class="input-field input-field-medium">
+              <input mz-input tabindex="1" autocomplete="off" [(ngModel)]="paymentMethod.secureCode" [label]="'Número de seguridad'" placeholder="3 - 4 digitos"
+                type="password" required maxlength="4" name="secureCode">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 modal-content-icon-card">
+              <img [src]="'assets/img/icon_tarjeta_digitos.svg'" class="image-logo">
+            </div>
+          </div>
+        </div>
+        <!-- Save -->
+        <div class="row">
+          <div class="col s12">
+            <button
+            (click)="savePayMentMethod()"
+            [disabled]="!newPaymenthod.valid">GUARDAR</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</app-animate-modal>

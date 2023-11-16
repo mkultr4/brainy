@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="350px" height="250px" viewBox="0 0 350 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="71" y="0" width="97" height="197"></rect>
+        <linearGradient x1="51.8644634%" y1="96.6266741%" x2="51.8644631%" y2="1.31975446%" id="linearGradient-2">
+            <stop stop-color="#D3D4D6" offset="0%"></stop>
+            <stop stop-color="#EEEFF3" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-3" cx="37.5" cy="57.5" r="17.5"></circle>
+        <circle id="path-4" cx="199.5" cy="57.5" r="17.5"></circle>
+        <circle id="path-5" cx="120" cy="53" r="21"></circle>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(60.000000, 36.000000)">
+            <g id="Group-6-Copy">
+                <g id="Rectangle-Copy-16">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#3E4758" stroke-width="2" x="72" y="1" width="95" height="195"></rect>
+                </g>
+                <rect id="Rectangle-3-Copy-30" fill="#3E4758" x="88" y="96" width="57" height="3"></rect>
+                <rect id="Rectangle-3-Copy-35" fill="#3E4758" x="15" y="90" width="43" height="3"></rect>
+                <rect id="Rectangle-3-Copy-34" fill="#3E4758" x="15" y="101" width="51" height="3"></rect>
+                <rect id="Rectangle-3-Copy-31" fill="#3E4758" x="88" y="107" width="68" height="3"></rect>
+                <rect id="Rectangle-15-Copy-2" fill="#EBECF0" x="81" y="156" width="78" height="27" rx="11"></rect>
+                <polygon id="Path-10-Copy-4" fill="#3E4758" points="159.955971 192 156 173 172 183.218034 162.876618 183.802272"></polygon>
+                <g id="Oval-13-Copy-5">
+                    <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <circle stroke="#000000" stroke-width="1" cx="37.5" cy="57.5" r="17"></circle>
+                </g>
+                <rect id="Rectangle-3-Copy-37" fill="#3E4758" x="178" y="90" width="43" height="3"></rect>
+                <rect id="Rectangle-3-Copy-36" fill="#3E4758" x="178" y="101" width="51" height="3"></rect>
+                <g id="Oval-13-Copy-7">
+                    <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                    <circle stroke="#000000" stroke-width="1" cx="199.5" cy="57.5" r="17"></circle>
+                </g>
+                <g id="Oval-13-Copy-6">
+                    <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    <circle stroke="#000000" stroke-width="1" cx="120" cy="53" r="20.5"></circle>
+                </g>
+                <polyline id="Path-27" stroke="#3E4758" stroke-width="2" points="61 11 -2.27373675e-13 11 -2.27373675e-13 156 58.7458268 156"></polyline>
+                <polyline id="Path-27-Copy" stroke="#3E4758" stroke-width="2" transform="translate(206.500000, 83.500000) scale(-1, 1) translate(-206.500000, -83.500000) " points="237 11 176 11 176 156 234.745827 156"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,94 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-meeting-note-cancel'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="view === 'cancel'">
+          <ng-container *ngIf="meetingNote">
+            <h4 class="title">
+              {{ 'dashboard.modal-cancel.title.'+ meetingNote.type.key | translate }}
+            </h4>
+            <ng-container *ngIf="meetingNote.status.id !== 'approved'">
+              <h4 class="message">
+                {{ 'dashboard.modal-cancel.not-approved.'+ meetingNote.type.key | translate }}
+              </h4>
+            </ng-container>
+            <div class="modal-content-buttons">
+              <button class="btn btn-medium-large " [ngClass]="{'btn-loading':canceling}" [disabled]="canceling"
+                (click)="cancel()">{{
+                canceling ? 'CANCELANDO' :'SI, CONTINUAR'}}</button>
+              <button class="btn btn-medium-large btn-outline-line cancel  last-button" (click)="setView('program')">
+                PROGRAMAR FECHA
+              </button>
+
+
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="view === 'program'">
+          <h4 class="title" id="title-program">
+            Programar minuta
+          </h4>
+          <!--Location & Time-->
+          <div id="location-and-time">
+            <form name="programMeetingNote" #programMeetingNoteForm="ngForm">
+              <div class="row no-margin-bottom">
+                <!--Date-->
+                <div class="col s4">
+                  <div class="input-field input-field-label-medium  input-field-date input-field-medium " [ngClass]="{'input-field-focused-dark': !meetingNote.date}">
+                    <input mz-datepicker [label]="'Fecha'" [options]="datePickerOptions" [(ngModel)]="meetingNote.date"
+                      id="meetingNoteDate" name="meetingNoteDate" placeholder="DD/MM/AA" type="text" required>
+                      <i class="caret-forward" 
+                      [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <!--Time-->
+                <div class="col s4">
+                  <div class="input-field input-field-label-medium  input-field-date input-field-medium" [ngClass]="{'input-field-focused-dark': !meetingNote.hour && meetingNote.date}">
+                    <input mz-timepicker id="draftHour" name="draftHour" [(ngModel)]="meetingNote.hour" [label]="'Hora'"
+                      [options]="timePickerOptions" placeholder="00:00" type="text" required>
+                      <i class="caret-forward" 
+                      [inlineSVG]="'assets/img/commons/inputs/icon_flecha.svg'"></i>
+                  </div>
+                </div>
+                <div class="col s4 ">
+                  <div app-mz-select-container-brainy class="input-field input-field-medium input-field-label-medium "
+                    [ngClass]="{'input-field-focused-dark': meetingNote.hour && !meetingNote.duration}">
+                    <select mz-select placeholder="00:00" name="draftDuration" 
+                    id="draftDuration" data-auto-focus="true"
+                    data-container="body"
+                      [label]="'Duración'" [(ngModel)]="meetingNote.duration" required>
+                      <option value="" selected>Seleccione una hora</option>
+                      <option *ngFor="let t of durationTimes" [value]="t">{{ t }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="location-button-container">
+                    <button class="btn btn-medium-large btn-font-medium right"
+                    [appBtnLoading]="programming"
+                    [disabled]="programMeetingNoteForm.invalid || programming"
+                    (click)="program()"
+                    > 
+                    {{ programming ?'GUARDANDO' : 'GUARDAR'}}
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <!--Modal content display back-->
+  <div class="modal-content-display-back" *ngIf="view == 'program'">
+    <a class="back-button" href="javascript:void(0)" (click)="setView('cancel')">
+      <i [inlineSVG]="'assets/img/participants/ico_arrow_left.svg'" class="icon-svg back-icon"></i>
+      volver
+    </a>
+  </div>
+</app-mz-modal-brainy>

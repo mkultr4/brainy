@@ -1,0 +1,29 @@
+<!-- start header nav-->
+<div class="navbar-default navbar-fixed" id="main-interface-navbar">
+    <nav class="interface-nav" id="main-interface-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="workspace-logo">
+                    <a class="workspace-logo-name" href="javascript:void(0)" [routerLink]="['/']">
+                        <!--Brainy logo-->
+                        <img class="logo" src="assets/img/logo_brainy.svg">
+                        <span>
+                            Teamknowlogy
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+            <a id="workspace-logout" href="javascript:void(0)" (click)="logout()">
+                Cerrar sesión
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/icon_arrow_logout.svg'"></i>
+            </a>
+        </div>
+        <!--Main breadcrumb-->
+        <div id="main-breadcrumb" ng-show="!isScrollDown">
+            <h1>
+                Workspaces
+            </h1>
+        </div>
+    </nav>
+</div>

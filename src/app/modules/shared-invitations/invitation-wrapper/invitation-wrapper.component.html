@@ -1,0 +1,57 @@
+
+<div class="user-block closest-alert" 
+
+appDropdownWrapper 
+(dropdownOnShow)="onShow()"
+(dropdownOnHide)="onHide()"
+[timeout]="timeout"
+[gutter]="gutter"
+[gutterAlignment]="gutterAlignment"
+[edge]="edge"
+[withArrow]="withArrow"
+[dropdownTarget]="'#invitation-profile-' + invitation.id"
+[show]="showDropdown"
+>
+  <!--Avatar-->
+  <div app-avatar class="avatar {{profileClass}}"
+      [user]="invitation.workspaceAccess? invitation.workspaceAccess.user : invitation"
+      [showStatus]="showStatus"
+      [invitation]="invitation.workspaceAccess? false:true"
+      [specialRol]="invitation?.groupReference"
+      
+      
+  ></div>
+
+  <app-invitation-dropdown 
+  [invitation]="invitationDraft"
+  [coreKey]="coreKey"
+  [withArrow]="withArrow"
+  (invitationOnChangePermission)="onChangePermission($event)"
+  (invitationOnCancelInvitation)="onCancelInvitation()"></app-invitation-dropdown>
+
+  <!--Delete-->
+  <div app-alert-dialog
+  [message]="'¿Estas seguro de cancelar la invitación?'"
+  [acceptText]="'Si'"
+  [cancelText]="'No'"
+  [alertClass]="'alert-participants-sidenav'"
+  [edge]="'right'"
+  [show]="isShowDeleteAlert"
+  (alertOnAccept)="cancelInvitation(true)"
+  (alertOnCancel)="cancelInvitation(false)"
+  >
+</div>
+  <!--Permission-->
+  <div app-alert-dialog
+  [message]="'¿Estas seguro de cambiar los privilegios?'"
+  [acceptText]="'Si'"
+  [cancelText]="'No'"
+  [alertClass]="'alert-participants-sidenav'"
+  [edge]="'right'"
+  [show]="isShowPermissionAlert"
+  (alertOnAccept)="changePermission(true)"
+  (alertOnCancel)="changePermission(false)"
+  >
+</div>
+
+</div>

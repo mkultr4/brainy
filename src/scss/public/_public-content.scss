@@ -1,0 +1,317 @@
+.panel-wrapper {
+    .feature-panel {
+        background-image: url('assets/img/public/bg_login.jpg');
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: calc(100% - 610px);
+        height: 100%;
+        background-color: #d9d9d9;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 1;
+        &.register {
+            background-image: url('assets/img/public/bg_register.jpg');
+        }
+    }
+    .main-panel {
+        position: relative;
+        z-index: 2;
+        max-width: 610px;
+        padding: 0 20px;
+        margin-right: auto;
+        min-height: 100vh;
+        background-color: #fff;
+        .main-panel-content {
+            max-width: 350px;
+            margin: 0 auto;
+            .main-panel-logo {
+                padding: 83px 0 107px 0;
+                text-align: center;
+                >a {
+                    font-family: $font-family-brand;
+                    font-weight: 300;
+                    font-size: 24px;
+                    color: #3234AF;
+                    letter-spacing: -0.55px;
+                    line-height: 30px;
+                    padding-left: 35px;
+                    padding-right: 35px;
+                    position: relative;
+                    .image-logo {
+                        position: absolute;
+                        left: 0;
+                    }
+                }
+            }
+            .main-panel-header {
+                .main-panel-header-label {
+                    font-weight: $font-light;
+                    font-size: 24px;
+                    color: $primary-color;
+                    margin: 0;
+                    letter-spacing: 0.5px;
+                    display: block;
+                }
+                .main-panel-header-message {
+                    display: block;
+                    padding: 10px 0 16px 0;
+                    line-height: 14px;
+                    min-height: 40px;
+                    &.message-login {
+                        @include mq($from: wide) {
+                            width: 110%;
+                        }
+                    }
+                }
+                &.main-panel-recover-password {
+                    .main-panel-header-label {
+                        font-size: 18px;
+                        line-height: 21px;
+                    }
+                    .main-panel-header-message {
+                        font-weight: $font-light;
+                        font-size: 14px;
+                        line-height: 19px;
+                        padding-top: 13px;
+                        padding-bottom: 41px;
+                    }
+                }
+            }
+            .main-panel-form {
+                .input-field {
+                    &.input-field-password {
+                        margin-bottom: 15px;
+                    }
+                    margin-bottom: 45px;
+                    >label {
+                        font-weight: $font-regular;
+                    }
+                }
+                .form-help {
+                    font-weight: $font-regular;
+                    font-size: 12px;
+                    color: rgba($primary-color, 0.40);
+                    letter-spacing: 0.25px;
+                    display: block;
+                    line-height: 14px;
+                    &:hover {
+                        color: $purple-color-light;
+                    }
+                }
+                .form-help-reset-password {
+                    text-align: right;
+                }
+                .form-help-remember-me {
+                    input[type="checkbox"] {
+                        &+label {
+                            color: rgba($primary-color, 0.40);
+                            letter-spacing: -0.27px;
+                            font-weight: $font-regular;
+                        }
+                    }
+                }
+                .main-panel-form-button {
+                    padding: 65px 0 0px 0;
+                    text-align: center;
+                    >.btn {
+                        width: 180px;
+                        padding: 0;
+                        text-align: center;
+                        border-radius: 2px;
+                    }
+                }
+            }
+            .main-panel-social {
+                padding: 50px 0 50px;
+                text-align: center;
+                .main-panel-social-label {
+                    font-family: $font-regular;
+                    font-size: 14px;
+                    color: ($primary-color, 0.7);
+                    letter-spacing: 0.29px;
+                    display: block;
+                    margin-bottom: 30px;
+                }
+                .main-panel-social-buttons {
+                    .social-button {
+                        height: 40px;
+                        width: 85px;
+                        border: 1px solid rgba($primary-color, 0.2);
+                        color: rgba($primary-color, 0.30);
+                        line-height: 35px;
+                        border-radius: 2px;
+                        display: inline-block;
+                        text-align: center;
+                        .icon-svg {
+                            display: inline-block;
+                            vertical-align: middle;
+                            &.on-hover {
+                                display: none;
+                            }
+                            &.on-leave {
+                                display: inline-block;
+                            }
+                        }
+                        &:first-child {
+                            margin-right: 5px;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                            border-color: $primary-color;
+                            .icon-svg {
+                                &.on-leave {
+                                    display: none;
+                                }
+                                &.on-hover {
+                                    display: inline-block;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .main-panel-footer {
+                padding: 50px 0;
+                text-align: center;
+                .main-panel-footer-link {
+                    font-weight: $font-light;
+                    font-size: 12px;
+                    color: $primary-color;
+                    letter-spacing: 0.25px;
+                    line-height: 16px;
+                    >span {
+                        margin-right: 17px;
+                    }
+                    >a {
+                        font-weight: $font-regular;
+                        font-size: 14px;
+                        color: $primary-color;
+                        letter-spacing: 0.29px;
+                    }
+                    @include mq($until:tablet) {
+                        >span,
+                        >a {
+                            display: block;
+                            text-align: center;
+                        }
+                        >span {
+                            &+a {
+                                margin-top: 15px;
+                            }
+                        }
+                    }
+                }
+            } //Recover password
+            .main-panel-form-recover {
+                .main-panel-form-button {
+                    padding: 12px 0 50px 0;
+                    text-align: center;
+                    >.btn {
+                        width: 200px;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+.input-field-password {
+    input {
+        padding-right: 70px;
+    }
+    .character-count {
+        position: absolute;
+        right: 0px;
+        font-weight: $font-regular;
+        font-size: 10px;
+        color: rgba($primary-color, 0.40);
+        letter-spacing: 0.21px;
+        top: 8px;
+        padding-right: 6px;
+        &.valid {
+            padding-right: 0;
+            >i {
+                svg {
+                    width: 10px;
+                    height: 10px;
+                    ellipse,
+                    polyline {
+                        stroke: $purple-color-light
+                    }
+                }
+            }
+        }
+    }
+}
+.panel-wrapper-register {
+    @extend .panel-wrapper;
+    .feature-panel {
+        background-image: url('assets/img/public/bg_register.jpg');
+    }
+    .main-panel {
+        .main-panel-content {
+            .main-panel-form {
+
+                .main-panel-form-button {
+                    padding-top: 77px;
+                }
+            }
+            .main-panel-footer {
+                padding-bottom: 44px;
+                .main-panel-footer-link {
+                    >span {
+                        margin-right: 13px;
+                    }
+                }
+            }
+        }
+        .main-panel-footer-privacy {
+            max-width: 403px;
+            margin: 0 auto;
+            font-size: 12px;
+            color: rgba($primary-color, 0.4);
+            letter-spacing: 0.15px;
+            text-align: center;
+            line-height: 14px;
+            padding-bottom: 50px;
+        }
+    }
+}
+
+.panel-wrapper-thanks {
+    @extend .panel-wrapper-register;
+    .main-panel {
+        .main-panel-content {
+            .main-panel-logo {
+                padding-bottom: 198px;
+            }
+            .main-panel-thanks-message {
+                font-weight: $font-light;
+                font-size: 30px;
+                letter-spacing: 0.62px;
+                text-align: center;
+                line-height: 35px;
+                margin-bottom: 16px;
+            }
+            .main-panel-thanks-message-secondary {
+                font-size: 14px;
+                color: rgba($purple-color-light, 0.70);
+                line-height: 16px;
+                text-align: center;
+                letter-spacing: 0.2px;
+            }
+            .main-panel-thanks-button {
+                text-align: center;
+                padding-top: 55px;
+                >.btn {
+                    border-radius: 2px;
+                    width: 180px;
+                    text-align: center;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

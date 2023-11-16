@@ -1,0 +1,59 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-request-modification'" [modalClass]="'modal-vertically-center modal-request-core'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content">
+
+    <h4 class="modal-title">
+      Solícita modificación a:
+    </h4>
+    <ng-container *ngIf="core">
+      <!--If have editor-->
+      <div class="participant-list-block" *ngIf="requestTo">
+        <div class="participant-information without-permissions">
+          <div class="avatar profile-image-medium-1" app-avatar [user]="requestTo.workspaceAccess.user" [showStatus]="false"
+            [specialRol]="requestTo?.groupReference"></div>
+          <div class="participant-user-information">
+
+            <span class="name">
+              {{requestTo.workspaceAccess.user.name + ' ' + requestTo.workspaceAccess.user.lastName}}&nbsp;<ng-container
+                *ngIf="requestTo.groupReference === 'editor' || requestTo.groupReference === 'approver'">|&nbsp;{{'workspaceAccess.rol.'+
+                requestTo.groupReference | translate}}</ng-container></span>
+            <span class="rol">{{ 'workspaceAccess.rol.' + requestTo.workspaceAccess.rol.key | translate}}</span>
+
+          </div>
+        </div>
+      </div>
+      <!--If not have editor-->
+      <div class="participant-list-block" *ngIf="!requestTo">
+        <div class="participant-information without-permissions">
+          <div class="avatar profile-image-medium-1" app-avatar [user]="core.owner" [showStatus]="false" [specialRol]="requestTo?.groupReference"></div>
+          <div class="participant-user-information">
+
+            <span class="name">
+              {{core.owner.name + ' ' + core.owner.lastName}}
+            </span>
+            <span class="rol">{{ 'workspaceAccess.rol.' + core?.ownerRol?.key | translate}}</span>
+
+          </div>
+        </div>
+      </div>
+      <div class="content-editable-message-container">
+        <app-content-editable-menu [show]="showMenu"></app-content-editable-menu>
+        <div class="content-editable-message" contenteditable="true" placeholder="Escriba un mensaje"
+          [(contentEditableModel)]="notification.message" 
+          [singleLine]="false" [maxLength]="500" (focus)="showMenu = true;"
+          (blur)="showMenu = false;">
+          <br>
+        </div>
+      </div>
+      <div class="modal-content-buttons right-align">
+        <button class="btn btn-medium-large" 
+        [disabled]="notification.message.length === 0 || btnDisabled" 
+        (click)="requestModification()">ENVIAR</button>
+      </div>
+    </ng-container>
+
+  </div>
+</app-mz-modal-brainy>

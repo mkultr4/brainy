@@ -1,0 +1,15 @@
+<div class="brief-radio close-view" [ngClass]="{'selected':selected}">
+
+  <!--Checkbox Option-->
+  <div class="brief-radio-option">
+    <div class="brief-radio-option-content">
+      <!--Indicator-->
+      <span class="radio-indicator">
+        <img src="assets/img/brief/ico_resp_check.svg" class="active-indicator-icon">
+      </span>
+      <!--Label-->
+      <div class="radio-label"
+      [innerHTML]="option.label | sanitize:'html'"></div>
+    </div>
+  </div>
+</div>

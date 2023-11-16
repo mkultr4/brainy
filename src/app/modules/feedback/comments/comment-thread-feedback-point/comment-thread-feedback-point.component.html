@@ -1,0 +1,30 @@
+<div #commentThreadPoint 
+  [ngClass]="[  'comment-thread comment-thread-point-feedback comment-thread-point ' + commentThread.status.key,
+                commentThread.unreadMessages? 'unread-messages' : ''
+           ]" 
+  [id]="'thread-'+ commentThread.id"
+  (click)="showCommentSidebarThread($event)"
+  appDraggable
+  [draggableContainmentScroll]="'.piece-workflow-container'"
+  [draggableContainment]="'.closest-comment-thread-container'"
+  [draggableEnabled]="enabled" 
+  (draggableOnStop)="onDragStop($event)" 
+  (draggableOnDragging)="onDragging($event)"
+  [style.left]="'calc('+ ((commentThread.originalLeft * 100 ) /  piece.setting.naturalWidth ) + '%'+ ' - 0px)'"
+  [style.top]="'calc('+ ((commentThread.originalTop * 100 ) /  piece.setting.naturalHeight ) + '%'+ ' - 0px)'"
+  [style.opacity]="opacity" 
+  [attr.data-x]="commentThread.left"
+  [attr.data-y]="commentThread.top"
+  [hidden]="!show"
+  >
+  <span>{{commentThread.number}}</span>
+  <span *ngIf="commentThread.saved" class="comment-thread-point-participant">
+    <!--Team-->
+    <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'team'" [inlineSVG]="'assets/img/commons/comments/ico_pin_team.svg'"></i>
+    <!--Private-->
+    <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'private'" [inlineSVG]="'assets/img/commons/comments/ico_pin_private.svg'"></i>
+    <!--Just me-->
+    <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'just-me'" [inlineSVG]="'assets/img/commons/comments/ico_pin_just_me.svg'"></i>
+  </span>
+
+</div>

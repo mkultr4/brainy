@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <defs>
+        <polygon id="path-1" points="1.89514572e-16 4.38626637 1.89514572e-16 -2.68155058e-05 7.79524242 -2.68155058e-05 7.79524242 4.38626637 0 4.38626637"></polygon>
+    </defs>
+    <g  stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="04_plan_activo-" transform="translate(-654.000000, -576.000000)">
+            <g id="Group-14" transform="translate(654.000000, 573.000000)">
+                <g id="Group-12" transform="translate(0.000000, 3.000000)">
+                    <g>
+                        <circle id="Oval-5-Copy-4" fill="#7ED321" cx="8.5" cy="8.5" r="8.5"></circle>
+                        <g id="Group-7-Copy-4" transform="translate(4.533333, 6.800000)">
+                            <g id="Page-1">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Clip-2"></g>
+                                <path d="M7.0538371,0.00024 C6.8672313,0.00450666667 6.68993855,0.0647733333 6.55990087,0.168506667 L2.82261101,3.05810667 L1.23490957,1.83064 C1.09935304,1.72290667 0.913437101,1.66210667 0.719242899,1.66237333 C0.0745733333,1.66290667 -0.243104928,2.26850667 0.218753043,2.61597333 L2.28831826,4.21597333 C2.42732406,4.32797333 2.62117333,4.38957333 2.82192116,4.38610667 C3.02335884,4.38984 3.21755304,4.32797333 3.35759362,4.21597333 L7.57605739,0.95384 C8.0458487,0.600773333 7.70885449,-0.0146933333 7.0538371,0.00024" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

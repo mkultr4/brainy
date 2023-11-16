@@ -1,0 +1,28 @@
+<div class="dropdown dropdown-profile left" [id]="'dropdown-profile-'+owner.id">
+  <div class="user-profile-content">
+    <!--Profile-->
+    <div class="user-profile">
+      <!--Avatar-->
+      <div app-avatar class="avatar profile-image-default"
+      [user]="owner"
+      [showStatus]="true"
+      [ngClass]="{'with-halo': true}"
+      ></div>
+      <!--Name-->
+      <div class="user-profile-name">
+        {{owner.user.name + ' ' + owner.user.lastName}}
+      </div>
+      <!--Rol-->
+      <div class="user-profile-rol">
+        {{owner.rol.name}}
+      </div>
+    </div>
+
+  </div>
+  <div class="responsible-footer" >
+    <span>
+      Owner
+    </span>
+  </div>
+  <div class="arrow"></div>
+</div>

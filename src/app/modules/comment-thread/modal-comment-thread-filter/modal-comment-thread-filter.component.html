@@ -1,0 +1,45 @@
+<div class="modal-floating-filter-comments modal-prevent-close" 
+    [id]="modalId"
+     app-modal-floating 
+    [modalFloatingEdge]="'bottom'"
+    [modalFloatingAlign]="'center'" 
+    [modalFloatingBtnId]="modalBtnId" 
+    (modalOnHide)="onHide()">
+    <a href="javascript:void(0)" class="modal-close">
+        <i [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+    </a>
+    <div class="modal-wrapper">
+        <div class="modal-content" [perfectScrollbar]="{supressScrollX:true}">
+            <div id="statuses-filter-content">
+                <p class="modal-filter-title">Status</p>
+        
+                <div class="checkbox-block" *ngFor="let status of commentThreadStatuses;let last = last " 
+                [ngClass]="{'last': last}">
+                    <input class="filled-in shined border-radius-2 medium-2 invested full-width" type="checkbox" 
+                    [value]="status.key" (change)="onChangeStatus(status, $event)"
+                        [checked]="statusesFilter.indexOf(status) >= 0" 
+                        [id]="'cb-modal-filter-comments-s-' + id + status.key">
+                    <label class="font-weight-light" [for]="'cb-modal-filter-comments-s-'  + id  +  status.key">
+                        <i class="icon-svg {{status.val}}" [inlineSVG]="status.ico"></i>
+                        {{'comment.status.' + status.key  | translate}}
+                    </label>
+                </div>
+            </div>
+            <div id="participants-filter-content">
+                <p class="modal-filter-title">Participantes</p>
+                <!--Participant filter-->
+                <div class="checkbox-block" *ngFor="let type of participantTypes">
+                    <input class="filled-in shined border-radius-2 medium-2 invested full-width" type="checkbox" 
+                    check-list='filterCommentsParticipantsType' [value]="type.key"
+                        (change)="onChangeParticipant(type, $event)" [checked]="participantsTypesFilter.indexOf(type) >= 0"
+                         [id]="'cb-modal-filter-comments-p-' + id + type.key">
+                    <label class="font-weight-light" [for]="'cb-modal-filter-comments-p-'  + id +  type.key">
+                        <i class="icon-svg participants" [inlineSVG]="type.ico"></i>
+                        {{'participant.type.' + type.key | translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

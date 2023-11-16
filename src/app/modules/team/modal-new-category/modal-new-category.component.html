@@ -1,0 +1,27 @@
+<div 
+#modal
+  class="modal-floating modal-prevent-close right" id="modal-add-new-category"
+   app-modal-floating [modalFloatingBtnId]="'#team-add-new-category'"
+    [modalFloatingEdge]="'right'" [modalFloatingAlign]="'center'"
+    (modalOnShow)="onShow()"
+    (modalOnHide)="onHide()"
+    >
+    <form name="formNewCategory" #formNewCategory="ngForm">
+      <div class="modal-content">
+        <div class="input-field input-field-medium ">
+          <input type="text" mz-input [label]="'Nombre del grupo'"
+          #newCategoryNameInput
+           [(ngModel)]="newCategory.name"
+           autocomplete="off"
+           name="newCategoryName" placeholder="Escribe un nombre"
+          required
+          >
+        </div>
+        <div class="modal-btn">
+          <button class="btn btn-outline-line cancel" (click)="cancel()">cancelar</button>
+          <button class="btn" [disabled]="formNewCategory.invalid" (click)="save()">crear</button>
+        </div>
+      </div>
+    </form>
+    <div class="arrow"></div>
+  </div>

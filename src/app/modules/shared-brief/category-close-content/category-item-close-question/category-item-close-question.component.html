@@ -1,0 +1,13 @@
+<!--Header-->
+<div class="question-header" [class.without-description]="!item.description">
+  <span class="question-title">
+    {{ item.title }}
+  </span>
+  <ng-container *ngIf="item.description">
+    <span class="question-description">
+      {{ item.description }}
+    </span>
+  </ng-container>
+</div>
+<!--Response-->
+<app-category-item-close-response [item]="item"></app-category-item-close-response>

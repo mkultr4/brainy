@@ -1,0 +1,42 @@
+<div class="profile-user-benefits-contontent">
+    <div class="profile-user-benefits-title">
+      <span>Estado de Recomendaciones</span>
+    </div>
+    <table class="table-recommendations">
+      <thead>
+        <tr>
+          <th>Invitaciones</th>
+          <th>Estado de solicitud</th>
+          <th class="gift">Beneficio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of recommendations">
+          <td>
+            <div class="recommendation-user"> 
+              <div class="avatar" app-avatar [user]="r"></div>
+              {{r.email}}
+            </div>
+          </td>
+          <td class="status">
+            <span *ngIf="r.status === 'send'" class="send">
+                Invitación enviada
+            </span>
+            <span *ngIf="r.status === 'active'" class="active">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_min_color.svg'"></i>
+                Plan activo
+            </span>
+            <span *ngIf="r.status === 'plan_free'">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_check_min_color.svg'"></i>
+                Activo prueba 30 días
+            </span>
+          </td>
+          <td class="gift">{{r.gift}}</td>
+        </tr>
+        <tr *ngIf="recommendations.length === 0">
+            <td class="empty" colspan="5">Sin datos para mostrar</td>
+          </tr>
+      </tbody>
+  
+    </table>
+  </div>

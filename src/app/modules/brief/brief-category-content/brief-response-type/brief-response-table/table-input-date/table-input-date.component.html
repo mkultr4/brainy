@@ -1,0 +1,13 @@
+<div class='brief-table-input-date'>
+  <div class="input-field">
+    <input mz-datepicker 
+      [options]="datePickerOptions" 
+      (focus)="onFocusFn(true)" 
+      (blur)="onFocusFn(false)" 
+      [disabled]="!refillable"
+      type="text" placeholder="DD / MM / AAAA" 
+      [(ngModel)]="cell.value"
+      (ngModelChange)="onChangeValue()"
+      >
+  </div>
+</div>

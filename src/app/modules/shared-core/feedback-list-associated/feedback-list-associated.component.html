@@ -1,0 +1,61 @@
+<app-aside-nav #feedbackListSidenav id="feedback-associated-sidenav" class="tertiary" [disableScroll]="true"
+  (asideOnHide)="onHide()" (asideOShow)="onShow()">
+  <div app-sidenav id="slide-out-associated-feedback-list"
+   class="side-nav  rightside-navigation animated   box-shadow-line">
+    <!--Header Sidenav-->
+    <div class="header-big">
+      <h5 class="header-title">
+        Feedback
+        <ng-container *ngIf="feedbacks">
+          <span *ngIf="feedbacks.length > 0">({{feedbacks.length}})</span>
+        </ng-container>
+        <!--Menu Tollbar-->
+        <ul class="menu-toolbar-header">
+
+          <li>
+            <a class="close close-sidenav" href="javascript:void(0);">
+              <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_closed.svg'"></i>
+            </a>
+
+          </li>
+        </ul>
+      </h5>
+    </div>
+    <!--Draft List-->
+    <ng-container *ngIf="feedbacks">
+      <div class="core-list" [perfectScrollbar]="{supressScrollX:true}">
+        <div class="feedback-associated-block" (click)="viewFeedback(feedback)" 
+        *ngFor="let feedback of feedbacks; let last = last"
+          [ngClass]="{ 'last': last}">
+          <!--Cover-->
+          <div *ngIf="feedback.coverImage" class='core-cover' [ngStyle]="{backgroundImage :'url(' + feedback.coverImage + ')'}"></div>
+          <!--Cover not found-->
+          <div *ngIf="!feedback.coverImage " class='core-cover' [ngStyle]="{backgroundImage:'url(' + imageNotFound + ')'}"></div>
+          <div class="core-associated-block-table">
+            <div class="core-associated-block-table-cell">
+              <div class="core-associated-block-content">
+                <div class="core-title">
+                  <span>{{feedback.title}}</span>
+                </div>
+                <div class="core-date">
+                  <span>
+                    {{ feedback.created | momentDate:'DD/MM/YYYY HH:mm' }}
+                  </span>
+                </div>
+                <div class="core-project">
+                  <span>{{feedback.project.brand.name}} ( {{feedback.project.name}} )</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <h3 class="without-results" *ngIf="feedbacks.length === 0">
+          {{ 'commons.without-results' | translate }}
+        </h3>
+      </div>
+    </ng-container>
+  </div>
+
+</app-aside-nav>

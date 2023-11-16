@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 28, 2017, 12:11:34 PM
+    Author     : ariel
+*/
+p{
+    @include default-font;
+}
+strong {font-weight: 600;}
+.text-overflow
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    @include default-font-header;
+}
+h1 { font-size: $h1-fontsize; line-height: 110%; margin: ($h1-fontsize / 2) 0 ($h1-fontsize / 2.5) 0;}
+h2 { font-size: $h2-fontsize; line-height: 110%; margin: ($h2-fontsize / 2) 0 ($h2-fontsize / 2.5) 0;}
+h3 { font-size: $h3-fontsize; line-height: 110%; margin: ($h3-fontsize / 2) 0 ($h3-fontsize / 2.5) 0;}
+h4 { font-size: $h4-fontsize; line-height: 110%; margin: ($h4-fontsize / 2) 0 ($h4-fontsize / 2.5) 0;}
+h5 { font-size: $h5-fontsize; line-height: 110%; margin: ($h5-fontsize / 2) 0 ($h5-fontsize / 2.5) 0;}
+h6 { font-size: $h6-fontsize; line-height: 110%; margin: ($h6-fontsize / 2) 0 ($h6-fontsize / 2.5) 0;}
+
+p > i,
+p > .material-icons
+{
+    font-size: 13px;
+}
+
+.text-uppercase
+{
+    text-transform: uppercase;
+}
+.font-smallest
+{
+    font-size: 10px;
+}
+.font-small
+{
+    font-size: 12px;
+}
+
+.font-medium
+{
+    font-size: 14px;
+}
+
+.font-big
+{
+    font-size: 18px;
+}
+
+.ionicons-font{
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-weight-thin{
+    font-weight: $font-thin !important;
+}
+.font-weight-light{
+    font-weight: $font-light !important;
+}
+.font-weight-regular{
+    font-weight: $font-regular !important;
+}
+
+.font-weight-medium{
+    font-weight: $font-medium !important;
+}
+.font-weight-bold{
+    font-weight: $font-bold !important;
+}
+.font-weight-black{
+    font-weight: $font-black !important;
+}
+
+.text-capitalize{
+    text-transform: capitalize;
+}
+.text-error{
+    color: $status-comment-disapproved-color !important;
+}

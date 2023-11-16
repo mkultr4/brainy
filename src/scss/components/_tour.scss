@@ -1,0 +1,494 @@
+.tour-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 2049;
+}
+
+.tour-popup {
+    background: #FFFFFF;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.17);
+    border-radius: 4px;
+    position: absolute;
+    padding: 30px 20px 30px 20px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2051;
+    width: 360px;
+    transition: all 0.3s ease;
+    .tour-popup-close {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        text-align: center;
+        display: block;
+        font-size: 20px;
+        border-radius: 20px;
+        color: $primary-color;
+        line-height: 20px;
+        z-index: 2;
+        >i {
+            svg {
+                polygon {
+                    fill: $primary-color;
+                }
+            }
+        }
+        &:hover {
+            background-color: #F3F3F8;
+        }
+    }
+    .tour-popup-message {
+        display: inline-block;
+        width: 100%;
+        margin: 0 0 32px 0;
+        font-weight: $font-regular;
+        font-size: 16px;
+        color: $primary-color;
+        line-height: 24px;
+        transition: none;
+    }
+    .tour-popup-button {
+        display: inline-block;
+        width: 100%; // margin-top: 33px;
+        button {
+            border-radius: 2px;
+            min-width: 100px;
+            padding: 0 20px;
+            height: 35px;
+            line-height: 35px;
+            box-shadow: none;
+            text-align: center;
+            font-weight: $font-regular;
+            font-size: 14px;
+            letter-spacing: 0.15px;
+            &.previous-button {
+                float: left; // color: $primary-color;
+                &:hover {}
+            }
+            &.next-button {
+                float: right;
+            }
+        }
+    }
+    .tour-popup-arrow {
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        top: 35px;
+    }
+    &.left {
+        .tour-popup-arrow {
+            right: -13px;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 35px solid #fff;
+        }
+    }
+    &.right {
+        .tour-popup-arrow {
+            left: -13px;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-right: 35px solid #fff;
+        }
+    }
+    &.show {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.tour-popup-blue {
+    background-color: $purple-color-light;
+    padding: 35px 40px 27px 40px;
+    max-width: 90vw;
+    width: 416px;
+    min-width: 416px;
+    .tour-popup-close {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        text-align: center;
+        display: block;
+        font-size: 20px;
+        border-radius: 20px;
+        color: $primary-color;
+        line-height: 20px;
+        z-index: 2;
+        >i {
+            svg {
+                polygon {
+                    fill: #fff;
+                }
+            }
+        }
+        &:hover {
+            background-color: transparent;
+            opacity: 0.7;
+            
+        }
+    }
+    .tour-popup-message {
+        display: inline-block;
+        width: 100%;
+        margin: 0 0 16px 0;
+        font-weight: $font-regular;
+        font-size: 18px;
+        color: #fff;
+        line-height: 24px;
+        transition: none;
+        min-height: 48px;
+    }
+    .tour-popup-button {
+        display: inline-block;
+        width: 100%; // margin-top: 33px;
+        padding-right: 22px;
+        text-align: right;
+        button {
+            border-radius: 2px;
+            min-width: 120px;
+            padding: 0 20px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+            &.next-button {
+                float: none;
+               
+            }
+            &.previous-button {
+                float: none;
+                color: rgba(#fff, 0.4);
+                margin-right: 10px;
+            }
+            &:hover {
+                background-color: #fff;
+                color: $purple-color-light;
+            }
+        }
+    }
+    &.left {
+        .tour-popup-arrow {
+            right: -13px;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 35px solid $purple-color-light;
+        }
+    }
+    &.right {
+        .tour-popup-arrow {
+            left: -13px;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-right: 35px solid $purple-color-light;
+        }
+    }
+}
+
+.tour-popup-no-close {
+    .tour-popup-close {
+        display: none;
+    }
+}
+
+.tour-container-message {
+    display: block;
+    .tour-message-caption {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: inline-block;
+        width: 100%;
+        height: 221px;
+        background: #fff;
+        margin-bottom: 17px;
+        img {
+            width: 100%;
+            vertical-align: middle;
+        }
+    }
+    .tour-message-text {
+        font-weight: $font-regular;
+        font-size: 16px;
+        color: $primary-color;
+        line-height: 24px;
+        margin-bottom: 0;
+        display: inline-block;
+        width: 100%;
+        margin: 0;
+        min-height: 72px;
+         .icon-image{
+            display: inline-block;
+            margin: 0 3px;
+        }
+    }
+}
+
+.tour-feeback-actions {
+    display: inline-block;
+    display: inline-block;
+    font-family: $font-family-brand;
+    font-size: 12px;
+    letter-spacing: -0.27px;
+    line-height: 24px;
+    height: 24px;
+    .feed-actions-items {
+        margin-left: 11px;
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        .action-icon {
+            width: 11px;
+            height: 11px;
+            border: 2px solid $primary-color;
+            display: inline-block;
+            margin-right: 6px;
+            vertical-align: middle;
+            &.circle {
+                border-radius: 11px;
+            }
+        }
+        .action-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        &:last-child {
+            margin-right: 11px;
+        }
+    }
+}
+
+.tour-popup-core {
+    height: 418px;
+    .tour-popup-message {
+        margin: 0 0 12px 0;
+    }
+}
+
+.tour-popup-meeting-note {
+    height: 448px;
+    .tour-popup-message {
+        margin: 0 0 20px 0;
+    }
+}
+.tour-popup-meeting-note{
+
+}
+
+.tour-carousel-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 2050;
+    background: rgba($primary-color, 0.9);
+}
+
+.tour-carousel-wrapper {
+    position: absolute;
+    z-index: 2051;
+    left: 0;
+    top: 0;
+    display: table;
+    width: 100%;
+    height: 100%;
+    .tour-carousel-content {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+.tour-carousel {
+    .ngucarousel {
+        position: relative;
+        height: 660px;
+        width: 660px;
+        max-width: 80vw;
+        max-height: 80vh;
+        margin: 0 auto;
+        .ngucarousel-inner {
+            height: 100%;
+            .ngucarousel-items {
+                height: 100%;
+                .item {
+                    width: 100%;
+                    height: 100%;
+                    padding: 20px;
+                    .tile {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    } //Navigation
+    .tour-navigation {
+        background: #FFFFFF;
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
+        line-height: 80px;
+        top: 50%;
+        margin-top: -40px;
+        position: absolute;
+        text-align: center;
+        color: $purple-color-light;
+        >i {
+            //  font-size: 72px;
+        }
+        &:hover {
+            color: #fff;
+            background-color: $purple-color-light;
+            >i {
+                svg {
+                    path {
+                        fill: #fff;
+                    }
+                }
+            }
+        }
+        &.tour-navigation-right {
+            right: -110px;
+        }
+        &.tour-navigation-left {
+            left: -110px;
+            transform: rotate(-180deg);
+        }
+        @include mq($until: desktop) {
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            line-height: 60px;
+            &.tour-navigation-right {
+                right: -50px;
+            }
+            &.tour-navigation-left {
+                left: -50px;
+            }
+            >i {
+                svg {
+                    width: 30px;
+                }
+            }
+        }
+    }
+    .ngxcarouselPoint {
+        padding: 0 46px;
+        >li {
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            border: 1px solid #FFFFFF;
+            &.active {
+                background: #fff;
+            }
+        }
+    }
+}
+
+.tour-item-wrapper {
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 0;
+    overflow: hidden;
+    .tour-item-content {
+        width: 100%;
+        height: 100%;
+        .tour-item-ilustration-wrapper {
+            position: relative;
+            height: calc(100% - 230px);
+            width: 100%;
+            overflow: hidden;
+            .dummy {
+                padding-top: 100%;
+                /* forces 1:1 aspect ratio */
+                padding-top: calc(100% - 230px);
+            }
+            .tour-item-ilustration-container {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                text-align: center;
+                /* Align center inline elements */
+                font: 0/0 a;
+                .centerer {
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: 100%;
+                }
+                .tour-item-ilustration {
+                    max-height: 100%;
+                    max-width: 100%;
+                    vertical-align: middle;
+                    display: inline-block;
+                }
+            }
+        }
+        .tour-item-caption {
+            padding: 30px 10px 0 10px;
+            .tour-item-caption-title {
+                font-weight: $font-light;
+                font-size: 36px;
+                letter-spacing: 0.56px;
+                line-height: 50px;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+            .tour-item-caption-text {
+                font-weight: $font-regular;
+                font-size: 18px;
+                letter-spacing: 0;
+                line-height: 24px;
+                text-align: center;
+                margin: 0 auto;
+                a {
+                    color: $purple-color-light;
+                }
+            }
+            .tour-item-caption-button {
+                display: inline-block;
+                width: 100%;
+                padding: 0 56px;
+                text-align: center;
+                margin-top: 13px;
+                >.btn-center {
+                    font-size: 18px;
+                    width: 200px;
+                    padding: 0;
+                    border-radius: 2px;
+                }
+                >.btn-right {
+                    min-width: 100px;
+                    float: right;
+                }
+            }
+        }
+        &.bg-grey {
+            .tour-item-ilustration-wrapper {
+                background: #f6f6fb;
+            }
+        }
+        @include mq($until: tablet) {
+            .tour-item-ilustration-wrapper {
+                height: 55%;
+                .dummy {
+                    padding-top: 100%;
+                    /* forces 1:1 aspect ratio */
+                }
+            }
+        }
+    }
+}

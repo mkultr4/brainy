@@ -1,0 +1,145 @@
+<!--Layout Meeting note-->
+<section class="layout-workflow-compress  layout-draft">
+  <!--Left Navigation-->
+  <ng-container *ngIf="meetingNote && meetingNote.id">
+    <app-meeting-note-left-sidenav [meetingNote]="meetingNote" [topics]="topics" [topicShow]="topicShow" [compressed]="leftSidenavCompressed"
+      [scheduled]="meetingNote.meetingNoteType.key === 'scheduled'" [editable]="editable" [view]="view" (onViewChange)="onViewChange($event)"
+      (updateEditor)="updateEditor()"></app-meeting-note-left-sidenav>
+  </ng-container>
+  <!--Main-->
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <ng-container *ngIf="meetingNote && meetingNote.id">
+        <!--Header-->
+        <header app-meeting-note-header class="interface-header workflow-header" id="draft-header" [workspaceAccess]="workspaceAccess"
+          [meetingNote]="meetingNote" [coreStatuses]="coreStatuses" [commentThreadStatuses]="commentThreadStatuses"
+          [commentThreadTypes]="commentThreadTypes" [isAdmin]="isAdmin" [editable]="editable && meetingNote.status.key !== 'disapproved'"
+          [canShare]="canShare" [canApprove]="canApprove" [isApprover]="isApprover" (headerOnApprove)="onApprove()"
+          (headerOnChangeStatus)="headerOnChangeStatus($event)" [ngClass]="{'sidenav-left-compress':leftSidenavCompressed }">
+        </header>
+      </ng-container>
+      <!--Screen view-->
+      <div class="screen-view meeting-note-screen-view" [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,'sidenav-left-compress':leftSidenavCompressed}">
+        <ng-container *ngIf="meetingNote && meetingNote.id && topicShow">
+          <!--Toolbar-->
+          <div class="workflow-primary-header meeting-note-toolbar">
+            <div class="meeting-note-toolbar-container">
+              <ng-container >
+                <!--Editable Toolbar-->
+                <app-topic-editable-toolbar 
+                *ngIf="editable"
+                [hidden]="view !== 'topic'" [contentEditableId]="'editor-description'">
+                </app-topic-editable-toolbar>
+                <!--Topic toolbar-->
+                <app-topic-toolbar #topicToolbar 
+                  [hidden]="view !== 'topic'" 
+                  [editable]="editable"
+                  [workspaceAccess]="workspaceAccess"
+                  [commentThreadStatuses]="commentThreadStatuses" 
+                  [participantTypes]="participantTypes" [meetingNote]="meetingNote"
+                  [topicShow]="topicShow" (topicToolbarOnAddTask)="topicToolbarOnAddTask($event)">
+                </app-topic-toolbar>
+              </ng-container>
+
+            </div>
+          </div>
+          <!--Editor-->
+          <div class="workflow-primary-content meeting-note-wrapper">
+            <ng-container *ngIf="view==='topic'">
+
+              <div class="topic-wrapper">
+              
+                <app-topic-editor #topicEditor [meetingNote]="meetingNote" [workspaceAccess]="workspaceAccess"
+                  [editable]="editable" [topicShow]="topicShow" 
+                  [enableComments]="meetingNote.status.key !== 'disapproved'"
+                  [scheduled]="meetingNote.meetingNoteType.key === 'scheduled'" [commentThreadStatuses]="commentThreadStatuses"
+                  [participantTypes]="participantTypes" 
+                  [showTour]="hasTour"
+                  (topicEditorOnFind)="topicEditorOnFind()"
+                  (topicEditorOnEndTour)="topicEditorOnEndTour()"
+                  (topicEditorOnFocusDescription)="showEditableToolbar($event)">
+                </app-topic-editor>
+              </div>
+
+            </ng-container>
+            <!--Tasks-->
+            <ng-container *ngIf="view === 'tasks'">
+              <app-meeting-note-tasks [topics]="topics" [editable]="editable"></app-meeting-note-tasks>
+            </ng-container>
+            <!--Agreements-->
+            <ng-container *ngIf="view === 'agreements'">
+              <app-meeting-note-agreements [topics]="topics"></app-meeting-note-agreements>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </main>
+</section>
+<!--Floating Note-->
+<app-floating-note [core]="meetingNote"></app-floating-note>
+<ng-container *ngIf="meetingNote && meetingNote.id">
+  <!--Left Navigation-->
+  <app-sidenav-participants 
+  [coreKey]="'meeting-note'"
+    [emptySidenav]="false" [compressed]="rightSidenavCompressed" [owner]="meetingNote.owner"
+    [workspace]="meetingNote.workspace" [showPendingInvitations]="showPendingInvitations" >
+  </app-sidenav-participants>
+  <!-- Brief Associated-->
+  <app-brief-list-associated [core]="meetingNote"></app-brief-list-associated>
+  <!--Brief associated view-->
+  <app-brief-associated></app-brief-associated>
+  <!--Feedback associated-->
+  <app-feedback-list-associated [core]="meetingNote"></app-feedback-list-associated>
+  <!--Feedback associated view-->
+  <app-feedback-associated></app-feedback-associated>
+  <!--Modal Comment pendings-->
+  <app-modal-comments-pending #modalCommentsPending [core]="meetingNote" (modalOnApprove)="onApproveAccept()"></app-modal-comments-pending>
+  <!--Modal approve topics pending-->
+  <app-modal-approve-topics-pending 
+  #modalApproveTopicPendings [core]="meetingNote" 
+  (modalOnApprove)="onApproveAccept()"
+   (modalOnScheduled)="checkIsReadyToApprove()"
+   >
+</app-modal-approve-topics-pending>
+  <!--Modal approve topic wihout agreements-->
+  <app-modal-approve-topic-wihout-agreements 
+  #modalApproveTopicWihoutAgreements [core]="meetingNote" 
+  (modalOnApprove)="onApproveAccept()"
+   (modalOnScheduled)="checkIsReadyToApprove()"
+  ></app-modal-approve-topic-wihout-agreements>
+  <!--Modal approve topics-->
+  <app-modal-approve-topics
+  #modalApproveTopics [core]="meetingNote" 
+  (modalOnApprove)="onApproveAccept()"
+   (modalOnScheduled)="checkIsReadyToApprove()"
+  ></app-modal-approve-topics>
+  <!--Modal approve core-->
+  <app-modal-approve-core #modalApprove [core]="meetingNote" (modalOnApprove)="onApproveAccept()"></app-modal-approve-core>
+  <!--Modal alert approve-->
+  <app-modal-alert-approve-core #modalAlertApprove [core]="meetingNote" (modalOnApprove)="onApproveAccept()">
+  </app-modal-alert-approve-core>
+  <!--Comments-->
+  <!--Popup comment thread-->
+  <app-comment-thread-popup [workspaceAccess]="workspaceAccess" [coreType]="'meetingNote'" [coreId]="meetingNote.id"
+    [forceError]="forceError" [roles]="roles" [categories]="categories" [commentThreadStatuses]="commentThreadStatuses"
+    [participantTypes]="participantTypes"
+   (popupOnAccept)="onAddCommentThread($event)"
+   (popupOnCancel)="onCancelCommentThread($event)"
+
+   >
+  </app-comment-thread-popup>
+  <!--Popup User-->
+  <app-comment-thread-point-popup-user></app-comment-thread-point-popup-user>
+  <!--Comment thread-->
+  <app-comment-thread-sidenav [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"
+    [workspaceAccess]="workspaceAccess">
+  </app-comment-thread-sidenav>
+  <!--Edit task-->
+  <app-modal-task-edit [workspaceAccess]="workspaceAccess" [meetingNote]="meetingNote" (modalTaskOnUpdate)="modalTaskOnUpdate($event)"></app-modal-task-edit>
+  <!--Modal has changed-->
+  <app-modal-meeting-note-audit #modalAudit></app-modal-meeting-note-audit>
+</ng-container>
+<!--Sidenav permission-->
+<app-sidenav-permissions></app-sidenav-permissions>

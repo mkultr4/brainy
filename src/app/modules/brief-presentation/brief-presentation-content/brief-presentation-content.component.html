@@ -1,0 +1,88 @@
+<!--Left Navigation-->
+<ng-container *ngIf="briefPresentation && briefPresentation.id">
+  <!--Left navigation-->
+  <app-brief-presentation-left-sidenav [compressed]="leftSidenavCompressed" [briefPresentation]="briefPresentation"
+    [slideshow]="slideshow" [slideToShow]="slideToShow" (onCompress)="onCompressSidenav()"
+    (showSlide)="showSlide($event)" (onCopySlide)="onCopySlide($event)">
+  </app-brief-presentation-left-sidenav>
+</ng-container>
+<!--Layout Feedback-->
+<section class="layout-workflow-sidenav layout-feedback ">
+  <!--Main-->
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <ng-container *ngIf="briefPresentation && briefPresentation.id">
+        <!--Header-->
+        <header app-brief-presentation-header class="interface-header  workflow-feedback-header"
+          [workspaceAccess]="workspaceAccess" [briefPresentation]="briefPresentation" [coreStatuses]="coreStatuses"
+          [commentThreadStatuses]="commentThreadStatuses" [commentThreadTypes]="commentThreadTypes" [isAdmin]="isAdmin"
+          [editable]="editable && briefPresentation.status.key !== 'disapproved'" [canShare]="canShare"
+          [canApprove]="canApprove" [isApprover]="isApprover" (headerOnApprove)="onApprove()">
+        </header>
+      </ng-container>
+      <!--Screen view-->
+      <div class="screen-view"
+        [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,'sidenav-left-compress':leftSidenavCompressed}">
+        <!--Slide header-->
+        <app-brief-presentation-slide-header [slideWidth]="slideWidth"></app-brief-presentation-slide-header>
+        <!--Piece Wrapper-->
+        <ng-container *ngIf="briefPresentation && briefPresentation.id">
+          <!--Container-->
+          <div #slideshow class="presentation-slide-show-container">
+            <!--Header-->
+            
+            <div class="slide-show-wrapper">
+              <!--Slide show-->
+
+              <div class="slide-show-container" [style.height]="slideHeight">
+                <div class="brief-presentation-slide-wrapper" [style.width]="slideWidth"
+                [style.height]="slideHeight"
+                >
+                  <ng-container *ngIf="slideToShow">
+                    <div app-brief-presentation-slide class="brief-presentation-slide" [slideToShow]="slideToShow"
+                      [id]="'slide-'+index" 
+                      [style.transform]="'scale(' + slideScale + ')'"
+                      [slide]="slide" 
+                      [index]="index" 
+                      [slideScale]="slideScale">
+                    </div>
+
+                  </ng-container>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </ng-container>
+      </div>
+    </div>
+
+  </main>
+</section>
+
+<!--Floating Note-->
+<app-floating-note [core]="briefPresentation"></app-floating-note>
+
+<ng-container *ngIf="briefPresentation && briefPresentation.id">
+  <!-- Brief Associated-->
+  <app-brief-list-associated [core]="briefPresentation"></app-brief-list-associated>
+  <!--Brief associated view-->
+  <app-brief-associated></app-brief-associated>
+  <!--Left Navigation-->
+  <app-sidenav-participants [coreKey]="'brief-presentation'" [emptySidenav]="false" [compressed]="rightSidenavCompressed"
+    [owner]="briefPresentation.owner" [workspace]="briefPresentation.workspace"
+    [showPendingInvitations]="showPendingInvitations" (onCompress)="onCompressSidenav()">
+  </app-sidenav-participants>
+  <!--Modal approve core-->
+  <app-modal-approve-core #modalApprove [core]="briefPresentation" (modalOnApprove)="onApproveAccept()">
+  </app-modal-approve-core>
+  <!--Modal alert approve-->
+  <app-modal-alert-approve-core #modalAlertApprove [core]="briefPresentation" (modalOnApprove)="onApproveAccept()">
+  </app-modal-alert-approve-core>
+</ng-container>
+<!--Sidenav permission-->
+<app-sidenav-permissions></app-sidenav-permissions>

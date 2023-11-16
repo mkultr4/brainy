@@ -1,0 +1,27 @@
+<span class="gallery-image-wrapper">
+    <div class="gallery-image-content">
+
+        <a href="javascript:void(0)" *ngIf="editable" class="gallery-image-remove" (click)="remove($event)">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+        </a>
+        <a href="javascript:void(0)" class="gallery-image-change" appFilePicker accept="image/*" (filePick)="changeImage($event)">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_change_img.svg'"></i>
+            Cambiar
+        </a>
+        <!--Focus element-->
+        <a class="link-focusable" href="javascript:void(0)"></a>
+        <!--Image-->
+        <img class="gallery-image" #imgRef contenteditable="false" [src]="imageGallery.url | sanitize:'url'">
+        <ng-container *ngFor="let commentThread of commentThreads 
+      | filterCommentThreadStatus:filterStatuses
+      | filterCommentThreadParticipantType: filterParticipantTypes">
+            <app-comment-thread-image
+                [commentThread]="commentThread"
+                [naturalWidth]="imageGallery.setting.naturalWidth"
+                [naturalHeight]="imageGallery.setting.naturalHeight"
+                [commentThreadStatus]="commentThread.status"
+                [hidden]="sorting">
+            </app-comment-thread-image>
+        </ng-container>
+    </div>
+</span>

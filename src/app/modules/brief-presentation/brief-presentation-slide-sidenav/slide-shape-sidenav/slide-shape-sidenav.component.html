@@ -1,0 +1,17 @@
+<div 
+[id]="'brief-presentation-element-sidenav-' + element.id" 
+  class="brief-presentation-element brief-presentation-shape" 
+  [style.width.px]="element.width" 
+  [style.height.px]="element.height" 
+  [style.left.px]="element.left" 
+  [style.top.px]="element.top" 
+  >
+  
+  <!--Shape-->
+  <div  class="shape {{element.type}}"
+  [style.width.px]="element.width" 
+  [style.height.px]="element.height" 
+  [style.backgroundColor]="element.styleBackground"
+  ></div>
+
+</div>

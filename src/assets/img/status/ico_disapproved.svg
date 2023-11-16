@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="14px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 7</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="flujo_llenado" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="21_status_minuta" transform="translate(-1138.000000, -353.000000)">
+            <g id="ESTADOS" transform="translate(1125.000000, 233.000000)">
+                <g transform="translate(20.409094, 127.355388) rotate(-3.000000) translate(-20.409094, -127.355388) translate(13.409094, 120.355388)">
+                    <g id="ico-disapproved" transform="translate(0.000000, 0.000000)">
+                        <ellipse id="Oval-6" stroke="#4F5C69" transform="translate(7.066667, 7.066667) rotate(6.000000) translate(-7.066667, -7.066667) " cx="7.06666667" cy="7.06666667" rx="6.06666667" ry="6.06666667"></ellipse>
+                        <polygon id="+-copy-2" fill="#4F5C69" transform="translate(7.289718, 7.280564) rotate(45.000000) translate(-7.289718, -7.280564) " points="7.56733118 7.00372286 10.5794357 7.00372286 10.5794357 7.57124654 7.56733118 7.57124654 7.56733118 10.5611274 6.99822387 10.5611274 6.99822387 7.57124654 4 7.57124654 4 7.00372286 6.99822387 7.00372286 6.99822387 4 7.56733118 4"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

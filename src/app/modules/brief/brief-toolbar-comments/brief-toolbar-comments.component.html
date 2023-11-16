@@ -1,0 +1,12 @@
+<div class="brief-toolbar-comments" 
+  [class.show]="show"
+  [style.top.px]="top"
+  
+  >
+  <a href="javascript:void(0)" (click)="enableComments()"
+  appTooltip
+  [tooltipMessage]="'Agregar comentario'"
+  >
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_comentarios.svg'"></i>
+  </a>
+</div>

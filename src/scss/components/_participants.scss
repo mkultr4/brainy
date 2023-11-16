@@ -1,0 +1,1080 @@
+/* Paritcipants
+-------------------------------------------------------------------------------*/
+
+.dropdown-avatar-statuses {
+    @extend .dropdown-toolbar;
+}
+
+//Dropdown profile
+.dropdown-profile {
+    display: none;
+    position: absolute;
+    padding-top: 27px;
+    z-index: 1030;
+    width: 194px;
+    min-height: 100px;
+    background: #FFFFFF;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.13);
+    border-radius: 2px;
+
+    .profile-close-btn {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        font-size: 12px;
+        color: $primary-color;
+        text-align: center;
+
+        > i {
+            color: $primary-color;
+        }
+    }
+
+    .user-profile-content {
+        width: 100%;
+
+        .user-profile {
+            padding-left: 62px;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            margin-bottom: 22px;
+
+            .avatar {
+                left: 25px;
+                top: 4px;
+            }
+
+            .user-profile-name {
+                @extend .text-overflow;
+
+                display: block;
+                font-family: $font-family-brand;
+                font-size: 12px;
+                color: $primary-color;
+                letter-spacing: 0.12px;
+            }
+
+            .user-profile-rol {
+                display: block;
+
+                @extend .text-overflow;
+
+                font-weight: $font-regular;
+                font-size: 10px;
+                color: #ABB2B9;
+                letter-spacing: 0.1px;
+            }
+        }
+
+        .user-permissions {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 13px;
+            padding: 0 28px;
+
+            .checkbox-block {
+                margin: 0 0 18px 0;
+
+                > label {
+                    display: block;
+                    color: rgba($primary-color, 0.5);
+                    line-height: 10px;
+                    letter-spacing: 0.12px;
+                    height: 12px;
+                    min-height: 12px;
+                    line-height: 12px;
+
+                    .icon-svg {
+                        width: 12px;
+                        text-align: center;
+                        margin-right: 10px;
+
+                        svg {
+                            path,
+                            polygon,
+                            rect {
+                                fill: rgba($primary-color, 0.2);
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        color: rgba($purple-color-light, 0.7);
+
+                        .icon-svg {
+                            svg {
+                                path,
+                                polygon,
+                                rect {
+                                    fill: rgba($purple-color-light, 0.7);
+                                }
+                            }
+                        }
+
+                        &::before {
+                            border-color: #A2B1FF;
+                        }
+                    }
+                }
+
+                & + .checkbox-block {
+                    // margin-top: 9px;
+               
+                } //Checked
+                [type="radio"] {
+                    &:checked {
+                        & + label {
+                            color: rgba($purple-color-light, 0.7);
+
+                            .icon-svg {
+                                svg {
+                                    path,
+                                    polygon,
+                                    rect {
+                                        fill: rgba($purple-color-light, 0.7);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .responsible-footer {
+        display: block;
+        margin: 0 20px;
+        padding: 0;
+        color: #AFB5D5;
+        text-align: center;
+        font-weight: $font-regular;
+        font-size: 12px;
+        border-top: 1px solid rgba($primary-color, 0.22);
+        color: #9FB0FF;
+        line-height: 50px;
+        height: 50px;
+    }
+
+    .participant-footer {
+        border-top: 1px solid rgba($primary-color, 0.22);
+        margin: 0 20px;
+
+        .user-delete {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+
+            a {
+                padding: 14px 0 14px 0;
+                display: block;
+                font-weight: $font-regular;
+                font-size: 10px;
+                color: rgba($primary-color,0.4);
+                line-height: 11px;
+
+                > i {
+                    float: right;
+                }
+
+                &:hover {
+                    color: $primary-color;
+               
+                }
+            }
+        }
+
+        .pending-invitation {
+            text-align: center;
+            padding: 14px 0 14px 0;
+            font-weight: $font-regular;
+            font-size: 10px;
+            line-height: 11px;
+            color: #9FB0FF;
+        }
+    }
+
+    .arrow {
+        position: absolute;
+        top: 0;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        box-shadow: 1px 1px 2px -1px rgba(0, 0, 0, 0.34);
+    }
+
+    &.left {
+        .arrow {
+            transform: rotate(-45deg);
+            right: -5px;
+            box-shadow: 1px 1px 2px -1px rgba(0, 0, 0, 0.34);
+        }
+    }
+
+    &.right {
+        .arrow {
+            transform: rotate(45deg);
+            transform-origin: 0 0;
+            left: 0px;
+            box-shadow: -1px 1px 2px -1px rgba(0, 0, 0, 0.34);
+        }
+    }
+}
+
+.participants-block-title {
+    font-weight: $font-regular;
+    font-size: 10px;
+    color: rgba($primary-color, 0.4);
+    line-height: 11px;
+    margin: 0;
+    letter-spacing: 0.1px;
+    text-align: left;
+
+    &.guest-title {
+        margin-top: 14px;
+    }
+}
+
+.participants-block {
+    margin-top: 4px;
+
+    .user-block {
+        display: inline-block;
+        width: auto;
+        position: relative;
+        margin: 8px 10px 6px 0px;
+
+        .message-referent,
+        .message-delete {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        &.active {}
+
+        &.organizer,
+        &.special-member,
+        &.member {
+            .avatar {
+                .profile-image {
+                    box-shadow: inset 0 0 0 2px $purple-color-light;
+                }
+            }
+        }
+
+        & + .user-block {}
+
+        .avatar {
+            position: relative;
+        }
+
+        .user-information {
+            width: calc(100% - 47px);
+            display: inline-block;
+            float: left;
+
+            .user-name {
+                font-family: $font-family-brand;
+                font-size: 12px;
+                color: $primary-color;
+                letter-spacing: 0.12px;
+                display: block;
+                max-width: 100%;
+                line-height: 17px;
+
+                @extend .text-overflow;
+            }
+
+            .user-rol {
+                font-size: 10px;
+                line-height: 11px;
+                color: $user-rol-color;
+                letter-spacing: 0.12px;
+                display: block;
+                max-width: 100%;
+
+                @extend .text-overflow;
+            }
+        }
+
+        .user-permissions {
+            width: 47px;
+            display: inline-block;
+            float: left;
+
+            .checkbox {
+                width: 12px;
+                height: 12px;
+                position: relative;
+                display: inline-block;
+                float: left;
+
+                input {
+                    width: 12px;
+                    height: 12px;
+                    visibility: hidden;
+
+                    & + label {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        padding: 0;
+                        width: 12px;
+                        height: 12px;
+
+                        &:after {
+                            content: "";
+                            border: 1px solid #DDDDDD;
+                            border-radius: 12px;
+                            position: absolute;
+                            width: 12px;
+                            height: 12px;
+                            transform: scale(1);
+                            margin: 0;
+                        }
+
+                        &:before {
+                            content: "";
+                            background: $blue-color;
+                            position: absolute;
+                            width: 6px;
+                            height: 6px;
+                            left: 50%;
+                            top: 50%;
+                            margin-left: -(6px / 2);
+                            margin-top: -(6px / 2);
+                            transform: scale(0);
+                            border: none;
+                            border-radius: 6px;
+                        }
+                    }
+
+                    &:checked {
+                        & + label {
+                            &:after {
+                                transform: scale(0);
+                            }
+
+                            &:before {
+                                transform: scale(1);
+                            }
+                        }
+                    }
+                }
+
+                & + .checkbox {
+                    margin-left: 23px;
+                }
+            }
+        }
+    }
+
+    &.referent {
+        .user-block {
+            .avatar {
+                .profile-image {
+                    box-shadow: 0 0 0 1px #595A9C;
+                }
+            }
+        }
+    }
+
+    @include mq($from: wide) {}
+}
+
+.participant-block-inline {
+    padding-left: 46px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    .avatar {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .participant-block-inline-content {
+        display: inline-block;
+        width: 100%;
+
+        .user-name {
+            @extend .text-overflow;
+
+            display: block;
+            font-family: $font-family-brand;
+            font-size: 12px;
+            color: $primary-color;
+            letter-spacing: 0.12px;
+            line-height: 17px;
+        }
+
+        .user-rol {
+            @extend .text-overflow;
+
+            display: block;
+            line-height: 11px;
+            display: block;
+            font-size: 10px;
+            color: $user-rol-color;
+            letter-spacing: 0.1px;
+        }
+    }
+
+    & + .participant-block-inline {
+        margin-top: 22px;
+    }
+}
+
+#dropdown-permissions-modal-participants {
+    transform: translate(0, 7px);
+    min-width: 115px;
+}
+
+//Participant list
+.participants-list-wrapper {
+    max-height: 400px;
+
+    .participants-list {
+        margin: 0;
+        padding-top: 17px;
+        padding-bottom: 23px;
+        min-height: 128px;
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.participant-list-block {
+    display: block;
+    margin: 0 auto;
+    height: 58px;
+    position: relative;
+    border-bottom: 1px solid rgba($primary-color, 0.1);
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 40px;
+        right: -40px;
+        height: 100%;
+    }
+
+    .participant-information {
+        display: inline-block;
+        padding: 15px 70px 14px 51px;
+        position: relative;
+        height: 58px;
+        width: 100%;
+
+        .avatar {
+            left: 0px;
+            top: 14px;
+        }
+
+        .participant-user-information {
+            display: inline-block;
+            float: left;
+            width: 100%;
+
+            .name,
+            .rol {
+                display: block;
+
+                @extend .text-overflow;
+            }
+
+            .name {
+                font-weight: $font-regular;
+                font-size: 12px;
+                line-height: 17px;
+                color: $primary-color;
+                margin-bottom: 1px;
+                letter-spacing: 0.12px;
+
+                .new-user {
+                    color: rgba($purple-color-light, 0.5);
+                }
+            }
+
+            .rol {
+                font-weight: $font-regular;
+                font-size: 10px;
+                line-height: 11px;
+                color: $user-rol-color;
+                letter-spacing: 0.1px;
+            }
+        }
+
+        .participant-user-permissions {
+            position: absolute;
+            right: 0;
+            top: 23px;
+
+            .participant-user-permissions-btn {
+                display: inline-block;
+                font-weight: $font-regular;
+                font-size: 12px;
+                line-height: 14px;
+                color: #969EA5;
+
+                > span {
+                    float: left;
+                }
+
+                > i {
+                    float: left;
+                    line-height: inherit;
+                    height: auto;
+                    margin-left: 18px;
+                    color: #969EA5;
+                    font-size: 14px;
+                    width: auto;
+
+                    svg {
+                        polygon {}
+                    }
+                }
+
+                &.special-group {
+                    color: #A2B1FF;
+
+                    > i {
+                        svg {
+                            polygon {
+                                fill: #A2B1FF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.without-permissions {
+            padding-right: 20px;
+        }
+    }
+
+    .participant-remove {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        position: absolute;
+        top: 21px;
+        right: -30px;
+        font-size: 16px;
+        color: $primary-color;
+        text-align: center;
+        z-index: 2;
+
+        > i {}
+
+        &:hover {
+            background-color: $hover-close-modal-color;
+        }
+    }
+
+    &.block-with-permissions {
+        .participant-information {
+            .participant-user-information {
+                width: 70%;
+            }
+        }
+    }
+
+    &.remove-inner {
+        &::before {
+            content: none;
+        }
+
+        .participant-remove {
+            right: 0;
+        }
+    }
+
+    /*&:before{
+        position: absolute;
+        content: "";
+        width: 29px;
+        right: -29px;
+        height: 100%;
+        z-index: 1;
+
+    }*/
+    &:hover {
+        .participant-remove {
+            display: block;
+        }
+
+        .participant-information {
+            .participant-user-permissions {
+                .text-permission {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+.participant-list-block-without-line{
+    @extend .participant-list-block;
+    border-bottom: none;
+    &:before{
+        content: none;
+    }
+}
+.dropdown-participants-block-permissions {
+    @extend .dropdown-modal;
+
+    > li {
+        > a {
+            small {
+                font-size: 10px;
+                font-weight: $font-regular;
+            }
+
+            > i {
+                svg {
+                    margin-bottom: 2px;
+                }
+            }
+
+            &:hover {
+                > i {
+                    svg {
+                        path,
+                        polygon,
+                        rect {
+                            fill: $purple-color-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.participant-list-block-invitation {
+    @extend .participant-list-block;
+
+    .participant-information {
+        .participant-new-user {
+            display: inline-block;
+            float: right;
+            text-align: right;
+            color: $purple-color-light;
+            font-size: 10px;
+            padding-top: 7px;
+            line-height: 12px;
+        }
+    }
+}
+
+.participant-list-block-email {
+    @extend .participant-list-block;
+
+    .participant-information {
+        padding-top: 22px;
+    }
+}
+
+// Form participants
+.form-participants-share {
+    max-width: 480px;
+    position: relative;
+    margin: 0 auto;
+
+    .search-participant {
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+
+        .input-field-search-nav {
+            margin: 0;
+            display: inline-block;
+            width: 100%;
+
+            .input-field {
+                margin-bottom: 0;
+
+                .filter-search-input {
+                    height: 35px;
+                    padding: 10px 0; // border-bottom: 1px solid $purple-color-light;
+                    @include placeholder {
+                        color: rgba($purple-color-light, 0.4); // text-indent: 6px;
+                    }
+
+
+                    &.with-invitations {
+                        @include placeholder {
+                            color: rgba($purple-color-light, 0.4);
+                        }
+                    }
+
+                    &:focus {
+                        & + label {
+                            color: $primary-color;
+                        }
+                    }
+                }
+
+                label {
+                    //color: $primary-color;
+               
+                }
+
+                .suggestion-invite-add {
+                    position: absolute;
+                    right: 0;
+                    top: 10px;
+                    font-weight: $font-regular;
+                    font-size: 12px;
+                    color: $purple-color-light;
+                    line-height: 14px;
+                    z-index: 2;
+
+                    &:hover {
+                        opacity: 0.6;
+                    }
+                }
+            }
+
+            .cancel-workflow-invitation {
+                position: absolute;
+                display: block;
+                z-index: 4;
+                right: 0;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                border-radius: 20px;
+                text-align: center;
+                top: 8px;
+
+                &:hover {
+                    background-color: $hover-close-modal-color;
+                }
+            }
+
+            .input-field-search-nav-add {
+                display: block;
+                text-align: right;
+                font-size: 12px;
+                color: $primary-color;
+                letter-spacing: 0.12px;
+                line-height: 15px;
+                padding-top: 7px;
+                visibility: hidden;
+                opacity: 0;
+
+                > a {
+                    display: inline-block;
+                    line-height: 15px;
+                    font-size: 12px;
+                    color: rgba($primary-color, 0.5);
+
+                    > i {
+                        float: left;
+                        margin-right: 5px;
+                        margin-top: -1px;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        color: $purple-color-light;
+
+                        > i {
+                            svg {
+                                path {
+                                    fill: $purple-color-light;
+                                    stroke: $purple-color-light;
+                                }
+
+                                polygon {
+                                    fill: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    } //Empty list
+    .participants-invitations-empty-box {
+        max-width: 320px;
+        margin: 0 auto;
+        height: 250px;
+        padding-top: 30px;
+
+        .share-empty-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .share-empty-text {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.4;
+            font-weight: $font-regular;
+            font-size: 14px;
+            letter-spacing: 0.22px;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+
+    .participants-list-wrapper {
+        padding: 0 40px;
+
+        .participants-list {
+            min-height: auto;
+            padding: 23px 0 30px 0;
+        }
+    }
+
+    .participants-button-section {
+        text-align: center;
+        padding-bottom: 40px;
+
+        .btn {
+            min-width: 200px;
+            max-width: 90%;
+        }
+
+        .checkbox-block {
+            margin: 0;
+            padding: 30px 0 50px;
+        }
+    }
+
+    &.form-participants {
+        min-height: 251px;
+
+        @include mq($until: tablet) {
+            padding: 0px 30px;
+        }
+    }
+}
+
+//Form guests inner
+.form-guest-wrapper {
+    position: relative;
+
+    .form-guests {
+        max-width: 400px;
+        margin: 22px auto 0 auto;
+
+        .new-invitation-wrapper {
+            .col {
+                .input-field {
+                    margin-bottom: 22px;
+                }
+                &:last-child {
+                    .input-field {
+                        margin-bottom: 40px;
+                    }
+                }
+            }
+        }
+
+        .add-other {
+            text-align: right;
+            margin-bottom: 13px;
+
+            &.list-empty {
+                margin-bottom: 30px;
+            }
+
+            .add-other-btn {
+                display: inline-block;
+                font-size: 12px;
+                line-height: 15px;
+                color: rgba(79, 92, 105, 0.4);
+                letter-spacing: 0.12px;
+
+                .add-other-icon {
+                    margin-right: 5px;
+
+                    svg {
+                        path {
+                            stroke: rgba(79, 92, 105, 0.4);
+                        }
+
+                        polygon {
+                            fill: rgba(79, 92, 105, 0.4);
+                        }
+                    }
+                }
+
+                &:hover {
+                    color: $purple-color-light;
+
+                    .add-other-icon {
+                        //background: $purple-color-light;
+                        //color: #fff;
+                        svg {
+                            path {
+                                fill: $purple-color-light;
+                            }
+
+                            polygon {
+                                fill: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        } //List
+        .participants-list-wrapper {
+            display: inline-block;
+            width: 100%;
+
+            .participants-list {
+                min-height: auto;
+                padding: 0;
+
+                .participant-list-block {
+                    max-width: 100%;
+                    padding-left: 0;
+
+                    .participant-information {
+                        padding-left: 38px;
+                        border-color: transparent;
+
+                        .avatar {
+                            left: 0;
+                        }
+
+                        .participant-user-information {
+                            width: 100%;
+
+                            .name {
+                                margin-bottom: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+        } //Button section
+        .button-section {
+            text-align: right;
+
+            .btn {
+                min-width: 100px;
+                padding: 0;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+//Suggestion invite
+.suggestion-invitation-alert {
+    position: absolute;
+    background: #FFFFFF;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    height: 60px;
+    top: 35px;
+    left: 0;
+    z-index: 101;
+
+    .avatar {
+        top: 19px;
+        left: 22px;
+    }
+
+    > a {
+        padding: 22px 16px 21px 55px;
+        line-height: 17px;
+        font-size: 12px;
+        color: $purple-color-light;
+        display: block;
+    }
+}
+
+.suggestion-invitation {
+    background: rgba(#FFFFFF, 0.8);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    z-index: 100;
+
+    &.suggestion-invitation-guest {
+        background: rgba(#FFFFFF, 0.6);
+    }
+
+    &.first-wrapper {
+        top: 45px;
+        bottom: 0;
+    }
+}
+
+.profile-workspace-permission {
+    display: block;
+    border-bottom: 1px solid rgba($primary-color, 0.1);
+    .profile-workspace-permission-content {
+        position: relative;
+        display: inline-block;
+        padding: 15px  50px;
+        width: 100%;
+        .avatar{
+            position: absolute;
+            left: 0;
+            top: 14px;
+        }
+        .profile-user-information {
+            display: block;
+
+            .name {
+                @extend .text-overflow;
+                display: block;
+                font-size: 12px;
+                line-height: 17px;
+                color: $primary-color;
+                letter-spacing: 0.12px;
+                margin-bottom: 1px;
+            }
+
+            .rol {
+                @extend .text-overflow;
+                display: block;
+                font-size: 10px;
+                color: $user-rol-color;
+                line-height: 11px;
+                letter-spacing: 0.1px;
+                
+            }
+        }
+        .switch{
+            position: absolute;
+            width: auto;
+            right: 18px;
+            top: 22px;
+            z-index: 2;
+            label{
+                .lever{
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

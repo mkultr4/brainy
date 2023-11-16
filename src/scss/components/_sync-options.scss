@@ -1,0 +1,92 @@
+
+.sync-option-container {
+    display: inline-block;
+    width: 100%;
+    padding: 0 5px;
+
+    .sync-title {
+        text-align: center;
+
+        h6 {
+            opacity: 0.7;
+            font-weight: $font-regular;
+            font-size: 12px;
+            letter-spacing: 0.25px;
+            margin-bottom: 24px;
+        }
+    }
+
+    .sync-buttons-container {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+
+        .sync-button {
+            height: 40px;
+            width: 85px;
+            border: 1px solid rgba($primary-color, 0.2);
+            color: rgba($primary-color, 0.3);
+            line-height: 35px;
+            border-radius: 2px;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            .sync-button-active{
+                position: absolute;
+                right: -8px;
+                top: -7px;
+                display: none;
+            }
+            .icon-svg {
+                vertical-align: middle;
+
+                &.google {
+                    // margin-right: 2px;
+               
+                }
+
+                &.outlook {}
+
+                &.on-leave {
+                    display: inline-block;
+                }
+
+                &.on-hover {
+                    display: none;
+                }
+            }
+
+            &:hover{
+                border-color: $purple-color-light;
+
+                .icon-svg {
+                    &.on-leave {
+                        display: none;
+                    }
+
+                    &.on-hover {
+                        display: inline-block;
+                    }
+                }
+            }
+            &.active{
+                border-color: $purple-color-light;
+                .sync-button-active{
+                    display: block;
+                }
+                .icon-svg {
+                    &.on-leave {
+                        display: none;
+                    }
+
+                    &.on-hover {
+                        display: inline-block;
+                    }
+                }
+            }
+            &+.sync-button{
+                margin-left: 5px;
+            }
+        }
+    }
+}

@@ -1,0 +1,88 @@
+
+<ng-template #itemAvatar let-model="item" let-index="index" let-query="query">
+    <span class="item">
+      <div app-avatar class="avatar" [user]="model.user"></div>
+      <span class="name">{{model?.user.name + ' ' + model?.user.lastName}}</span>
+      <span class="rol">{{model?.rol.name}}</span>
+    </span>
+  </ng-template>
+<div class="form-participants-share form-participants">
+    <!--Async search-->
+    <div class="search-participant">
+      <form  #formShare="ngForm">
+        <div class="input-field-search-nav">
+          <div class="input-field typehead-autocomplete-share-medium "
+          [ngClass]="{'input-field-focused':!workflowInvitation}"
+          >
+            <input mz-input [label]="''"
+              [placeholder]="invitations.length > 0 ? 'Agrega mas nombres o correo electrónico' :'Ingresa nombres o correos electrónicos'"
+              class="filter-search-input"
+              name="asyncParticipantSearch"
+              #asyncInput="ngModel"
+              [(ngModel)]="asyncParticipantSearch"
+              (keyup)="onKeyUp($event)"
+              [typeahead]="dataSourceParticipants" 
+              [typeaheadScrollable]="true"
+              [typeaheadOptionsInScrollableView]="2"
+              [typeaheadItemTemplate]="itemAvatar" 
+              (typeaheadLoading)="changeTypeaheadLoading($event)"
+              (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+              (typeaheadOnSelect)="typeaheadOnSelect($event)"
+               required autocomplete="off"
+               [readonly]="workflowInvitation"
+              [ngClass]="{'with-invitations':invitations.length > 0}"
+              ngvemail
+              >
+              <span class="help-block info" *ngIf="typeaheadNoResults && asyncParticipantSearch.length > 0 && formShare.invalid">
+                Agregar un nuevo correo electrónico para alta
+              </span>
+  
+            <!--Cancel workflow invitation-->
+            <div  *ngIf="suggestionInvite" class="suggestion-invitation-alert" > <!-- && !asyncParticipantSearch == 'alonso.montiel@teakmnowlogy.com'" -->
+              <div class="avatar" app-avatar 
+              [user]="{email:asyncParticipantSearch}"></div>
+              <a href="javascript:void(0)">
+                Nuevo usuario asignale un permiso
+              </a>
+            </div>
+            <ng-container *ngIf="workflowInvitation">
+              <a href="javascript:void(0)" class="cancel-workflow-invitation" (click)="cancelWorkfklowInvitation($event)" appTooltip [tooltipMessage]="'Cancelar invitación'">
+                <i [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'" class="icon-svg"></i>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </form>
+
+    <!--Not workflow invitation-->
+    <ng-container *ngIf="!workflowInvitation">
+      <!--Suggestion -->
+      <ng-container *ngIf="suggestionInvite">
+        <div class="suggestion-invitation first-wrapper">
+
+        </div>
+      </ng-container>
+      <!--If have participants of invitations-->
+      <ng-container *ngIf="invitations.length > 0 ">
+        <!-- Invitations-->
+         <app-comment-thread-popup-invitation-list
+          #invitationList
+          [invitations]="invitations" 
+          (commentOnDeleteInvitation)="onDeleteInvitation($event)"
+          (commentOnChangePermissionInvitation)="onChangePermissionInvitation($event)"
+          >
+         </app-comment-thread-popup-invitation-list>
+      </ng-container>
+    </ng-container>
+    <!--Workflow invitation-->
+    <ng-container *ngIf="workflowInvitation">
+      <app-comment-thread-popup-new-invitation 
+        [coreId]="coreId" 
+        [coreType]="brainyObjectType"
+        [invitationEmail]="asyncParticipantSearch" 
+        [roles]="roles"
+                    [categories]="categories"
+        (commentOnAddInvitation)="onAddInvitation($event)">
+      </app-comment-thread-popup-new-invitation>
+    </ng-container>
+  </div>

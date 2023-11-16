@@ -1,0 +1,124 @@
+<ng-template #itemSite let-model="item" let-index="index" let-query="query">
+  <ng-container *ngIf="model.favico">
+    <img class="favico" [src]="model.favico">
+  </ng-container>
+  <ng-container *ngIf="!model.favico">
+      <img class="favico" [src]="'assets/img/logos/favicon/without-favicon.png'">
+    </ng-container>
+  <span class="url" [innerHTML]="model.url | highlight: query"></span>
+</ng-template>
+
+<div class="workflow-primary-content
+new-feedback-piece-container
+perfect-scrollbar perfect-scrollbar-always-visible
+" [perfectScrollbar]="{suppressScrollX:false}" [ngClass]="{'left-sidenav-compressed':leftSidenavCompressed}">
+  <div class="new-feedback-piece">
+    <!--Upload container-->
+    <div class="new-feedback-piece-upload-container" *ngIf="!uploading">
+      <!--Search url-->
+      <div class="search-url-container">
+        <form name="formSearch" #formSearch="ngForm">
+          <div class="input-field typehead-autocomplete-url " [ngClass]="{'with-results':sites.length > 0}">
+
+            <input [(ngModel)]="urlQuery" autocomplete="off" name="urlQuery"
+             placeholder="Inserta en link de tu página o banner html"
+              #urlQueryField="ngModel" required [typeahead]="dataSourceSites" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="7"
+              [typeaheadItemTemplate]="itemSite" (typeaheadLoading)="changeTypeaheadLoading($event)" (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+              (typeaheadOnSelect)="typeaheadOnSelect($event)">
+            <div class="help-block info" *ngIf="typeaheadNoResults">
+              No existe ningun resultado para su búsqueda
+            </div>
+            <span class="input-prefix">http/</span>
+          </div>
+        </form>
+      </div>
+      <ng-container *ngIf="sites.length > 0">
+        <div class="search-url-query-wrapper">
+          <div class="search-url-query-container" [perfectScrollbar]="{supressScrollX:true}">
+            <ng-container *ngFor="let site of sites">
+              <div class="subsection-block">
+                <div class="subsection-block-url ">
+                  http://{{site.url}}
+                </div>
+                <ul class="subsection-block-menu">
+                  <li>
+                    <a href="javascript:void(0)" (click)="removeSite(site)">
+                      <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_eliminar_list_html.svg'"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </ng-container>
+          </div>
+          <!--Continue-->
+          <div class="search-url-query-btn">
+            <button class="btn btn-semi-medium btn-outline-light" (click)="uploadSites()" [disabled]="sites.length === 0">
+              Continuar
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <!--Drop area overlay-->
+      <ng-container *ngIf="urlQuery && urlQuery.length > 0 && sites.length === 0">
+        <div class="new-feedback-piece-drop-area-overlay"></div>
+      </ng-container>
+      <!--Drop area-->
+      <ng-container *ngIf="sites.length === 0">
+        <div class="new-feedback-piece-drop-area" 
+          appFileDropzone multiple [limit]="10" (readStart)="readStart($event)" (readEnd)="readEnd($event)"
+          (fileDrop)="fileRead($event)">
+
+          <div class=" new-feedback-piece-drop-area-table " 
+           appFilePicker 
+           multiple 
+           (filePick)="fileRead($event)" 
+            [limit]="10" (readStart)="readStart($event)"
+            (readEnd)="readEnd($event)">
+            <div class="new-feedback-piece-drop-area-table-cell ">
+              <img class="upload-ico " [src]=" 'assets/img/feedback/icono_load.svg' ">
+              <p class="upload-message ">Suelta los archivos para adjuntar o
+                <span class="font-weight-medium ">explorar.</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </ng-container>
+    </div>
+    <!--Loading container-->
+    <ng-container *ngIf="uploading ">
+      <div class="new-feedback-piece-loading-wrapper ">
+        <div class="new-feedback-piece-loading-table ">
+          <div class="new-feedback-piece-loading-table-cell ">
+            <div class="new-feedback-piece-loading ">
+              <ng-container *ngIf="uploadType==='image' || uploadType==='document' || uploadType==='html' ">
+                <img class="upload-file-ico " [src]=" 'assets/img/feedback/icono_html_loading.svg' ">
+              </ng-container>
+              <ng-container *ngIf="uploadType==='video' ">
+                <img class="upload-file-ico " [src]=" 'assets/img/feedback/icono_video_loading.svg' ">
+              </ng-container>
+              <div class="progress medium lighted ">
+                <div class="determinate " [ngStyle]="{width: barProgress + '%'} "></div>
+              </div>
+              <div class="uploading-file-text ">
+                <ng-container *ngIf="uploadType==='image' ">
+                  Se estan subiendo las imágenes, esta operación puede tardar
+                  <br> unos segundos.
+                </ng-container>
+                <ng-container *ngIf="uploadType==='document' || uploadType==='html' ">
+                  Se estan generando las imágenes de las páginas, esta
+                  <br>operación puede tardar unos segundos.
+                </ng-container>
+                <ng-container *ngIf="uploadType==='video' ">
+                  Se estan subiendo el video, esta operación puede tardar
+                  <br> unos segundos.
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+

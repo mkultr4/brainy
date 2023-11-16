@@ -1,0 +1,17 @@
+#modal-edit-project{
+    @extend .modal-new-brainy-object;
+    height: auto;;
+    .modal-header{
+        .modal-header-title{
+            color: $primary-color;
+        }
+    }
+
+    .modal-content{
+        min-height: 410px;
+        .input-field{
+            margin-bottom: 27px;
+        }
+    }
+   
+}

@@ -1,0 +1,24 @@
+<div class="brief-assessment-text close-view" [ngClass]="{'checked': checked}">
+
+  
+  <div class="brief-assessment-text-wrapper">
+    <div class="brief-assessment-text-content">
+      <!--Select icon-->
+      <div class="brief-assessment-selector" [ngClass]="{ 'without-icon': !option.icon}">
+        <!--Posisionated-->
+        <i class="brief-assessment-selector-posisionated" [inlineSVG]="'assets/img/brief/response-types/assessment/ico_add_icons_small.svg'"></i>
+        <!--Button-->
+        <button [disabled]='true' [id]="'option-btn-'+option.id" class="brief-assessment-selector-btn">
+          <!--Ico Select-->
+          <span *ngIf="option.icon" class="icon-select">
+            <i *ngIf="option.icon.font === 'ionicons'" class="{{option.icon.value}}"></i>
+            <i *ngIf="option.icon.font === 'material-icons'" class="material-icons">{{option.icon.value}}</i>
+          </span>
+        </button>
+      </div>
+      <!--Label editor-->
+      <div  [innerHTML]="option.label | sanitize:'html'"></div>
+    </div>
+  </div>
+</div>
+

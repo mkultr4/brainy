@@ -1,0 +1,45 @@
+<ul class="workflow-primary-header-menu">
+  <li *ngIf="editable" id="mark-pending">
+      <span id="pulse-target-pending" class="pulse-tour"></span>
+    <a id="mark-topic-pending" [class.active]="topic &&  topic.pending" href="javascript:void(0)"
+      appTooltip (click)="markTopicPending()" [tooltipMessage]="'Marcar tema pendiente'" [edgeTooltip]="'bottom'">
+      <i class="active disabled-default" [inlineSVG]="'assets/img/meeting-note/icono_tema_pendiente_activo.svg'"></i>
+      <i class="inactive disabled-default" [inlineSVG]="'assets/img/meeting-note/icono_tema_pendiente.svg'"></i>
+    </a>
+  </li>
+  <li *ngIf="editable" id="add-task">
+    <span id="pulse-target-task" class="pulse-tour"></span>
+    <a href="javascript:void(0)" class="modal-floating-trigger" id="trigger-add-task" appTooltip [tooltipMessage]="'Agregar tarea'"
+      [edgeTooltip]="'bottom'">
+      <i class="inactive disabled-default" [inlineSVG]="'assets/img/meeting-note/icon_tareas_inactivo.svg'"></i>
+      <i class="active disabled-default" [inlineSVG]="'assets/img/meeting-note/icon_tareas_activo.svg'"></i>
+    </a>
+  </li>
+  <app-popup-add-task 
+    [workspaceAccess]="workspaceAccess"
+    [meetingNote]="meetingNote" 
+    [topicShow]="topicShow"
+    [popupBtnId]="'#trigger-add-task'"
+    (popupOnAddTask)="popupOnAddTask($event)"
+    ></app-popup-add-task>
+  <li>
+    <a href="javascript:void(0)" class="modal-floating-trigger" id="trigger-filter-comments" appTooltip
+      [tooltipMessage]="'Filtros'" [edgeTooltip]="'bottom'">
+      <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icono_filtros.svg'"></i>
+    </a>
+    <!--Filter-->
+    <app-modal-comment-thread-filter [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"></app-modal-comment-thread-filter>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="showListFeedback()" [ngClass]="{'active':isShowFeedback}" appTooltip
+      [tooltipMessage]="'Feedbacks del proyecto'" [edgeTooltip]="'bottom'">
+      <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_feedback_anidado.svg'"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="showListBrief()" [ngClass]="{'active':isShowBrief}" appTooltip
+      [tooltipMessage]="'Brief del proyecto'" [edgeTooltip]="'bottom'">
+      <i [inlineSVG]="'assets/img/commons/workflow-toolbar/icon_brief_anidado.svg'"></i>
+    </a>
+  </li>
+</ul>

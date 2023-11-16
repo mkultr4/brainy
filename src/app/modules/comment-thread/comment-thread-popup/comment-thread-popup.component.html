@@ -1,0 +1,125 @@
+
+
+<div class="comment-popup-thread-wrapper" [hidden]="!popupShow">
+    <!--Overlay-->
+    <div class="comment-popup-thread-overlay" (click)="closePopup(true)" 
+        *ngIf="hasOverlay">
+    </div>
+    <!--Popup-->
+    <div #popup [className]="'comment-popup-thread '+ display" [ngClass]="{'invitations': view == 'invitations'}">
+        <a href="javascript:void(0)" 
+            (click)="closePopup(true)"
+            class="modal-close-btn" *ngIf="view !== 'record'">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+        </a>
+        <!--Content-->
+        <div id="main-content" class='comment-popup-thread-content' *ngIf="view === 'main'">
+            <form name="FormNewComment" #formNewComment="ngForm">
+                <div class="comment-popup-thread-status">
+                    <a href="javascript:void(0)" id="btn-dd-popup-status" class="status-comments-drodpown-btn   {{commentThread?.status?.key}}">
+                        <i class="icon-svg status-icon-dropdown" [inlineSVG]="commentThread?.status?.ico"></i>
+                        {{'comment.status.' + commentThread?.status?.key | translate}}
+                        <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/ico_caret.svg'"></i>
+                    </a>
+                    <!--Dropdown Statuses-->
+                    <app-mz-dropdown-brainy [id]="'dropdown-comment-popup-status'" [dropdownButtonId]="'btn-dd-popup-status'" [constrainWidth]="false"
+                        [dropdownClass]="'dropdown-status-comments'" [align]="'left'">
+                        <li *ngFor="let status of _commentThreadStatuses" >
+                            <span (click)="setStatus(status)" class="{{status.key}}">
+                                <i class="icon-svg status-icon-dropdown" [inlineSVG]="status.ico"></i>
+                                {{'comment.status.' + status.key  | translate}}
+                            </span>
+                        </li>
+                    </app-mz-dropdown-brainy>
+                </div>
+                <div class="comment-popup-thread-title" [ngClass]="{'empty':!commentThread?.title || commentThread?.title.length === 0}">
+                    <mz-input-container>
+                        <input type="text" 
+                            name="commentThreadTitle"
+                            autocomplete="off"
+                            mz-input 
+                            #commentThreadElementTitle="ngModel"
+                            maxlength="100" 
+                            [label]="'Título del comentario'" 
+                            [(ngModel)]="commentThread.title"
+                            id="comment-thread-title-input"
+                             required>
+                    </mz-input-container>
+                </div>
+
+                <div class="comment-popup-thread-comment" >
+                    <app-comment-input *ngIf="popupShow" 
+                        [autoFocus]="formNewComment.valid  && !commentInputChange"
+                        [comment]="newCommentThreadMessage" 
+                        [commentAudio]="newCommentThreadMessage.commentAudio" 
+                        (inputOnStartRecordAction)="onStartRecordAction($event)"
+                        (inputOnChange)="onChangeInputComment()"
+                        >
+                    </app-comment-input>
+                    <!--Participants Type-->
+                </div>
+                <div class="comment-popup-thread-participants" *ngIf="commentThread.participantType"
+                [ngClass]="{'auto-focus':!newCommentThreadMessage.isEmpty() && !commentParticipantChange}"
+                >
+                    <div class="comment-popup-thread-participants-content">
+                        <span class="label-participants">
+
+                            Participantes 
+                        </span>
+                        <a href="javascript:void()" 
+                        class="participants-drodpown-btn" 
+                        id="btn-dd-popup-participants"
+                        (click)="commentParticipantChange = true"
+                        [ngClass]="{'has-change':commentParticipantChangeValue}"
+                        >
+                            <i class="icon-svg type-ico" [inlineSVG]="commentThread?.participantType?.ico"></i>
+                            {{'participant.type.' + commentThread?.participantType?.key | translate}}
+                            <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/ico_caret.svg'"></i>
+                        </a>
+                        <!--Dropdown participants-->
+                        <app-mz-dropdown-brainy [id]="'dropdown-comment-popup-participants'" [dropdownButtonId]="'btn-dd-popup-participants'" [constrainWidth]="false"
+                            [align]="'right'" [dropdownClass]="'dropdown-participants-type'">
+                            <li *ngFor="let type of participantTypes">
+                                <a (click)="setParticipantsType(type)">
+                                    <i class="icon-svg" [inlineSVG]="type.ico"></i>
+                                    {{'participant.type.' + type.key | translate}}
+                                </a>
+                            </li>
+                        </app-mz-dropdown-brainy>
+                    </div>
+                </div>
+            </form>
+            <!--Participants search-->
+            <ng-container *ngIf="commentThread.participantType && commentThread.participantType.key === 'private'">
+                <app-comment-thread-popup-invitations 
+                    [workspaceAccess]="workspaceAccess"
+                    [invitations]="invitations"
+                    [coreType]="coreType"
+                    [coreId]="coreId"
+                    [roles]="roles"
+                    [categories]="categories"
+                    (commentOnShowWorkflowInvitation)="onShowWorkflowInvitation($event)"
+                    >
+                </app-comment-thread-popup-invitations>
+            </ng-container>
+            <!--Buttons-->
+            <div class="comment-popup-thread-buttons" *ngIf="!showWorkflowInvitation">
+                <button class="btn btn-semi-medium btn-light  right send" 
+                (click)="save()" 
+                [disabled]="!canSave()">Enviar</button>
+            </div>
+        </div>
+        <!--Invitations-->
+        
+        <!--Record-->
+        <ng-container *ngIf="view === 'record'">
+            <app-comment-input-record 
+            (recordOnCancel)="onCancelRecord()" 
+            (recordOnAccept)="onAcceptRecord($event)">
+        </app-comment-input-record>
+        </ng-container>
+        <div class="comment-popup-thread-arrow" #arrow></div>
+
+    </div>
+
+</div>

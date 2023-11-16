@@ -1,0 +1,93 @@
+<div class="team-box-brand" (mouseleave)="mouseleave()" >
+
+  <!--Content-->
+  <div class="team-box-content">
+    <!--Name-->
+    <div class="team-box-name">
+      <span [title]="brand.name">
+        {{brand.name}}
+      </span>
+    </div>
+    <!--Logo-->
+    <div class="team-box-avatar-content">
+      <div app-brand-logo class="avatar profile-image-immense-medium"
+      [brand]="brand"></div>
+    </div>
+    <div class="team-box-projects">
+      <span>Proyectos ({{brand.coresCount}})</span>
+    </div>
+    <!--Status-->
+    <div class="team-box-status disabled" >
+      <span>
+        <ng-container *ngIf="brand.status === 'active'">Activo</ng-container>
+        <ng-container *ngIf="brand.status === 'suspended'">Suspendido</ng-container>
+        <ng-container *ngIf="brand.status === 'eliminated'">Eliminado</ng-container>
+      </span>
+    </div>
+
+    <!--<div class="team-box-see">
+      <a href="javascript:void(0)">
+        Ver proyectos
+      </a>
+    </div>-->
+    <!--Participants-->
+    <div class="team-box-participants">
+      <div class="team-box-participants-content">
+            <!--If has more 6 user-->
+            <ng-container *ngIf="brand.workspaceAccesses.length > 6">
+                <ng-container *ngFor="let workspaceAccess of (brand.workspaceAccesses ? brand.workspaceAccesses.slice(0,5): []) ">
+                  <div class="avatar profile-image-smaller" app-avatar [user]="workspaceAccess.user" ></div>
+                </ng-container>
+                <!--More-->
+                <div class="participant-circle participant-circle-more">
+                  <span>+{{brand.workspaceAccesses.length - 5}}</span>
+                </div>
+              </ng-container>
+              <!--If has  6 user or minus-->
+              <ng-container *ngIf="brand.workspaceAccesses.length <= 6">
+                <ng-container *ngFor="let workspaceAccess of brand.workspaceAccesses ">
+                    <div class="avatar profile-image-smaller" app-avatar [user]="workspaceAccess.user" ></div>
+                </ng-container>
+              </ng-container>
+              <!--Without-->
+              <ng-container *ngIf="brand.workspaceAccesses.length === 0">
+                 <span class="without-participants">{{ 'commons.without-participants'| translate}}</span>
+              </ng-container>
+      </div>
+    </div>
+
+  </div>
+  <!--Overlay-->
+  <div class="team-box-overlay">
+    <div class="team-box-overlay-table">
+      <div class="team-box-overlay-table-cell">
+        <!--Menu-->
+        <a class="team-box-menu"
+        mz-button
+         href="javascript:void(0)" [id]="'team-box-bt-'+brand.id" (click)="$event.stopPropagation()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/sidenav/ico_menu.svg'"></i>
+        </a>
+        <!--Dropdown-->
+        <app-mz-dropdown-brainy #menu [id]="'team-box-dropdown-'+ brand.id"
+          [dropdownButtonId]="'team-box-bt-'+brand.id" [constrainWidth]="false"
+          [belowOrigin]="true" [dropdownClass]="'toolbar-box-brand'">
+          <li (click)="edit()">
+            <a href="javascript:void(0)" class="edit">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+              Editar
+            </a>
+          </li>
+          <li (click)="delete()" >
+            <a href="javascript:void(0)" class="delete">
+                <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+              Eliminar
+            </a>
+          </li>
+
+        </app-mz-dropdown-brainy>
+        <a class="view-profile" href="javascript:void(0)" (click)="viewProfile()">Ver proyectos</a>
+      </div>
+    </div>
+  </div>
+
+</div>

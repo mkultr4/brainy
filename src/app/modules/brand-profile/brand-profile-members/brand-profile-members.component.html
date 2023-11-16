@@ -1,0 +1,62 @@
+<!--Wrapper-->
+<div class="team-items-wrapper team-items-wrapper-brand-profile">
+  <!--Navigation-->
+  <div class="interface-navigation">
+    <div class="interface-navigation-content">
+      <div class="interface-navigation-wrapper container">
+        <ng-container *ngIf="view === 'group-inner'">
+          <a class="back-to" routerLink="group">
+            <i 
+            [inlineSVG]="'assets/img/commons/icon_arrow_left.svg'"
+              class="icon-svg back-icon"></i>
+            {{category?.name}}
+          </a>
+        </ng-container>
+        <ul class="navigation" >
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['my']" routerLinkActive="active">
+              Mi equipo
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" [routerLink]="['group']" routerLinkActive="active">
+              Mis Grupos
+            </a>
+          </li>
+        </ul>
+        <!--
+          <ul id="nav-dashboard-filter" [ngClass]="{'hide':isShowSearch}">
+            <li class="search">
+              <a href="javascript:void(0)" (click)="toggleSearch()">
+                <i [inlineSVG]="'assets/img/commons/ico_search.svg'" class="icon-svg ng-scope" id="ico-nav-search"></i>
+              </a>
+            </li>
+          </ul> 
+          
+          <ng-container *ngIf="isShowSearch">
+            <input-field-search-nav [search]="mainSearch" 
+              [searchPlaceholder]="'Busca por nombre o correo electrónico'" (onClose)="toggleSearch()"
+              (onChangeSearch)="changeMainSearch($event)"></input-field-search-nav>
+          </ng-container>
+          -->
+      </div>
+    </div>
+  </div>
+  <!--Content-->
+  <div class="team-items-content container">
+    <!--List-->
+    <div class="team-items-list">
+
+
+      <router-outlet></router-outlet>
+
+
+    </div>
+  </div>
+</div>
+
+<app-modal-team-suspend-account #modalTeamSuspend></app-modal-team-suspend-account>
+<!--Modal Eliminate-->
+<app-modal-team-eliminate-account #modalTeamEliminate></app-modal-team-eliminate-account>
+<!--Modal eliminate invitation-->
+<app-modal-team-eliminate-invitation></app-modal-team-eliminate-invitation>

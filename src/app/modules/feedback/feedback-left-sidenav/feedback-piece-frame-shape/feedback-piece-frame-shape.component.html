@@ -1,0 +1,55 @@
+<div 
+  [className]="'comment-thread comment-thread-shape'" 
+  [style.width.px]="commentThread.originalWidth" 
+  [style.height.px]="commentThread.originalHeight" 
+  [style.transform]="'scale('+ commentThread.frameScale + ')'" 
+  [style.left.px]="commentThread.originalLeft  * commentThread.frameScale "
+  [style.top.px]="commentThread.originalTop * commentThread.frameScale " 
+  
+  [ngClass]="{
+              'comment-thread-shape-circle':commentThread.type === 'circle',
+              'comment-thread-shape-rectangle':commentThread.type === 'rectangle'
+              }" 
+              >
+  <!--pin-->
+  <div *ngIf="commentThread.saved" 
+        [ngClass]="['comment-thread comment-thread-point-feedback comment-thread-point ' + commentThread.status.key,
+               commentThread.unreadMessages? 'unread-messages' : '']" >
+    <span>{{commentThread.number}}</span>
+    <span *ngIf="commentThread.saved" class="comment-thread-point-participant">
+      <!--Team-->
+      <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'team'" [inlineSVG]="'assets/img/commons/comments/ico_pin_team.svg'"></i>
+      <!--Private-->
+      <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'private'" [inlineSVG]="'assets/img/commons/comments/ico_pin_private.svg'"></i>
+      <!--Just me-->
+      <i class="comment-thread-point-participant-icon" *ngIf="commentThread.participantType.key === 'just-me'" [inlineSVG]="'assets/img/commons/comments/ico_pin_just_me.svg'"></i>
+    </span>
+  </div>
+  <ng-container *ngIf="commentThread.type === 'rectangle'">
+    <svg  width="100%" height="100%" >
+      <rect 
+        
+        [attr.height.px]="commentThread.originalHeight" 
+         [attr.width.px]="commentThread.originalWidth" 
+        [style.fill]="commentThread.backgroundColor" 
+        [style.strokeWidth.px]="commentThread.borderWidth * 5"
+        [style.stroke]="commentThread.borderColor" />
+    </svg>
+  </ng-container>
+  <ng-container *ngIf="commentThread.type === 'circle'">
+    <svg  width="100%" height="100%" 
+    [style.overflow]="'visible'"
+    >
+        <ellipse 
+          [attr.height.px]="commentThread.originalHeight" 
+          [attr.width.px]="commentThread.originalWidth" 
+          [attr.cx]="commentThread.width / 2"
+          [attr.cy]="commentThread.height / 2" 
+          [attr.rx]="commentThread.width / 2" 
+          [attr.ry]="commentThread.height / 2" 
+          [style.fill]="commentThread.backgroundColor"
+          [style.strokeWidth.px]="commentThread.borderWidth * 5" 
+          [style.stroke]="commentThread.borderColor" />
+    </svg>
+  </ng-container>
+</div>

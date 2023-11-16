@@ -1,0 +1,14 @@
+<ng-container *ngIf="date">
+  <!--
+    hour:(date | momentDate:'HH:ss a'),
+  -->
+  {{ (date | niceDateFormatTimestamp:format)  | translate:{
+      hour:'',
+      minutes: minutes,
+      hours: hours,
+      days: days,
+      weeks: weeks
+    }
+}}
+  
+</ng-container>

@@ -1,0 +1,86 @@
+<ng-template #previewButtons>
+
+    <a *ngIf="canEdit" class="edit-button" href="javascript:void(0)" appTooltip [tooltipMessage]="'Editar la estructura o formato del brief.'"
+        [gutterTooltip]="0" (click)="edit()">
+        <i class="icon-svg icon-edit" [inlineSVG]="'assets/img/brief-template/ico_editar_template.svg'"></i>
+    </a>
+    <a class="view-button" 
+    href="javascript:void(0)" appTooltip [tooltipMessage]="'Visualizar template.'"
+        [extraClassTooltip]="'tooltip-brief-template-view'"
+        [gutterTooltip]="0" (click)="viewBriefAction()">
+        <i class="icon-svg" [inlineSVG]="'assets/img/brief-template/ico_visualizar.svg'"></i>
+    </a>
+    <!--Buttons-->
+    <button class="begin-button" (click)="createBriefAction()" >Comenzar</button>
+
+
+</ng-template>
+
+<div
+    id="brief-templates-{{index}}" 
+    class="brief-template-item" [ngClass]="{'is-library': briefTemplate.isLibrary }">
+    <div class="brief-template" [class.mouseover]="showHidePreview" (mouseenter)="mouseOver(true)"
+        (mouseleave)="mouseOver(false)">
+        <!--If can add to library-->
+        <ng-container *ngIf="canEdit">
+            <a href="javascript:void(0)" [class.active]="briefTemplate.isLibrary" class="check-button" appTooltip
+                [tooltipMessage]="'Agregar  el template  para  que tu equipo lo visualize.'" id="add-to-library-{{index}}"
+                (click)="makeLibrary()">
+                <i [inlineSVG]="'assets/img/brief/ico_check.svg'" class="icon-svg"></i>
+            </a>
+        </ng-container>
+        <span id="badge-is-pitch" *ngIf="briefTemplate.typeTemplate.key === 'pitch'">
+            Pitch
+        </span>
+        <!--If canot add to library
+        <ng-container *ngIf="!canEdit">
+            <a href="javascript:void(0)" [class.active]="briefTemplate.isLibrary" class="check-button">
+                <i [inlineSVG]="'assets/img/brief/ico_check.svg'" class="icon-svg"></i>
+            </a>
+        </ng-container>-->
+        <ng-container *ngIf="briefTemplate.img">
+            <div class="brief-template-img" [style.background-image]="'url( '+ briefTemplate.img + ')'">
+                <div class="brief-template-img-overlay">
+                    <div class="brief-template-img-overlay-content">
+                        <ng-container *ngTemplateOutlet="previewButtons"></ng-container>
+
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!briefTemplate.img">
+            <div class="brief-template-img">
+                <!--Ico-->
+                <img class="object-preview-icon-brief" [src]="'assets/img/dashboard/ico_ilus_brief.svg'">
+                <!--Overlay-->
+                <div class="brief-template-img-overlay">
+                    <div class="brief-template-img-overlay-content">
+                        <ng-container *ngTemplateOutlet="previewButtons"></ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <!--Admin-->
+        <span id="pulse-target-0" *ngIf="index === 0"></span>
+        <!--Editor/Co-admin-->
+        <span id="pulse-customer-target-1" *ngIf="index === 0"></span>
+        <span id="pulse-customer-target-2" *ngIf="index === 0"></span>
+        <div class="brief-template-information-content">
+            <p class="brief-template-filled" *ngIf="briefTemplate.withResponses">(Con respuestas)</p>
+            <p class="brief-template-type">
+                {{ briefTemplate.title }}
+            </p>
+            <ng-container *ngIf="briefTemplate.systemTemplate">
+                <p class="brief-template-text">
+                    Untitled Template
+                </p>
+            </ng-container>
+            <ng-container *ngIf="!briefTemplate.systemTemplate">
+                <p class="brief-template-text">
+                    {{ briefTemplate.category.name | slice:0:28 }}
+                </p>
+            </ng-container>
+        </div>
+     
+    </div>
+</div>

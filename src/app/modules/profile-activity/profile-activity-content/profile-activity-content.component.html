@@ -1,0 +1,39 @@
+<div class="profile-activity-content" 
+[class.without-header]="!withHeader"
+>
+  <div class="profile-activity-header" *ngIf="withHeader">
+    <div class="row">
+      <div class="col s6">
+        <div class="user-information">
+          <div class="avatar profile-image-medium-1" app-avatar [user]="workspaceAccess.user" [showStatus]="true"></div>
+          <div class="user-information-content">
+            <span class="name">{{workspaceAccess.user.name + ' '+ workspaceAccess.user.lastName }}</span>
+            <span class="rol">{{ 'workspaceAccess.rol.' + workspaceAccess.rol.key | translate}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col s6">
+        <!--Assign-->
+        <button class="btn btn-light btn-asign" (click)="assign()" *ngIf="canAssign">
+          <span class="icon-asign icon-svg" [inlineSVG]="'assets/img/commons/ico_invite_people.svg'"></span>
+          Asignar
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <app-profile-activity-cores-table 
+  [workspaceAccess]="workspaceAccess" [cores]="cores" [brands]="brands" [projects]="projects"
+    [coreTypes]="coreTypes"
+     [showRemove]="showRemove && canRemove"
+     (tableRemoveCore)="tableRemoveCore($event)"
+    >
+  </app-profile-activity-cores-table>
+
+
+</div>
+<!--Assign-->
+<app-modal-assign-project #modalAssign></app-modal-assign-project>
+<!--Unlink-->
+<app-modal-unlink-project #modalUnlink (modalOnUnlink)="modalOnUnlink($event)"></app-modal-unlink-project>

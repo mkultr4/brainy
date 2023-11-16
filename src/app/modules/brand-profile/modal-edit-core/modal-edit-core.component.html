@@ -1,0 +1,75 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-edit-project'" [modalClass]="'modal-vertically-center'">
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'/assets/img/commons/ico_closed_boxes.svg'"></i>
+  </a>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <!--Title-->
+      <h5 class="modal-header-title">
+        Edición Proyecto
+      </h5>
+    </div>
+    <ng-container *ngIf="core">
+
+      <div class="modal-content-display">
+        <form name="FormEditProject" class="form-default" id="new-feed-form" #editProjectForm="ngForm">
+          <div class="modal-content-display-inner">
+
+            <div class="compressed">
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+                  <div class="input-field input-field-medium input-field-label-medium">
+                    <input #projectTitleInput type="text" name="coreTitle" mz-input [label]="'Título'" [(ngModel)]="core.title"
+                      placeholder="Escribe el título" autocomplete="off" maxlength="100" required>
+
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="input-field input-field-medium input-field-label-medium">
+                    <input #projectNameInput type="text" mz-input [label]="'Nombre del Proyecto'" name="projectName"
+                      [(ngModel)]="core.project.name" placeholder="Escribe el nombre del proyecto" autocomplete="off"
+                      maxlength="100" required>
+
+                  </div>
+                </div>
+                <!--Brand-->
+                <div class="col s12">
+                  <div id="brand-content">
+                    <div app-mz-select-container-brainy class="input-field input-field-medium input-field-label-medium">
+                      <select mz-select data-container="body" placeholder="Selecciona" id="brandSelected" name="brandSelected"
+                        [label]="'Marca'" [(ngModel)]="core.project.brand.id">
+                        <option value="" disabled>Seleccione una marca</option>
+                        <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-content-display-btn">
+        <div class="modal-content-display-inner">
+          <div class="compressed">
+            <!--Buttons-->
+            <div class="center upload-button" id="upload-feed-btn">
+              <button class="btn btn-large" [ngClass]="{'btn-loading':btnDisabled}" [disabled]="btnDisabled || !editProjectForm.valid"
+                (click)="updateProject()">
+                {{btnDisabled ? 'GUARDANDO' : 'GUARDAR'}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+
+
+
+
+</app-mz-modal-brainy>

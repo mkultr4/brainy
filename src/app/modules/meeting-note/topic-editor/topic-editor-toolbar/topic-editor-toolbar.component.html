@@ -1,0 +1,73 @@
+<div class="toolbar-menu-actions" id="main-toolbar-menu-topic" [ngClass]="{
+  'toolbar-visible': (toolbarVisible && editable),
+   'toolbar-open':showToolbar 
+ }"
+  [style.top.px]="toolbarTop">
+  <ng-container *ngIf="!isComment">
+    <a class="toolbar-btn" (click)="toggleToolbar($event)" href="javascript:void(0)">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_add_toolbar.svg'"></i>
+    </a>
+    <div class="menu-actions-wrapper">
+      <ul class="menu-actions">
+        <!--Sub topic-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'sub-topic')" 
+          appTooltip [tooltipMessage]="'Insertar subtema'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_subtema.svg'"></i>
+          </a>
+        </li>
+        <!--Text-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'text')" appTooltip 
+          [tooltipMessage]="'Agregar texto'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_texto.svg'"></i>
+          </a>
+        </li>
+        <!--Video-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'video')" appTooltip 
+          [tooltipMessage]="'Insertar video'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_video_bar.svg'"></i>
+          </a>
+        </li>
+        <!--Image-->
+        <li>
+          <a class="action" href="javascript:void(0)" 
+            (mousedown)="addItem($event, 'image')"
+            appFilePicker 
+            accept="image/*" 
+            (filePick)="chooseImage($event)"
+             appTooltip 
+            [tooltipMessage]="'Insertar imagen'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_imagen_bar.svg'"></i>
+          </a>
+        </li>
+        <!--Link-->
+        <li>
+          <a class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'link')" 
+          appTooltip [tooltipMessage]="'Insertar link'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_link.svg'"></i>
+          </a>
+        </li>
+        <!--Link-->
+        <li>
+          <a 
+            appFilePicker 
+            (filePick)="chooseFile($event)"
+            class="action" href="javascript:void(0)" (mousedown)="addItem($event, 'file')" appTooltip 
+            [tooltipMessage]="'Adjuntar archivo'"
+            [gutterTooltip]="-3">
+            <i class="icon-svg" [inlineSVG]="'assets/img/meeting-note/toolbar/icon_adjuntar.svg'"></i>
+          </a>
+        </li>
+
+
+      </ul>
+    </div>
+  </ng-container>
+</div>

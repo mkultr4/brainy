@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="bar_top" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bar_top_anidados_04" transform="translate(-936.000000, -1261.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="ventana_flotante-copy" transform="translate(922.000000, 1077.000000)">
+                <g id="icono_maximizar" transform="translate(5.000000, 175.000000)">
+                    <path d="M13.4201263,15.3337005 L14.5478516,16.4614258 L11.7189647,19.4071677 L16.1677451,19.4071677 L16.1677451,21 L9,21 L9,13.8322549 L10.5928323,13.8322549 L10.5928323,18.2810353 L13.4201263,15.3337005 Z M16.3742676,14.708252 L15.2465423,13.5805267 L18.2810353,10.5928323 L13.8322549,10.5928323 L13.8322549,9 L21,9 L21,16.1677451 L19.4071677,16.1677451 L19.4071677,11.7189647 L16.3742676,14.708252 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

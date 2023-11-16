@@ -1,0 +1,39 @@
+<div class="brief-category-item-files-content" 
+*ngIf="hasFiles()">
+  <!--Audio-->
+  <ng-container *ngIf='responseContent.files.audio'>
+    <div class="brief-category-item-file-audio brief-category-item-file">
+      <app-audio-player [audioSrc]="responseContent.files.audio.src" [durationRecord]="responseContent.files.audio.duration">
+      </app-audio-player>
+    </div>
+  </ng-container>
+  <!--Image-->
+  <ng-container *ngIf='responseContent.files.image'>
+    <div class="brief-category-item-file-image brief-category-item-file">
+      <div class="brief-category-item-file-image-display">
+        <img [src]="responseContent.files.image.url | sanitize:'url'" class="image">
+      </div>
+    </div>
+  </ng-container>
+  <!--File-->
+  <ng-container *ngIf="responseContent.files.file">
+    <div class="brief-category-item-file-files brief-category-item-file">
+      <a  href="{{responseContent.files.file.url }}" download="download"  class='file-information'>
+        <i class="file-information-ico" [inlineSVG]="'assets/img/brief/files/ico_adjuntar_brief.svg'"></i>
+        <span class="file-information-name">{{responseContent.files.file.name}}</span>
+      </a>
+    </div>
+  </ng-container>
+  <!--Video-->
+  <ng-container *ngIf="responseContent.files.video">
+    <div [video]="responseContent.files.video" app-content-video class="brief-category-item-file brief-category-item-file-video">
+    </div>
+  </ng-container>
+
+  <!--Link-->
+  <ng-container *ngIf='responseContent.files.link'>
+    <div class="brief-category-item-file-link brief-category-item-file">
+      <a class="link" href="{{responseContent.files.link}}" target="_blank">{{responseContent.files.link}}</a>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>offline</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="estados_de_conexion" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-534.000000, -440.000000)">
+            <g id="offline" transform="translate(534.000000, 440.000000)">
+                <g id="stautus_inactivo">
+                    <g id="Group-2">
+                        <circle id="Oval-2-Copy-3" fill="#FFFFFF" cx="6.5" cy="6.5" r="6.5"></circle>
+                        <circle id="Oval-2-Copy-4" fill="#878A8C" cx="6.5" cy="6.5" r="4.875"></circle>
+                    </g>
+                    <circle id="Oval-2-Copy-2" fill="#FFFFFF" cx="6.5" cy="6.5" r="3.25"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

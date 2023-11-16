@@ -1,0 +1,85 @@
+<!--Left Navigation-->
+<ng-container *ngIf="feedback && feedback.id">
+  <app-feedback-left-sidenav [compressed]="leftSidenavCompressed" [pieces]="pieces" [pieceShow]="pieceShow" [editable]="editable && feedback.status.key !== 'disapproved'"
+    [isFeedbackVideo]="isFeedbackVideo">
+  </app-feedback-left-sidenav>
+</ng-container>
+<!--Layout Feedback-->
+<section class="layout-workflow-sidenav layout-feedback ">
+  <!--Main-->
+  <main>
+    <!--MAIN CONTENT-->
+    <div id="main-content">
+      <ng-container *ngIf="feedback && feedback.id">
+        <!--Header-->
+        <header app-feedback-header class="interface-header  workflow-feedback-header" [workspaceAccess]="workspaceAccess"
+          [feedback]="feedback" [coreStatuses]="coreStatuses" [commentThreadStatuses]="commentThreadStatuses"
+          [commentThreadTypes]="commentThreadTypes" [isAdmin]="isAdmin" [editable]="editable && feedback.status.key !== 'disapproved'"
+          [canShare]="canShare" [pieceShow]="pieceShow" [canApprove]="canApprove" [isApprover]="isApprover"
+          (headerOnApprove)="onApprove()">
+        </header>
+      </ng-container>
+      <!--Screen view-->
+      <div class="screen-view" [ngClass]="{'sidenav-right-compress':rightSidenavCompressed,'sidenav-left-compress':leftSidenavCompressed}">
+        <!--Piece Wrapper-->
+        <ng-container *ngIf="feedback && feedback.id && pieceShow">
+          <app-feedback-piece-wrapper #pieceWrapper [pieceShow]="pieceShow" [zoom]="zoom" [editable]="editable && feedback.status.key !== 'disapproved'"
+            [leftSidenavCompressed]="leftSidenavCompressed" [rightSidenavCompressed]="rightSidenavCompressed"
+            [feedbackAction]="feedbackAction" [workspaceAccess]="workspaceAccess" [canAddVideo]="candAddVideo"
+            [enableComments]="feedback.status.key !== 'disapproved'" [forceError]="forceError" [hasTour]="hasTour"
+            [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes">
+          </app-feedback-piece-wrapper>
+
+        </ng-container>
+      </div>
+    </div>
+
+  </main>
+</section>
+
+<!--Floating Note-->
+<app-floating-note [core]="feedback"></app-floating-note>
+<ng-container *ngIf="feedback && feedback.id">
+  <!--Left Navigation-->
+  <app-sidenav-participants 
+    [coreKey]="'feedback'"
+    [emptySidenav]="false" [compressed]="rightSidenavCompressed" [owner]="feedback.owner"
+    [workspace]="feedback.workspace" [showPendingInvitations]="showPendingInvitations">
+  </app-sidenav-participants>
+  <!-- Brief Associated-->
+  <app-brief-list-associated [core]="feedback"></app-brief-list-associated>
+  <!--Brief associated view-->
+  <app-brief-associated></app-brief-associated>
+  <!--Meeting Note associated-->
+  <app-meeting-note-list-associated [core]="feedback"></app-meeting-note-list-associated>
+  <!--Meeting note associated view-->
+  <app-meeting-note-associated></app-meeting-note-associated>
+  <!--Modal Comment pendings-->
+  <app-modal-comments-pending #modalCommentsPending [core]="feedback" (modalOnApprove)="onApproveAccept()"></app-modal-comments-pending>
+  <!--Modal approve core-->
+  <app-modal-approve-core #modalApprove [core]="feedback" (modalOnApprove)="onApproveAccept()"></app-modal-approve-core>
+  <!--Modal alert approve-->
+  <app-modal-alert-approve-core #modalAlertApprove [core]="feedback" 
+    (modalOnApprove)="onApproveAccept()">
+  </app-modal-alert-approve-core>
+  <!--Comments-->
+  <!--Popup comment thread-->
+  <app-comment-thread-popup [workspaceAccess]="workspaceAccess" [coreType]="'feedback'" [coreId]="feedback.id"
+    [forceError]="forceError" [roles]="roles" [categories]="categories" [commentThreadStatuses]="commentThreadStatuses"
+    [participantTypes]="participantTypes">
+  </app-comment-thread-popup>
+  <!--Popup User-->
+  <app-comment-thread-point-popup-user></app-comment-thread-point-popup-user>
+  <!--Comment thread-->
+  <app-comment-thread-sidenav 
+    [core]="feedback"
+    [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes"
+    [workspaceAccess]="workspaceAccess">
+  </app-comment-thread-sidenav>
+  <!--Versions-->
+  <app-feedback-versions-sidenav [leftSidenavCompressed]="leftSidenavCompressed" [pieceShow]="pieceShow" [pieces]="pieces | filterBy:['empty']:false "
+    [isFeedbackVideo]="isFeedbackVideo" [commentThreadStatuses]="commentThreadStatuses" [participantTypes]="participantTypes">
+    ></app-feedback-versions-sidenav>
+</ng-container>
+<!--Sidenav permission-->
+<app-sidenav-permissions></app-sidenav-permissions>

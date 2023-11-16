@@ -1,0 +1,12 @@
+<div class="brief-assessment-number" 
+  [ngClass]="{
+    'editable':focusResponse,
+    'checked':checked
+  }" (click)="toggleSelection($event)">
+  <!--Option label-->
+  <span class="number-val">{{number}}</span>
+  <!--Option Remove-->
+  <a class="brief-assessment-remove" href="javascript:void(0)" (click)="deleteOption($event)">
+    <i class="icon ion-md-close"></i>
+  </a>
+</div>

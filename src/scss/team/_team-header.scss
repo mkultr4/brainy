@@ -1,0 +1,30 @@
+//Header
+#team-header {}
+
+.btn-invite-people {
+    min-width: 103px;
+    position: absolute;
+    top: 15px;
+    right: 28px;
+
+}
+
+//Filters
+#dropdown-filter-team-status {
+    //transform: translateX(50px);
+    .dropdown-content {
+        >li {
+            >a {
+                padding: 0 24px !important;
+                .team-status {
+                    display: block;
+                    position: relative;
+                    .team-status-count {
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

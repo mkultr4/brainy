@@ -1,0 +1,58 @@
+<!--Tour carousel overlay-->
+<div class="tour-carousel-overlay" *ngIf="showCarousel" [@tourCarouselAnimation] >
+
+  <!--Tour carousel-->
+  <div class="tour-carousel-wrapper">
+    <div class="tour-carousel-content">
+      <ng-container *ngIf="tourCarouselOptions && tourCarouselOptions.carouselOptions">
+        <ngu-carousel class="tour-carousel" [inputs]="tourCarouselOptions.carouselOptions" (carouselLoad)="carouselLoad()">
+          <!--Tile 1-->
+          <ngu-item NguCarouselItem *ngFor="let item of items;let last = last">
+            <div class="tour-item-wrapper">
+              <div class="tour-item-content {{tourCarouselOptions.tileClass}}">
+                <!--Image-->
+                <div class="tour-item-ilustration-wrapper">
+                  <div class="dummy"></div>
+                  <div class="tour-item-ilustration-container">
+                    <div class="centerer"></div>
+                    <ng-container *ngIf="item.image">
+                      <img [src]="item.image" class="tour-item-ilustration">
+                    </ng-container>
+                  </div>
+                </div>
+                <!--Caption-->
+                <div class="tour-item-caption">
+                  <!--Title-->
+                  <ng-container *ngIf="item.title">
+                    <div class="tour-item-caption-title">
+                      <span [innerHtml]="item.title"></span>
+                    </div>
+                  </ng-container>
+                  <!--Text-->
+                  <ng-container *ngIf="item.description">
+                    <div class="tour-item-caption-text">
+                      <span [innerHTML]="item.description | sanitize:'html'"></span>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="last">
+                    <div class="tour-item-caption-button">
+                      <a class="{{tourCarouselOptions.btnEndClass}}" (click)="closeCarousel()">{{tourCarouselOptions.btnEndText}}</a>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+
+            </div>
+          </ngu-item>
+
+          <a NguCarouselPrev href="javascript:void(0)" class="tour-navigation tour-navigation-left">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_arrow_slide.svg'"></i>
+          </a>
+          <a NguCarouselNext href="javascript:void(0)" class="tour-navigation  tour-navigation-right">
+            <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_arrow_slide.svg'"></i>
+          </a>
+        </ngu-carousel>
+      </ng-container>
+    </div>
+  </div>
+</div>

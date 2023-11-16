@@ -1,0 +1,14 @@
+<div class='brief-select-option'>
+  <div class="brief-select-option-content">
+    <div 
+      class="brief-select-option-label" 
+      placeholder="Escriba aquí" 
+      [(contentEditableModel)]="option.label"
+      (contentEditableModelChange)="labelChange()"
+      [contentEditable]="editable"
+      ></div>
+  </div>
+  <a href="javascript:void(0)" class="brief-select-remove-option" (click)="deleteOption($event)">
+    <i class="icon ion-md-close"></i>
+  </a>
+</div>

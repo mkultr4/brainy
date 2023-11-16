@@ -1,0 +1,27 @@
+<div class="navbar-default navbar-fixed" id="main-interface-navbar">
+  <nav class="interface-nav" id="main-interface-nav"  [style.backgroundColor]="workspaceAccess.workspace.backgroundColor">
+      <div class="container">
+          <div class="nav-wrapper">
+              <app-header-workspace-logo
+              [currentUser]="currentUser"
+              [showWorkspaceAccess]="showWorkspaceAccess"
+              [workspaceAccess]="workspaceAccess"></app-header-workspace-logo>
+              <!--Menu-->
+              <app-interface-menu
+              [currentUser]="currentUser"
+              [workspaceAccess]="workspaceAccess"
+              [avatarClass]="'avatar-inverse'" [sectionActive]="sectionActive">
+            </app-interface-menu>
+
+          </div>
+
+      </div>
+      <!--Main breadcrumb-->
+      <div id="main-breadcrumb" >
+          <h1>{{breadcrumb}}</h1>
+      </div>
+  </nav>
+</div>
+<ng-content></ng-content>
+
+<app-modal-change-language></app-modal-change-language>

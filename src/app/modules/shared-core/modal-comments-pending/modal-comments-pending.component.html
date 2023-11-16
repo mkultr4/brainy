@@ -1,0 +1,45 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-comments-pending'" [modalClass]="'modal-vertically-center'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+      <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+    </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="commentsPending">
+          <h4 class="comment-pending-title">
+            ({{commentsPending.length}}) Comentarios pendientes
+          </h4>
+          <div class="comments-pending">
+            <ng-container *ngFor="let c of commentsPending">
+              <span class="comment-thread-point disabled-hover {{c.status.key}}">
+                <span>{{c.number}}</span>
+                <span class="comment-thread-point-participant">
+                  <!--Team-->
+                  <i class="comment-thread-point-participant-icon" *ngIf="c.participantType.key === 'team'" [inlineSVG]="'assets/img/commons/comments/ico_pin_team.svg'"></i>
+                  <!--Private-->
+                  <i class="comment-thread-point-participant-icon" *ngIf="c.participantType.key === 'private'" [inlineSVG]="'assets/img/commons/comments/ico_pin_private.svg'"></i>
+                  <!--Just me-->
+                  <i class="comment-thread-point-participant-icon" *ngIf="c.participantType.key === 'just-me'" [inlineSVG]="'assets/img/commons/comments/ico_pin_just_me.svg'"></i>
+                </span>
+              
+              </span>
+            </ng-container>
+          </div>
+          <div class="comment-pending-message">
+            Si apruebas el proyecto los comentarios <br>
+            se pasarán a estatus resuelto.
+          </div>
+          <div class="modal-content-buttons">
+            <button class="btn btn-medium-large btn-outline-line cancel modal-close">CANCELAR</button>
+            <button class="btn btn-medium-large last-button" [disabled]="approving"
+              [appBtnLoading]="approving" (click)="approve()">
+              {{ approving ? 'APROBANDO': 'SI, APROBAR'}}
+            </button>
+
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

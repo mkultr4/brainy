@@ -1,0 +1,183 @@
+.visual-brief-sidenav {
+    @extend .visual-brainy-object-sidenav;
+    .visual-brief {
+        padding: 37px 0;
+    }
+}
+.brief-subsection-container{
+    margin-top: 40px;
+    .brief-subsection-header{
+        font-weight: $font-regular;
+        font-size: 20px;
+        color: $primary-color;
+        margin: 0 0 30px 0; 
+        > i{
+            margin-right: 6px;
+        }
+    }
+}
+.brief-category-close-content {
+    .category-title {
+        line-height: 21px;
+        margin-bottom: 15px;
+        font-weight: $font-regular;
+        font-size: 20px;
+        color: $primary-color;
+        letter-spacing: 0.2px;
+    }
+    .category-items-content {}
+    &+.brief-category-close-content {
+        margin-top: 25px;
+    }
+}
+
+.brief-category-item-close {
+    margin-bottom: 30px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.brief-category-item-close {
+    position: relative;
+}
+
+// Sub category
+.brief-category-item-close-sub-category {
+    padding-left: 20px; // margin-bottom: 4px;
+    font-weight: $font-regular;
+    font-size: 14px;
+    color: $primary-color;
+    &:after {
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: 0px;
+        content: ' ';
+        background-image: url("/assets/img/meeting-note/ico_subtema.svg");
+        background-size: 8px 9px;
+        width: 8px;
+        height: 9px;
+    }
+    &:hover {
+        cursor: text;
+    }
+    margin-bottom: 15px;
+}
+.brief-category-item-close-text{
+    p{
+        font-weight: $font-regular;
+        font-size: 14px;
+        letter-spacing: 0;
+        color: rgba($primary-color,0.7);
+        text-align: left;
+        line-height: 14px;
+        margin: 0;
+        line-height: 20px;
+    }
+}
+// Question
+.brief-category-item-close-question {
+    .question-header {
+        margin-bottom: 15px;
+        .question-title {
+            font-weight: $font-light;
+            font-size: 14px;
+            color: $primary-color;
+            line-height: 16px;
+            margin-bottom: 5px;
+            letter-spacing: 0.34px;
+
+            display: block;
+        }
+        .question-description {
+            display: block;
+            font-weight: $font-light;
+            font-size: 14px;
+            color: rgba($primary-color,0.7);
+        }
+        &.without-description{
+            margin-bottom: 10px;
+        }
+    }
+}
+// Image
+.brief-category-item-close-image{
+    .gallery-image{
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+}
+// Video
+.brief-category-item-close-video{
+    display: block;
+    .category-item-video-wrapper{
+        display: block;
+        .brief-video {
+            display: block;
+        }
+    }
+}
+// Responses
+.category-item-close-response {
+    display: block;
+}
+
+.category-item-close-response-text {
+    p {
+        font-weight: $font-regular;
+        font-size: 14px;
+        letter-spacing: 0;
+        color: rgba($primary-color,0.7);
+        text-align: left;
+        line-height: 14px;
+        margin: 0;
+        line-height: 20px;
+    }
+}
+
+// Brief giveback
+.brief-giveback-close-block{
+    @extend .brief-giveback-block;
+    .brief-giveback-block-header{
+        .brief-giveback-header-information{
+            margin-bottom:34px;
+        }
+        .brief-giveback-block-category{
+            line-height: 18px;
+            .category-title{
+                font-size: 14px;
+            }
+            .sub-category-title{
+                font-size: 14px;
+            }
+        }
+    }
+    .brief-giveback-block-content{
+        .brief-category-item-title{
+            font-size: 14px;
+            letter-spacing: 0.4px;
+            line-height: 26px;
+            padding-bottom: 10px;
+        }
+        .brief-giveback-message{
+            font-size: 14px;
+            line-height: 22px;
+            color: rgba($primary-color,0.70);
+
+        }
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+
+// Dynamic content
+.brief-category-item-close-dynamic-content{
+    .brief-category-item-dynamic-content-wrapper{
+        display: inline-block;
+        width: 100%;
+        margin: 0 -18px;
+    }
+}

@@ -1,0 +1,28 @@
+<div *ngIf="_brand && _brand.logo || hasUpload;then logoBackground; else acronymAvatar" class="circle profile-image">
+</div>
+<ng-template #logoBackground>
+    <ng-container *ngIf="!hasUpload">
+        <div class="circle profile-image" [ngStyle]="{ backgroundImage:'url(' + _brand.logo + ')'}">
+            
+        </div>
+    </ng-container>
+    <ng-container *ngIf="hasUpload">
+        <div class="circle profile-image" [ngStyle]="{ backgroundImage:'url(' + urlImage + ')'}">
+            
+        </div>
+    </ng-container>
+</ng-template>
+<ng-template #acronymAvatar>
+    <div class="circle profile-image">
+        <span class="acronym big">{{_brand?.name?.substring(0,1)}}</span>
+    </div>
+</ng-template>
+
+<div class="avatar-overlay" *ngIf="overlay">
+  <img class="camera" src="assets/img/commons/ico_camera.svg">
+  <span role="button" class="avatar-overlay-btn"
+  appFilePicker
+  accept="image/*"
+  (filePick)="chooseFile($event)"
+  ></span>
+</div>

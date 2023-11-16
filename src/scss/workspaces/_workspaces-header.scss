@@ -1,0 +1,48 @@
+
+.workspace-logo{
+  display: inline-block;
+  width: auto;
+  height: 60px;
+  .workspace-logo-name{
+
+      line-height: 60px;
+      font-family: $font-family-brand;
+      font-size: 24px;
+      color: #FFFFFF;
+      letter-spacing: -0.55px;
+      text-align: left;
+      font-weight: 100;
+      padding-left: 42px;
+      position: relative;
+      display: block;
+      .logo{
+        position: absolute;
+        top: 15px;
+        left: 0px;
+      }
+
+  }
+}
+#main-interface-nav {
+    #workspace-logout {
+        position: absolute;
+        right: 0;
+        top: 25px;
+        display: inline-block;
+        font-weight: $font-regular;
+        font-size: 14px;
+        color: #F3F3F8;
+        line-height: 16px;
+        height: 16px;
+        letter-spacing: 0.15px;
+        > i{
+            font-size: 14px;
+            line-height: 16px;
+            height: 16px;
+            margin-left: 15px;
+        }
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+#modal-team-invite {
+    @extend #modal-share-guests;
+}
+#modal-team-edit-customer{
+    @extend .modal-full-width-form;
+    .modal-content {
+        .modal-content-inner {
+            min-height: 100%;
+            .modal-header {
+
+                max-width: 520px;
+                margin: 0 auto;
+                padding-left: 170px;
+                .modal-header-title{
+                    text-align: left;
+                }
+                @include mq($from: large-screen) {
+                    padding-top: 122px;
+                    padding-bottom: 122px;
+                }
+            }
+            .modal-content-display {
+                .form-wrapper {
+                    max-width: 520px;
+                    margin: 0 auto;
+                    padding-left: 170px;
+                    position: relative;
+                    .customer-image {
+
+                        height: 90px;
+                        width: 90px;
+                        position: absolute;
+                        left: 20px;
+                        top: 10px;
+                        .profile-image {
+                            height: 90px;
+                            width: 90px;
+                            .acronym {
+                                &.big {
+                                    font-size: 35px;
+                                }
+                            }
+                        }
+                    }
+                    .modal-customer-edit-content{
+                        display: inline-block;
+                        width: 100%;
+                        .col {
+                            &:last-child {
+                                .input-field {
+                                    margin-bottom: 25px;
+                                }
+                            }
+                        }
+                    }
+                    .button-section {
+                        text-align: left;
+                        .btn {
+                            width: 150px;
+                            padding: 0;
+                            text-align: center;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

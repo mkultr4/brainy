@@ -1,0 +1,24 @@
+<!-- start header nav-->
+<div class="navbar-default navbar-fixed" id="main-interface-navbar">
+  <nav class="interface-nav" id="main-interface-nav" [style.backgroundColor]="workspaceAccess?.workspace?.backgroundColor">
+      <div class="container">
+          <div class="nav-wrapper">
+            <app-header-workspace-logo [currentUser]="currentUser" [workspaceAccess]="workspaceAccess"></app-header-workspace-logo>
+             <app-interface-menu [currentUser]="currentUser" [workspaceAccess]="workspaceAccess"></app-interface-menu>
+          </div>
+
+          <!--Button Add-->
+          <a id="main-button-add" class="btn-floating btn-large"
+            (click)="newProject()" *ngIf="candAddProject">
+              <img class="icon-svg" [src]="'assets/img/commons/ico_more.svg'">
+          </a>
+      </div>
+      <!--Main breadcrumb-->
+      <div id="main-breadcrumb">
+          <h1>
+              Dashboard
+          </h1>
+      </div>
+  </nav>
+</div>
+<app-modal-change-language></app-modal-change-language>

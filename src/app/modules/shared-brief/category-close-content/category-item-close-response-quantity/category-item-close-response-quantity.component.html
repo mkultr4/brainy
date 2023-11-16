@@ -1,0 +1,23 @@
+<div class="response-quantity">
+  <div class="brief-quantity-container">
+    <!--Input Field-->
+    <div class="brief-quantity-input-field">
+      <div class="brief-quantity-input-wrapper" [ngClass]="{
+                             'quantity-number': item.responseSettings.quantity.type === 'number',
+                             'quantity-percentage': item.responseSettings.quantity.type === 'percentage',
+                             'quantity-currency': item.responseSettings.quantity.type=== 'currency'
+                            }">
+        <!--Ico-->
+        <i class="brief-quantity-input-icon-currency" [inlineSVG]="'assets/img/brief/response-types/quantity/ico_currency_big.svg'"></i>
+        <!--Input-->
+        <input class="brief-quantity-input {{item.responseSettings.quantity.type}}" 
+          
+          [(ngModel)]="item.responseContent.quantity" 
+          [disabled]="true" [placeholder]="item.responseSettings.quantity.placeholder "
+          type="text">
+        <i class="brief-quantity-input-icon-percentage" [inlineSVG]="'assets/img/brief/response-types/percentage/ico_percentage.svg'"></i>
+      </div>
+    </div>
+  
+  </div>
+</div>

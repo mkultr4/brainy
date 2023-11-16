@@ -1,0 +1,30 @@
+<div class="brief-select-response-container">
+    <a href="javascript:void(0)" class="brief-select-response modal-floating-trigger" 
+        [ngClass]="{'contextual-open':contextualOpen}"
+        [id]="'contextual-brief-category-item-btn-response-'+briefCategoryItem.id">
+        <span class="brief-select-response-ico" *ngIf="briefCategoryItem.responseType">
+            <i class="{{briefCategoryItem.responseType.key}}" [inlineSVG]="briefCategoryItem.responseType.iconSmall"></i>
+        </span>
+        <ng-container *ngIf="briefCategoryItem.responseType">
+            <span class="brief-select-response-name">
+                {{ 'brief.response-type.' + briefCategoryItem.responseType.key | translate}}
+            </span>
+        </ng-container>
+        <ng-container *ngIf="!briefCategoryItem.responseType">
+            <span>Selecciona</span>
+        </ng-container>
+        <span class="brief-select-response-caret">
+            <i class="ion-ios-arrow-down caret-close"></i>
+            <i class="ion-ios-arrow-up caret-open"></i>
+        </span>
+
+    </a>
+    <!--Contextual select response-->
+    <app-contextual-brief-category-item-response  
+        [briefCategoryItem]="briefCategoryItem" 
+        [responseTypes]="responseTypes" 
+        (onChangeResponseType)="changeResponseType($event)"
+        (onShowContextualResponse)="onShowContextualResponse($event)"
+        >
+    </app-contextual-brief-category-item-response>
+</div>

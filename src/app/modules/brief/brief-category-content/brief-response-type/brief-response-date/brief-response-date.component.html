@@ -1,0 +1,33 @@
+<div class="response-date " [ngClass]="{'enabled-editing':editable}">
+  <div class="brief-date-inputs-container ">
+    <!--Add Date-->
+    <ng-container *ngIf="focusResponse">
+      <div class="brief-date-input-field add-option editable" *ngIf="(briefCategoryItem.responseSettings.options | filterByImpure:['type']:'date').length === 0"
+        (click)="addDate($event)">
+        <div class="brief-date-input-wrapper ">
+          <i class="brief-date-input-icon" [inlineSVG]="'/assets/img/brief/response-types/date/ico_calendar.svg'"></i>
+          <span class="add-option-text editable">Agregar fecha +</span>
+        </div>
+      </div>
+    </ng-container>
+    <!--Options-->
+    <div class="brief-date-input-field" *ngFor="let option of briefCategoryItem.responseSettings.options |  orderByImpure:['order']">
+      <app-option-date [option]="option" [editable]="editable" [refillable]="refillable" [focusResponse]="focusResponse"
+        (onDelete)="deleteOption($event)" 
+        (onChange)="onChangeSettings()"></app-option-date>
+    </div>
+
+    <!--Add Time-->
+    <ng-container *ngIf="focusResponse">
+      <div class="brief-date-input-field add-option" *ngIf="(briefCategoryItem.responseSettings.options | filterByImpure:['type']:'time').length === 0"
+        (click)="addTime($event)">
+        <div class="brief-date-input-wrapper ">
+          <i class="brief-date-input-icon" [inlineSVG]="'assets/img/brief/response-types/date/ico_small_time.svg'"></i>
+          <span class="add-option-text editable">Agregar hora +</span>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+</div>

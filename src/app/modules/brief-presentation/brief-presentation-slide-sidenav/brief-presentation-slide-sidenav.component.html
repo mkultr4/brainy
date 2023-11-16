@@ -1,0 +1,44 @@
+
+    <a class="slide-drag-handler" href="javascript:void(0)" *ngIf="editable">
+        <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_ordenar_feedback.svg'"></i>
+
+    </a>
+    <div class="slide-wrapper-content" (click)="showSlide()" [ngClass]="{'active':slide.id === slideToShowId}">
+        <!--Remove-->
+        <a href="javascript:void(0)" class="slide-sidenav-remove" (click)="mouseDownDelete($event)" app-alert-dialog
+            [edge]="'right'" [message]="'¿Estas seguro de eliminar la hoja?'" [acceptText]="'Si'" [cancelText]="'No'"
+            [alertClass]="'alert-feedback-piece-sidenav'" (alertOnAccept)="delete()">
+            <i class="icon-svg" [inlineSVG]="'assets/img/feedback/ico_remove_piece.svg'"></i>
+        </a>
+        <!--Wrapper-->
+        <div class="brief-presentation-slide-wrapper">
+            <div class="brief-presentation-slide" [id]="'slide-sidenav-'+index">
+                <ng-container *ngFor="let element of slide.elements">
+                    <ng-container [ngSwitch]="element.type">
+                        <!--Text-->
+                        <ng-container *ngSwitchCase="'text'">
+                            <app-slide-text-sidenav [element]="element"></app-slide-text-sidenav>
+                        </ng-container>
+                        <!--Logo-->
+                        <ng-container *ngSwitchCase="'logo'">
+                            <app-slide-logo-sidenav [element]="element"></app-slide-logo-sidenav>
+                        </ng-container>
+                        <!--Image-->
+                        <ng-container *ngSwitchCase="'image'">
+                            <app-slide-image-sidenav [element]="element"></app-slide-image-sidenav>
+                        </ng-container>
+                        <!--Circle-->
+                        <ng-container *ngSwitchCase="'circle'">
+                            <app-slide-shape-sidenav [element]="element"></app-slide-shape-sidenav>
+                        </ng-container>
+                        <!--Rectangle-->
+                        <ng-container *ngSwitchCase="'rectangle'">
+                            <app-slide-shape-sidenav [element]="element"></app-slide-shape-sidenav>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+    <span class="order">{{slide.order}}</span>

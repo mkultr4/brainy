@@ -1,0 +1,48 @@
+<!--Toolbar-->
+<div class="piece-toolbar" [ngClass]="{
+  'sidenav-right-compress':rightSidenavCompressed,
+  'sidenav-left-compress':leftSidenavCompressed,
+  'both-compress':rightSidenavCompressed && leftSidenavCompressed,
+  'toolbar-video': pieceType ==='video'
+ }">
+  <ul class="piece-toolbar-menu-mark">
+    <li>
+      <a href="javascript:void(0)" [ngClass]="{'active':feedbackAction==='pin'}" (click)="setFeedbackAction($event,'pin')">
+        <span class="icon-mark pin"></span>
+        <span>Pin</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" [ngClass]="{'active':feedbackAction==='rectangle'}" (click)="setFeedbackAction($event,'rectangle')">
+        <span class="icon-mark square"></span>
+        <span>Recuadro</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" [ngClass]="{'active':feedbackAction==='circle'}" (click)="setFeedbackAction($event,'circle')">
+        <span class="icon-mark pin"></span>
+        <span>Circulo</span>
+      </a>
+    </li>
+  </ul>
+  <ng-container *ngIf="pieceType ==='image'">
+    <ul class="piece-toolbar-menu-actions">
+
+      <li>
+        <a href="javascript:void(0)" (click)="decreaseZoom()">
+          <i [inlineSVG]="'assets/img/feedback/ico_zoom_minus.svg'"></i>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" class="percentage">
+          {{zoom}}%
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" (click)="increaseZoom()">
+          <i [inlineSVG]="'assets/img/feedback/ico_zoom_more.svg'"></i>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+</div>

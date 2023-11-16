@@ -1,0 +1,114 @@
+<!--Templates-->
+<ng-template #specialRolBlock let-invitation='invitation'>
+  {{ 'workspaceAccess.rol.'+ invitation.groupReference | translate}}
+</ng-template>
+<ng-template #rolBlock let-invitation='invitation' let-workspaceAccess='workspaceAccess'>
+  <ng-container *ngIf="workspaceAccess">
+    {{ 'workspaceAccess.rol.'+ workspaceAccess.rol.key | translate}}
+  </ng-container>
+  <ng-container *ngIf="invitation">
+    {{ 'workspaceAccess.rol.'+ invitation.workspaceAccess.rol.key | translate}}
+  </ng-container>
+</ng-template>
+<!--Participants-->
+<div class="participants-content" [class.no-border]="withoutBorder">
+  <div class="participants-content-header">
+    <span>Participantes</span>
+  </div>
+  <div class="participants-list">
+    <!--Closing-->
+    <div class="participants-list-row">
+      <div class="header">
+        <span>Aprobado:</span>
+      </div>
+      <div class="list">
+        <span class="user">
+          {{core?.approvedBy?.workspaceAccess?.user?.name +'
+          '+core?.approvedBy?.workspaceAccess?.user?.lastName }}
+          <span class="rol">
+            |
+            <ng-container [ngTemplateOutlet]="core.approvedBy.groupReference  === 'comment' ?  rolBlock : specialRolBlock"
+              [ngTemplateOutletContext]="{invitation:core?.approvedBy}"></ng-container>
+          </span>
+        </span>
+      </div>
+    </div>
+    <!--Create-->
+    <div class="participants-list-row">
+      <div class="header">
+        <span>Organizador:</span>
+      </div>
+      <div class="list">
+        <span class="user">
+          {{ core.owner?.name + ' '+core.owner?.lastName}}
+          <span class="rol"> |
+            {{ 'workspaceAccess.rol.'+ core.ownerRol?.key | translate}}
+
+          </span>
+
+        </span>
+      </div>
+    </div>
+    <!--Editor-->
+    <div class="participants-list-row">
+      <div class="header">
+        <span>Editor:</span>
+      </div>
+      <div class="list">
+        <ng-container *ngFor="let inv of invitations | filterBy:['groupReference']:'editor'">
+          <span class="user">
+            {{inv.workspaceAccess.user.name + ' ' +inv.workspaceAccess.user.lastName }}
+            <span class="rol">|
+              <ng-container [ngTemplateOutlet]="inv.groupReference === 'comment' ? rolBlock : specialRolBlock"
+                [ngTemplateOutletContext]="{invitation:inv}"></ng-container>
+            </span>
+          </span>
+        </ng-container>
+      </div>
+    </div>
+    <!--Colaborators-->
+    <div class="participants-list-row">
+      <div class="header">
+        <span>Pariticipantes:</span>
+      </div>
+      <ng-container *ngIf="!showBrand">
+        <div class="list">
+
+          <ng-container *ngFor="let inv of invitations | filterBy:['groupReference']:'comment' ">
+            <span class="user">
+              {{inv.workspaceAccess.user.name + ' ' +inv.workspaceAccess.user.lastName }}
+            </span>
+          </ng-container>
+
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showBrand">
+        <div class="list list-brand">
+
+          <ng-container *ngFor="let inv of invitations | filterBy:['groupReference']:'comment' ">
+            <span class="user-brand">
+              <!--If has brand-->
+              <ng-container *ngIf="inv.workspaceAccess.brandCurrentCore">
+                <div app-brand-logo class="avatar profile-image-small-1" [brand]="inv.workspaceAccess.brandCurrentCore"></div>
+              </ng-container>
+              <!--If not has brand-->
+              <ng-container *ngIf="!inv.workspaceAccess.brandCurrentCore">
+                <div class="avatar profile-image-small-1" app-avatar [user]="inv.workspaceAccess.user" [showStatus]="false"></div>
+              </ng-container>
+              <ng-container *ngIf="inv.workspaceAccess.brandCurrentCore">
+                <!--Brand-->
+                <span class="brand-name">
+                  {{ inv.workspaceAccess.brandCurrentCore.name}}&nbsp;|&nbsp;
+                </span>
+              </ng-container>
+              {{inv.workspaceAccess.user.name + ' ' +inv.workspaceAccess.user.lastName }}
+            </span>
+          </ng-container>
+
+        </div>
+      </ng-container>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="modal-header">
+  <!--Title-->
+  <h5 class="modal-header-title">
+    <!--If not pich of brief-->
+    <ng-container *ngIf="!pitch">
+        Crear Template
+    </ng-container>
+    <ng-container *ngIf="pitch">
+        Crear template pitch
+    </ng-container>
+
+
+  </h5>
+</div>
+<div class="modal-content-display">
+  <form name="FormNewFeed" class="form-default" id="new-brief-template-form" #newTemplateForm="ngForm">
+    <div class="modal-content-display-inner">
+      <div class="row no-margin-bottom">
+        <!---Title-->
+        <div class="col s12">
+          <div class="input-field input-field-big input-field-center input-field-active input-field-purple-dark ">
+            <input type="text" class="placeholder-light" #inputTitle name="briefTemplateTitle" [(ngModel)]="briefTemplate.title"
+              tabindex="1" placeholder="Escribe el título" autocomplete="off" maxlength="100" required (ngModelChange)="onChangeTitle($event)">
+            <label class="active">Título template</label>
+          </div>
+        </div>
+      </div>
+      <!--Compressed-->
+      <div class="compressed">
+        <!--Categories-->
+        <div id="areas-content">
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field input-field-medium-big  input-field-purple-dark input-field-label-medium "
+                [ngClass]="{'input-field-focused-dark': titleChange && !areaSelected.id}">
+                <select mz-select data-container="body" placeholder="Selecciona" id="briefTemplateArea" name="briefTemplateArea"
+                  [label]="'Área'" [(ngModel)]="areaSelected.id" [disabled]="!titleChange" tabindex="2" (ngModelChange)="onChangeArea($event)"
+                  required>
+                  <option value="" selected>Seleccione una área</option>
+                  <option *ngFor="let a of areas" [value]="a.id">{{ a.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--Categories-->
+        <div id="categories-content">
+          <div class="row no-margin-bottom">
+            <div class="col s12">
+              <div app-mz-select-container-brainy class="input-field input-field-medium-big  input-field-purple-dark input-field-label-medium "
+                [ngClass]="{'input-field-focused-dark': areaSelected && areaSelected.id && !categorySelected.id}">
+                <select mz-select data-container="body" placeholder="Selecciona" id="briefTemplateCategory" name="briefTemplateCategory"
+                  [label]="'Categoría'" [(ngModel)]="categorySelected.id" [disabled]="!areaSelected.id" tabindex="3"
+                  (ngModelChange)="onChangeCategory($event)" required>
+                  <option value="" selected>Seleccione una categoría</option>
+                  <option [value]="'newCategory'">Nueva</option>
+                  <option *ngFor="let c of categories | filterBy:['area.id']:areaSelected.id" [value]="c.id">{{ c.name
+                    }}</option>
+                </select>
+              </div>
+            </div>
+            <!---New category Configuration-->
+            <div class="col s12" *ngIf="categorySelected.id === 'newCategory'">
+              <div class="input-field input-field-medium-big
+                      input-field-purple-dark input-field-label-medium  "
+                [ngClass]="{'input-field-focused-dark': categorySelected.id === 'newCategory' && !newCategory.name}">
+                <input mz-input [label]="'Nombre de la categoría'" name="newCategoryName" tabindex="4" [(ngModel)]="newCategory.name"
+                  type="text" autocomplete="off" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-content-display-btn">
+  <div class="modal-content-display-inner">
+    <div class="compressed">
+      <!--Buttons-->
+      <div class="center upload-button" id="upload-feed-btn">
+        <button class="btn btn-large" [ngClass]="{'btn-loading':btnDisabled}" [disabled]="btnDisabled || !newTemplateForm.valid"
+          (click)="create()">
+          {{btnDisabled ? 'GUARDANDO' : 'GUARDAR'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

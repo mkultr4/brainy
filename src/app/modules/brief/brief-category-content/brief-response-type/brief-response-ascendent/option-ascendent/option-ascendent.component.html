@@ -1,0 +1,24 @@
+<div class="brief-ascendent-item"
+
+[class.focusEditor]="focusEditor"
+>
+    <div class="brief-ascendent-item-number">
+      {{ option.order }}
+    </div>
+    <!--Text container-->
+    <div class="brief-ascendent-item-text-container">
+        <div class="brief-ascendent-item-editor" 
+        [(contentEditableModel)]="option.value"
+        (contentEditableModelChange)="valueChange()" 
+        [maxLength]="100" [contentEditable]="refillable" 
+        [singleLine]="false"
+        (focus)="focusEditor = true;"
+        (blur)="focusEditor = false;"
+        ></div>
+    </div>
+    <!--Remove-->
+    <a *ngIf=" focusResponse" href="javascript:void(0)" class="remove-item"(click)="deleteOption($event)">
+      <i class="con ion-md-close"></i>
+    </a>
+
+  </div>

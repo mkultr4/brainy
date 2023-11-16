@@ -1,0 +1,61 @@
+<!--preloader-->
+<app-preloader [show]="true"></app-preloader>
+<!--Interface-->
+<div class="layout-interface layout-with-footer">
+    <section class="layout-interface-content">
+
+        <header #workspacesHeader class="interface-header" id='workspaces-header'>
+            <!--Primary-->
+            <app-workspaces-header></app-workspaces-header>
+            <!--Filter-->
+            <div app-workspaces-filter class="navbar-default navbar-fixed navbar-filter"
+            [workspacesAccesses]="workspacesAccesses"
+            [currentUser]="currentUser"
+            [mainSearch]="mainSearch"
+            [filterOrderColumn]="filterOrderColumn" 
+            [filterOrderDirection]="filterOrderDirection" 
+            [filterType]="filterType"
+            (filterOnChangeFilterType)="onChangeFilterType($event)" 
+            (filterOnChangeFilterOrder)="onChangeFilterOrder($event)"
+            (filterOnChangeMainSearch)="onChangeMainSearch($event)"
+        ></div>
+    
+
+        </header>
+        <!--MAIN CONTENT-->
+        <main>
+            <div class="workspaces-items-wrapper">
+                <section class='workspaces-items-content'>
+                    <div class="workspaces-items-list">
+                        <div class='workspaces-list-content' *ngIf="workspacesAccesses.length > 0">
+                            <ng-container *ngFor="let workspaceAccess of workspacesAccesses 
+                            | filterBy:['workspace.name']:mainSearch
+                            | filterWorkspaceType:filterType:currentUser.id
+                            | orderBy:orderBy
+                            ">
+                                <!--Box-->
+                                <app-workspace-box [workspaceAccess]="workspaceAccess"
+                                 [currentUser]="currentUser"
+                                 (onSelectWorkspaceAccess)="onSelectWorkspaceAccess($event)"
+                                ></app-workspace-box>
+                            </ng-container>
+                        </div>
+
+                        <h1 class="without-results" *ngIf="(workspacesAccesses
+                        | filterBy:['workspace.name']:mainSearch
+                        | filterWorkspaceType:filterType:currentUser.id
+                        ).length === 0">
+                            {{ 'commons.without-results' | translate }}
+                        </h1>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </section>
+</div>
+<!--Footer-->
+<app-interface-footer></app-interface-footer>
+<!--Alert invitation-->
+<app-modal-alert-invitation #modalAlertInvitation
+(modalInvitationClose)="modalInvitationClose($event)"
+></app-modal-alert-invitation>

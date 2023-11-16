@@ -1,0 +1,30 @@
+<app-mz-dropdown-brainy 
+#dropdown
+  [id]="dropdownId" [dropdownButtonId]="btnId"
+[constrainWidth]="false" [belowOrigin]="belowOrigin" [gutter]="gutter"
+  [dropdownClass]="dropdownClass" [container]="container" [align]="align">
+  <li>
+    <a href="javascript:void(0)" (click)="setPermission($event,'comment')">
+      <i class="icon-svg" [inlineSVG]="'assets/img/share/icono_comentar.svg'"></i>
+      Comentar
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="setPermission($event,'editor')">
+        <i class="icon-svg" [inlineSVG]="'assets/img/share/icono_editar.svg'"></i>
+      Editar
+      <!--
+      <small>(Member)</small>
+      -->
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="setPermission($event,'approver')">
+        <i class="icon-svg" [inlineSVG]="'assets/img/share/icono_aprobar.svg'"></i>
+      Aprobador
+      <!--
+      <small>(Special Member)</small>
+    -->
+    </a>
+  </li>
+</app-mz-dropdown-brainy>

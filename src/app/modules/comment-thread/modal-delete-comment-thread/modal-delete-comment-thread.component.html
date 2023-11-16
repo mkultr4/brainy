@@ -1,0 +1,30 @@
+<app-mz-modal-brainy #modal 
+[options]="modalDeleteOptions" 
+[modalId]="'modal-delete-comment-thead'" [modalClass]="'modal-vertically-center modal-delete'">
+<a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <h4 class="title">
+            Se eliminará el pin
+        </h4>
+        <p class="message">
+          Todos los  comentarios  asociados con el PIN serán eliminados.
+        </p>
+
+        <div class="modal-content-buttons">
+            <button class="btn btn-medium-large" 
+            [appBtnLoading]="btnDisabled"
+            [disabled]="btnDisabled"
+            (click)="delete()">
+          {{ btnDisabled ? 'ELIMINANDO': 'ELIMINAR'}} 
+          </button>
+          <button class="btn btn-medium-large btn-outline-line cancel  last-button  modal-close">CANCELAR</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

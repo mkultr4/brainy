@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icono_color_barwriting</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icono_color_barwriting" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_format_color_fill_24px" transform="translate(2.000000, 2.000000)">
+            <g id="Group">
+                <polygon id="Shape" points="0 0 11 0 11 11 0 11"></polygon>
+                <path d="M7.59,4.0975 L3.4925,0 L2.84625,0.64625 L3.93708333,1.73708333 L1.57666667,4.0975 C1.30625,4.36791667 1.30625,4.80333333 1.57666667,5.06916667 L4.0975,7.59 C4.23041667,7.72291667 4.40916667,7.79166667 4.58333333,7.79166667 C4.7575,7.79166667 4.93625,7.72291667 5.06916667,7.59 L7.59,5.06916667 C7.86041667,4.80333333 7.86041667,4.36791667 7.59,4.0975 L7.59,4.0975 Z M2.38791667,4.58333333 L4.58333333,2.38791667 L6.77875,4.58333333 L2.38791667,4.58333333 L2.38791667,4.58333333 Z M8.70833333,5.27083333 C0.0458333333,2.22044605e-14 7.79166667,6.26541667 7.79166667,6.875 C7.79166667,7.37916667 8.20416667,7.79166667 8.70833333,7.79166667 C9.2125,7.79166667 9.625,7.37916667 9.625,6.875 C9.625,6.26541667 8.70833333,5.27083333 8.70833333,5.27083333 L8.70833333,5.27083333 Z" id="Shape" fill="#4F5C69"></path>
+                <polygon id="Shape" fill="#4F5C69" points="0 9.16666667 11 9.16666667 11 11 0 11"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

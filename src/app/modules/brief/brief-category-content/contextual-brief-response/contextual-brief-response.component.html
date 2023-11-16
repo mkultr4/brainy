@@ -1,0 +1,56 @@
+<div  
+[id]="'contextual-brief-response-'+briefCategoryItemId" 
+app-modal-floating
+[modalFloatingEdge]="'right'"
+[modalFloatingBtnId]="'#contextual-btn-brief-response-'+briefCategoryItemId"
+(modalOnShow)="onShow()"
+(modalOnHide)="onHide()" 
+    class="modal-prevent-close contextual-brief-response category-item-floating-menu">
+    <div class="contextual-brief-category-item-content accept-files" >
+        <div class="accept-files-inner" *ngIf="acceptFiles">
+            <h5 class="accept-files-title">Subir archivo</h5>
+            <div class="checkbox-block">
+                <input 
+                    class="filled-in medium" 
+                    type="checkbox" 
+                    [id]="'cbvideo' + briefCategoryItemId"  
+                    [(ngModel)]="acceptFiles.video"
+                    >
+                <label  class="font-weight-light" for="{{'cbvideo' + briefCategoryItemId}}">Video </label>
+            </div>
+            <div class="checkbox-block">
+                <input class="filled-in medium" 
+                       type="checkbox" 
+                       [id]="'cbimage' + briefCategoryItemId"  
+                       [(ngModel)]="acceptFiles.image"
+                       >
+                <label  class="font-weight-light" for="{{'cbimage' + briefCategoryItemId}}" >Imagen</label>
+            </div>
+            <div class="checkbox-block">
+                <input class="filled-in medium" type="checkbox" 
+                       [id]="'cbfiles' + briefCategoryItemId"  
+                       [(ngModel)]="acceptFiles.file"
+                       >
+                <label  class="font-weight-light" for="{{'cbfiles' + briefCategoryItemId}}">Archivos</label>
+            </div>
+            <div class="checkbox-block">
+                <input class="filled-in medium" type="checkbox" 
+                      [id]="'cbaudio' + briefCategoryItemId"  
+                       [(ngModel)]="acceptFiles.audio"
+                       >
+                <label  class="font-weight-light" for="{{'cbaudio' + briefCategoryItemId}}">Audio</label>
+            </div>
+            <div class="checkbox-block">
+                <input class="filled-in medium" type="checkbox" 
+                       [id]="'cblink' + briefCategoryItemId"  
+                       [(ngModel)]="acceptFiles.link"
+                       /><label class="font-weight-light" for="{{'cblink' + briefCategoryItemId}}">Link</label>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="accept-files-buttons">
+            <button class="btn btn-flat" (click)="cancel()">Cancelar</button>
+            <button class="btn" (click)="accept()">Listo</button>
+        </div>
+    </div>
+</div>

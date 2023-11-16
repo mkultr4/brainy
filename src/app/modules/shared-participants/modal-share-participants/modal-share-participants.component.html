@@ -1,0 +1,42 @@
+<app-animate-modal 
+#modal
+[modalId]="'modal-share-participants'"
+(modalOnShow)="modalOnShow()"
+(modalOnHide)="modalOnHide()" >
+     <!--Modal Link to sahre-->
+     <ng-container *ngIf="showShareLink">
+      <a [id]="'modal-share-participants-link-btn-'+ modaShareLinkId" 
+        class="modal-link-share modal-floating-trigger"
+         href="javascript:void(0)">
+        <i [inlineSVG]="'assets/img/commons/ico_link_share.svg'"
+         class="icon-svg link-icon"> </i>
+      </a>
+    </ng-container>
+    
+    <ng-container *ngIf="showShareLink">
+      <app-modal-share-participants-link 
+      [modalId]="modaShareLinkId"
+      [objectType]="objectType" 
+      [invitationReferenceId]="invitationReferenceId">
+    </app-modal-share-participants-link>
+    </ng-container>
+    
+    <div class="modal-content-inner">
+
+      <!--Share Paticipants-->
+      <app-share-participants-content
+      #shareContent
+        [objectType]="objectType" 
+        [invitationLevelId]="invitationLevelId" 
+        [invitationReferenceId]="invitationReferenceId"
+        [showShareLink]="showShareLink" 
+        [workspaceAccess]="workspaceAccess"
+        [invitations]="invitations"
+        [candAddParticipants]="candAddParticipants"
+        [canAssignPermission]="canAssignPermission"
+        (shareCloseParentModal)="closeModal($event)">
+      </app-share-participants-content>
+
+
+    </div>
+</app-animate-modal>

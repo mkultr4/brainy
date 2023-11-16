@@ -1,0 +1,101 @@
+<div class="item-box-object" (mouseleave)="mouseleave()">
+  <!--Overlay-->
+  <div class="item-box-overlay" [ngClass]="{'item-box-overlay-visible':showDelete}">
+    <!--Overlay Delete Confirm-->
+    <div class="in-overlay-item delete-confirm-content">
+      <span class="inline-message delete-confirm">
+        {{ 'dashboard.delete-message.'+core.type.key | translate}}
+      </span>
+      <button class="block-button accept" (click)="deleteItem()" [disabled]="deleting" [ngClass]="{'btn-loading':deleting}">
+        {{ deleting ? 'Eliminando' : 'Eliminar'}}
+      </button>
+      <button class="block-button" (click)="fnShowDelete(false)" [disabled]="deleting">Cancelar</button>
+    </div>
+  </div>
+  <!--Previews-->
+
+  <div class="object-preview-container closest-alert" (mouseenter)="previewOver(true)" (mouseleave)="previewOver(false)" [ngClass]="{'preview-over':mouseOverPreview}">
+    <!--Previews-->
+    <app-dashboard-box-preview [core]="core" [showDelete]="showDelete">
+    </app-dashboard-box-preview>
+    <!--Menu-->
+    <a href="javascript:void(0)" mz-button class="options-message-content-menu" [id]="'dropdown-box-dashboard-btn'+core.id">
+      <i class="icon-svg" [inlineSVG]="'/assets/img/commons/sidenav/ico_menu.svg'"></i>
+    </a>
+    <app-dashboard-box-menu #dashboardBoxMenu [coreId]="core.id" 
+      [coreTypeKey]="core.type.key" 
+      [coreStatusKey]="core.status.key" 
+      [workspaceAccessRolKey]="workspaceAccess.rol.key"
+      (menuOnDelete)="fnShowDelete($event)" (menuOnCancel)="cancelProject()"
+       (menuOnArchive)="archiveProject()" (menuOnDownload)="downloadProject()"
+       (menuOnResume)="resumeProject()"
+       >
+    </app-dashboard-box-menu>
+    <!--Group reference-->
+    <ng-container *ngIf="core.groupReference">
+        <ng-container *ngIf="core.groupReference === 'editor' || core.groupReference === 'approver'">
+          <p class="object-information-rol" [ngClass]="{
+                'approver':core.groupReference === 'approver',
+                'editor':core.groupReference === 'editor'
+              }">
+            {{ 'workspaceAccess.rol.'+core.groupReference | translate}}
+
+          </p>
+          
+
+        </ng-container>
+      </ng-container>
+  </div>
+
+
+
+
+  <div class='object-options'>
+    <div class="object-information">
+
+      <!--Object type-->
+      <p class="object-information-type">
+        {{'core.type.'+core.type.key | translate}}
+      </p>
+      <!--Object name-->
+      <h6 class="object-information-name">
+        {{ core.title | ngXtruncate: 44 }}
+      </h6>
+      <!--Brand-->
+      <span class="object-information-customer">
+        {{core.project.brand.name }}
+      </span>
+      <!--Project-->
+      <div class="object-information-project-name">
+        <span>(&nbsp;{{ core.project.name | ngXtruncate: 28 }}&nbsp;)</span>
+      </div>
+
+    </div>
+    <!--Object status-->
+    <div class="object-status">
+      <p class="object-status-name {{core.status.key}}">
+        <i class="status-icon icon-svg {{core.status.key}}" [inlineSVG]="core?.status?.ico"></i>
+        <span class="status-text" *ngIf="core.status.key !== 'archived'">
+          {{'core.status.'+ core.status.key | translate }}
+        </span>
+        <span class="status-text" *ngIf="core.status.key === 'archived'">
+          {{'core.status.archive' | translate }}
+        </span>
+      </p>
+      <div class="object-status-notification">
+        <p class="object-status-notification-mesage" appTooltip [gutterTooltip]="-10" 
+        [tooltipMessage]="core.messages + ' mensajes nuevos'"
+          [alignamentTooltip]="'left'" [ngClass]="{'empty':core.messages === 0}">
+          <span class="object-status-notification-number">{{core.messages}}</span>
+          <i class="material-icons">chat_bubble_outline</i>
+
+        </p>
+      </div>
+    </div>
+    <div class="object-audit ">
+      <span>
+        {{ (core.modified | niceDateFormatPipe:'DD/MM/YYYY') | translate:{hour:hour} }}
+      </span>
+    </div>
+  </div>
+</div>

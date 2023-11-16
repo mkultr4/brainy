@@ -1,0 +1,30 @@
+<div class="response-checkbox">
+  <div class="brief-checkbox-list" >
+    <ng-container *ngFor="let option of briefCategoryItem.responseSettings.options |  orderByImpure:['order']">
+      <app-option-checkbox
+        [option]="option"
+        [editable]="editable"
+        [refillable]="refillable"
+        [focusResponse]="focusResponse"
+        [checked]="briefCategoryItem.responseContent.options.indexOf(option) >= 0"
+        (onToggleSelection)="toggleSelection($event)"
+        (onDelete)="deleteOption($event)"
+        (onChange)="onChangeSettings()"
+      ></app-option-checkbox>
+    </ng-container>
+    <!--ADD-->
+    <div class="brief-checkbox brief-checkbox-new"  (click)="addOption()" *ngIf="focusResponse">
+      <div class="brief-checkbox-option">
+        <div class="brief-checkbox-option-content">
+          <!--Checkbox-->
+          <div class="brief-checkbox-selector without-icon">
+            <i class="brief-checkbox-selector-posisionated" 
+            [inlineSVG]="'assets/img/brief/response-types/checkbox/ico_add_icons.svg'"></i>
+          </div>
+          <span class="add-text">Agregar&nbsp;+</span>
+        </div>
+      </div>
+    </div>   
+  </div>
+
+</div>

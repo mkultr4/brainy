@@ -1,0 +1,96 @@
+.video-player {
+    .video-player-container {
+        display: inline-block;
+        width: 100%;
+    }
+    .video-player-timeline {
+        padding: 25px 0 12px 0;
+        .slider {
+            cursor: pointer;
+            position: relative;
+            background: rgba(193, 184, 184, 0.20);
+            height: 3px;
+            border-radius: 2px;
+            .progress {
+                margin: 0;
+                background-color: #2A3CA5;
+                border-radius: inherit;
+                position: absolute;
+                pointer-events: none;
+                overflow: visible;
+                width: 0;
+                height: 100%;
+                .pin {
+                    right: -10px;
+                    top: -3.5px;
+                    background: #2A3CA5;
+                    border-radius: 100px;
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 8px;
+                    background-color: #2A3CA5;
+                    position: absolute;
+                    pointer-events: all;
+                    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
+                }
+            }
+        }
+    }
+    .video-player-controls-container {
+        margin: 0 -8px;
+        .video-player-controls {
+            display: inline-block;
+            margin: 0;
+            >li {
+                display: inline-block;
+                float: left;
+                .item {
+                    display: block;
+                    line-height: 12px;
+                    padding: 8px;
+                }
+                .play-button {
+                    width: 28px;
+                    &.pause {
+                        .pause-icon {
+                            display: none;
+                        }
+                        .play-icon {
+                            display: block;
+                        }
+                    }
+                    &.play {
+                        .pause-icon {
+                            display: block;
+                        }
+                        .play-icon {
+                            display: none;
+                        }
+                    }
+                }
+                .volumen-button {
+                    .volumen-off-icon {
+                        display: none;
+                    }
+                    .volumen-on-icon {
+                        display: block;
+                    }
+                    &.muted {
+                        .volumen-off-icon {
+                            display: block;
+                        }
+                        .volumen-on-icon {
+                            display: none;
+                        }
+                    }
+                }
+                .times {
+                    font-weight: $font-regular;
+                    font-size: 12px;
+                    color: $primary-color;
+                    line-height: 13px;
+                }
+            }
+        }
+    }
+}

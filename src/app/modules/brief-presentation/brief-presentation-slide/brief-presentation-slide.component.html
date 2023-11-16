@@ -1,0 +1,61 @@
+<ng-container *ngFor="let element of elements">
+  <ng-container [ngSwitch]="element.type">
+    <!--Text-->
+    <ng-container *ngSwitchCase="'text'">
+      <app-slide-text 
+      #slideElements
+       [element]="element" [index]="index" [slideScale]="slideScale"
+      (onUpdateElement)="onUpdateElement($event)"
+      (onDeleteElement)="onDeleteElement($event)"
+      (onFocusElement)="onFocusElement($event)"
+      ></app-slide-text>
+    </ng-container>
+    <!--Logo-->
+    <ng-container *ngSwitchCase="'logo'">
+      <app-slide-logo 
+      #slideElements
+        [element]="element" [index]="index" 
+        [slideScale]="slideScale"
+      (onUpdateElement)="onUpdateElement($event)"
+      (onDeleteElement)="onDeleteElement($event)"
+      (onFocusElement)="onFocusElement($event)"
+      ></app-slide-logo>
+    </ng-container>
+    <!--Image-->
+    <ng-container *ngSwitchCase="'image'">
+      <app-slide-image 
+      #slideElements
+        [element]="element" [index]="index" 
+        [slideScale]="slideScale"
+      (onUpdateElement)="onUpdateElement($event)"
+      (onDeleteElement)="onDeleteElement($event)"
+      (onFocusElement)="onFocusElement($event)"
+      (onChangeImage)="onChangeImage($event)"
+      ></app-slide-image>
+    </ng-container>
+    <!--Circle-->
+    <ng-container *ngSwitchCase="'circle'">
+      <app-slide-shape 
+      #slideElements
+      [element]="element" 
+      [index]="index" 
+      [slideScale]="slideScale"
+      (onUpdateElement)="onUpdateElement($event)"
+      (onDeleteElement)="onDeleteElement($event)"
+      (onFocusElement)="onFocusElement($event)"
+      ></app-slide-shape>
+    </ng-container>
+    <!--Rectangle-->
+    <ng-container *ngSwitchCase="'rectangle'">
+      <app-slide-shape 
+      #slideElements
+      [element]="element"
+      [index]="index" 
+      [slideScale]="slideScale"
+      (onUpdateElement)="onUpdateElement($event)"
+      (onDeleteElement)="onDeleteElement($event)"
+      (onFocusElement)="onFocusElement($event)"
+      ></app-slide-shape>
+    
+  </ng-container>
+</ng-container>

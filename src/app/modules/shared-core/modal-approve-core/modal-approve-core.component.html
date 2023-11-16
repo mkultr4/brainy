@@ -1,0 +1,31 @@
+<app-mz-modal-brainy #modal [options]="modalOptions" [modalId]="'modal-approve-core'" [modalClass]="'modal-vertically-center modal-delete'">
+  <!--Close-->
+  <a href="javascript:void(0)" class="modal-close-btn modal-close">
+    <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+  </a>
+  <div class="modal-content-table">
+    <div class="modal-content-cell">
+      <div class="modal-content-cell-container">
+        <ng-container *ngIf="core">
+          <!--Title-->
+          <h4 class="title">{{ 'dashboard.modal-approve.title.'+ core.type.key + key| translate }}</h4>
+          <!--Message-->
+          <p class="message" [innerHTML]="'dashboard.modal-approve.message.'+ core.type.key  + key| translate | sanitize:'html'"></p>
+          <div class="modal-content-buttons">
+            <button class="btn btn-medium-large btn-outline-line cancel  modal-close">
+              CANCELAR
+            </button>
+            <!--btn-outline-line accept-->
+            <button class="btn btn-medium-large
+                 last-button" [disabled]="approving" [ngClass]="{'btn-loading':approving}"
+              (click)="approve()">
+              {{ approving ? 'APROBANDO': 'SI, APROBAR'}}
+            </button>
+
+
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</app-mz-modal-brainy>

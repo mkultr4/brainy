@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>ico/menu_eliminar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="ico/menu_eliminar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-9"></g>
+        <g id="Group-16-Copy-2" transform="translate(2.000000, 2.000000)" fill="#4F5C69">
+            <rect id="Rectangle-8" x="0" y="1.40425532" width="11" height="1"></rect>
+            <rect id="Rectangle-9" x="4.56382979" y="0" width="1.87234043" height="1"></rect>
+            <rect id="Rectangle-10" x="3.86170213" y="3.39361702" width="1" height="4.56382979"></rect>
+            <rect id="Rectangle-10-Copy" x="6.43617021" y="3.39361702" width="1" height="4.56382979"></rect>
+            <path d="M5.58628034,9.8981544 L8.50406988,9.8981544 L9.12165995,3.04255319 L9.92766685,3.04255319 L9.18748442,10.5696268 L5.59787961,10.5696268 L1.9103952,10.5696268 L1.17021277,3.04255319 L1.97621966,3.04255319 L2.59380974,9.8981544 L5.58628034,9.8981544 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

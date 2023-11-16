@@ -1,0 +1,97 @@
+<!--For first item-->
+<ng-container *ngIf="briefCategory && (index === 0 && briefCategory.title.length > 0) || index > 0 || briefCategory.saved">
+
+  <!--Collpase-->
+  <span [class.collapse]="collapse" [class.editing]="iEditable" class="category-collapse" (click)="showCategory()">
+    <!--Drag Handle-->
+    <a class="category-drag-handler" href="javascript:void(0)" *ngIf="editable">
+      <i class="icon-svg" [inlineSVG]="'assets/img/feedback/icono_ordenar_feedback.svg'"></i>
+    </a>
+    <ng-container *ngIf="(briefCategory.items | filterBy:['type']:'SUB_CATEGORY').length > 0">
+      <i class="icon-svg caret" [inlineSVG]="'assets/img/commons/icon_estatus_drop.svg'" (click)="collapseClick()"></i>
+    </ng-container>
+    <!--Title HTML-->
+    <span class="title-content">
+        <!--Title-->
+        <span [innerHTML]="briefCategory.title.length === 0 ? 'Categoría sin titulo': briefCategory.title | sanitize:'html'"></span>
+        <!--Is filled-->
+        <i  class="icon-svg category-filled" 
+          *ngIf="briefCategory.isFilled"
+        [inlineSVG]="'assets/img/commons/ico_check_simple.svg'"></i>
+    </span>
+    <!--Editor-->
+    <span class="title-content-editable" *ngIf="visible">
+      <span class="editor" #editor placeholder="Escriba un tema" autocomplete="off" autocorrect="off" autocapitalize="off"
+        spellcheck="false" 
+        [contentEditable]="iEditable" 
+        [(contentEditableModel)]="briefCategory.title"
+        (contentEditableModelChange)="onChangeTopicTitle($event)" 
+        [maxLength]="100" 
+        (blur)="blurEditor()"></span>
+    </span>
+
+    <!--Menu-->
+    <ul *ngIf="editable && !iEditable" class="category-menu-options-sidenav">
+      <li>
+        <a class="edit" href="javascript:void(0)" (click)="editTitle()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_editar.svg'"></i>
+        </a>
+      </li>
+      <li>
+        <a class="remove" href="javascript:void(0)" app-alert-dialog [message]="'¿Estas seguro de eliminar la categoría?'"
+          [acceptText]="'Si'" [cancelText]="'No'" [alertClass]="'alert-meeting-note-sidenav'" (alertOnAccept)="removeTopic()">
+          <i class="icon-svg" [inlineSVG]="'assets/img/commons/ico_closed_medium.svg'"></i>
+        </a>
+      </li>
+
+    </ul>
+  </span>
+
+  <ul 
+  #subtopicList
+  class="subtopic-list-sidenav browser-default" 
+  [id]="'subcategory-list-group'" 
+  [class.collapse]="collapse" 
+  [sortablejs]="briefCategory.items | filterItemSubCategory "
+  [class.empty]="(briefCategory.items | filterItemSubCategory).length === 0"
+  [class.active]="briefCategory.id === briefCategoryShow.id"
+  [sortablejsOptions]="{
+    forceFallback: true,
+    fallbackClass: 'sortable-fallback',
+    draggable: '.sub-topic-item-draggable',
+    disabled: !editable,
+    handle: '.sub-topic-drag-handler',
+    onAdd: onSortAdd.bind(this),
+    onStart: onSortStart.bind(this),
+    onEnd: onSortEnd.bind(this),
+    onUpdate: onSortUpdate.bind(this),
+    group: {
+      name: 'subcategory-list-group',
+      pull: 'clone',
+      put: true
+    },
+    scrollSensitivity: 30, 
+    scrollSpeed: 5
+  }"
+  >
+
+    <ng-container *ngFor="let item of briefCategory.items | filterItemSubCategory |  orderByImpure:['order']">
+      <li 
+        [attr.data-id]="item.id"
+        [attr.data-category-id]="briefCategory.id"
+        [attr.data-order]="item.order"
+        class="sub-topic-item-draggable">
+        <app-sub-category-item 
+            [item]="item" 
+            [editable]="editable"
+            [briefCategoryShow]="briefCategoryShow"
+            [visible]="visible"
+            (subCategoryOnRemove)="removeSubCategory($event)"
+            (subCategoryOnUpdate)="updateSubCategory($event)"
+            (subCategoryClick)="subCategoryClick()"
+         ></app-sub-category-item>
+      </li>
+    </ng-container>
+  </ul>
+
+</ng-container>

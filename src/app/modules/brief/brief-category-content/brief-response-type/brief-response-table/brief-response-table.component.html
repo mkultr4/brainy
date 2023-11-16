@@ -1,0 +1,65 @@
+<div class="response-table" [ngClass]="{'enabled-editing':focusResponse}">
+    <div class="brief-table-container">
+        <!--Table-->
+        <table #mainTable appTableColumnResize [resizerOverflow]="36" [resizerFixHeight]="-3" (onTableResizeInit)="onResizeInit()"
+            (onTableResizing)="onResizing()" (onTableResizeEnd)="onResizeEnd()" class="brief-table brief-main-table"
+            [ngClass]="{'enabled-editing':focusResponse}">
+            <!--Head-->
+            <thead>
+                <tr>
+                    <!--data-resizable-column-id="column.id"-->
+                    <th *ngFor="let column of briefCategoryItem.responseSettings.table.columns;let i = index" class="brief-table-column column-closest"
+                        [ngClass]="{'enabled-editing':focusResponse}">
+                        <div class="brief-table-column-wrapper" *ngIf="i > 0">
+                            <div class="delete-indicator-table">
+                                <a href="javacript:void(0)" class="delete-icon" (click)="removeColumn($event, i)">
+                                    <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+                                </a>
+                            </div>
+                            <input type="text" placeholder="Escriba aquí" [(ngModel)]="column.label" 
+                            [disabled]='!editable || (editable &&  isResizing)'>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <!--Body-->
+            <tbody>
+                <tr *ngFor="let row of briefCategoryItem.responseSettings.table.rows;let  i = index">
+                    <td class="brief-row-title row-closest">
+                        <div class="delete-indicator-table">
+                            <a href="javacript:void(0)" class="delete-icon" (click)="removeRow($event, i)">
+                                <i class="icon-svg" [inlineSVG]="'assets/img/commons/workflow-header/menu_eliminar.svg'"></i>
+                            </a>
+                        </div>
+                        <input type="text" placeholder="Escriba aquí" [(ngModel)]="row.label" class="brief-row-input-label"
+                            [ngClass]="{'enabled-editing':focusResponse}" [disabled]='!editable || (editable &&  isResizing)'>
+                    </td>
+                    <td *ngFor="let cell of row.cells">
+                        <app-table-input [cell]="cell" [tableCellTypes]="tableCellTypes" [editable]="editable && focusResponse"
+                            [refillable]="refillable" [isResizing]="isResizing" (onChangeInput)="onChangeInput()"></app-table-input>
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <!--Option-->
+    <div class="brief-table-otions" *ngIf="focusResponse">
+        <a class="brief-cell-add" *ngIf='briefCategoryItem.responseSettings.table.rows.length <= 10' (click)="addRow($event)">
+            <span class="brief-cell-add-btn">
+                Agregar fila +
+            </span>
+
+        </a>
+        <a class="brief-cell-add" *ngIf="briefCategoryItem.responseSettings.table.columns.length <= 4" (click)="addColumn($event)">
+            <span class="brief-cell-add-btn">
+                Agregar columna +
+            </span>
+
+        </a>
+    </div>
+
+</div>

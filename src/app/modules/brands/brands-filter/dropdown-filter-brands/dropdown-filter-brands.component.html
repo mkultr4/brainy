@@ -1,0 +1,31 @@
+<div class="dropdown-menu-navigation bottom" 
+  id="dropdown-filter-brands" 
+[ngClass]="{'dropdown-menu-empty': brands.length === 0}">
+  <ng-container *ngIf="brands.length > 0">
+    <ul class="dropdown-content dropdown-max-height" id="dropdown-filter-brands" 
+    [perfectScrollbar]="{suppressScrollX:true}">
+      <li [ngClass]="{'active':filterBrand.id === 'all'}">
+        <a href="javascript:void(0)" (click)="setFilterBrand({id:'all',name:'all'})">
+          <span>
+            Todas 
+          </span>
+
+        </a>
+      </li>
+      <li *ngFor="let brand of brands" [ngClass]="{'active':filterBrand.id && filterBrand.id === brand.id}">
+        <a (click)="setFilterBrand(brand)">
+          <span>{{ brand.name | ngXtruncate: 28 }}</span>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-container *ngIf="brands.length === 0">
+    <ul class="dropdown-content dropdown-content-empty dropdown-max-height" id="dropdown-filter-brands" [perfectScrollbar]="{suppressScrollX:true}">
+      <li class="empty">
+        <a href="javascript:void(0)">
+          No posee marcas
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="interface_notes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="visual_personal_note-copy-53" transform="translate(-244.000000, -78.000000)">
+            <g id="Group-5" transform="translate(244.000000, 78.000000)">
+                <g id="ic_border_color_24px">
+                    <g id="Group">
+                        <polygon id="Shape" points="0 0 12 0 12 12 0 12"></polygon>
+                        <path d="M8.875,3.50125 L7,1.62625 L2,6.62625 L2,8.50125 L3.875,8.50125 L8.875,3.50125 L8.875,3.50125 Z M10.355,2.02125 C10.55,1.82625 10.55,1.51125 10.355,1.31625 L9.185,0.14625 C8.99,-0.04875 8.675,-0.04875 8.48,0.14625 L7.5,1.12625 L9.375,3.00125 L10.355,2.02125 L10.355,2.02125 Z" id="Shape" fill="#3C4FBC"></path>
+                        <polygon id="Shape" fill="#3C4FBC" points="0 10 12 10 12 12 0 12"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
